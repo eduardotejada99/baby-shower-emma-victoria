@@ -3,351 +3,404 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-  <title>Baby Shower de Emma Victoria | Una Experiencia de Ensueño</title>
-  <meta name="description" content="Acompáñanos a celebrar la llegada de nuestra pequeña princesa Emma Victoria. Una mágica historia interactiva de amor y alegría.">
+  <title>Baby Shower de Emma Victoria | Apple Style Edition</title>
+  <meta name="description" content="Acompáñanos a celebrar la llegada de nuestra pequeña princesa Emma Victoria. Una experiencia interactiva de ensueño.">
   
   <!-- Open Graph / WhatsApp Preview -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="Baby Shower de Emma Victoria ✨">
-  <meta property="og:description" content="Desliza para abrir la historia y celebrar la llegada de nuestra pequeña princesa.">
+  <meta property="og:description" content="Acompáñanos a celebrar la llegada de nuestra pequeña princesa Emma Victoria.">
   <meta property="og:locale" content="es_ES">
   
   <link rel="icon" type="image/svg+xml" href="assets/icons/butterfly.svg">
 
-  <!-- Tipografías de Google Fonts -->
+  <!-- Google Fonts: Editorial Serif + Clean Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
-  <!-- Fondo con Iluminación Líquida Dinámica -->
-  <div class="ambient-glow-mesh" aria-hidden="true">
-    <div class="glow-orb orb-1"></div>
-    <div class="glow-orb orb-2"></div>
-    <div class="glow-orb orb-3"></div>
-  </div>
-
-  <!-- Lienzo de Partículas Mágicas (Polvo dorado, destellos y mariposas) -->
+<body class="apple-experience">
+  
+  <!-- Canvas de partículas y mariposas flotantes en segundo plano -->
   <canvas id="canvas-particles" aria-hidden="true"></canvas>
 
-  <!-- Botón Flotante de Audio Ambiental (Caja de Música) -->
-  <button id="btn-audio-toggle" class="audio-toggle-btn" aria-label="Reproducir melodía de ensueño" title="Música de caja de notas">
-    <span class="audio-wave" aria-hidden="true">
-      <span></span><span></span><span></span>
-    </span>
-    <img src="assets/icons/music.svg" alt="" width="20" height="20" class="audio-icon">
-  </button>
-
-  <!-- Barra Lateral de Progreso Estilo Apple -->
-  <nav class="scrub-timeline" aria-label="Navegación de Capítulos">
-    <div class="scrub-track-bg">
-      <div id="scrub-progress-fill" class="scrub-progress-fill"></div>
+  <!-- SUB-NAVEGACIÓN STICKY ESTILO APPLE (como Apple Watch Ultra) -->
+  <header id="apple-subnav" class="apple-subnav">
+    <div class="subnav-container">
+      <div class="subnav-brand">
+        <span class="subnav-title">Emma Victoria</span>
+        <span class="subnav-category">Baby Shower</span>
+      </div>
+      <div class="subnav-actions">
+        <button id="btn-audio-toggle" class="subnav-audio-btn" aria-label="Música ambiental" title="Música ambiental">
+          <span class="audio-wave" aria-hidden="true">
+            <span></span><span></span><span></span>
+          </span>
+          <img src="assets/icons/music.svg" alt="" width="16" height="16">
+        </button>
+        <a href="#rsvp-section" id="subnav-rsvp-btn" class="subnav-cta-btn">Confirmar</a>
+      </div>
     </div>
-    <button class="scrub-dot is-active" data-index="0" aria-label="Portada" title="Portada">
-      <span class="scrub-dot-core"></span>
-      <span class="scrub-tooltip">Portada</span>
-    </button>
-    <button class="scrub-dot" data-index="1" aria-label="Emma Victoria" title="Emma Victoria">
-      <span class="scrub-dot-core"></span>
-      <span class="scrub-tooltip">Emma Victoria</span>
-    </button>
-    <button class="scrub-dot" data-index="2" aria-label="Cuenta Regresiva" title="Cuenta Regresiva">
-      <span class="scrub-dot-core"></span>
-      <span class="scrub-tooltip">El Gran Día</span>
-    </button>
-    <button class="scrub-dot" data-index="3" aria-label="Ubicación" title="Ubicación">
-      <span class="scrub-dot-core"></span>
-      <span class="scrub-tooltip">Ubicación</span>
-    </button>
-    <button class="scrub-dot" data-index="4" aria-label="Dress Code" title="Dress Code">
-      <span class="scrub-dot-core"></span>
-      <span class="scrub-tooltip">Dress Code</span>
-    </button>
-    <button class="scrub-dot" data-index="5" aria-label="Confirmación RSVP" title="Confirmación">
-      <span class="scrub-dot-core"></span>
-      <span class="scrub-tooltip">Confirmar</span>
-    </button>
-  </nav>
+  </header>
 
-  <!-- PISTA DE SCROLL FÍSICO QUE CONTROLA LA LÍNEA DE TIEMPO CINEMÁTICA -->
-  <div class="scroll-track" id="scroll-track" aria-hidden="true"></div>
-
-  <!-- ESCENARIO PRINCIPAL FIJO (PINNED STAGE ESTILO APPLE) -->
-  <main class="apple-viewport-stage" aria-label="Experiencia interactiva del baby shower">
+  <main class="page-flow">
     
-    <!-- ESCENA 0: La Portada de Cuento & El Sello de Cera Dorado -->
-    <section class="scene-panel scene-0" data-scene="0" aria-label="Portada">
-      <div class="scene-content hero-envelope-stage">
-        <div class="hero-envelope">
-          <div class="royal-crown-badge">
-            <img src="assets/icons/baby-crown.svg" alt="" width="54" height="38" class="royal-crown-img">
+    <!-- 1. SECCIÓN HERO (ESTILO APPLE: 00:00) -->
+    <section class="apple-hero-section">
+      <div class="hero-inner">
+        <span class="apple-kicker">UNA HISTORIA DE AMOR</span>
+        <h1 class="apple-hero-headline">Emma Victoria</h1>
+        <p class="apple-hero-subhead">El comienzo de nuestra más dulce aventura.</p>
+        
+        <!-- Emblema Central Real de Cera y Corona -->
+        <div class="hero-centerpiece">
+          <div class="centerpiece-aura" aria-hidden="true"></div>
+          <div class="centerpiece-crown">
+            <img src="assets/icons/baby-crown.svg" alt="" width="56" height="40">
           </div>
-          <span class="hero-badge">Una Historia de Amor</span>
-          <p class="hero-script-intro">Había una vez un sueño...</p>
-          <h1 class="hero-title">Baby Shower</h1>
-          <p class="hero-subtitle">que está a punto de florecer</p>
           
-          <div class="decorative-wreath-wrap">
-            <img src="assets/icons/wreath.svg" alt="" class="decorative-wreath" width="160" height="48">
+          <div id="wax-seal" class="hero-seal-badge" role="button" tabindex="0" aria-label="Abrir invitación">
+            <img src="assets/icons/seal.svg" alt="Sello real con monograma E" width="110" height="110" class="seal-img">
+            <span class="seal-glow-pulse" aria-hidden="true"></span>
           </div>
 
-          <!-- Sello de Cera Dorado -->
-          <div id="wax-seal" class="wax-seal-container" role="button" tabindex="0" aria-label="Abrir sobre de invitación">
-            <img src="assets/icons/seal.svg" alt="Sello de cera dorado con la letra E" class="seal-image" width="100" height="100">
-            <span class="seal-glow" aria-hidden="true"></span>
+          <div class="centerpiece-wreath">
+            <img src="assets/icons/wreath.svg" alt="" width="180" height="52">
           </div>
         </div>
 
-        <div class="scroll-prompt" aria-hidden="true">
-          <span class="scroll-prompt-text">Desliza para abrir la historia</span>
-          <div class="scroll-prompt-arrow">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <path d="M7 10L12 15L17 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <!-- Acciones Principales -->
+        <div class="hero-cta-group">
+          <a href="#rsvp-section" class="apple-btn-primary">Confirmar Asistencia</a>
+          <a id="btn-add-calendar" href="#" target="_blank" rel="noopener noreferrer" class="apple-btn-secondary">
+            <img src="assets/icons/calendar.svg" alt="" width="16" height="16">
+            <span>Añadir al Calendario</span>
+          </a>
+        </div>
+
+        <p class="hero-event-teaser">
+          Sábado, 24 de Octubre de 2026 &bull; 4:00 PM &bull; Jardín Las Rosas
+        </p>
+      </div>
+    </section>
+
+    <!-- 2. "LO MÁS DESTACADO" (CARRUSEL HORIZONTAL ESTILO APPLE: 00:01 - 00:03) -->
+    <section class="apple-section highlights-section">
+      <div class="section-header-block">
+        <h2 class="apple-section-title">Lo más destacado.</h2>
+      </div>
+
+      <div class="highlights-carousel-wrapper">
+        <div id="highlights-carousel" class="highlights-carousel">
+          
+          <!-- Card 1 -->
+          <article class="highlight-card card-date">
+            <div class="card-bg-gradient"></div>
+            <div class="card-content">
+              <span class="card-eyebrow">EL GRAN DÍA</span>
+              <h3 class="card-title">Sábado, 24 de Octubre</h3>
+              <p class="card-desc">Nos reuniremos a las 4:00 PM para compartir una tarde llena de emoción, juegos y momentos inolvidables.</p>
+            </div>
+            <div class="card-icon-pill">
+              <img src="assets/icons/calendar.svg" alt="" width="20" height="20">
+              <span>Faltan pocas semanas</span>
+            </div>
+          </article>
+
+          <!-- Card 2 -->
+          <article class="highlight-card card-venue">
+            <div class="card-bg-gradient"></div>
+            <div class="card-content">
+              <span class="card-eyebrow">EL LUGAR</span>
+              <h3 class="card-title">Jardín Las Rosas</h3>
+              <p class="card-desc">Un recinto botánico rodeado de flores y naturaleza en Av. Los Jazmines 450, Valle Hermoso.</p>
+            </div>
+            <div class="card-icon-pill">
+              <img src="assets/icons/map-pin.svg" alt="" width="20" height="20">
+              <span>Recepción de ensueño</span>
+            </div>
+          </article>
+
+          <!-- Card 3 -->
+          <article class="highlight-card card-dress">
+            <div class="card-bg-gradient"></div>
+            <div class="card-content">
+              <span class="card-eyebrow">CÓDIGO DE VESTIMENTA</span>
+              <h3 class="card-title">Elegante Casual Pastel</h3>
+              <p class="card-desc">Sugerimos tonos rosa empolvado, crema vainilla, lavanda suave o toques de oro champaña.</p>
+            </div>
+            <div class="card-icon-pill">
+              <span class="mini-swatch-cluster">
+                <span style="background: #F4D3DC;"></span>
+                <span style="background: #FAF3E6;"></span>
+                <span style="background: #E7DCF2;"></span>
+                <span style="background: #E5C778;"></span>
+              </span>
+              <span>Paleta sugerida</span>
+            </div>
+          </article>
+
+          <!-- Card 4 -->
+          <article class="highlight-card card-blessing">
+            <div class="card-bg-gradient"></div>
+            <div class="card-content">
+              <span class="card-eyebrow">NUESTRO DESEO</span>
+              <h3 class="card-title">Lluvia de Bendiciones</h3>
+              <p class="card-desc">Tu presencia y tus buenos deseos son el regalo más preciado para el camino de Emma Victoria.</p>
+            </div>
+            <div class="card-icon-pill">
+              <img src="assets/icons/butterfly.svg" alt="" width="20" height="20">
+              <span>Amor infinito</span>
+            </div>
+          </article>
+
+        </div>
+
+        <!-- Paginación con Puntos estilo Apple -->
+        <div class="carousel-pagination" aria-label="Controles del carrusel">
+          <button class="carousel-dot is-active" data-slide="0" aria-label="Tarjeta 1"></button>
+          <button class="carousel-dot" data-slide="1" aria-label="Tarjeta 2"></button>
+          <button class="carousel-dot" data-slide="2" aria-label="Tarjeta 3"></button>
+          <button class="carousel-dot" data-slide="3" aria-label="Tarjeta 4"></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. "CONOCE CADA DETALLE" (INTERACTIVE TABBED SWITCHER ESTILO APPLE: 00:04 - 00:05) -->
+    <section class="apple-section closer-look-section">
+      <div class="section-header-block">
+        <h2 class="apple-section-title">Conoce cada detalle.</h2>
+        <p class="apple-section-subtitle">Toca cada pestaña para explorar la experiencia completa.</p>
+      </div>
+
+      <!-- Selector de Píldoras Interactivas (como Finishes / Battery life en Apple) -->
+      <div class="closer-look-tabs" role="tablist">
+        <button class="tab-chip is-active" data-tab="countdown" role="tab" aria-selected="true">
+          <span>✦ Cuenta Regresiva</span>
+        </button>
+        <button class="tab-chip" data-tab="location" role="tab" aria-selected="false">
+          <span>📍 Ubicación y Mapa</span>
+        </button>
+        <button class="tab-chip" data-tab="dresscode" role="tab" aria-selected="false">
+          <span>👗 Dress Code</span>
+        </button>
+      </div>
+
+      <!-- Tarjeta Interactiva Dinámica -->
+      <div class="closer-look-display">
+        
+        <!-- Tab Panel 1: Cuenta Regresiva -->
+        <div id="tab-panel-countdown" class="tab-panel is-active" role="tabpanel">
+          <div class="tab-card-body">
+            <span class="panel-kicker">TIEMPO PARA CELEBRAR</span>
+            <h3 class="panel-headline">El Gran Día Se Acerca</h3>
+            <p class="panel-desc">Cada instante nos acerca al momento en que conoceremos su carita.</p>
+
+            <div id="countdown-timer" class="apple-countdown-grid" role="timer" aria-live="polite">
+              <div class="time-pill">
+                <span id="days" class="time-num">00</span>
+                <span class="time-lbl">Días</span>
+              </div>
+              <div class="time-pill">
+                <span id="hours" class="time-num">00</span>
+                <span class="time-lbl">Horas</span>
+              </div>
+              <div class="time-pill">
+                <span id="minutes" class="time-num">00</span>
+                <span class="time-lbl">Minutos</span>
+              </div>
+              <div class="time-pill">
+                <span id="seconds" class="time-num">00</span>
+                <span class="time-lbl">Segundos</span>
+              </div>
+            </div>
+
+            <div class="panel-actions">
+              <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Baby+Shower+de+Emma+Victoria&dates=20261024T210000Z/20261025T010000Z&location=Jard%C3%ADn+Las+Rosas" target="_blank" rel="noopener noreferrer" class="apple-btn-secondary">
+                <img src="assets/icons/calendar.svg" alt="" width="16" height="16">
+                <span>Agendar en Google Calendar</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab Panel 2: Ubicación y Mapa -->
+        <div id="tab-panel-location" class="tab-panel" role="tabpanel">
+          <div class="tab-card-body">
+            <span class="panel-kicker">LUGAR DEL EVENTO</span>
+            <h3 class="panel-headline">Jardín de Ensueño "Las Rosas"</h3>
+            <p class="panel-desc">Av. Los Jazmines 450, Valle Hermoso. Entrada principal con estacionamiento privado.</p>
+
+            <div class="apple-map-preview">
+              <div class="radar-ping" aria-hidden="true"></div>
+              <img src="assets/icons/map-pin.svg" alt="" width="36" height="36" class="map-center-pin">
+              <span class="map-venue-tag">Jardín Las Rosas</span>
+            </div>
+
+            <div class="panel-actions dual-actions">
+              <a href="https://maps.google.com/?q=Jard%C3%ADn+de+Ensue%C3%B1o+Las+Rosas" target="_blank" rel="noopener noreferrer" class="apple-btn-primary">
+                <img src="assets/icons/map-pin.svg" alt="" width="16" height="16">
+                <span>Abrir en Google Maps</span>
+              </a>
+              <a href="https://waze.com/ul?q=Jardin+Las+Rosas" target="_blank" rel="noopener noreferrer" class="apple-btn-secondary">
+                <span>Abrir en Waze</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab Panel 3: Dress Code -->
+        <div id="tab-panel-dresscode" class="tab-panel" role="tabpanel">
+          <div class="tab-card-body" id="dresscode-section">
+            <span class="panel-kicker">ARMONÍA VISUAL</span>
+            <h3 class="panel-headline">Paleta en Tonos Pastel</h3>
+            <p class="panel-desc">Toca los colores para descubrir su recomendación de estilo:</p>
+
+            <div class="apple-swatch-selector" role="radiogroup" aria-label="Muestras de vestido">
+              <button type="button" class="swatch-btn is-active" data-color="Rosa Empolvado" data-desc="Tonalidad dulce, romántica y delicada, ideal para vestidos florales y blusas suaves." style="--swatch-hex: #F4D3DC;" aria-label="Rosa Empolvado">
+                <span class="swatch-circle"></span>
+                <span class="swatch-title">Rosa Empolvado</span>
+              </button>
+              <button type="button" class="swatch-btn" data-color="Crema Vainilla" data-desc="Color luminoso, neutro y sofisticado, perfecto para trajes de lino o conjuntos sobrios." style="--swatch-hex: #FAF3E6;" aria-label="Crema Vainilla">
+                <span class="swatch-circle"></span>
+                <span class="swatch-title">Crema Vainilla</span>
+              </button>
+              <button type="button" class="swatch-btn" data-color="Lavanda Suave" data-desc="Matiz sereno y poético que aporta frescura y distinción a cualquier atuendo." style="--swatch-hex: #E7DCF2;" aria-label="Lavanda Suave">
+                <span class="swatch-circle"></span>
+                <span class="swatch-title">Lavanda Suave</span>
+              </button>
+              <button type="button" class="swatch-btn" data-color="Oro Champaña" data-hex="#E5C778" data-desc="Acento radiante con destellos festivos que combina de maravilla con accesorios dorados." style="--swatch-hex: #E5C778;" aria-label="Oro Champaña">
+                <span class="swatch-circle"></span>
+                <span class="swatch-title">Oro Champaña</span>
+              </button>
+            </div>
+
+            <div class="swatch-info-box">
+              <h4 id="active-swatch-name" class="swatch-info-title">Rosa Empolvado</h4>
+              <p id="active-swatch-desc" class="swatch-info-text">Tonalidad dulce, romántica y delicada, ideal para vestidos florales y blusas suaves.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 4. EDITORIAL DEEP-DIVE (ESTILO APPLE: 00:06 - 00:10) -->
+    <section class="apple-section editorial-section">
+      <div class="editorial-container">
+        <span class="apple-kicker">NUESTRA PEQUEÑA PRINCESA</span>
+        <h2 class="editorial-headline">El latido más dulce de nuestro corazón.</h2>
+        
+        <p class="editorial-body">
+          Esperada con profunda ilusión y fe, <strong>Emma Victoria</strong> llega para iluminar cada rincón de nuestro hogar. Su nombre evoca <strong>fuerza, dulzura y gracia divina</strong>, un recordatorio vivo de que los milagros más hermosos suceden cuando se sueña con todo el corazón.
+        </p>
+
+        <div class="names-meaning-cards">
+          <div class="meaning-card">
+            <span class="meaning-letter">E</span>
+            <div class="meaning-text">
+              <strong>Emma</strong>
+              <span>Universal, fuerte y llena de bondad</span>
+            </div>
+          </div>
+          <div class="meaning-card">
+            <span class="meaning-letter">V</span>
+            <div class="meaning-text">
+              <strong>Victoria</strong>
+              <span>Victoriosa, bendecida y llena de luz</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="parents-signature-block">
+          <span class="parents-label">Con amor infinito de sus papás:</span>
+          <span class="parents-cursive">Sofía &amp; Alejandro</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. ESTADÍSTICAS APPLE CON TIPOGRAFÍA GIGANTE (00:14 - 00:15) -->
+    <section class="apple-section stats-section">
+      <div class="apple-stats-grid">
+        <div class="stat-cell">
+          <span class="stat-number">24</span>
+          <span class="stat-desc">de Octubre, fecha de nuestro emotivo reencuentro.</span>
+        </div>
+        <div class="stat-cell">
+          <span class="stat-number">4:00</span>
+          <span class="stat-desc">PM, hora de apertura para el brindis y recepción.</span>
+        </div>
+        <div class="stat-cell">
+          <span class="stat-number">100%</span>
+          <span class="stat-desc">Amor, bendición y sonrisas compartidas.</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. FORMULARIO RSVP DE ALTA GAMA -->
+    <section id="rsvp-section" class="apple-section rsvp-section">
+      <div class="rsvp-card-container">
+        <span class="apple-kicker">RSVP DIGITAL</span>
+        <h2 class="apple-section-title">Confirma tu asistencia.</h2>
+        <p class="apple-section-subtitle">Acompáñanos a escribir este hermoso capítulo familiar.</p>
+
+        <form id="rsvp-form" class="apple-form" novalidate>
+          <div class="form-row">
+            <label for="guest-name" class="apple-label">Nombre y Apellido (o Familia) *</label>
+            <input type="text" id="guest-name" name="guestName" class="apple-input" placeholder="Ej. Familia Rodríguez o Lucía Gómez" required>
+            <span class="form-error" id="error-name" aria-live="polite"></span>
+          </div>
+
+          <div class="form-row">
+            <label class="apple-label">¿Nos acompañarás? *</label>
+            <div class="apple-segmented-control">
+              <label class="segment-btn">
+                <input type="radio" name="attending" value="si" checked>
+                <span class="segment-pill">¡Sí, con mucho gusto! 💖</span>
+              </label>
+              <label class="segment-btn">
+                <input type="radio" name="attending" value="no">
+                <span class="segment-pill">No podré asistir 💌</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-row" id="group-passes">
+            <label for="guest-passes" class="apple-label">Número de Pases / Acompañantes</label>
+            <select id="guest-passes" name="passes" class="apple-select">
+              <option value="1">1 persona (Solo yo)</option>
+              <option value="2" selected>2 personas</option>
+              <option value="3">3 personas</option>
+              <option value="4">4 personas (Familia)</option>
+            </select>
+          </div>
+
+          <div class="form-row">
+            <label for="guest-wishes" class="apple-label">Dedicatoria o Deseo para Emma Victoria</label>
+            <textarea id="guest-wishes" name="wishes" class="apple-textarea" rows="3" placeholder="Escribe aquí tus mejores deseos para la bebé y sus papás..."></textarea>
+          </div>
+
+          <button type="submit" id="btn-submit-rsvp" class="apple-btn-primary btn-submit-full">
+            <span>Confirmar por WhatsApp</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
-          </div>
-        </div>
+          </button>
+
+          <p class="rsvp-footer-note">Al hacer clic, se abrirá WhatsApp con el mensaje ya redactado y listo para enviar a los anfitriones.</p>
+        </form>
       </div>
     </section>
 
-    <!-- ESCENA 1: La Revelación Real ("Emma Victoria") -->
-    <section class="scene-panel scene-1" data-scene="1" id="story-card" aria-label="Revelación de la Bebé">
-      <div class="scene-content">
-        <div class="glass-card royal-card">
-          <div class="card-corner-decorations" aria-hidden="true">
-            <span class="corner tl"></span>
-            <span class="corner tr"></span>
-            <span class="corner bl"></span>
-            <span class="corner br"></span>
-          </div>
-
-          <div class="royal-crown-mini">
-            <img src="assets/icons/baby-crown.svg" alt="" width="42" height="30">
-          </div>
-          <span class="chapter-number">Capítulo I</span>
-          <h2 class="script-headline">Celebramos con alegría la llegada de</h2>
-          
-          <div class="baby-name-container">
-            <h2 id="baby-name" class="baby-name">Emma Victoria</h2>
-            <div class="name-shimmer" aria-hidden="true"></div>
-          </div>
-
-          <p class="story-dedication">
-            "Un pedacito de cielo que viene a colmar nuestros días de luz, sonrisas y ternura infinita. Dios ha escuchado nuestras oraciones y nuestro corazón desborda de gratitud."
-          </p>
-
-          <div class="name-meanings">
-            <div class="meaning-item">
-              <span class="meaning-name">Emma</span>
-              <span class="meaning-desc">Universal, dulce y fuerte</span>
-            </div>
-            <div class="meaning-divider" aria-hidden="true">✦</div>
-            <div class="meaning-item">
-              <span class="meaning-name">Victoria</span>
-              <span class="meaning-desc">Victoriosa, bendecida y llena de gracia</span>
-            </div>
-          </div>
-
-          <div class="parents-signature">
-            <span class="signature-label">Con todo el amor de sus futuros papás:</span>
-            <span class="parents-names">Sofía &amp; Alejandro</span>
-          </div>
-        </div>
+    <!-- FOOTER MINIMALISTA ESTILO APPLE -->
+    <footer class="apple-footer">
+      <div class="footer-inner">
+        <p class="footer-verse">"Los hijos son un regalo del Señor, el fruto del vientre es una recompensa."</p>
+        <p class="footer-copy">&copy; 2026 Baby Shower de Emma Victoria &bull; Diseñado con amor por Familia Tejada.</p>
       </div>
-    </section>
-
-    <!-- ESCENA 2: El Reloj de la Ilusión (Cuenta Regresiva & Calendario) -->
-    <section class="scene-panel scene-2" data-scene="2" aria-label="Cuenta Regresiva">
-      <div class="scene-content">
-        <div class="glass-card">
-          <span class="chapter-number">Capítulo II</span>
-          <h2 class="section-title">El Gran Día Se Acerca</h2>
-          <p class="section-intro">Contamos cada segundo para compartir este hermoso milagro</p>
-
-          <div class="event-date-badge">
-            <img src="assets/icons/calendar.svg" alt="" width="22" height="22" class="calendar-icon">
-            <time datetime="2026-10-24T16:00">Sábado, 24 de Octubre de 2026 &bull; 4:00 PM</time>
-          </div>
-
-          <!-- Bloque de Cuenta Regresiva Dinámica -->
-          <div id="countdown-timer" class="countdown-grid" role="timer" aria-live="polite">
-            <div class="countdown-unit">
-              <div class="countdown-card">
-                <span id="days" class="countdown-value">00</span>
-              </div>
-              <span class="countdown-label">Días</span>
-            </div>
-            <div class="countdown-separator">:</div>
-            <div class="countdown-unit">
-              <div class="countdown-card">
-                <span id="hours" class="countdown-value">00</span>
-              </div>
-              <span class="countdown-label">Horas</span>
-            </div>
-            <div class="countdown-separator">:</div>
-            <div class="countdown-unit">
-              <div class="countdown-card">
-                <span id="minutes" class="countdown-value">00</span>
-              </div>
-              <span class="countdown-label">Minutos</span>
-            </div>
-            <div class="countdown-separator">:</div>
-            <div class="countdown-unit">
-              <div class="countdown-card">
-                <span id="seconds" class="countdown-value">00</span>
-              </div>
-              <span class="countdown-label">Segundos</span>
-            </div>
-          </div>
-
-          <div class="calendar-action">
-            <a id="btn-add-calendar" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
-              <img src="assets/icons/calendar.svg" alt="" width="18" height="18">
-              <span>Añadir a Google Calendar</span>
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ESCENA 3: El Lugar del Festejo (Ubicación & GPS) -->
-    <section class="scene-panel scene-3" data-scene="3" id="location-card" aria-label="Ubicación">
-      <div class="scene-content">
-        <div class="glass-card">
-          <span class="chapter-number">Capítulo III</span>
-          <h2 class="section-title">El Lugar de la Celebración</h2>
-          <p class="section-intro">Un jardín de ensueño donde te esperamos con los brazos abiertos</p>
-
-          <div class="venue-info">
-            <div class="venue-icon-wrap" aria-hidden="true">
-              <img src="assets/icons/map-pin.svg" alt="" width="30" height="30">
-            </div>
-            <h3 class="venue-name">Jardín de Ensueño "Las Rosas"</h3>
-            <p class="venue-address">Av. Los Jazmines 450, Valle Hermoso</p>
-            <p class="venue-notes">Recepción y brindis a partir de las 4:00 PM</p>
-          </div>
-
-          <div class="map-preview-wrap">
-            <div class="map-placeholder">
-              <div class="map-pin-pulse" aria-hidden="true"></div>
-              <span class="map-label">Jardín Las Rosas</span>
-            </div>
-          </div>
-
-          <div class="location-actions">
-            <a id="btn-google-maps" href="https://maps.google.com/?q=Jard%C3%ADn+de+Ensue%C3%B1o+Las+Rosas" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
-              <img src="assets/icons/map-pin.svg" alt="" width="18" height="18">
-              <span>Abrir en Google Maps</span>
-            </a>
-            <a id="btn-waze" href="https://waze.com/ul?q=Jardin+Las+Rosas" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
-              <span>Abrir en Waze</span>
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ESCENA 4: El Código de Ensueño (Dress Code Interactivo) -->
-    <section class="scene-panel scene-4" data-scene="4" id="dresscode-section" aria-label="Código de Vestimenta">
-      <div class="scene-content">
-        <div class="glass-card">
-          <span class="chapter-number">Capítulo IV</span>
-          <h2 class="section-title">Código de Vestimenta</h2>
-          <p class="script-headline">Elegante Casual en Tonos Pastel</p>
-          <p class="section-intro">Te invitamos a armonizar con la atmósfera de ensueño eligiendo tu atuendo en nuestra paleta sugerida:</p>
-
-          <!-- Paleta de Muestras Táctiles Interactivas -->
-          <div class="color-palette-picker" role="radiogroup" aria-label="Paleta de colores sugerida">
-            <button type="button" class="color-swatch active" data-color="Rosa Empolvado" data-hex="#F4D3DC" data-desc="Delicado, dulce y acogedor" style="--swatch-color: #F4D3DC;" aria-label="Rosa Empolvado" aria-checked="true" role="radio">
-              <span class="swatch-check">✓</span>
-            </button>
-            <button type="button" class="color-swatch" data-color="Crema Vainilla" data-hex="#FAF3E6" data-desc="Luminoso, cálido y elegante" style="--swatch-color: #FAF3E6;" aria-label="Crema Vainilla" aria-checked="false" role="radio">
-              <span class="swatch-check">✓</span>
-            </button>
-            <button type="button" class="color-swatch" data-color="Lavanda Suave" data-hex="#E7DCF2" data-desc="Sereno, etéreo y romántico" style="--swatch-color: #E7DCF2;" aria-label="Lavanda Suave" aria-checked="false" role="radio">
-              <span class="swatch-check">✓</span>
-            </button>
-            <button type="button" class="color-swatch" data-color="Oro Champaña" data-hex="#E5C778" data-desc="Radiante con toques festivos de distinción" style="--swatch-color: #E5C778;" aria-label="Oro Champaña" aria-checked="false" role="radio">
-              <span class="swatch-check">✓</span>
-            </button>
-          </div>
-
-          <div class="color-display-panel">
-            <span id="selected-color-name" class="color-name">Rosa Empolvado</span>
-            <p id="selected-color-desc" class="color-desc">Delicado, dulce y acogedor</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ESCENA 5: Confirmación de Asistencia & Deseos (RSVP Mágico) -->
-    <section class="scene-panel scene-5" data-scene="5" aria-label="Confirmación de Asistencia">
-      <div class="scene-content">
-        <div class="glass-card rsvp-card">
-          <span class="chapter-number">Capítulo V</span>
-          <h2 class="section-title">Confirma Tu Asistencia</h2>
-          <p class="section-intro">Tu presencia hará que este día sea aún más inolvidable</p>
-
-          <form id="rsvp-form" class="rsvp-form" novalidate>
-            <div class="form-group">
-              <label for="guest-name" class="form-label">Nombre y Apellido (o Familia) *</label>
-              <input type="text" id="guest-name" name="guestName" class="form-input" placeholder="Ej. Familia Rodríguez o Lucía Gómez" required>
-              <span class="form-error" id="error-name" aria-live="polite"></span>
-            </div>
-
-            <div class="form-group">
-              <label class="form-label">¿Nos acompañarás en este festejo? *</label>
-              <div class="attendance-options">
-                <label class="radio-card">
-                  <input type="radio" name="attending" value="si" checked>
-                  <span class="radio-card-content">
-                    <span class="radio-card-title">¡Sí, con mucho gusto! 💖</span>
-                    <span class="radio-card-sub">Allí estaré para celebrar</span>
-                  </span>
-                </label>
-                <label class="radio-card">
-                  <input type="radio" name="attending" value="no">
-                  <span class="radio-card-content">
-                    <span class="radio-card-title">No podré asistir 💌</span>
-                    <span class="radio-card-sub">Les envío todo mi cariño</span>
-                  </span>
-                </label>
-              </div>
-            </div>
-
-            <div class="form-group" id="group-passes">
-              <label for="guest-passes" class="form-label">Número de Pases / Acompañantes</label>
-              <select id="guest-passes" name="passes" class="form-select">
-                <option value="1">1 persona (Solo yo)</option>
-                <option value="2" selected>2 personas</option>
-                <option value="3">3 personas</option>
-                <option value="4">4 personas (Familia)</option>
-              </select>
-            </div>
-
-            <div class="form-group">
-              <label for="guest-wishes" class="form-label">Dedicatoria o Deseo para Emma Victoria</label>
-              <textarea id="guest-wishes" name="wishes" class="form-textarea" rows="2" placeholder="Escribe aquí unas palabras llenas de amor para la pequeña..."></textarea>
-            </div>
-
-            <button type="submit" id="btn-submit-rsvp" class="btn btn-primary btn-block">
-              <span>Confirmar por WhatsApp</span>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </button>
-
-            <p class="rsvp-note">Se abrirá WhatsApp con tu mensaje formateado listo para enviar a los anfitriones.</p>
-          </form>
-
-          <footer class="scene-footer">
-            <p class="footer-blessing">"Los hijos son un regalo del Señor, el fruto del vientre es una recompensa."</p>
-            <p class="footer-family">Con amor, Familia Tejada &bull; 2026</p>
-          </footer>
-        </div>
-      </div>
-    </section>
+    </footer>
 
   </main>
 
@@ -356,7 +409,6 @@
   <script src="js/countdown.js"></script>
   <script src="js/particles.js"></script>
   <script src="js/audio.js"></script>
-  <script src="js/scroll-engine.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

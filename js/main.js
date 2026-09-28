@@ -1,9 +1,10 @@
 /**
- * ORQUESTADOR PRINCIPAL DE INTERACCIONES Y EXPERIENCIA DE SCROLL
+ * ORQUESTADOR PRINCIPAL DE EXPERIENCIA APPLE MOBILE
+ * Baby Shower de Emma Victoria
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  // 1. Iniciar Motor de Partículas en Canvas
+  // 1. Iniciar Motor de Partículas en Canvas de Fondo
   let particleEngine = null;
   if (window.ParticleEngine) {
     particleEngine = new window.ParticleEngine('canvas-particles');
@@ -11,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.particleEngine = particleEngine;
   }
 
-  // 2. Iniciar Sintetizador de Audio Ambiental
+  // 2. Iniciar Sintetizador de Audio Ambiental (Caja de Música)
   let musicSynth = null;
   const audioBtn = document.getElementById('btn-audio-toggle');
   if (audioBtn && window.MusicBoxSynthesizer) {
@@ -25,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
         audioBtn.title = 'Silenciar música';
         if (particleEngine) {
           const rect = audioBtn.getBoundingClientRect();
-          particleEngine.createSparkleBurst(rect.left + 24, rect.top + 24, 15);
+          particleEngine.createSparkleBurst(rect.left + rect.width / 2, rect.top + rect.height / 2, 16);
         }
       } else {
         audioBtn.classList.remove('is-playing');
@@ -35,9 +36,21 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 3. Interacción del Sello de Cera
+  // 3. Sub-Navegación Sticky Estilo Apple (Sombra y blur dinámico al hacer scroll)
+  const appleSubnav = document.getElementById('apple-subnav');
+  window.addEventListener('scroll', () => {
+    if (appleSubnav) {
+      if (window.scrollY > 40) {
+        appleSubnav.classList.add('is-scrolled');
+      } else {
+        appleSubnav.classList.remove('is-scrolled');
+      }
+    }
+  }, { passive: true });
+
+  // 4. Interacción del Sello Real de Cera
   const waxSeal = document.getElementById('wax-seal');
-  const storyCard = document.getElementById('story-card');
+  const highlightsSection = document.querySelector('.highlights-section');
 
   function openSeal() {
     if (!waxSeal || waxSeal.classList.contains('is-broken')) return;
@@ -45,11 +58,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (particleEngine) {
       const rect = waxSeal.getBoundingClientRect();
-      particleEngine.createSparkleBurst(rect.left + rect.width / 2, rect.top + rect.height / 2, 35);
+      particleEngine.createSparkleBurst(rect.left + rect.width / 2, rect.top + rect.height / 2, 40);
     }
 
-    if (storyCard) {
-      storyCard.scrollIntoView({ behavior: 'smooth' });
+    if (highlightsSection) {
+      highlightsSection.scrollIntoView({ behavior: 'smooth' });
     }
   }
 
@@ -63,11 +76,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Romper sello automáticamente con el primer desplazamiento de scroll
-  let sealBrokenByScroll = false;
+  // Desbloqueo suave al primer desplazamiento
+  let sealAutoBroken = false;
   window.addEventListener('scroll', () => {
-    if (!sealBrokenByScroll && window.scrollY > 40) {
-      sealBrokenByScroll = true;
+    if (!sealAutoBroken && window.scrollY > 60) {
+      sealAutoBroken = true;
       if (waxSeal && !waxSeal.classList.contains('is-broken')) {
         waxSeal.classList.add('is-broken');
         if (particleEngine) {
@@ -78,67 +91,136 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }, { passive: true });
 
-  // 4. Desbloqueo progresivo por Scroll con IntersectionObserver
-  const scrollElements = document.querySelectorAll('.scroll-reveal');
+  // 5. Carrusel Horizontal de Momentos Destacados ("Lo más destacado")
+  const carousel = document.getElementById('highlights-carousel');
+  const dots = document.querySelectorAll('.carousel-dot');
+  const cards = document.querySelectorAll('.highlight-card');
 
-  if ('IntersectionObserver' in window) {
-    const observerOptions = {
-      root: null,
-      rootMargin: '0px 0px -12% 0px',
-      threshold: 0.15
-    };
-
-    const scrollObserver = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-revealed');
-
-          // Efecto de destello sutil al revelarse
-          if (particleEngine) {
-            const rect = entry.target.getBoundingClientRect();
-            particleEngine.createSparkleBurst(rect.left + rect.width / 2, rect.top + 60, 16);
-          }
-
-          observer.unobserve(entry.target);
+  if (carousel && dots.length > 0) {
+    // Clic en los puntos de paginación para navegar con scroll suave
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => {
+        if (cards[index]) {
+          cards[index].scrollIntoView({
+            behavior: 'smooth',
+            block: 'nearest',
+            inline: 'center'
+          });
         }
       });
-    }, observerOptions);
+    });
 
-    scrollElements.forEach(el => scrollObserver.observe(el));
-  } else {
-    // Respaldo para navegadores antiguos
-    scrollElements.forEach(el => el.classList.add('is-revealed'));
+    // Detectar tarjeta centrada al deslizar en táctil / rueda
+    let scrollTimeout = null;
+    carousel.addEventListener('scroll', () => {
+      if (scrollTimeout) cancelAnimationFrame(scrollTimeout);
+      scrollTimeout = requestAnimationFrame(() => {
+        const carouselCenter = carousel.scrollLeft + carousel.clientWidth / 2;
+        let closestIndex = 0;
+        let minDiff = Infinity;
+
+        cards.forEach((card, i) => {
+          const cardCenter = card.offsetLeft + card.clientWidth / 2;
+          const diff = Math.abs(carouselCenter - cardCenter);
+          if (diff < minDiff) {
+            minDiff = diff;
+            closestIndex = i;
+          }
+        });
+
+        dots.forEach((dot, i) => {
+          if (i === closestIndex) {
+            dot.classList.add('is-active');
+            dot.setAttribute('aria-current', 'true');
+          } else {
+            dot.classList.remove('is-active');
+            dot.removeAttribute('aria-current');
+          }
+        });
+      });
+    }, { passive: true });
   }
 
-  // 5. Paleta de Colores de Vestimenta (Dress Code) Interactiva
-  const swatches = document.querySelectorAll('.color-swatch');
-  const colorNameEl = document.getElementById('selected-color-name');
-  const colorDescEl = document.getElementById('selected-color-desc');
+  // 6. Selector de Pestañas Interactivas ("Conoce cada detalle")
+  const tabChips = document.querySelectorAll('.tab-chip');
+  const tabPanels = document.querySelectorAll('.tab-panel');
 
-  swatches.forEach(swatch => {
-    swatch.addEventListener('click', () => {
-      swatches.forEach(s => {
-        s.classList.remove('active');
-        s.setAttribute('aria-checked', 'false');
+  tabChips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      const targetTab = chip.getAttribute('data-tab');
+      if (!targetTab) return;
+
+      // Actualizar estado de los chips
+      tabChips.forEach(c => {
+        c.classList.remove('is-active');
+        c.setAttribute('aria-selected', 'false');
+      });
+      chip.classList.add('is-active');
+      chip.setAttribute('aria-selected', 'true');
+
+      // Actualizar visibilidad de los paneles con animación de entrada
+      tabPanels.forEach(panel => {
+        panel.classList.remove('is-active');
       });
 
-      swatch.classList.add('active');
-      swatch.setAttribute('aria-checked', 'true');
+      const activePanel = document.getElementById(`tab-panel-${targetTab}`);
+      if (activePanel) {
+        activePanel.classList.add('is-active');
+      }
 
-      const colorName = swatch.getAttribute('data-color');
-      const colorDesc = swatch.getAttribute('data-desc');
-
-      if (colorNameEl) colorNameEl.textContent = colorName;
-      if (colorDescEl) colorDescEl.textContent = colorDesc;
-
+      // Destello sutil en el chip seleccionado
       if (particleEngine) {
-        const rect = swatch.getBoundingClientRect();
-        particleEngine.createSparkleBurst(rect.left + rect.width / 2, rect.top + rect.height / 2, 10);
+        const rect = chip.getBoundingClientRect();
+        particleEngine.createSparkleBurst(rect.left + rect.width / 2, rect.top + rect.height / 2, 14);
       }
     });
   });
 
-  // 6. Manejo del Formulario de Asistencia (RSVP)
+  // 7. Muestras de Vestimenta Interactivas (Dress Code Swatches)
+  const swatchButtons = document.querySelectorAll('.swatch-btn');
+  const swatchNameEl = document.getElementById('active-swatch-name');
+  const swatchDescEl = document.getElementById('active-swatch-desc');
+
+  swatchButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      swatchButtons.forEach(b => b.classList.remove('is-active'));
+      btn.classList.add('is-active');
+
+      const colorName = btn.getAttribute('data-color') || '';
+      const colorDesc = btn.getAttribute('data-desc') || '';
+
+      if (swatchNameEl) swatchNameEl.textContent = colorName;
+      if (swatchDescEl) swatchDescEl.textContent = colorDesc;
+
+      if (particleEngine) {
+        const rect = btn.getBoundingClientRect();
+        particleEngine.createSparkleBurst(rect.left + rect.width / 2, rect.top + rect.height / 2, 12);
+      }
+    });
+  });
+
+  // 8. IntersectionObserver para Revelaciones Progresivas Estilo Apple
+  const sectionsToReveal = document.querySelectorAll('.apple-section, .editorial-section, .apple-stats-grid');
+
+  if ('IntersectionObserver' in window) {
+    const sectionObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-revealed');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.12,
+      rootMargin: '0px 0px -40px 0px'
+    });
+
+    sectionsToReveal.forEach(el => sectionObserver.observe(el));
+  } else {
+    sectionsToReveal.forEach(el => el.classList.add('is-revealed'));
+  }
+
+  // 9. Manejo del Formulario de Asistencia (RSVP)
   const rsvpForm = document.getElementById('rsvp-form');
   const nameInput = document.getElementById('guest-name');
   const errorName = document.getElementById('error-name');
@@ -175,14 +257,14 @@ document.addEventListener('DOMContentLoaded', () => {
       if (particleEngine) {
         const submitBtn = document.getElementById('btn-submit-rsvp');
         const rect = submitBtn ? submitBtn.getBoundingClientRect() : { left: window.innerWidth / 2, top: window.innerHeight / 2, width: 0, height: 0 };
-        particleEngine.createSparkleBurst(rect.left + rect.width / 2, rect.top + rect.height / 2, 40);
+        particleEngine.createSparkleBurst(rect.left + rect.width / 2, rect.top + rect.height / 2, 45);
         particleEngine.createSparkleBurst(window.innerWidth / 2, window.innerHeight / 2, 35);
       }
 
       // Generar y abrir enlace de WhatsApp
       if (window.Utils) {
         const waUrl = window.Utils.formatWhatsAppRsvpMessage({
-          phone: '51999999999', // Número configurable de los anfitriones
+          phone: '51999999999', // Configurable
           guestName,
           attending,
           passes,
@@ -191,7 +273,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         setTimeout(() => {
           window.open(waUrl, '_blank', 'noopener,noreferrer');
-        }, 350);
+        }, 400);
       }
     });
   }
