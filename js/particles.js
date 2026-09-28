@@ -16,8 +16,15 @@ class ParticleEngine {
     this.isRunning = false;
     this.isReducedMotion = false;
     
-    // Paleta de partículas
-    this.colors = ['#DFB76C', '#FFEAA7', '#E8BAC9', '#F4D3DC', '#FFFFFF'];
+    // Paleta de partículas (polvo de hadas dorado y blush de ensueño)
+    this.colors = ['#DFB76C', '#FFEAA7', '#FFF5D6', '#F4D3DC', '#FFFFFF'];
+
+    // Cargar imagen de mariposa realista de acuarela
+    this.butterflyImg = null;
+    if (typeof Image !== 'undefined') {
+      this.butterflyImg = new Image();
+      this.butterflyImg.src = 'assets/images/realistic-butterfly.png';
+    }
   }
 
   init() {
@@ -83,8 +90,8 @@ class ParticleEngine {
         color: this.colors[Math.floor(Math.random() * this.colors.length)],
         alpha: Math.random() * 0.7 + 0.2,
         alphaSpeed: (Math.random() * 0.015 + 0.005) * (Math.random() > 0.5 ? 1 : -1),
-        vx: (Math.random() - 0.5) * 0.4,
-        vy: - (Math.random() * 0.5 + 0.2), // Flotan hacia arriba lentamente
+        vx: (Math.random() - 0.5) * 0.35,
+        vy: - (Math.random() * 0.45 + 0.2), // Flotan hacia arriba como polvo de estrellas
         angle: Math.random() * Math.PI * 2,
         angleSpeed: Math.random() * 0.02 + 0.01
       });
@@ -92,21 +99,19 @@ class ParticleEngine {
   }
 
   createButterflies() {
-    // 3 a 5 mariposas sutiles
-    const count = this.width < 600 ? 3 : 5;
+    // 3 a 4 mariposas realistas y gráciles de acuarela
+    const count = this.width < 600 ? 3 : 4;
     this.butterflies = [];
     for (let i = 0; i < count; i++) {
       this.butterflies.push({
         x: Math.random() * this.width,
         y: Math.random() * this.height,
-        size: Math.random() * 6 + 10,
-        vx: (Math.random() * 0.8 + 0.4) * (Math.random() > 0.5 ? 1 : -1),
-        vy: (Math.random() - 0.5) * 0.5,
-        wingAngle: 0,
-        wingSpeed: Math.random() * 0.15 + 0.1,
-        color: i % 2 === 0 ? '#DFB76C' : '#E8BAC9',
-        targetX: Math.random() * this.width,
-        targetY: Math.random() * this.height
+        size: Math.random() * 8 + 28, // 28 a 36px: presencia real y elegante
+        vx: (Math.random() * 0.6 + 0.35) * (Math.random() > 0.5 ? 1 : -1),
+        vy: (Math.random() - 0.5) * 0.35,
+        wingAngle: Math.random() * Math.PI * 2,
+        wingSpeed: Math.random() * 0.12 + 0.09,
+        sparkleTimer: 0
       });
     }
   }
@@ -152,7 +157,7 @@ class ParticleEngine {
   }
 
   update() {
-    // Actualizar Motes
+    // Actualizar Motes (polvo de hadas)
     for (const p of this.particles) {
       p.y += p.vy;
       p.x += Math.sin(p.angle) * 0.5 + p.vx;
@@ -172,17 +177,34 @@ class ParticleEngine {
       if (p.x > this.width + 10) p.x = -10;
     }
 
-    // Actualizar Mariposas
+    // Actualizar Mariposas realistas
     for (const b of this.butterflies) {
       b.wingAngle += b.wingSpeed;
       b.x += b.vx;
-      b.y += b.vy + Math.sin(b.wingAngle * 0.5) * 0.6;
+      b.y += b.vy + Math.sin(b.wingAngle * 0.4) * 0.5;
 
-      // Rebotar o rotar en los bordes
-      if (b.x < -30) b.x = this.width + 20;
-      if (b.x > this.width + 30) b.x = -20;
-      if (b.y < -30) b.y = this.height + 20;
-      if (b.y > this.height + 30) b.y = -20;
+      // Rebotar suavemente o envolver en los bordes
+      if (b.x < -40) b.x = this.width + 30;
+      if (b.x > this.width + 40) b.x = -30;
+      if (b.y < -40) b.y = this.height + 30;
+      if (b.y > this.height + 40) b.y = -30;
+
+      // Dejar una estela sutil de polvo mágico dorado
+      b.sparkleTimer++;
+      if (b.sparkleTimer % 12 === 0 && this.particles.length < 55) {
+        this.particles.push({
+          x: b.x - b.vx * 8 + (Math.random() - 0.5) * 6,
+          y: b.y + (Math.random() - 0.5) * 6,
+          radius: Math.random() * 1.8 + 0.6,
+          color: '#FFEAA7',
+          alpha: 0.75,
+          alphaSpeed: -0.015,
+          vx: (Math.random() - 0.5) * 0.2,
+          vy: Math.random() * 0.25 + 0.1,
+          angle: 0,
+          angleSpeed: 0
+        });
+      }
     }
 
     // Actualizar Bursts
@@ -204,12 +226,17 @@ class ParticleEngine {
     this.ctx.clearRect(0, 0, this.width, this.height);
 
     // Dibujar Motes (estrellitas y polvo de hadas)
-    for (const p of this.particles) {
+    for (let i = this.particles.length - 1; i >= 0; i--) {
+      const p = this.particles[i];
+      if (p.alpha <= 0) {
+        this.particles.splice(i, 1);
+        continue;
+      }
       this.ctx.save();
       this.ctx.globalAlpha = Math.max(0, p.alpha);
       this.ctx.fillStyle = p.color;
       this.ctx.shadowBlur = 8;
-      this.ctx.shadowColor = p.color;
+      this.ctx.shadowColor = '#DFB76C';
 
       this.ctx.beginPath();
       this.ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
@@ -217,37 +244,33 @@ class ParticleEngine {
       this.ctx.restore();
     }
 
-    // Dibujar Mariposas
-    for (const b of this.butterflies) {
-      this.ctx.save();
-      this.ctx.translate(b.x, b.y);
-      if (b.vx < 0) {
-        this.ctx.scale(-1, 1);
+    // Dibujar Mariposas Realistas de Acuarela con aleteo 3D
+    if (this.butterflyImg && this.butterflyImg.complete && this.butterflyImg.naturalWidth > 0) {
+      for (const b of this.butterflies) {
+        this.ctx.save();
+        this.ctx.translate(b.x, b.y);
+
+        // Orientar según la dirección de vuelo
+        if (b.vx < 0) {
+          this.ctx.scale(-1, 1);
+        }
+        const tilt = Math.sin(b.wingAngle * 0.4) * 0.14;
+        this.ctx.rotate(tilt);
+
+        // Aleteo 3D de las alas (contracción horizontal suave)
+        const wingFlap = Math.cos(b.wingAngle);
+        const flapScale = 0.35 + 0.65 * Math.abs(wingFlap);
+        this.ctx.scale(flapScale, 1);
+
+        this.ctx.globalAlpha = 0.92;
+        this.ctx.shadowBlur = 10;
+        this.ctx.shadowColor = 'rgba(223, 183, 108, 0.45)';
+
+        const sz = b.size;
+        this.ctx.drawImage(this.butterflyImg, -sz / 2, -sz / 2, sz, sz);
+
+        this.ctx.restore();
       }
-
-      const wingFlap = Math.cos(b.wingAngle);
-      this.ctx.fillStyle = b.color;
-      this.ctx.globalAlpha = 0.75;
-      this.ctx.shadowBlur = 6;
-      this.ctx.shadowColor = b.color;
-
-      // Ala superior
-      this.ctx.beginPath();
-      this.ctx.ellipse(0, -b.size * 0.4, b.size * 0.7 * Math.abs(wingFlap), b.size * 0.5, Math.PI / 4, 0, Math.PI * 2);
-      this.ctx.fill();
-
-      // Ala inferior
-      this.ctx.beginPath();
-      this.ctx.ellipse(0, b.size * 0.3, b.size * 0.5 * Math.abs(wingFlap), b.size * 0.35, -Math.PI / 4, 0, Math.PI * 2);
-      this.ctx.fill();
-
-      // Cuerpo
-      this.ctx.fillStyle = '#8B5A6A';
-      this.ctx.beginPath();
-      this.ctx.ellipse(0, 0, 1.5, b.size * 0.5, 0, 0, Math.PI * 2);
-      this.ctx.fill();
-
-      this.ctx.restore();
     }
 
     // Dibujar Bursts de confeti/destellos

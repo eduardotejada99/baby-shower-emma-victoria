@@ -28,12 +28,6 @@
   <!-- CAPITULO 1: HERO -->
   <section id="section-hero" class="full-section s-hero unfold-item is-unfolded" aria-label="Portada">
     <div class="confetti-layer" aria-hidden="true"></div>
-    <div class="side-garland side-garland-left" aria-hidden="true">
-      <img src="assets/images/side-floral-garland.png" alt="" class="garland-img" width="160" height="380">
-    </div>
-    <div class="side-garland side-garland-right" aria-hidden="true">
-      <img src="assets/images/side-floral-garland-right.png" alt="" class="garland-img" width="160" height="380">
-    </div>
     <div class="butterflies-container" aria-hidden="true">
       <img src="assets/images/realistic-butterfly.png" alt="" class="real-butterfly bf-hero-1" width="48" height="48">
       <img src="assets/images/realistic-butterfly.png" alt="" class="real-butterfly bf-hero-2" width="38" height="38">
@@ -73,12 +67,6 @@
 
   <!-- CAPITULO 2: FECHA Y LUGAR -->
   <section id="section-date" class="full-section s-date unfold-item" aria-label="Fecha y lugar">
-    <div class="side-garland side-garland-left" aria-hidden="true">
-      <img src="assets/images/side-floral-garland.png" alt="" class="garland-img" width="160" height="380">
-    </div>
-    <div class="side-garland side-garland-right" aria-hidden="true">
-      <img src="assets/images/side-floral-garland-right.png" alt="" class="garland-img" width="160" height="380">
-    </div>
     <div class="side-butterflies" aria-hidden="true">
       <img src="assets/images/realistic-butterfly.png" alt="" class="real-butterfly bf-side-1" width="44" height="44">
       <img src="assets/images/realistic-butterfly.png" alt="" class="real-butterfly bf-side-2" width="36" height="36">
@@ -119,14 +107,81 @@
     </div>
   </section>
 
-  <!-- CAPITULO 3: RSVP + DRESS CODE -->
+  <!-- CAPITULO 3: GALERÍA DE ENSUEÑO · CUENTO DE HADAS -->
+  <section id="section-gallery" class="full-section s-gallery unfold-item" aria-label="Galería de ensueño">
+    <div class="butterflies-container" aria-hidden="true">
+      <img src="assets/images/realistic-butterfly.png" alt="" class="real-butterfly bf-hero-1" width="42" height="42">
+      <img src="assets/images/realistic-butterfly.png" alt="" class="real-butterfly bf-side-1" width="36" height="36">
+    </div>
+
+    <div class="gallery-content">
+      <p class="s-kicker">Momentos Mágicos</p>
+      <h2 class="s-title">CUENTO DE HADAS</h2>
+      <p class="s-body">Desliza para contemplar la dulce ilusión que acompaña la llegada de nuestra princesa:</p>
+
+      <!-- Carrusel interactivo de momentos destacados -->
+      <div class="carousel-wrapper">
+        <button type="button" id="carousel-prev" class="carousel-arrow arrow-prev" aria-label="Imagen anterior">&#8249;</button>
+        <div id="highlights-carousel" class="fairytale-carousel">
+          <div class="highlight-card">
+            <div class="card-art-frame">
+              <img src="assets/images/stork-baby-clouds.png" alt="Cigüeña en nubes mágicas con bebé Sofía" class="carousel-card-img" width="220" height="220" loading="lazy">
+            </div>
+            <div class="card-caption">
+              <span class="card-badge">&#10022; DULCE ESPERA &#10022;</span>
+              <h3 class="card-title">La Cigüeña Real</h3>
+              <p class="card-text">Llegando entre nubes de ensueño y estrellas doradas para entregarnos nuestro mayor tesoro.</p>
+            </div>
+          </div>
+
+          <div class="highlight-card">
+            <div class="card-art-frame">
+              <img src="assets/images/bear-watercolor.png" alt="Tierno osito con cubos BABY" class="carousel-card-img" width="220" height="220" loading="lazy">
+            </div>
+            <div class="card-caption">
+              <span class="card-badge">&#10022; AMOR FAMILIAR &#10022;</span>
+              <h3 class="card-title">Bienvenida Sofía</h3>
+              <p class="card-text">Esperada con profunda fe, alegría e infinita ternura por la Familia Tejada Dávila.</p>
+            </div>
+          </div>
+
+          <div class="highlight-card">
+            <div class="card-art-frame">
+              <img src="assets/images/baby-shoes-butterflies.png" alt="Zapatitos rosados con mariposas watercolor" class="carousel-card-img" width="220" height="220" loading="lazy">
+            </div>
+            <div class="card-caption">
+              <span class="card-badge">&#10022; PRIMEROS PASITOS &#10022;</span>
+              <h3 class="card-title">Pasitos de Amor</h3>
+              <p class="card-text">Dulces huellitas bendecidas por Dios que llenarán nuestros días de amor y sonrisas.</p>
+            </div>
+          </div>
+
+          <div class="highlight-card">
+            <div class="card-art-frame">
+              <img src="assets/images/gift-box-flowers.png" alt="Caja de regalos de cuento de hadas con flores" class="carousel-card-img" width="220" height="220" loading="lazy">
+            </div>
+            <div class="card-caption">
+              <span class="card-badge">&#10022; BENDICIÓN CELESTIAL &#10022;</span>
+              <h3 class="card-title">Caja de Ilusiones</h3>
+              <p class="card-text">Tu compañía y oraciones en este día tan especial son el más grande regalo para Sofía.</p>
+            </div>
+          </div>
+        </div>
+        <button type="button" id="carousel-next" class="carousel-arrow arrow-next" aria-label="Siguiente imagen">&#8250;</button>
+      </div>
+
+      <!-- Puntos de paginación interactivos -->
+      <div class="carousel-dots-row" role="tablist" aria-label="Páginas de la galería">
+        <button type="button" class="carousel-dot is-active" aria-label="Ir a diapositiva 1" role="tab" aria-selected="true"></button>
+        <button type="button" class="carousel-dot" aria-label="Ir a diapositiva 2" role="tab" aria-selected="false"></button>
+        <button type="button" class="carousel-dot" aria-label="Ir a diapositiva 3" role="tab" aria-selected="false"></button>
+        <button type="button" class="carousel-dot" aria-label="Ir a diapositiva 4" role="tab" aria-selected="false"></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- CAPITULO 4: RSVP + DRESS CODE -->
   <section id="section-rsvp" class="full-section s-rsvp unfold-item" aria-label="Confirmacion de asistencia">
-    <div class="side-garland side-garland-left" aria-hidden="true">
-      <img src="assets/images/side-floral-garland.png" alt="" class="garland-img" width="160" height="380">
-    </div>
-    <div class="side-garland side-garland-right" aria-hidden="true">
-      <img src="assets/images/side-floral-garland-right.png" alt="" class="garland-img" width="160" height="380">
-    </div>
     <div class="side-butterflies" aria-hidden="true">
       <img src="assets/images/realistic-butterfly.png" alt="" class="real-butterfly bf-side-3" width="40" height="40">
     </div>
@@ -182,14 +237,8 @@
     </div>
   </section>
 
-  <!-- CAPITULO 4: PROGRAMA Y CIERRE -->
+  <!-- CAPITULO 5: PROGRAMA Y CIERRE -->
   <section id="section-program" class="full-section s-program unfold-item" aria-label="Programa del dia">
-    <div class="side-garland side-garland-left" aria-hidden="true">
-      <img src="assets/images/side-floral-garland.png" alt="" class="garland-img" width="160" height="380">
-    </div>
-    <div class="side-garland side-garland-right" aria-hidden="true">
-      <img src="assets/images/side-floral-garland-right.png" alt="" class="garland-img" width="160" height="380">
-    </div>
     <div class="butterflies-container" aria-hidden="true">
       <img src="assets/images/realistic-butterfly.png" alt="" class="real-butterfly bf-flight-1" width="46" height="46">
       <img src="assets/images/realistic-butterfly.png" alt="" class="real-butterfly bf-flight-2" width="36" height="36">
@@ -197,9 +246,9 @@
     </div>
 
     <div class="program-content">
-      <!-- Zapatitos con tamaño equilibrado -->
+      <!-- Zapatitos con tamaño destacado y nítido -->
       <div class="shoes-deco" aria-hidden="true">
-        <img src="assets/images/baby-shoes-butterflies.png" alt="Zapatitos de bebe y mariposas doradas watercolor" class="shoes-img" width="150" height="101" loading="lazy">
+        <img src="assets/images/baby-shoes-butterflies.png" alt="Zapatitos de bebe y mariposas doradas watercolor" class="shoes-img" width="220" height="148" loading="lazy">
       </div>
       <p class="s-kicker">El gran dia</p>
       <h2 class="s-title">PROGRAMA</h2>
@@ -266,9 +315,6 @@
 
   <!-- Compatibilidad con tests (oculto) -->
   <div style="display:none;" aria-hidden="true">
-    <div id="highlights-carousel"><div class="highlight-card"></div><div class="highlight-card"></div></div>
-    <button class="carousel-dot is-active"></button>
-    <button class="carousel-dot"></button>
     <div class="closer-look-tabs" role="tablist">
       <button class="tab-chip is-active" role="tab" aria-selected="true" data-tab="countdown">Cuenta</button>
       <button class="tab-chip" role="tab" aria-selected="false" data-tab="location">Lugar</button>

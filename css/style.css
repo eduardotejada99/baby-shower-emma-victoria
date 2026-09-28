@@ -251,37 +251,7 @@ body.baby-girl-invitation {
   opacity: .48;
 }
 
-/* Guirnaldas laterales de acuarela floral */
-.side-garland {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: clamp(65px, 14vw, 120px);
-  pointer-events: none;
-  z-index: 1;
-  overflow: hidden;
-  opacity: 0.85;
-}
-.side-garland-left {
-  left: 0;
-}
-.side-garland-right {
-  right: 0;
-}
-.garland-img {
-  width: 100%;
-  height: auto;
-  display: block;
-  filter: drop-shadow(0 4px 14px rgba(196,118,138,0.15));
-  animation: gentleGarlandSway 6s ease-in-out infinite;
-}
-.side-garland-right .garland-img {
-  animation-delay: -3s;
-}
-@keyframes gentleGarlandSway {
-  0%, 100% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-6px) rotate(0.8deg); }
-}
+
 
 /* Mariposas acuarela realistas con aleteo 3D */
 .butterflies-container, .side-butterflies {
@@ -707,7 +677,162 @@ body.baby-girl-invitation {
 .btn-outline-rose:hover { background: var(--blush-pale); transform: translateY(-2px); }
 
 /* ============================================================
-   CAPÍTULO 3 · RSVP + DRESS CODE
+   CAPÍTULO 3 · GALERÍA DE ENSUEÑO / CUENTO DE HADAS
+   ============================================================ */
+.s-gallery {
+  background: linear-gradient(180deg, var(--cream) 0%, var(--blush-pale) 50%, var(--cream) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.gallery-content {
+  text-align: center;
+  z-index: 3;
+  width: 100%;
+  max-width: 430px;
+  padding: 0 12px;
+}
+
+.carousel-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 360px;
+  margin: 10px auto 0;
+  display: flex;
+  align-items: center;
+}
+
+.fairytale-carousel {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding: 10px 4px 16px;
+  scrollbar-width: none;
+  width: 100%;
+}
+.fairytale-carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.highlight-card {
+  flex: 0 0 100%;
+  scroll-snap-align: center;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 2px solid var(--color-blush);
+  border-radius: 26px;
+  padding: 20px 16px 16px;
+  box-shadow: 0 12px 32px rgba(196, 118, 138, 0.2);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform .3s ease;
+}
+
+.card-art-frame {
+  width: clamp(170px, 45vw, 215px);
+  height: clamp(170px, 45vw, 215px);
+  margin: 0 auto 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0 8px 22px rgba(196, 118, 138, 0.25));
+  animation: gentleFloat 4.2s ease-in-out infinite;
+}
+
+.carousel-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.card-badge {
+  font-size: .64rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: var(--gold-warm);
+  display: block;
+  margin-bottom: 2px;
+}
+
+.card-title {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--deep-rose);
+  margin-bottom: 4px;
+}
+
+.card-text {
+  font-size: .8rem;
+  color: var(--text-mid);
+  line-height: 1.5;
+  max-width: 280px;
+  margin: 0 auto;
+}
+
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(8px);
+  border: 1.5px solid var(--pink-mid);
+  color: var(--deep-rose);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 6;
+  box-shadow: 0 4px 12px rgba(196, 118, 138, 0.2);
+  transition: all .2s ease;
+  padding: 0 0 2px;
+}
+.carousel-arrow:hover {
+  background: white;
+  transform: translateY(-50%) scale(1.1);
+  border-color: var(--rose);
+}
+.arrow-prev { left: -10px; }
+.arrow-next { right: -10px; }
+
+.carousel-dots-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.carousel-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  border: 1.5px solid var(--rose);
+  background: transparent;
+  cursor: pointer;
+  transition: all .25s ease;
+  padding: 0;
+}
+.carousel-dot.is-active {
+  background: var(--rose);
+  width: 24px;
+  border-radius: 9999px;
+}
+
+/* ============================================================
+   CAPÍTULO 4 · RSVP + DRESS CODE
    ============================================================ */
 .s-rsvp { background: var(--cream); }
 
@@ -880,12 +1005,12 @@ body.baby-girl-invitation {
   background: linear-gradient(180deg,var(--cream) 0%,var(--blush-pale) 55%,var(--cream) 100%);
 }
 
-/* Zapatillas y mariposas deco - tamaño equilibrado */
+/* Zapatillas y mariposas deco - presencia destacada, nítida y hermosa */
 .shoes-deco {
-  width: clamp(120px, 28vw, 150px);
-  margin: 0 auto 6px;
+  width: clamp(190px, 48vw, 235px);
+  margin: 0 auto 8px;
   z-index: 2;
-  filter: drop-shadow(0 6px 18px rgba(196,118,138,.2));
+  filter: drop-shadow(0 10px 26px rgba(196,118,138,.3));
   animation: gentleFloat 4s ease-in-out infinite;
 }
 .shoes-img {

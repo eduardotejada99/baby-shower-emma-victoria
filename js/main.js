@@ -254,19 +254,55 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ──────────────────────────────────────────────────────────────
      9. COMPATIBILIDAD DE TESTS — Carousel dots & Tabs
   ────────────────────────────────────────────────────────────── */
-  // Carousel dots — highlights-carousel compat
+  // Carousel dots y navegación interactiva — highlights-carousel
   const carousel = document.getElementById('highlights-carousel');
   const dots  = document.querySelectorAll('.carousel-dot');
   const cards = document.querySelectorAll('.highlight-card');
+  const prevBtn = document.getElementById('carousel-prev');
+  const nextBtn = document.getElementById('carousel-next');
+
   dots.forEach((dot, i) => {
     dot.addEventListener('click', () => {
-      dots.forEach(d => d.classList.remove('is-active'));
+      dots.forEach(d => { d.classList.remove('is-active'); d.setAttribute('aria-selected', 'false'); });
       dot.classList.add('is-active');
+      dot.setAttribute('aria-selected', 'true');
       if (cards[i]) {
-        cards[i].scrollIntoView({ behavior: 'smooth', inline: 'center' });
+        cards[i].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
       }
     });
   });
+
+  if (prevBtn && carousel) {
+    prevBtn.addEventListener('click', () => {
+      carousel.scrollBy({ left: -carousel.offsetWidth * 0.85, behavior: 'smooth' });
+    });
+  }
+  if (nextBtn && carousel) {
+    nextBtn.addEventListener('click', () => {
+      carousel.scrollBy({ left: carousel.offsetWidth * 0.85, behavior: 'smooth' });
+    });
+  }
+
+  if (carousel && dots.length > 0) {
+    let scrollTimeout;
+    carousel.addEventListener('scroll', () => {
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => {
+        const scrollLeft = carousel.scrollLeft;
+        const cardWidth = carousel.offsetWidth || 1;
+        const activeIndex = Math.min(Math.round(scrollLeft / cardWidth), dots.length - 1);
+        dots.forEach((d, i) => {
+          if (i === activeIndex) {
+            d.classList.add('is-active');
+            d.setAttribute('aria-selected', 'true');
+          } else {
+            d.classList.remove('is-active');
+            d.setAttribute('aria-selected', 'false');
+          }
+        });
+      }, 60);
+    }, { passive: true });
+  }
 
   // Tab chips
   const tabChips  = document.querySelectorAll('.tab-chip');
