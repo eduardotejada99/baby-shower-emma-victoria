@@ -261,25 +261,64 @@ document.addEventListener('DOMContentLoaded', () => {
   const prevBtn = document.getElementById('carousel-prev');
   const nextBtn = document.getElementById('carousel-next');
 
+  function getActiveIndex() {
+    if (!carousel || cards.length === 0) return 0;
+    const scrollCenter = carousel.scrollLeft + carousel.clientWidth / 2;
+    let closestIndex = 0;
+    let closestDist = Infinity;
+    cards.forEach((card, idx) => {
+      const cardCenter = card.offsetLeft + card.offsetWidth / 2;
+      const dist = Math.abs(scrollCenter - cardCenter);
+      if (dist < closestDist) {
+        closestDist = dist;
+        closestIndex = idx;
+      }
+    });
+    return closestIndex;
+  }
+
+  function updateDots(activeIdx) {
+    dots.forEach((d, i) => {
+      if (i === activeIdx) {
+        d.classList.add('is-active');
+        d.setAttribute('aria-selected', 'true');
+      } else {
+        d.classList.remove('is-active');
+        d.setAttribute('aria-selected', 'false');
+      }
+    });
+  }
+
+  function scrollToCard(index, smooth = true) {
+    if (!carousel || !cards[index]) return;
+    const card = cards[index];
+    const targetLeft = card.offsetLeft - (carousel.clientWidth - card.offsetWidth) / 2;
+    carousel.scrollTo({
+      left: Math.max(0, targetLeft),
+      behavior: smooth ? 'smooth' : 'auto'
+    });
+    updateDots(index);
+  }
+
   dots.forEach((dot, i) => {
     dot.addEventListener('click', () => {
-      dots.forEach(d => { d.classList.remove('is-active'); d.setAttribute('aria-selected', 'false'); });
-      dot.classList.add('is-active');
-      dot.setAttribute('aria-selected', 'true');
-      if (cards[i]) {
-        cards[i].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
-      }
+      scrollToCard(i, true);
     });
   });
 
   if (prevBtn && carousel) {
     prevBtn.addEventListener('click', () => {
-      carousel.scrollBy({ left: -carousel.offsetWidth * 0.85, behavior: 'smooth' });
+      const current = getActiveIndex();
+      const prev = (current - 1 + cards.length) % cards.length;
+      scrollToCard(prev, true);
     });
   }
+
   if (nextBtn && carousel) {
     nextBtn.addEventListener('click', () => {
-      carousel.scrollBy({ left: carousel.offsetWidth * 0.85, behavior: 'smooth' });
+      const current = getActiveIndex();
+      const next = (current + 1) % cards.length;
+      scrollToCard(next, true);
     });
   }
 
@@ -288,19 +327,9 @@ document.addEventListener('DOMContentLoaded', () => {
     carousel.addEventListener('scroll', () => {
       clearTimeout(scrollTimeout);
       scrollTimeout = setTimeout(() => {
-        const scrollLeft = carousel.scrollLeft;
-        const cardWidth = carousel.offsetWidth || 1;
-        const activeIndex = Math.min(Math.round(scrollLeft / cardWidth), dots.length - 1);
-        dots.forEach((d, i) => {
-          if (i === activeIndex) {
-            d.classList.add('is-active');
-            d.setAttribute('aria-selected', 'true');
-          } else {
-            d.classList.remove('is-active');
-            d.setAttribute('aria-selected', 'false');
-          }
-        });
-      }, 60);
+        const active = getActiveIndex();
+        updateDots(active);
+      }, 50);
     }, { passive: true });
   }
 

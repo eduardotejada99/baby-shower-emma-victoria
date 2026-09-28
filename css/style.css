@@ -696,7 +696,7 @@ body.baby-girl-invitation {
 .carousel-wrapper {
   position: relative;
   width: 100%;
-  max-width: 360px;
+  max-width: 350px;
   margin: 10px auto 0;
   display: flex;
   align-items: center;
@@ -708,7 +708,8 @@ body.baby-girl-invitation {
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
-  padding: 10px 4px 16px;
+  scroll-behavior: smooth;
+  padding: 10px 0 16px;
   scrollbar-width: none;
   width: 100%;
 }
@@ -718,13 +719,17 @@ body.baby-girl-invitation {
 
 .highlight-card {
   flex: 0 0 100%;
+  min-width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
   scroll-snap-align: center;
-  background: rgba(255, 255, 255, 0.94);
+  scroll-snap-stop: always;
+  background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 2px solid var(--color-blush);
   border-radius: 26px;
-  padding: 20px 16px 16px;
+  padding: 20px 18px 18px;
   box-shadow: 0 12px 32px rgba(196, 118, 138, 0.2);
   text-align: center;
   display: flex;
@@ -769,43 +774,52 @@ body.baby-girl-invitation {
 }
 
 .card-text {
-  font-size: .8rem;
+  font-size: .82rem;
   color: var(--text-mid);
   line-height: 1.5;
   max-width: 280px;
   margin: 0 auto;
+  word-break: normal;
+  overflow-wrap: break-word;
 }
 
 .carousel-arrow {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(8px);
-  border: 1.5px solid var(--pink-mid);
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 2px solid var(--rose);
   color: var(--deep-rose);
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   font-weight: 700;
   line-height: 1;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  z-index: 6;
-  box-shadow: 0 4px 12px rgba(196, 118, 138, 0.2);
-  transition: all .2s ease;
-  padding: 0 0 2px;
+  z-index: 10;
+  box-shadow: 0 6px 18px rgba(196, 118, 138, 0.28);
+  transition: all .2s cubic-bezier(0.16, 1, 0.3, 1);
+  padding: 0 0 3px;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
 .carousel-arrow:hover {
   background: white;
-  transform: translateY(-50%) scale(1.1);
-  border-color: var(--rose);
+  transform: translateY(-50%) scale(1.12);
+  border-color: var(--deep-rose);
+  box-shadow: 0 8px 24px rgba(196, 118, 138, 0.38);
 }
-.arrow-prev { left: -10px; }
-.arrow-next { right: -10px; }
+.carousel-arrow:active {
+  transform: translateY(-50%) scale(0.92);
+}
+.arrow-prev { left: -12px; }
+.arrow-next { right: -12px; }
 
 .carousel-dots-row {
   display: flex;
