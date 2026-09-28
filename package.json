@@ -1,0 +1,24 @@
+{
+  "name": "baby-shower-interactivo",
+  "version": "1.0.0",
+  "description": "Invitacion interactiva Baby Shower Emma Victoria",
+  "main": "local-server.js",
+  "scripts": {
+    "test": "jest --no-coverage",
+    "test:watch": "jest --watch",
+    "start": "node local-server.js",
+    "dev": "node local-server.js"
+  },
+  "jest": {
+    "testEnvironment": "jsdom",
+    "testMatch": [
+      "**/tests/**/*.test.js"
+    ],
+    "transform": {}
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0"
+  },
+  "license": "MIT"
+}

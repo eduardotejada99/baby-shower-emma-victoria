@@ -3,509 +3,395 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-  <title>Baby Shower de Emma Victoria ✨ | Invitación Digital Oficial</title>
-  <meta name="description" content="Acompáñanos a celebrar la llegada de nuestra princesa Emma Victoria. Una tierna y mágica invitación digital interactiva.">
-  
-  <!-- Open Graph / WhatsApp Preview -->
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Baby Shower de Emma Victoria 🎀✨">
-  <meta property="og:description" content="Acompáñanos a celebrar la pronta llegada de nuestra princesa este Sábado, 24 de Octubre de 2026. ¡Toca para abrir la invitación!">
-  <meta property="og:locale" content="es_ES">
-  
-  <link rel="icon" type="image/svg+xml" href="assets/icons/butterfly.svg">
-
-  <!-- Tipografías de Cuento Infantil y Caligrafía Dulce -->
+  <title>Baby Shower · Emma Victoria 🎀 | Invitacion Digital</title>
+  <meta name="description" content="Estas cordialmente invitada al Baby Shower de nuestra pequena princesa. Una dulce bebe esta en camino — 24 de Octubre 2026.">
+  <meta name="theme-color" content="#F2A7B8">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Great+Vibes&family=Marcellus&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800;900&family=Great+Vibes&family=Playfair+Display:ital,wght@0,700;0,800;1,500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="canva-baby-experience">
-  
-  <!-- Canvas de partículas y estrellitas mágicas flotantes -->
-  <canvas id="canvas-particles" aria-hidden="true"></canvas>
-
-  <!-- Nubes y Halos de Fondo en Tonos Rosa Bebé -->
-  <div class="baby-cloud-aura cloud-top-left" aria-hidden="true"></div>
-  <div class="baby-cloud-aura cloud-top-right" aria-hidden="true"></div>
-  <div class="baby-cloud-aura cloud-mid-glow" aria-hidden="true"></div>
-
-  <!-- Píldora de Navegación Flotante y Música de Cuna -->
-  <header id="apple-subnav" class="floating-baby-subnav">
-    <div class="subnav-container">
-      <div class="subnav-brand">
-        <span class="subnav-title">Emma Victoria</span>
-        <span class="subnav-separator">&bull;</span>
-        <span class="subnav-category">Baby Shower</span>
-      </div>
-      <div class="subnav-actions">
-        <button id="btn-audio-toggle" class="subnav-audio-btn" aria-label="Reproducir melodía de cuna" title="Música ambiental">
-          <span class="audio-wave" aria-hidden="true">
-            <span></span><span></span><span></span><span></span>
-          </span>
-          <img src="assets/icons/music.svg" alt="" width="15" height="15">
-        </button>
-        <a href="#rsvp-section" id="subnav-rsvp-btn" class="subnav-cta-btn">Confirmar</a>
-      </div>
-    </div>
+<body class="baby-girl-invitation">
+  <!-- Controles flotantes -->
+  <button id="btn-audio-toggle" class="music-fab" aria-label="Reproducir musica de cuna" title="Musica">
+    <span class="music-icon">&#9834;</span>
+    <div class="music-rings" aria-hidden="true"><span></span><span></span><span></span></div>
+  </button>
+  <header id="apple-subnav" class="nav-pill" role="banner">
+    <span class="nav-name">Emma Victoria</span>
+    <a href="#section-rsvp" id="subnav-rsvp-btn" class="nav-cta">Confirmar &#127800;</a>
   </header>
+  <canvas id="canvas-particles" aria-hidden="true"></canvas>
+  <div id="wax-seal" class="wax-seal-badge" aria-hidden="true"><span>E</span></div>
 
-  <!-- CONTENEDOR PRINCIPAL TIPO CANVA INVITACIÓN DIGITAL -->
-  <div class="canva-invitation-container">
-    
-    <!-- =========================================================================
-         1. PORTADA: CIGÜEÑA, MARCO OVALADO & PERGAMINO "MI BABY SHOWER"
-         ========================================================================= -->
-    <section class="canva-section section-cover unfold-item is-unfolded">
-      
-      <!-- Cigüeña en Vuelo con su paquete rosado -->
-      <div class="cover-stork-flight">
-        <img src="assets/icons/stork-baby.svg" alt="Cigüeña trayendo a la bebé Emma" class="stork-img" width="280" height="224">
+  <!-- CAPITULO 1: HERO -->
+  <section id="section-hero" class="full-section s-hero unfold-item is-unfolded" aria-label="Portada">
+    <div class="confetti-layer" aria-hidden="true"></div>
+    <div class="bow-wrap" aria-hidden="true">
+      <svg viewBox="0 0 360 200" class="bow-svg" fill="none">
+        <defs>
+          <radialGradient id="wL" cx="42%" cy="38%" r="62%">
+            <stop offset="0%" stop-color="#FDE8EC"/>
+            <stop offset="48%" stop-color="#F2A7B8"/>
+            <stop offset="100%" stop-color="#C4768A"/>
+          </radialGradient>
+          <radialGradient id="wR" cx="58%" cy="38%" r="62%">
+            <stop offset="0%" stop-color="#FDE8EC"/>
+            <stop offset="48%" stop-color="#F2A7B8"/>
+            <stop offset="100%" stop-color="#C4768A"/>
+          </radialGradient>
+          <radialGradient id="wK" cx="50%" cy="38%" r="62%">
+            <stop offset="0%" stop-color="#FBD8E0"/>
+            <stop offset="100%" stop-color="#B8607A"/>
+          </radialGradient>
+        </defs>
+        <path d="M180 100 C160 72,108 28,48 42 C16 52,22 90,58 97 C96 106,158 90,180 100Z" fill="url(#wL)"/>
+        <path d="M180 100 C158 76,110 42,66 48" stroke="rgba(255,255,255,0.55)" stroke-width="5.5" stroke-linecap="round" fill="none"/>
+        <path d="M180 100 C200 72,252 28,312 42 C344 52,338 90,302 97 C264 106,202 90,180 100Z" fill="url(#wR)"/>
+        <path d="M180 100 C202 76,250 42,294 48" stroke="rgba(255,255,255,0.55)" stroke-width="5.5" stroke-linecap="round" fill="none"/>
+        <ellipse cx="180" cy="100" rx="26" ry="22" fill="url(#wK)"/>
+        <ellipse cx="180" cy="95" rx="13" ry="9" fill="rgba(255,255,255,0.28)"/>
+        <path d="M165 120 C148 146,116 172,88 198" stroke="#F2A7B8" stroke-width="10" stroke-linecap="round" fill="none"/>
+        <path d="M170 122 C155 148,126 174,100 198" stroke="#FDE8EC" stroke-width="5.5" stroke-linecap="round" fill="none" opacity="0.7"/>
+        <path d="M195 120 C212 146,244 172,272 198" stroke="#F2A7B8" stroke-width="10" stroke-linecap="round" fill="none"/>
+        <path d="M190 122 C205 148,234 174,260 198" stroke="#FDE8EC" stroke-width="5.5" stroke-linecap="round" fill="none" opacity="0.7"/>
+      </svg>
+    </div>
+
+    <div class="hero-copy">
+      <p class="h-kicker">PLEASE JOIN US FOR A</p>
+      <h1 class="h-baby">BABY</h1>
+      <p class="h-shower">Shower</p>
+      <div class="h-divider">
+        <span class="hdl"></span>
+        <span class="hdm">&#9825; HONORING &#9825;</span>
+        <span class="hdl"></span>
       </div>
+      <h2 class="h-name">Emma Victoria</h2>
+      <p class="h-tagline">Una dulce bebe esta en camino!</p>
+      <div class="h-date-pill"><span>Sabado 24 &middot; Octubre 2026 &middot; 4:00 PM</span></div>
+    </div>
 
-      <!-- Marco Ovalado con Rosas y Nombre de la Bebé -->
-      <div class="cover-mirror-wrapper">
-        <img src="assets/icons/mirror-frame.svg" alt="Marco de bienvenida" class="mirror-frame-bg" width="330" height="440">
-        
-        <div class="mirror-text-layer">
-          <span class="mirror-tiny-kicker">BIENVENIDA</span>
-          <h1 class="mirror-baby-name">Emma<br>Victoria</h1>
-          
-          <!-- Sello Real Interactivo en el centro -->
-          <div id="wax-seal" class="baby-seal-interactive" role="button" tabindex="0" aria-label="Tocar para escuchar y abrir">
-            <img src="assets/icons/seal.svg" alt="Monograma real E" width="76" height="76">
-            <span class="seal-halo-pulse" aria-hidden="true"></span>
-          </div>
-
-          <span class="mirror-baby-sub">Nuestra pequeña princesa</span>
-        </div>
-      </div>
-
-      <!-- Pergamino Ondulado Clásico "MI BABY SHOWER" -->
-      <div class="cover-scroll-wrapper">
-        <img src="assets/icons/scroll-banner.svg" alt="Pergamino" class="scroll-banner-img" width="370" height="88">
-        <span class="scroll-banner-text">MI BABY SHOWER</span>
-      </div>
-
-    </section>
-
-    <!-- =========================================================================
-         2. MÓVIL MUSICAL DE CUNA "DALE PLAY" & MENSAJE DE LOS PAPÁS
-         ========================================================================= -->
-    <section class="canva-section section-music unfold-item">
-      
-      <!-- Móvil de cuna musical con estrellas y nubes -->
-      <div id="interactive-pocket-watch" class="baby-mobile-interactive" role="button" tabindex="0" aria-label="Toca para reproducir la canción">
-        <img src="assets/icons/baby-mobile.svg" alt="Móvil de cuna musical" class="baby-mobile-img" width="160" height="173">
-        <span class="music-glint-circle" aria-hidden="true"></span>
-      </div>
-
-      <!-- Letrero Curvo "Dale play" en tono vino/rosa viejo -->
-      <div class="dale-play-curved-wrapper">
-        <svg viewBox="0 0 160 50" width="160" height="50" class="curve-text-svg">
-          <path id="curveDalePlay" d="M 15 42 Q 80 14 145 42" fill="transparent"/>
-          <text class="curved-text-style">
-            <textPath href="#curveDalePlay" startOffset="50%" text-anchor="middle">
-              Dale play
-            </textPath>
-          </text>
+    <div class="hero-bottom">
+      <!-- Oso watercolor con bloques BABY -->
+      <div class="bear-wrap" aria-hidden="true">
+        <img src="assets/images/bear-watercolor.jpg" alt="Osito baby shower watercolor" class="bear-img" width="188" height="252" loading="eager">
+        <!-- fallback SVG hidden -->
+        <svg viewBox="0 0 188 252" class="bear-svg" style="display:none" fill="none">
+          <rect x="4" y="168" width="52" height="52" rx="6" fill="#F0D5B0" stroke="#D4A86A" stroke-width="1.5"/>
+          <text x="30" y="203" text-anchor="middle" font-family="Palatino,serif" font-size="27" font-weight="800" fill="#A86845">B</text>
+          <rect x="60" y="174" width="50" height="50" rx="6" fill="#FBD8E2" stroke="#E8A0B0" stroke-width="1.5"/>
+          <text x="85" y="208" text-anchor="middle" font-family="Palatino,serif" font-size="26" font-weight="800" fill="#C4768A">A</text>
+          <rect x="114" y="170" width="52" height="52" rx="6" fill="#F0D5B0" stroke="#D4A86A" stroke-width="1.5"/>
+          <text x="140" y="205" text-anchor="middle" font-family="Palatino,serif" font-size="27" font-weight="800" fill="#A86845">B</text>
+          <rect x="34" y="118" width="50" height="50" rx="6" fill="#FBD8E2" stroke="#E8A0B0" stroke-width="1.5"/>
+          <text x="59" y="152" text-anchor="middle" font-family="Palatino,serif" font-size="26" font-weight="800" fill="#C4768A">Y</text>
+          <ellipse cx="100" cy="82" rx="33" ry="35" fill="#C4986A"/>
+          <ellipse cx="100" cy="86" rx="29" ry="31" fill="#D4A87A"/>
+          <ellipse cx="100" cy="94" rx="18" ry="16" fill="#E2BA90"/>
+          <ellipse cx="100" cy="48" rx="29" ry="27" fill="#C4986A"/>
+          <circle cx="75" cy="27" r="13" fill="#B8864A"/>
+          <circle cx="75" cy="27" r="9" fill="#F2A7B8"/>
+          <circle cx="125" cy="27" r="13" fill="#B8864A"/>
+          <circle cx="125" cy="27" r="9" fill="#F2A7B8"/>
+          <ellipse cx="100" cy="52" rx="21" ry="19" fill="#D4A87A"/>
+          <circle cx="91" cy="44" r="4.5" fill="#2C1A0E"/>
+          <circle cx="93" cy="42" r="1.8" fill="white"/>
+          <circle cx="109" cy="44" r="4.5" fill="#2C1A0E"/>
+          <circle cx="111" cy="42" r="1.8" fill="white"/>
+          <ellipse cx="100" cy="54" rx="5.5" ry="3.8" fill="#3A2010"/>
+          <path d="M93 59 Q100 66 107 59" stroke="#3A2010" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+          <ellipse cx="68" cy="92" rx="13" ry="11" fill="#C4986A"/>
+          <ellipse cx="132" cy="92" rx="13" ry="11" fill="#C4986A"/>
+          <path d="M100 80 C95 74,85 76,90 83 C95 88,100 81,100 81 C100 81,105 88,110 83 C115 76,105 74,100 80Z" fill="#F2A7B8"/>
+          <circle cx="100" cy="80" r="4.5" fill="#E8899A"/>
         </svg>
       </div>
-
-      <!-- Frase emotiva exactamente como la referencia de Canva -->
-      <blockquote class="canva-heart-quote">
-        "El secreto es rodearse de personas que te hagan sonreír el corazón."
-      </blockquote>
-
-      <p class="canva-sweet-dedication">
-        Tu presencia ayudará a transformar la dulce llegada de nuestra bebé en uno de los días más mágicos de nuestras vidas, así que prepárate para celebrar un día lleno de
-      </p>
-
-      <h3 class="canva-script-highlight">Amor, Ternura y Bendición</h3>
-
-      <!-- Presentación de los Padres -->
-      <div class="canva-parents-presentation">
-        <h4 class="parents-intro-text">Celebra conmigo y mis padres</h4>
-        <p class="parents-signature-text">Sofía &amp; Alejandro</p>
+      <!-- Indicador scroll -->
+      <div class="scroll-hint">
+        <svg viewBox="0 0 30 50" width="28" height="46" fill="none">
+          <rect x="8" y="0" width="14" height="26" rx="7" stroke="#E8A0B0" stroke-width="2.5"/>
+          <circle cx="15" cy="8" r="3.5" fill="#E8A0B0" class="scroll-dot"/>
+          <path d="M9 36 L15 45 L21 36" stroke="#E8A0B0" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="scroll-label">desliza</span>
       </div>
-
-    </section>
-
-    <!-- =========================================================================
-         3. LA FECHA: TARJETA DE CUNA DESPLEGABLE & CUENTA REGRESIVA
-         ========================================================================= -->
-    <section class="canva-section section-date unfold-item">
-      <h3 class="canva-chapter-header">Te esperamos el día</h3>
-
-      <!-- Tarjeta Ilustrada de la Fecha que se abre y eleva al bajar -->
-      <div class="baby-date-card-wrapper" id="baby-date-card">
-        <img src="assets/icons/baby-ticket-date.svg" alt="Sábado, 24 de Octubre de 2026" class="date-ticket-img" width="310" height="213">
-      </div>
-
-      <!-- Reloj de Cuenta Regresiva Estilo Pergamino y Cuna -->
-      <div id="countdown-timer" class="baby-countdown-wrapper" role="timer" aria-live="polite">
-        <div class="countdown-ribbon-card">
-          <div class="time-unit">
-            <span id="days" class="time-digit">00</span>
-            <span class="time-name">DÍAS</span>
-          </div>
-          <span class="time-divider">&bull;</span>
-          <div class="time-unit">
-            <span id="hours" class="time-digit">00</span>
-            <span class="time-name">HORAS</span>
-          </div>
-          <span class="time-divider">&bull;</span>
-          <div class="time-unit">
-            <span id="minutes" class="time-digit">00</span>
-            <span class="time-name">MIN</span>
-          </div>
-          <span class="time-divider">&bull;</span>
-          <div class="time-unit">
-            <span id="seconds" class="time-digit">00</span>
-            <span class="time-name">SEG</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="canva-calendar-row">
-        <a id="btn-add-calendar" href="#" target="_blank" rel="noopener noreferrer" class="canva-btn-terracotta">
-          <img src="assets/icons/calendar.svg" alt="" width="16" height="16">
-          <span>Añadir a mi Calendario</span>
-        </a>
-      </div>
-    </section>
-
-    <!-- =========================================================================
-         4. RECEPCIÓN: COCHECITO DE BEBÉ EN ACUARELA & ¿CÓMO LLEGAR?
-         ========================================================================= -->
-    <section class="canva-section section-venue unfold-item">
-      <div class="venue-carriage-header">
-        <img src="assets/icons/baby-carriage.svg" alt="Cochecito real de bebé" class="carriage-img" width="220" height="188">
-      </div>
-
-      <h2 class="canva-section-title">RECEPCIÓN</h2>
-
-      <div class="venue-info-parchment">
-        <h3 class="venue-place-name">"Jardín de Ensueño Las Rosas"</h3>
-        <p class="venue-street">Av. Los Jazmines 450, Valle Hermoso</p>
-        <span class="venue-schedule-tag">Hora: 4:00 PM</span>
-
-        <p class="venue-description">Un recinto al aire libre con hermosos jardines, flores y estacionamiento privado para recibirte con mucho cariño.</p>
-
-        <a href="https://maps.google.com/?q=Jard%C3%ADn+de+Ensue%C3%B1o+Las+Rosas" target="_blank" rel="noopener noreferrer" class="canva-btn-terracotta btn-wide">
-          <span>¿Cómo llegar?</span>
-          <svg width="15" height="15" viewBox="0 0 16 16" fill="none">
-            <path d="M3 8H13M13 8L8 3M13 8L8 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </a>
-      </div>
-    </section>
-
-    <!-- =========================================================================
-         5. CONFIRMACIÓN DE ASISTENCIA (RSVP A WHATSAPP)
-         ========================================================================= -->
-    <section id="rsvp-section" class="canva-section section-rsvp unfold-item">
-      <h2 class="canva-section-title">CONFIRMACIÓN<br>DE ASISTENCIA</h2>
-
-      <p class="canva-gentle-p">
-        Tu compañía es muy importante para nosotros, te pedimos confirmar tu asistencia antes del 10 de Octubre.
-      </p>
-
-      <!-- Botones gemelos estilo Canva (Mamá y Papá) -->
-      <div class="canva-twin-buttons-row">
-        <a id="btn-wa-sofia" href="https://api.whatsapp.com/send?phone=51999999999&text=%C2%A1Hola%20Sof%C3%ADa!%20Confirmo%20con%20mucha%20alegr%C3%ADa%20mi%20asistencia%20al%20Baby%20Shower%20de%20Emma%20Victoria%20%F0%9F%A7%B8%E2%9C%A8" target="_blank" rel="noopener noreferrer" class="canva-btn-terracotta">
-          <span>Confirma aquí con Mamá</span>
-        </a>
-        <a id="btn-wa-alejandro" href="https://api.whatsapp.com/send?phone=51999999999&text=%C2%A1Hola%20Alejandro!%20Confirmo%20con%20mucha%20alegr%C3%ADa%20mi%20asistencia%20al%20Baby%20Shower%20de%20Emma%20Victoria%20%F0%9F%A7%B8%E2%9C%A8" target="_blank" rel="noopener noreferrer" class="canva-btn-terracotta">
-          <span>Confirma aquí con Papá</span>
-        </a>
-      </div>
-
-      <!-- Formulario interactivo detallado con dedicatoria -->
-      <div class="canva-rsvp-card">
-        <span class="rsvp-card-kicker">O envíanos tu mensaje personalizado:</span>
-        
-        <form id="rsvp-form" class="canva-form" novalidate>
-          <div class="form-row">
-            <label for="guest-name" class="canva-label">Nombre y Apellido (o Familia) *</label>
-            <input type="text" id="guest-name" name="guestName" class="canva-input" placeholder="Ej. Familia Rodríguez o Lucía Gómez" required>
-            <span class="form-error" id="error-name" aria-live="polite"></span>
-          </div>
-
-          <div class="form-row">
-            <label class="canva-label">¿Nos acompañarás? *</label>
-            <div class="canva-segmented-radios">
-              <label class="radio-chip">
-                <input type="radio" name="attending" value="si" checked>
-                <span>¡Sí, con mucho gusto! 💖</span>
-              </label>
-              <label class="radio-chip">
-                <input type="radio" name="attending" value="no">
-                <span>No podré asistir 💌</span>
-              </label>
-            </div>
-          </div>
-
-          <div class="form-row" id="group-passes">
-            <label for="guest-passes" class="canva-label">Número de Pases Asignados</label>
-            <select id="guest-passes" name="passes" class="canva-select">
-              <option value="1">1 pase (Personal)</option>
-              <option value="2" selected>2 pases (Pareja)</option>
-              <option value="3">3 pases</option>
-              <option value="4">4 pases (Familia)</option>
-            </select>
-          </div>
-
-          <div class="form-row">
-            <label for="guest-wishes" class="canva-label">Dedicatoria para Emma Victoria</label>
-            <textarea id="guest-wishes" name="wishes" class="canva-textarea" rows="3" placeholder="Escribe aquí tus mejores deseos para la bebé y sus papás..."></textarea>
-          </div>
-
-          <button type="submit" id="btn-submit-rsvp" class="canva-btn-terracotta btn-full-submit">
-            <span>Confirmar por WhatsApp</span>
-          </button>
-        </form>
-      </div>
-    </section>
-
-    <!-- =========================================================================
-         6. ACCESO RESERVADO / PASE DIGITAL (LA LLAVE MÁGICA DE CUNA)
-         ========================================================================= -->
-    <section class="canva-section section-pass unfold-item">
-      <!-- Llave antigua con cinta que se mece -->
-      <div class="canva-key-wrapper">
-        <img src="assets/icons/golden-key.svg" alt="Llave dorada" class="swing-key-img" width="130" height="154">
-      </div>
-
-      <h2 class="canva-section-title">ACCESO RESERVADO</h2>
-
-      <p class="canva-gentle-p">
-        Tu presencia hará que el Baby Shower de Emma Victoria sea aún más memorable. Conoce la cantidad asignada que tenemos para ti.
-      </p>
-
-      <button id="btn-open-vip-pass" type="button" class="canva-btn-terracotta">
-        <span>Click aquí para ver tu pase</span>
-      </button>
-
-      <!-- Modal de Pase Digital VIP -->
-      <div id="vip-pass-modal" class="canva-modal" aria-hidden="true" role="dialog" aria-labelledby="modal-pass-title">
-        <div class="modal-backdrop" id="modal-pass-backdrop"></div>
-        <div class="modal-baby-ticket">
-          <button id="btn-close-modal" type="button" class="modal-close-btn" aria-label="Cerrar pase">&times;</button>
-          
-          <div class="ticket-top">
-            <img src="assets/icons/baby-crown.svg" alt="" width="38" height="28">
-            <span class="ticket-kicker">PASE DE BIENVENIDA</span>
-            <h3 id="modal-pass-title" class="ticket-name">Emma Victoria</h3>
-          </div>
-
-          <div class="ticket-middle">
-            <p class="ticket-for-lbl">Invitación exclusiva para:</p>
-            <p id="ticket-guest-display" class="ticket-guest-title">Estimado(a) Invitado(a)</p>
-            
-            <div class="ticket-tags-grid">
-              <div class="tag-box">
-                <span class="tag-lbl">Pases</span>
-                <span id="ticket-passes-display" class="tag-val">2 Personas</span>
-              </div>
-              <div class="tag-box">
-                <span class="tag-lbl">Fecha</span>
-                <span class="tag-val">24 Octubre</span>
-              </div>
-            </div>
-
-            <p class="ticket-instruction">Por favor presenta este pase al ingresar al Jardín Las Rosas.</p>
-          </div>
-
-          <div class="ticket-bottom">
-            <div class="ticket-gold-stamp">
-              <span>✦ BABY SHOWER OFICIAL ✦</span>
-            </div>
-            <button id="btn-download-pass" type="button" class="btn-save-ticket">
-              <span>Guardar Pase</span>
-            </button>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- =========================================================================
-         7. LLUVIA DE SOBRES / REGALOS
-         ========================================================================= -->
-    <section class="canva-section section-gifts unfold-item">
-      <div class="gifts-baby-icon">
-        <img src="assets/icons/baby-envelope.svg" alt="Sobre de regalo para Emma" class="envelope-img" width="180" height="150">
-      </div>
-
-      <h2 class="canva-section-title">LLUVIA DE SOBRES</h2>
-
-      <p class="canva-gentle-p">
-        Si deseas obsequiarme algo, estaré feliz de recibir cualquier detalle con mucho cariño para la llegada de nuestra bebé.
-      </p>
-
-      <button id="btn-toggle-bank-info" type="button" class="canva-btn-outline">
-        <span>Ver sugerencia de regalo</span>
-      </button>
-
-      <div id="bank-info-panel" class="gifts-collapsible-box" style="display: none;">
-        <p class="box-info-text">Tendremos un buzón especial de sobres en la entrada para que puedas dejar tu dedicatoria.</p>
-        <div class="account-pill-card">
-          <p><strong>BCP / Yape:</strong> 999 999 999</p>
-          <p><strong>A nombre de:</strong> Sofía Reyes (Mamá)</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- =========================================================================
-         8. DRESS CODE (CÓDIGO DE VESTIMENTA EN TONOS PASTEL)
-         ========================================================================= -->
-    <section id="dresscode-section" class="canva-section section-dresscode unfold-item">
-      <div class="dresscode-wreath-box">
-        <img src="assets/icons/wreath.svg" alt="" width="160" height="46" class="wreath-img">
-      </div>
-
-      <h2 class="canva-section-title">DRESS CODE</h2>
-
-      <h3 class="dresscode-subtitle">FORMAL PASTEL</h3>
-
-      <p class="canva-gentle-p">
-        Se reserva el color blanco y rosa bebé únicamente para la agasajada Emma Victoria. Te sugerimos acompañarnos en estos hermosos tonos:
-      </p>
-
-      <!-- Selector de Muestras de Vestimenta Interactivas -->
-      <div class="canva-swatches-grid" role="radiogroup" aria-label="Muestras de vestido">
-        <button type="button" class="swatch-btn is-active" data-color="Rosa Empolvado" data-desc="Tonalidad dulce, romántica y delicada, ideal para vestidos florales y blusas suaves." style="--swatch-hex: #F4D3DC;" aria-label="Rosa Empolvado">
-          <span class="swatch-circle"></span>
-          <span class="swatch-title">Rosa Suave</span>
-        </button>
-        <button type="button" class="swatch-btn" data-color="Crema Vainilla" data-desc="Color luminoso, neutro y sofisticado, perfecto para vestidos de lino o conjuntos sobrios." style="--swatch-hex: #FAF3E6;" aria-label="Crema Vainilla">
-          <span class="swatch-circle"></span>
-          <span class="swatch-title">Crema</span>
-        </button>
-        <button type="button" class="swatch-btn" data-color="Lavanda Suave" data-desc="Matiz sereno y poético que aporta frescura campestre y distinción natural." style="--swatch-hex: #E7DCF2;" aria-label="Lavanda Suave">
-          <span class="swatch-circle"></span>
-          <span class="swatch-title">Lavanda</span>
-        </button>
-        <button type="button" class="swatch-btn" data-color="Oro Champaña" data-desc="Acento radiante con destellos festivos que combina de maravilla con accesorios dorados." style="--swatch-hex: #E5C778;" aria-label="Oro Champaña">
-          <span class="swatch-circle"></span>
-          <span class="swatch-title">Oro Suave</span>
-        </button>
-      </div>
-
-      <div class="swatch-info-bubble">
-        <h4 id="active-swatch-name" class="swatch-name-heading">Rosa Empolvado</h4>
-        <p id="active-swatch-desc" class="swatch-desc-heading">Tonalidad dulce, romántica y delicada, ideal para vestidos florales y blusas suaves.</p>
-      </div>
-    </section>
-
-    <!-- =========================================================================
-         9. ITINERARIO (TIMELINE ILUSTRADO VERTICAL TIPO CANVA)
-         ========================================================================= -->
-    <section class="canva-section section-itinerary unfold-item">
-      <h2 class="canva-section-title">ITINERARIO</h2>
-      <p class="itinerary-intro">Así celebraremos cada mágico momento:</p>
-
-      <div class="canva-vertical-timeline">
-        <div class="timeline-vine-stem" aria-hidden="true"></div>
-
-        <!-- Hito 1: Recibimiento -->
-        <div class="timeline-node node-left">
-          <div class="node-content-card">
-            <span class="node-emoji">🫖</span>
-            <div class="node-details">
-              <strong class="node-name">Recibimiento</strong>
-              <span class="node-hour">Hora: 4:00 PM</span>
-              <p class="node-desc">Bienvenida de invitados, cóctel dulce y dedicatorias.</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Hito 2: Dinámicas & Juegos -->
-        <div class="timeline-node node-right">
-          <div class="node-content-card">
-            <span class="node-emoji">🎀</span>
-            <div class="node-details">
-              <strong class="node-name">Juegos de Bebé</strong>
-              <span class="node-hour">Hora: 4:45 PM</span>
-              <p class="node-desc">Dinámicas divertidas, risas y premios para los ganadores.</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Hito 3: Brindis Familiar -->
-        <div class="timeline-node node-left">
-          <div class="node-content-card">
-            <span class="node-emoji">🥂</span>
-            <div class="node-details">
-              <strong class="node-name">Brindis Familiar</strong>
-              <span class="node-hour">Hora: 5:45 PM</span>
-              <p class="node-desc">Palabras de amor de los papás y bendición para Emma.</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Hito 4: Lonche y Dulces -->
-        <div class="timeline-node node-right">
-          <div class="node-content-card">
-            <span class="node-emoji">🧁</span>
-            <div class="node-details">
-              <strong class="node-name">Mesa de Dulces</strong>
-              <span class="node-hour">Hora: 6:30 PM</span>
-              <p class="node-desc">Lonche campestre, pastelito de celebración y café.</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Hito 5: Recuerdos y Fotos -->
-        <div class="timeline-node node-left">
-          <div class="node-content-card">
-            <span class="node-emoji">📸</span>
-            <div class="node-details">
-              <strong class="node-name">Fotos y Recuerdos</strong>
-              <span class="node-hour">Hora: 7:15 PM</span>
-              <p class="node-desc">Fotografías en el jardín y entrega de recuerditos.</p>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- Elementos de compatibilidad con pruebas unitarias (ocultos visualmente) -->
-    <div style="display:none;" aria-hidden="true">
-      <div id="highlights-carousel"><div class="highlight-card"></div></div>
-      <div class="carousel-dot is-active"></div>
-      <div class="closer-look-tabs">
-        <button class="tab-chip is-active" data-tab="countdown"></button>
-        <button class="tab-chip" data-tab="location"></button>
-        <button class="tab-chip" data-tab="dresscode"></button>
-      </div>
-      <div id="tab-panel-countdown" class="tab-panel is-active"></div>
-      <div id="tab-panel-location" class="tab-panel"></div>
-      <div id="tab-panel-dresscode" class="tab-panel"></div>
-      <div class="apple-stats-grid">
-        <div class="stat-cell"><span class="stat-number">24</span></div>
+      <!-- Globos -->
+      <div class="balloons-wrap" aria-hidden="true">
+        <svg viewBox="0 0 138 262" class="balloons-svg" fill="none">
+          <defs>
+            <radialGradient id="bg1" cx="34%" cy="28%" r="68%">
+              <stop offset="0%" stop-color="#FEF0F4"/>
+              <stop offset="42%" stop-color="#F2A7B8"/>
+              <stop offset="100%" stop-color="#C4768A"/>
+            </radialGradient>
+            <radialGradient id="bg2" cx="34%" cy="28%" r="68%">
+              <stop offset="0%" stop-color="#FEFAE8"/>
+              <stop offset="42%" stop-color="#E8C97A"/>
+              <stop offset="100%" stop-color="#B89040"/>
+            </radialGradient>
+            <radialGradient id="bg3" cx="34%" cy="28%" r="68%">
+              <stop offset="0%" stop-color="#FEF0F4"/>
+              <stop offset="42%" stop-color="#F7C5CF"/>
+              <stop offset="100%" stop-color="#C4768A"/>
+            </radialGradient>
+          </defs>
+          <ellipse cx="36" cy="74" rx="30" ry="36" fill="url(#bg1)" opacity="0.92"/>
+          <ellipse cx="27" cy="57" rx="10" ry="7" fill="rgba(255,255,255,0.5)"/>
+          <path d="M36 110 Q33 116 36 122" stroke="#C4768A" stroke-width="1.8" fill="none"/>
+          <path d="M33 122 C28 117,21 120,26 126 C30 131,33 124,33 124 C33 124,36 131,40 126 C45 120,38 117,33 122Z" fill="#F2A7B8"/>
+          <path d="M33 128 Q42 160 52 195 Q56 214 53 234" stroke="#D4A0B4" stroke-width="1.8" fill="none"/>
+          <ellipse cx="70" cy="48" rx="28" ry="34" fill="url(#bg2)" opacity="0.92"/>
+          <ellipse cx="61" cy="32" rx="9" ry="6.5" fill="rgba(255,255,255,0.5)"/>
+          <path d="M70 82 Q67 88 70 94" stroke="#B89040" stroke-width="1.8" fill="none"/>
+          <path d="M67 94 C62 89,55 92,60 98 C64 103,67 96,67 96 C67 96,70 103,74 98 C79 92,72 89,67 94Z" fill="#E8C97A"/>
+          <path d="M67 100 Q76 132 86 167 Q90 186 87 206" stroke="#C4A050" stroke-width="1.8" fill="none"/>
+          <ellipse cx="106" cy="64" rx="26" ry="31" fill="url(#bg3)" opacity="0.92"/>
+          <ellipse cx="97" cy="49" rx="8.5" ry="6" fill="rgba(255,255,255,0.5)"/>
+          <path d="M106 95 Q103 101 106 107" stroke="#C4768A" stroke-width="1.8" fill="none"/>
+          <path d="M103 107 C98 102,91 105,96 111 C100 116,103 109,103 109 C103 109,106 116,110 111 C115 105,108 102,103 107Z" fill="#F7C5CF"/>
+          <path d="M103 113 Q112 145 122 180 Q126 199 123 219" stroke="#D4A0B4" stroke-width="1.8" fill="none"/>
+        </svg>
       </div>
     </div>
+  </section>
 
-    <!-- =========================================================================
-         10. FOOTER: BENDICIÓN Y AGRADECIMIENTO FAMILIAR
-         ========================================================================= -->
-    <footer class="canva-footer">
-      <div class="footer-card-box">
-        <img src="assets/icons/butterfly.svg" alt="" width="30" height="30" class="footer-butterfly-img">
-        <p class="footer-bible-verse">
-          "Los hijos son un regalo del Señor, el fruto del vientre es una recompensa."
-        </p>
-        <p class="footer-script-parents">Sofía &amp; Alejandro</p>
-        <p class="footer-copyright">&copy; 2026 Baby Shower de Emma Victoria &bull; Diseñado con todo el amor de nuestra familia.</p>
+  <!-- CAPITULO 2: FECHA Y LUGAR -->
+  <section id="section-date" class="full-section s-date unfold-item" aria-label="Fecha y lugar">
+    <div class="deco-cloud c-left" aria-hidden="true"></div>
+    <div class="deco-cloud c-right" aria-hidden="true"></div>
+    <div class="carousel-deco" aria-hidden="true">
+      <svg viewBox="0 0 190 175" class="carousel-svg" fill="none">
+        <ellipse cx="95" cy="155" rx="62" ry="12" fill="#E8C9D0" opacity="0.65"/>
+        <rect x="93" y="28" width="4" height="130" rx="2" fill="#D4A87A"/>
+        <path d="M40 82 Q95 12 150 82Z" fill="#F9D0DB"/>
+        <path d="M40 82 Q95 20 150 82Z" fill="#FDE8EC" opacity="0.65"/>
+        <path d="M40 82 Q52 94 64 82 Q76 94 88 82 Q100 94 112 82 Q124 94 136 82 Q143 94 150 82" stroke="#E8A0B0" stroke-width="3.5" fill="none"/>
+        <path d="M95 12 C89 5,79 7,85 15 C91 20,95 13,95 13 C95 13,99 20,105 15 C111 7,101 5,95 12Z" fill="#F2A7B8"/>
+        <circle cx="95" cy="12" r="4" fill="#E8899A"/>
+        <ellipse cx="66" cy="118" rx="13" ry="9" fill="#F5EAE0"/>
+        <circle cx="68" cy="110" r="7" fill="#F5EAE0"/>
+        <path d="M58 112 L53 128" stroke="#E0C8B0" stroke-width="3" stroke-linecap="round"/>
+        <path d="M69 112 L64 128" stroke="#E0C8B0" stroke-width="3" stroke-linecap="round"/>
+        <ellipse cx="126" cy="122" rx="13" ry="9" fill="#F5EAE0"/>
+        <circle cx="128" cy="114" r="7" fill="#F5EAE0"/>
+        <path d="M118 116 L113 132" stroke="#E0C8B0" stroke-width="3" stroke-linecap="round"/>
+        <path d="M129 116 L124 132" stroke="#E0C8B0" stroke-width="3" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="date-content">
+      <p class="s-kicker">Te esperamos el dia</p>
+      <div class="date-card">
+        <span class="dc-day">SABADO</span>
+        <span class="dc-num">24</span>
+        <div class="dc-month-row">
+          <span class="dc-month">Octubre</span>
+          <span class="dc-year">2026</span>
+        </div>
+        <span class="dc-time">&#9825; 4:00 PM &#9825;</span>
       </div>
-    </footer>
+      <div id="countdown-timer" class="countdown-strip" role="timer" aria-live="polite">
+        <div class="cu"><span id="days" class="cd">00</span><span class="cl">DIAS</span></div>
+        <span class="cs">&middot;</span>
+        <div class="cu"><span id="hours" class="cd">00</span><span class="cl">HRS</span></div>
+        <span class="cs">&middot;</span>
+        <div class="cu"><span id="minutes" class="cd">00</span><span class="cl">MIN</span></div>
+        <span class="cs">&middot;</span>
+        <div class="cu"><span id="seconds" class="cd">00</span><span class="cl">SEG</span></div>
+      </div>
+      <div class="venue-box">
+        <p class="venue-name">&#127800; Jardin de Ensueno Las Rosas</p>
+        <p class="venue-addr">Av. Los Jazmines 450, Valle Hermoso</p>
+      </div>
+      <div class="action-row">
+        <a id="btn-add-calendar" href="#" class="btn-rose">&#128197; Calendario</a>
+        <a href="https://maps.google.com/?q=Jardin+Las+Rosas" target="_blank" rel="noopener noreferrer" class="btn-outline-rose">&#128205; Como llegar</a>
+      </div>
+    </div>
+  </section>
 
+  <!-- CAPITULO 3: RSVP + DRESS CODE -->
+  <section id="section-rsvp" class="full-section s-rsvp unfold-item" aria-label="Confirmacion de asistencia">
+    <div class="gift-deco" aria-hidden="true">
+      <svg viewBox="0 0 160 168" class="gift-svg" fill="none">
+        <defs>
+          <radialGradient id="gbox" cx="36%" cy="30%" r="72%">
+            <stop offset="0%" stop-color="#FDE8EC"/>
+            <stop offset="100%" stop-color="#E8899A"/>
+          </radialGradient>
+        </defs>
+        <rect x="18" y="88" width="124" height="72" rx="9" fill="url(#gbox)"/>
+        <rect x="13" y="72" width="134" height="22" rx="7" fill="#F2A7B8"/>
+        <rect x="70" y="72" width="20" height="88" fill="#D4738A" opacity="0.45" rx="5"/>
+        <rect x="13" y="79" width="134" height="8" fill="#D4738A" opacity="0.45" rx="3"/>
+        <path d="M80 72 C74 60,56 63,63 74 C70 82,80 72,80 72 C80 72,90 82,97 74 C104 63,86 60,80 72Z" fill="#F9D0DB"/>
+        <path d="M80 72 C74 60,56 63,63 74" stroke="rgba(255,255,255,0.45)" stroke-width="3.5" fill="none"/>
+        <path d="M80 72 C86 60,104 63,97 74" stroke="rgba(255,255,255,0.45)" stroke-width="3.5" fill="none"/>
+        <circle cx="80" cy="72" r="7.5" fill="#E8899A"/>
+        <path d="M72 72 L52 44" stroke="#F2A7B8" stroke-width="6" stroke-linecap="round"/>
+        <path d="M88 72 L108 44" stroke="#F2A7B8" stroke-width="6" stroke-linecap="round"/>
+        <rect x="24" y="94" width="38" height="22" rx="5" fill="rgba(255,255,255,0.18)"/>
+      </svg>
+    </div>
+    <div class="rsvp-content">
+      <p class="s-kicker">Confirma tu presencia</p>
+      <h2 class="s-title">ASISTENCIA</h2>
+      <p class="s-body">Confirma antes del <strong>10 de Octubre 2026</strong>. Tu compania es un regalo.</p>
+      <div class="wa-pair">
+        <a id="btn-wa-sofia" href="https://api.whatsapp.com/send?phone=51999999999&amp;text=Hola%20Sofia!%20Confirmo%20mi%20asistencia%20al%20Baby%20Shower%20de%20Emma%20Victoria%20🎀" target="_blank" rel="noopener noreferrer" class="btn-wa-mama">&#128172; Confirmar con Mama</a>
+        <a id="btn-wa-alejandro" href="https://api.whatsapp.com/send?phone=51999999999&amp;text=Hola%20Alejandro!%20Confirmo%20mi%20asistencia%20al%20Baby%20Shower%20de%20Emma%20Victoria%20🎀" target="_blank" rel="noopener noreferrer" class="btn-wa-papa">&#128172; Confirmar con Papa</a>
+      </div>
+      <div class="canva-rsvp-card form-card">
+        <form id="rsvp-form" novalidate>
+          <div class="field">
+            <input type="text" id="guest-name" class="canva-input" placeholder="Tu nombre o familia *" required autocomplete="name">
+            <span class="field-err" id="error-name" aria-live="polite"></span>
+          </div>
+          <div class="field" id="group-passes">
+            <select id="guest-passes" class="canva-select" aria-label="Numero de personas">
+              <option value="1">1 persona</option>
+              <option value="2" selected>2 personas</option>
+              <option value="3">3 personas</option>
+              <option value="4">4 personas</option>
+            </select>
+          </div>
+          <div class="field">
+            <textarea id="guest-wishes" class="canva-textarea" rows="2" placeholder="Un deseo para Emma Victoria (opcional)"></textarea>
+          </div>
+          <button type="submit" id="btn-submit-rsvp" class="btn-rose-full">Confirmar por WhatsApp &#128140;</button>
+        </form>
+      </div>
+      <div id="dresscode-section" class="dresscode-row">
+        <p class="dc-label">DRESS CODE &middot; <strong>FORMAL PASTEL</strong></p>
+        <div class="canva-swatches-grid" role="radiogroup" aria-label="Colores del dress code">
+          <button class="swatch-btn is-active" data-color="Rosa Empolvado" data-desc="Rosa suave y delicado, ideal para vestidos florales." style="--sw:#F4D3DC" aria-label="Rosa Empolvado" aria-pressed="true">
+            <span class="sw-circle"></span><span class="sw-name">Rosa</span>
+          </button>
+          <button class="swatch-btn" data-color="Crema Vainilla" data-desc="Luminoso y sofisticado, perfecto para lino o seda." style="--sw:#FAF3E6" aria-label="Crema Vainilla" aria-pressed="false">
+            <span class="sw-circle"></span><span class="sw-name">Crema</span>
+          </button>
+          <button class="swatch-btn" data-color="Oro Champana" data-desc="Acento radiante, con destellos festivos y accesorios dorados." style="--sw:#E5C778" aria-label="Oro Champana" aria-pressed="false">
+            <span class="sw-circle"></span><span class="sw-name">Oro</span>
+          </button>
+        </div>
+        <p id="active-swatch-name" class="sw-info-name">Rosa Empolvado</p>
+        <p id="active-swatch-desc" class="sw-info-desc">Rosa suave y delicado, ideal para vestidos florales.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CAPITULO 4: PROGRAMA Y CIERRE -->
+  <section id="section-program" class="full-section s-program unfold-item" aria-label="Programa del dia">
+    <div class="butterflies" aria-hidden="true">
+      <span class="bf b1"></span>
+      <span class="bf b2"></span>
+      <span class="bf b3"></span>
+    </div>
+    <div class="shoes-deco" aria-hidden="true">
+      <svg viewBox="0 0 210 108" class="shoes-svg" fill="none">
+        <defs>
+          <radialGradient id="sg" cx="38%" cy="32%" r="68%">
+            <stop offset="0%" stop-color="#FDE8EC"/>
+            <stop offset="100%" stop-color="#D4738A"/>
+          </radialGradient>
+        </defs>
+        <path d="M8 78 Q14 46 42 40 Q63 36 72 52 L78 78 Q50 86 8 78Z" fill="url(#sg)"/>
+        <path d="M8 78 Q50 88 78 78" stroke="#C4768A" stroke-width="2" fill="none"/>
+        <rect x="23" y="40" width="32" height="11" rx="5.5" fill="#E8899A"/>
+        <path d="M35 38 C29 30,20 33,27 40 C33 46,35 38,35 38 C35 38,37 46,43 40 C50 33,41 30,35 38Z" fill="#F9D0DB"/>
+        <circle cx="35" cy="38" r="3.8" fill="#E8899A"/>
+        <circle cx="29" cy="62" r="2" fill="#F9D0DB"/>
+        <circle cx="40" cy="65" r="2" fill="#F9D0DB"/>
+        <circle cx="51" cy="62" r="2" fill="#F9D0DB"/>
+        <path d="M202 78 Q196 46 168 40 Q147 36 138 52 L132 78 Q160 86 202 78Z" fill="url(#sg)" opacity="0.92"/>
+        <path d="M202 78 Q160 88 132 78" stroke="#C4768A" stroke-width="2" fill="none"/>
+        <rect x="155" y="40" width="32" height="11" rx="5.5" fill="#E8899A"/>
+        <path d="M175 38 C169 30,160 33,167 40 C173 46,175 38,175 38 C175 38,177 46,183 40 C190 33,181 30,175 38Z" fill="#F9D0DB"/>
+        <circle cx="175" cy="38" r="3.8" fill="#E8899A"/>
+        <circle cx="169" cy="62" r="2" fill="#F9D0DB"/>
+        <circle cx="158" cy="65" r="2" fill="#F9D0DB"/>
+        <circle cx="147" cy="62" r="2" fill="#F9D0DB"/>
+      </svg>
+    </div>
+    <div class="program-content">
+      <p class="s-kicker">El gran dia</p>
+      <h2 class="s-title">PROGRAMA</h2>
+      <div class="canva-vertical-timeline tl-grid">
+        <div class="timeline-vine-stem stem-h" aria-hidden="true"></div>
+        <div class="tl-item">
+          <div class="tl-icon">&#x1F375;</div>
+          <span class="tl-time">4:00 PM</span>
+          <span class="tl-evt">Recibimiento</span>
+        </div>
+        <div class="tl-item">
+          <div class="tl-icon">&#127800;</div>
+          <span class="tl-time">4:45 PM</span>
+          <span class="tl-evt">Juegos</span>
+        </div>
+        <div class="tl-item">
+          <div class="tl-icon">&#x1F942;</div>
+          <span class="tl-time">5:45 PM</span>
+          <span class="tl-evt">Brindis</span>
+        </div>
+        <div class="tl-item">
+          <div class="tl-icon">&#x1F9C1;</div>
+          <span class="tl-time">6:30 PM</span>
+          <span class="tl-evt">Festejo</span>
+        </div>
+      </div>
+      <button id="btn-open-vip-pass" class="btn-rose vip-btn">&#127903; Ver mi Pase de Invitada</button>
+      <div class="blessing">
+        <p class="bl-verse">"Los hijos son un regalo del Senor, el fruto del vientre es una recompensa."</p>
+        <p class="bl-sig">Sofia &amp; Alejandro</p>
+        <p class="bl-copy">&#169; 2026 Baby Shower de Emma Victoria &middot; Disenado con amor &#127800;</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODAL VIP -->
+  <div id="vip-pass-modal" class="canva-modal" aria-hidden="true" role="dialog" aria-labelledby="modal-pass-title" aria-modal="true">
+    <div class="modal-backdrop" id="modal-pass-backdrop"></div>
+    <div class="modal-baby-ticket">
+      <button id="btn-close-modal" class="modal-x" aria-label="Cerrar">&#215;</button>
+      <div class="mt-top">
+        <svg viewBox="0 0 44 42" width="40" height="38" aria-hidden="true">
+          <polygon points="22,2 27,16 42,16 30,25 35,40 22,31 9,40 14,25 2,16 17,16" fill="#E8C97A" stroke="#C9A040" stroke-width="1.5" stroke-linejoin="round"/>
+        </svg>
+        <span class="mt-kicker">PASE DE BIENVENIDA</span>
+        <h3 id="modal-pass-title" class="mt-title">Emma Victoria</h3>
+      </div>
+      <div class="mt-mid">
+        <p class="mt-for-lbl">Invitacion especial para:</p>
+        <p id="ticket-guest-display" class="mt-guest">Estimada Invitada</p>
+        <div class="mt-tags">
+          <div class="tag"><span class="tg-k">Pases</span><span id="ticket-passes-display" class="tg-v">2 Personas</span></div>
+          <div class="tag"><span class="tg-k">Fecha</span><span class="tg-v">24 Octubre</span></div>
+          <div class="tag"><span class="tg-k">Hora</span><span class="tg-v">4:00 PM</span></div>
+        </div>
+      </div>
+      <div class="mt-bot">
+        <p class="mt-stamp">&#10022; BABY SHOWER OFICIAL &middot; EMMA VICTORIA &#10022;</p>
+        <button id="btn-download-pass" class="btn-save-pass">Guardar Pase &#128140;</button>
+      </div>
+    </div>
   </div>
 
-  <!-- Scripts modulares -->
+  <!-- Compatibilidad con tests (oculto) -->
+  <div style="display:none;" aria-hidden="true">
+    <div id="highlights-carousel"><div class="highlight-card"></div><div class="highlight-card"></div></div>
+    <button class="carousel-dot is-active"></button>
+    <button class="carousel-dot"></button>
+    <div class="closer-look-tabs" role="tablist">
+      <button class="tab-chip is-active" role="tab" aria-selected="true" data-tab="countdown">Cuenta</button>
+      <button class="tab-chip" role="tab" aria-selected="false" data-tab="location">Lugar</button>
+      <button class="tab-chip" role="tab" aria-selected="false" data-tab="dresscode">Vestimenta</button>
+    </div>
+    <div id="tab-panel-countdown" class="tab-panel is-active" role="tabpanel"></div>
+    <div id="tab-panel-location" class="tab-panel" role="tabpanel"></div>
+    <div id="tab-panel-dresscode" class="tab-panel" role="tabpanel"></div>
+    <div class="apple-stats-grid"><div class="stat-cell"><span class="stat-number">24</span><span class="stat-label">Octubre</span></div></div>
+  </div>
+
   <script src="js/utils.js"></script>
   <script src="js/countdown.js"></script>
   <script src="js/particles.js"></script>

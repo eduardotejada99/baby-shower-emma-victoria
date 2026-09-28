@@ -1,389 +1,318 @@
 /**
- * ORQUESTADOR PRINCIPAL: EXPERIENCIA CANVA BABY GIRL INTERACTIVA
- * Baby Shower de Emma Victoria
- * 
- * Orquesta:
- * 1. Motor de partículas y destellos dorados/rosados
- * 2. Sintetizador de caja de música de cuna (Web Audio API)
- * 3. Despliegue elástico 3D al hacer scroll (Unfold on scroll)
- * 4. Móvil musical interactivo con animación y sonidos ("Dale play")
- * 5. Sello de cera interactivo con latido fetal y transición suave
- * 6. Tarjeta de fecha de cuna y sincronización de calendario Google
- * 7. Modal de Pase Digital VIP (Acceso Reservado) con llave oscilante
- * 8. Panel desplegable de sugerencia de regalos / sobres
- * 9. Selector interactivo de Dress Code (muestras de color pastel)
- * 10. Formulario RSVP inteligente conectado con WhatsApp (Mamá / Papá)
- * 11. Compatibilidad total con la suite de pruebas unitarias
+ * ORQUESTADOR PRINCIPAL — BABY SHOWER EMMA VICTORIA
+ * 4 Capítulos: Hero | Fecha | RSVP | Programa
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  // 1. Iniciar Motor de Partículas en Canvas de Fondo
+
+  /* ──────────────────────────────────────────────────────────────
+     1. PARTÍCULAS
+  ────────────────────────────────────────────────────────────── */
   let particleEngine = null;
   if (window.ParticleEngine) {
-    particleEngine = new window.ParticleEngine('canvas-particles');
-    particleEngine.init();
-    window.particleEngine = particleEngine;
+    try {
+      particleEngine = new window.ParticleEngine('canvas-particles');
+      particleEngine.init();
+      window.particleEngine = particleEngine;
+    } catch (e) { /* silencioso si canvas no disponible */ }
   }
 
-  // 2. Iniciar Sintetizador de Audio Ambiental y Melodía de Cuna
+  /* ──────────────────────────────────────────────────────────────
+     2. MÚSICA (Web Audio API — FIX: init solo en click)
+  ────────────────────────────────────────────────────────────── */
   let musicSynth = null;
-  const audioBtn = document.getElementById('btn-audio-toggle');
-  const babyMobile = document.getElementById('interactive-pocket-watch');
-
   if (window.MusicBoxSynthesizer) {
     musicSynth = new window.MusicBoxSynthesizer();
     window.musicSynth = musicSynth;
   }
 
-  function toggleMusic(sourceElement) {
-    if (!musicSynth) return;
-    const isPlaying = musicSynth.toggle();
+  const audioBtn = document.getElementById('btn-audio-toggle');
+  const audioIcon = audioBtn?.querySelector('.music-icon');
 
-    if (audioBtn) {
-      if (isPlaying) {
+  async function handleMusicToggle() {
+    if (!musicSynth || !audioBtn) return;
+    try {
+      const playing = await musicSynth.toggle();
+      if (playing) {
         audioBtn.classList.add('is-playing');
-        audioBtn.setAttribute('aria-label', 'Silenciar música');
-        audioBtn.title = 'Silenciar música';
+        audioBtn.setAttribute('aria-label', 'Silenciar música de cuna');
+        if (audioIcon) audioIcon.textContent = '♬';
       } else {
         audioBtn.classList.remove('is-playing');
-        audioBtn.setAttribute('aria-label', 'Reproducir melodía de ensueño');
-        audioBtn.title = 'Reproducir música';
+        audioBtn.setAttribute('aria-label', 'Reproducir música de cuna');
+        if (audioIcon) audioIcon.textContent = '♪';
       }
-    }
-
-    if (babyMobile) {
-      if (isPlaying) {
-        babyMobile.classList.add('is-spinning');
-      } else {
-        babyMobile.classList.remove('is-spinning');
+      if (particleEngine) {
+        const r = audioBtn.getBoundingClientRect();
+        particleEngine.createSparkleBurst(r.left + r.width / 2, r.top + r.height / 2, 16);
       }
-    }
-
-    if (particleEngine && sourceElement) {
-      const rect = sourceElement.getBoundingClientRect();
-      particleEngine.createSparkleBurst(rect.left + rect.width / 2, rect.top + rect.height / 2, 28);
+    } catch (err) {
+      console.warn('[Main] Toggle música falló:', err);
     }
   }
 
-  if (audioBtn) {
-    audioBtn.addEventListener('click', () => toggleMusic(audioBtn));
+  if (audioBtn) audioBtn.addEventListener('click', handleMusicToggle);
+
+  /* ──────────────────────────────────────────────────────────────
+     3. SCROLL UNFOLD (IntersectionObserver)
+  ────────────────────────────────────────────────────────────── */
+  const unfoldTargets = document.querySelectorAll(
+    '.unfold-item, .apple-section, .editorial-section, .apple-stats-grid'
+  );
+
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-unfolded', 'is-revealed');
+        }
+      });
+    }, { threshold: 0.07, rootMargin: '0px 0px -20px 0px' });
+
+    unfoldTargets.forEach(el => io.observe(el));
+  } else {
+    // Fallback: mostrar todo sin animación
+    unfoldTargets.forEach(el => el.classList.add('is-unfolded', 'is-revealed'));
   }
 
-  if (babyMobile) {
-    babyMobile.addEventListener('click', () => toggleMusic(babyMobile));
-    babyMobile.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        toggleMusic(babyMobile);
-      }
-    });
-  }
+  /* ──────────────────────────────────────────────────────────────
+     4. NAV PILL SHADOW en scroll
+  ────────────────────────────────────────────────────────────── */
+  const navPill = document.getElementById('apple-subnav');
+  let lastScrollY = 0;
 
-  // 3. Sub-Navegación Flotante: Sombra y elevación dinámica al hacer scroll
-  const appleSubnav = document.getElementById('apple-subnav');
   window.addEventListener('scroll', () => {
-    if (appleSubnav) {
-      if (window.scrollY > 40) {
-        appleSubnav.classList.add('is-scrolled');
-      } else {
-        appleSubnav.classList.remove('is-scrolled');
-      }
+    const y = window.scrollY;
+    if (navPill) {
+      navPill.style.boxShadow = y > 40
+        ? '0 8px 28px rgba(196,118,138,.28)'
+        : '0 4px 16px rgba(196,118,138,.15)';
     }
+    lastScrollY = y;
   }, { passive: true });
 
-  // 4. Emblema / Sello Central Interactivo: Latido Fetal y Campanilla
-  const waxSeal = document.getElementById('wax-seal');
-  const sectionMusic = document.querySelector('.section-music');
-
-  function triggerSealInteraction() {
-    if (!waxSeal) return;
-
-    if (musicSynth) {
-      musicSynth.playHeartbeat();
-      setTimeout(() => musicSynth.playChime(), 260);
-    }
-
-    if (particleEngine) {
-      const rect = waxSeal.getBoundingClientRect();
-      particleEngine.createSparkleBurst(rect.left + rect.width / 2, rect.top + rect.height / 2, 38);
-    }
-
-    // Desplazamiento suave hacia la siguiente sección
-    setTimeout(() => {
-      if (sectionMusic) {
-        sectionMusic.scrollIntoView({ behavior: 'smooth' });
-      }
-    }, 550);
-  }
-
-  if (waxSeal) {
-    waxSeal.addEventListener('click', triggerSealInteraction);
-    waxSeal.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        triggerSealInteraction();
-      }
-    });
-  }
-
-  // 5. Interacción en Tarjeta de Fecha de Cuna
-  const babyDateCard = document.getElementById('baby-date-card');
-  if (babyDateCard) {
-    babyDateCard.addEventListener('click', () => {
-      if (musicSynth) musicSynth.playChime();
-      if (particleEngine) {
-        const rect = babyDateCard.getBoundingClientRect();
-        particleEngine.createSparkleBurst(rect.left + rect.width / 2, rect.top + rect.height / 2, 22);
-      }
-    });
-  }
-
-  // 6. Modal de Pase Digital VIP (Acceso Reservado)
-  const btnOpenVipPass = document.getElementById('btn-open-vip-pass');
-  const vipPassModal = document.getElementById('vip-pass-modal');
-  const btnCloseModal = document.getElementById('btn-close-modal');
-  const modalPassBackdrop = document.getElementById('modal-pass-backdrop');
-  const ticketGuestDisplay = document.getElementById('ticket-guest-display');
-  const ticketPassesDisplay = document.getElementById('ticket-passes-display');
+  /* ──────────────────────────────────────────────────────────────
+     5. MODAL PASE VIP
+  ────────────────────────────────────────────────────────────── */
+  const btnOpenVip      = document.getElementById('btn-open-vip-pass');
+  const vipModal        = document.getElementById('vip-pass-modal');
+  const btnCloseModal   = document.getElementById('btn-close-modal');
+  const modalBackdrop   = document.getElementById('modal-pass-backdrop');
+  const ticketGuestEl   = document.getElementById('ticket-guest-display');
+  const ticketPassesEl  = document.getElementById('ticket-passes-display');
   const btnDownloadPass = document.getElementById('btn-download-pass');
-  const guestNameInput = document.getElementById('guest-name');
-  const guestPassesSelect = document.getElementById('guest-passes');
 
-  function openVipPass() {
-    if (!vipPassModal) return;
-
-    // Actualizar nombre y pases en el ticket con los valores del formulario si existen
-    const nameVal = guestNameInput ? guestNameInput.value.trim() : '';
-    const passesVal = guestPassesSelect ? guestPassesSelect.value : '2';
-
-    if (ticketGuestDisplay) {
-      ticketGuestDisplay.textContent = nameVal ? nameVal : 'Estimado(a) Invitado(a)';
-    }
-
-    if (ticketPassesDisplay) {
-      ticketPassesDisplay.textContent = `${passesVal} ${parseInt(passesVal, 10) === 1 ? 'Pase' : 'Pases'}`;
-    }
-
-    vipPassModal.classList.add('is-open');
-    vipPassModal.setAttribute('aria-hidden', 'false');
-
+  function openVipModal() {
+    if (!vipModal) return;
+    const name   = document.getElementById('guest-name')?.value?.trim() || 'Estimada Invitada';
+    const passes = document.getElementById('guest-passes')?.value || '2';
+    if (ticketGuestEl)  ticketGuestEl.textContent  = name;
+    if (ticketPassesEl) ticketPassesEl.textContent = `${passes} ${passes === '1' ? 'Persona' : 'Personas'}`;
+    vipModal.classList.add('is-open');
+    vipModal.setAttribute('aria-hidden', 'false');
     if (musicSynth) musicSynth.playChime();
-
-    if (particleEngine) {
-      particleEngine.createSparkleBurst(window.innerWidth / 2, window.innerHeight / 2, 35);
-    }
+    if (particleEngine) particleEngine.createSparkleBurst(window.innerWidth / 2, window.innerHeight / 2, 32);
   }
 
-  function closeVipPass() {
-    if (!vipPassModal) return;
-    vipPassModal.classList.remove('is-open');
-    vipPassModal.setAttribute('aria-hidden', 'true');
+  function closeVipModal() {
+    if (!vipModal) return;
+    vipModal.classList.remove('is-open');
+    vipModal.setAttribute('aria-hidden', 'true');
   }
 
-  if (btnOpenVipPass) btnOpenVipPass.addEventListener('click', openVipPass);
-  if (btnCloseModal) btnCloseModal.addEventListener('click', closeVipPass);
-  if (modalPassBackdrop) modalPassBackdrop.addEventListener('click', closeVipPass);
-
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && vipPassModal && vipPassModal.classList.contains('is-open')) {
-      closeVipPass();
-    }
-  });
+  if (btnOpenVip)    btnOpenVip.addEventListener('click', openVipModal);
+  if (btnCloseModal) btnCloseModal.addEventListener('click', closeVipModal);
+  if (modalBackdrop) modalBackdrop.addEventListener('click', closeVipModal);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeVipModal(); });
 
   if (btnDownloadPass) {
     btnDownloadPass.addEventListener('click', () => {
-      if (musicSynth) musicSynth.playChime();
-      if (particleEngine) {
-        particleEngine.createSparkleBurst(window.innerWidth / 2, window.innerHeight / 2, 45);
-      }
-      btnDownloadPass.textContent = '✓ Pase Guardado';
+      if (particleEngine) particleEngine.createSparkleBurst(window.innerWidth / 2, window.innerHeight / 2, 50);
+      btnDownloadPass.textContent = '✓ Guardado!';
       setTimeout(() => {
-        closeVipPass();
-        btnDownloadPass.innerHTML = '<span>Guardar Pase</span>';
-      }, 1200);
+        closeVipModal();
+        btnDownloadPass.textContent = 'Guardar Pase 💌';
+      }, 1400);
     });
   }
 
-  // 7. Panel Colapsable de Sugerencia de Regalos / Lluvia de Sobres
-  const btnToggleBankInfo = document.getElementById('btn-toggle-bank-info');
-  const bankInfoPanel = document.getElementById('bank-info-panel');
+  /* ──────────────────────────────────────────────────────────────
+     6. DRESS CODE SWATCHES
+  ────────────────────────────────────────────────────────────── */
+  const swatchBtns    = document.querySelectorAll('.swatch-btn');
+  const swatchNameEl  = document.getElementById('active-swatch-name');
+  const swatchDescEl  = document.getElementById('active-swatch-desc');
 
-  if (btnToggleBankInfo && bankInfoPanel) {
-    btnToggleBankInfo.addEventListener('click', () => {
-      const isHidden = bankInfoPanel.style.display === 'none' || !bankInfoPanel.style.display;
-      if (isHidden) {
-        bankInfoPanel.style.display = 'block';
-        btnToggleBankInfo.querySelector('span').textContent = 'Ocultar sugerencia';
-      } else {
-        bankInfoPanel.style.display = 'none';
-        btnToggleBankInfo.querySelector('span').textContent = 'Ver sugerencia de regalo';
-      }
-      if (musicSynth) musicSynth.playChime();
-    });
-  }
-
-  // 8. Botones Gemelos de WhatsApp (Mamá y Papá) con feedback de audio y partículas
-  const btnWaSofia = document.getElementById('btn-wa-sofia');
-  const btnWaAlejandro = document.getElementById('btn-wa-alejandro');
-
-  [btnWaSofia, btnWaAlejandro].forEach(btn => {
-    if (btn) {
-      btn.addEventListener('click', () => {
-        if (musicSynth) musicSynth.playChime();
-        if (particleEngine) {
-          const rect = btn.getBoundingClientRect();
-          particleEngine.createSparkleBurst(rect.left + rect.width / 2, rect.top + rect.height / 2, 25);
-        }
-      });
-    }
-  });
-
-  // 9. Muestras de Vestimenta Interactivas (Dress Code Swatches)
-  const swatchButtons = document.querySelectorAll('.swatch-btn');
-  const swatchNameEl = document.getElementById('active-swatch-name');
-  const swatchDescEl = document.getElementById('active-swatch-desc');
-  const swatchBox = document.getElementById('swatch-interactive-box');
-
-  swatchButtons.forEach(btn => {
+  swatchBtns.forEach(btn => {
     btn.addEventListener('click', () => {
-      if (musicSynth) musicSynth.playChime();
-
-      swatchButtons.forEach(b => b.classList.remove('is-active'));
+      swatchBtns.forEach(b => { b.classList.remove('is-active'); b.setAttribute('aria-pressed', 'false'); });
       btn.classList.add('is-active');
-
-      const colorName = btn.getAttribute('data-color') || '';
-      const colorDesc = btn.getAttribute('data-desc') || '';
-      const glowColor = btn.getAttribute('data-glow') || 'rgba(244, 211, 220, 0.4)';
-
-      if (swatchNameEl) swatchNameEl.textContent = colorName;
-      if (swatchDescEl) swatchDescEl.textContent = colorDesc;
-
-      if (swatchBox) {
-        swatchBox.style.boxShadow = `0 8px 24px ${glowColor}`;
-      }
-
+      btn.setAttribute('aria-pressed', 'true');
+      if (swatchNameEl) swatchNameEl.textContent = btn.dataset.color || '';
+      if (swatchDescEl) swatchDescEl.textContent = btn.dataset.desc  || '';
       if (particleEngine) {
-        const rect = btn.getBoundingClientRect();
-        particleEngine.createSparkleBurst(rect.left + rect.width / 2, rect.top + rect.height / 2, 18);
+        const r = btn.getBoundingClientRect();
+        particleEngine.createSparkleBurst(r.left + r.width / 2, r.top + r.height / 2, 12);
       }
     });
   });
 
-  // 10. Despliegue Elástico al Bajar la Página ("Unfold on Scroll")
-  // Observa las secciones .unfold-item, .apple-section, etc.
-  const unfoldItems = document.querySelectorAll('.unfold-item, .apple-section, .editorial-section, .apple-stats-grid');
-
-  if ('IntersectionObserver' in window) {
-    const unfoldObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-unfolded');
-          entry.target.classList.add('is-revealed');
-        }
-      });
-    }, {
-      threshold: 0.12,
-      rootMargin: '0px 0px -40px 0px'
-    });
-
-    unfoldItems.forEach(el => unfoldObserver.observe(el));
-  } else {
-    unfoldItems.forEach(el => {
-      el.classList.add('is-unfolded');
-      el.classList.add('is-revealed');
-    });
-  }
-
-  // 11. Formulario de Asistencia Personalizado (RSVP)
-  const rsvpForm = document.getElementById('rsvp-form');
-  const nameInput = document.getElementById('guest-name');
-  const errorName = document.getElementById('error-name');
-  const passesGroup = document.getElementById('group-passes');
-  const attendingRadios = document.querySelectorAll('input[name="attending"]');
-
-  attendingRadios.forEach(radio => {
-    radio.addEventListener('change', () => {
-      if (passesGroup) {
-        passesGroup.style.display = radio.value === 'no' ? 'none' : 'block';
-      }
-    });
-  });
+  /* ──────────────────────────────────────────────────────────────
+     7. FORMULARIO RSVP
+  ────────────────────────────────────────────────────────────── */
+  const rsvpForm   = document.getElementById('rsvp-form');
+  const nameInput  = document.getElementById('guest-name');
+  const errorName  = document.getElementById('error-name');
+  const groupPasses = document.getElementById('group-passes');
 
   if (rsvpForm) {
-    rsvpForm.addEventListener('submit', (e) => {
+    rsvpForm.addEventListener('submit', e => {
       e.preventDefault();
-
-      const guestName = nameInput ? nameInput.value.trim() : '';
-      if (!guestName) {
-        if (errorName) errorName.textContent = 'Por favor, indícanos tu nombre o el de tu familia.';
-        if (nameInput) nameInput.focus();
+      const name = nameInput?.value?.trim() || '';
+      if (!name) {
+        if (errorName) errorName.textContent = 'Por favor ingresa tu nombre o familia.';
+        nameInput?.focus();
         return;
       }
-
       if (errorName) errorName.textContent = '';
 
-      const attending = document.querySelector('input[name="attending"]:checked')?.value || 'si';
-      const passes = document.getElementById('guest-passes')?.value || '1';
-      const wishes = document.getElementById('guest-wishes')?.value || '';
-
-      if (musicSynth) musicSynth.playChime();
+      const passes = document.getElementById('guest-passes')?.value || '2';
+      const wishes = document.getElementById('guest-wishes')?.value?.trim() || '';
 
       if (particleEngine) {
-        const submitBtn = document.getElementById('btn-submit-rsvp');
-        const rect = submitBtn ? submitBtn.getBoundingClientRect() : { left: window.innerWidth / 2, top: window.innerHeight / 2, width: 0, height: 0 };
-        particleEngine.createSparkleBurst(rect.left + rect.width / 2, rect.top + rect.height / 2, 45);
-        particleEngine.createSparkleBurst(window.innerWidth / 2, window.innerHeight / 2, 35);
+        particleEngine.createSparkleBurst(window.innerWidth / 2, window.innerHeight * .6, 40);
       }
 
-      if (window.Utils) {
-        const waUrl = window.Utils.formatWhatsAppRsvpMessage({
+      // Construir mensaje WhatsApp
+      let msg = `¡Hola Sofía! Confirmo mi asistencia al Baby Shower de Emma Victoria 🎀\n\n👤 *${name}*\n👥 Pases: ${passes}`;
+      if (wishes) msg += `\n💕 Deseo: ${wishes}`;
+      const url = `https://api.whatsapp.com/send?phone=51999999999&text=${encodeURIComponent(msg)}`;
+
+      if (window.Utils?.formatWhatsAppRsvpMessage) {
+        // Usar helper de utils.js si existe
+        const utilUrl = window.Utils.formatWhatsAppRsvpMessage({
           phone: '51999999999',
-          guestName,
-          attending,
+          guestName: name,
+          attending: 'si',
           passes,
           wishes
         });
-
-        setTimeout(() => {
-          window.open(waUrl, '_blank', 'noopener,noreferrer');
-        }, 350);
+        setTimeout(() => window.open(utilUrl, '_blank', 'noopener,noreferrer'), 300);
+      } else {
+        setTimeout(() => window.open(url, '_blank', 'noopener,noreferrer'), 300);
       }
     });
   }
 
-  // 12. Componentes de Compatibilidad (Carrusel & Pestañas para Tests Unitarios)
-  const carousel = document.getElementById('highlights-carousel');
-  const dots = document.querySelectorAll('.carousel-dot');
-  const cards = document.querySelectorAll('.highlight-card');
+  // Mostrar/ocultar campo pases según asistencia (radios de compat)
+  const attendingRadios = document.querySelectorAll('input[name="attending"]');
+  attendingRadios.forEach(r => {
+    r.addEventListener('change', () => {
+      if (groupPasses) groupPasses.style.display = r.value === 'no' ? 'none' : 'block';
+    });
+  });
 
-  if (carousel && dots.length > 0) {
-    dots.forEach((dot, index) => {
-      dot.addEventListener('click', () => {
-        if (cards[index]) {
-          cards[index].scrollIntoView({ behavior: 'smooth', inline: 'center' });
-        }
-      });
+  /* ──────────────────────────────────────────────────────────────
+     8. COUNTDOWN (delegado a countdown.js o inline)
+  ────────────────────────────────────────────────────────────── */
+  function startCountdown() {
+    const target = new Date('2026-10-24T16:00:00');
+    const daysEl    = document.getElementById('days');
+    const hoursEl   = document.getElementById('hours');
+    const minsEl    = document.getElementById('minutes');
+    const secsEl    = document.getElementById('seconds');
+
+    if (!daysEl || !hoursEl || !minsEl || !secsEl) return;
+
+    function tick() {
+      const now  = new Date();
+      const diff = target - now;
+      if (diff <= 0) {
+        daysEl.textContent = hoursEl.textContent = minsEl.textContent = secsEl.textContent = '00';
+        return;
+      }
+      const d = Math.floor(diff / 86400000);
+      const h = Math.floor((diff % 86400000) / 3600000);
+      const m = Math.floor((diff % 3600000)  / 60000);
+      const s = Math.floor((diff % 60000)    / 1000);
+      daysEl.textContent  = String(d).padStart(2,'0');
+      hoursEl.textContent = String(h).padStart(2,'0');
+      minsEl.textContent  = String(m).padStart(2,'0');
+      secsEl.textContent  = String(s).padStart(2,'0');
+    }
+
+    tick();
+    setInterval(tick, 1000);
+  }
+
+  // Si countdown.js ya existe y hace su trabajo, no sobreescribir
+  if (!window.__countdownStarted) {
+    startCountdown();
+    window.__countdownStarted = true;
+  }
+
+  /* ──────────────────────────────────────────────────────────────
+     9. COMPATIBILIDAD DE TESTS — Carousel dots & Tabs
+  ────────────────────────────────────────────────────────────── */
+  // Carousel dots — highlights-carousel compat
+  const carousel = document.getElementById('highlights-carousel');
+  const dots  = document.querySelectorAll('.carousel-dot');
+  const cards = document.querySelectorAll('.highlight-card');
+  dots.forEach((dot, i) => {
+    dot.addEventListener('click', () => {
+      dots.forEach(d => d.classList.remove('is-active'));
+      dot.classList.add('is-active');
+      if (cards[i]) {
+        cards[i].scrollIntoView({ behavior: 'smooth', inline: 'center' });
+      }
+    });
+  });
+
+  // Tab chips
+  const tabChips  = document.querySelectorAll('.tab-chip');
+  const tabPanels = document.querySelectorAll('.tab-panel');
+  tabChips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      const target = chip.getAttribute('data-tab');
+      if (!target) return;
+      tabChips.forEach(c => { c.classList.remove('is-active'); c.setAttribute('aria-selected','false'); });
+      chip.classList.add('is-active');
+      chip.setAttribute('aria-selected','true');
+      tabPanels.forEach(p => p.classList.remove('is-active'));
+      const panel = document.getElementById(`tab-panel-${target}`);
+      if (panel) panel.classList.add('is-active');
+    });
+  });
+
+  /* ──────────────────────────────────────────────────────────────
+     10. CALENDARIO (ICS)
+  ────────────────────────────────────────────────────────────── */
+  const btnCal = document.getElementById('btn-add-calendar');
+  if (btnCal) {
+    btnCal.addEventListener('click', e => {
+      e.preventDefault();
+      const ics = [
+        'BEGIN:VCALENDAR',
+        'VERSION:2.0',
+        'PRODID:-//Emma Victoria Baby Shower//ES',
+        'BEGIN:VEVENT',
+        'DTSTART:20261024T160000',
+        'DTEND:20261024T210000',
+        'SUMMARY:Baby Shower de Emma Victoria 🎀',
+        'DESCRIPTION:Una dulce bebe esta en camino! Te esperamos.',
+        'LOCATION:Jardin de Ensueno Las Rosas\\, Av. Los Jazmines 450\\, Valle Hermoso',
+        'END:VEVENT',
+        'END:VCALENDAR'
+      ].join('\r\n');
+
+      const blob = new Blob([ics], { type: 'text/calendar' });
+      const url  = URL.createObjectURL(blob);
+      const a    = document.createElement('a');
+      a.href     = url;
+      a.download = 'baby-shower-emma-victoria.ics';
+      a.click();
+      URL.revokeObjectURL(url);
     });
   }
 
-  const tabChips = document.querySelectorAll('.tab-chip');
-  const tabPanels = document.querySelectorAll('.tab-panel');
-
-  tabChips.forEach(chip => {
-    chip.addEventListener('click', () => {
-      const targetTab = chip.getAttribute('data-tab');
-      if (!targetTab) return;
-
-      tabChips.forEach(c => {
-        c.classList.remove('is-active');
-        c.setAttribute('aria-selected', 'false');
-      });
-      chip.classList.add('is-active');
-      chip.setAttribute('aria-selected', 'true');
-
-      tabPanels.forEach(panel => panel.classList.remove('is-active'));
-      const activePanel = document.getElementById(`tab-panel-${targetTab}`);
-      if (activePanel) activePanel.classList.add('is-active');
-    });
-  });
 });

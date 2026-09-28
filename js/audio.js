@@ -1,158 +1,180 @@
-/**
- * SINTETIZADOR AMBIENTAL WEB AUDIO API: CAJA DE MÚSICA DE ENSUEÑO
- * Genera una dulce melodía de carillón de cuna sin requerir archivos MP3 externos.
+﻿/**
+ * SINTETIZADOR MUSICAL: CAJA DE MÚSICA BEBÉ
+ * FIX PRINCIPAL: AudioContext se crea SOLO dentro del handler de click
+ * para cumplir con la política de autoplay de los navegadores modernos.
  */
 
 class MusicBoxSynthesizer {
   constructor() {
+    // AudioContext se inicializa en toggle() — NO en el constructor
     this.ctx = null;
     this.isPlaying = false;
-    this.timerId = null;
+    this.schedulerTimer = null;
+    this.nextNoteTime = 0;
     this.noteIndex = 0;
 
-    // Frecuencias para una melodía de cuna dulce y etérea (Notas musicales en Hz)
-    // G4, B4, D5, G5, F#5, E5, D5, B4, C5, D5, B4, G4, A4, D5, G4
+    // Melodía: Twinkle Twinkle / Brahms Lullaby fusion
     this.melody = [
-      { freq: 392.00, dur: 0.6 }, // G4
-      { freq: 493.88, dur: 0.6 }, // B4
-      { freq: 587.33, dur: 0.8 }, // D5
-      { freq: 783.99, dur: 1.0 }, // G5
-      { freq: 739.99, dur: 0.5 }, // F#5
-      { freq: 659.25, dur: 0.6 }, // E5
-      { freq: 587.33, dur: 1.1 }, // D5
-      { freq: 493.88, dur: 0.6 }, // B4
-      { freq: 523.25, dur: 0.6 }, // C5
-      { freq: 587.33, dur: 0.8 }, // D5
-      { freq: 493.88, dur: 0.8 }, // B4
-      { freq: 392.00, dur: 0.6 }, // G4
-      { freq: 440.00, dur: 0.6 }, // A4
-      { freq: 587.33, dur: 0.9 }, // D5
-      { freq: 392.00, dur: 1.4 }, // G4
-      { freq: 0,      dur: 0.8 }  // Silencio sutil
+      { freq: 392.00, dur: 0.50 }, // G4
+      { freq: 392.00, dur: 0.50 }, // G4
+      { freq: 523.25, dur: 0.50 }, // C5
+      { freq: 523.25, dur: 0.50 }, // C5
+      { freq: 587.33, dur: 0.50 }, // D5
+      { freq: 587.33, dur: 0.50 }, // D5
+      { freq: 523.25, dur: 0.80 }, // C5
+      { freq: 0,      dur: 0.30 }, // rest
+      { freq: 493.88, dur: 0.50 }, // B4
+      { freq: 493.88, dur: 0.50 }, // B4
+      { freq: 440.00, dur: 0.50 }, // A4
+      { freq: 440.00, dur: 0.50 }, // A4
+      { freq: 392.00, dur: 1.20 }, // G4
+      { freq: 0,      dur: 0.50 }, // rest
+      { freq: 523.25, dur: 0.50 }, // C5
+      { freq: 523.25, dur: 0.50 }, // C5
+      { freq: 493.88, dur: 0.50 }, // B4
+      { freq: 493.88, dur: 0.50 }, // B4
+      { freq: 440.00, dur: 0.50 }, // A4
+      { freq: 440.00, dur: 0.80 }, // A4
+      { freq: 392.00, dur: 1.20 }, // G4
+      { freq: 0,      dur: 0.60 }, // rest
+      { freq: 587.33, dur: 0.50 }, // D5
+      { freq: 587.33, dur: 0.50 }, // D5
+      { freq: 523.25, dur: 0.50 }, // C5
+      { freq: 523.25, dur: 0.80 }, // C5
+      { freq: 0,      dur: 0.40 }, // rest
+      { freq: 493.88, dur: 0.50 }, // B4
+      { freq: 440.00, dur: 0.50 }, // A4
+      { freq: 392.00, dur: 1.50 }, // G4
+      { freq: 0,      dur: 0.60 }, // rest
     ];
   }
 
-  initContext() {
-    if (!this.ctx && typeof window !== 'undefined') {
-      const AudioCtx = window.AudioContext || window.webkitAudioContext;
-      if (AudioCtx) {
-        this.ctx = new AudioCtx();
+  /**
+   * Inicializa o reanuda el AudioContext.
+   * DEBE llamarse desde dentro de un evento de usuario.
+   */
+  async initContext() {
+    if (!this.ctx) {
+      const Ctx = window.AudioContext || window.webkitAudioContext;
+      if (!Ctx) {
+        console.warn('[MusicBox] Web Audio API no disponible en este navegador.');
+        return false;
+      }
+      this.ctx = new Ctx();
+    }
+    // Si el contexto fue suspendido por autoplay policy, lo reactivamos
+    if (this.ctx.state === 'suspended') {
+      try {
+        await this.ctx.resume();
+      } catch (err) {
+        console.warn('[MusicBox] No se pudo reanudar AudioContext:', err);
+        return false;
       }
     }
-    if (this.ctx && this.ctx.state === 'suspended') {
-      this.ctx.resume();
-    }
+    return this.ctx.state === 'running';
   }
 
-  playNote(frequency, duration) {
+  /**
+   * Reproduce una nota individual como caja de música (sine + armónico).
+   */
+  playNote(frequency, startTime, duration) {
     if (!this.ctx || frequency <= 0) return;
 
-    const now = this.ctx.currentTime;
-    const osc = this.ctx.createOscillator();
-    const gain = this.ctx.createGain();
-
-    // Timbre de caja de música: combinación de armónicos suaves con ataque rápido y decaimiento lento
-    osc.type = 'sine';
-    osc.frequency.setValueAtTime(frequency, now);
-
-    // Envolvente de sonido de campana de caja de música
-    gain.gain.setValueAtTime(0, now);
-    gain.gain.linearRampToValueAtTime(0.12, now + 0.015);
-    gain.gain.exponentialRampToValueAtTime(0.0001, now + duration * 1.5);
-
-    osc.connect(gain);
-    gain.connect(this.ctx.destination);
-
-    osc.start(now);
-    osc.stop(now + duration * 1.6);
-  }
-
-  step() {
-    if (!this.isPlaying) return;
-
-    const note = this.melody[this.noteIndex];
-    this.playNote(note.freq, note.dur);
-
-    this.noteIndex = (this.noteIndex + 1) % this.melody.length;
-    this.timerId = setTimeout(() => this.step(), note.dur * 850);
-  }
-
-  start() {
-    this.initContext();
-    if (this.isPlaying) return;
-    this.isPlaying = true;
-    this.step();
-  }
-
-  stop() {
-    this.isPlaying = false;
-    if (this.timerId) {
-      clearTimeout(this.timerId);
-      this.timerId = null;
-    }
-  }
-
-  toggle() {
-    if (this.isPlaying) {
-      this.stop();
-    } else {
-      this.start();
-    }
-    return this.isPlaying;
-  }
-
-  // Tono de campana de cristal para interacciones táctiles
-  playChime() {
-    this.initContext();
-    if (!this.ctx) return;
-    const now = this.ctx.currentTime;
-    
-    [587.33, 880.00].forEach((freq, i) => {
+    const createVoice = (freq, vol, decay) => {
       const osc = this.ctx.createOscillator();
       const gain = this.ctx.createGain();
       osc.type = 'sine';
-      osc.frequency.setValueAtTime(freq, now + i * 0.08);
-
-      gain.gain.setValueAtTime(0, now + i * 0.08);
-      gain.gain.linearRampToValueAtTime(0.08, now + i * 0.08 + 0.01);
-      gain.gain.exponentialRampToValueAtTime(0.0001, now + i * 0.08 + 0.6);
-
+      osc.frequency.setValueAtTime(freq, startTime);
+      gain.gain.setValueAtTime(0, startTime);
+      gain.gain.linearRampToValueAtTime(vol, startTime + 0.018);
+      gain.gain.exponentialRampToValueAtTime(0.0001, startTime + decay);
       osc.connect(gain);
       gain.connect(this.ctx.destination);
-      osc.start(now + i * 0.08);
-      osc.stop(now + i * 0.08 + 0.7);
-    });
+      osc.start(startTime);
+      osc.stop(startTime + decay + 0.05);
+    };
+
+    // Fundamental (más suave)
+    createVoice(frequency,       0.12, duration - 0.04);
+    // Octava superior (brillo de caja de música)
+    createVoice(frequency * 2,   0.04, duration * 0.55);
+    // Quinta (calidez)
+    createVoice(frequency * 1.5, 0.025, duration * 0.4);
   }
 
-  // Latido suave emulado (Lub-Dub) como el sensor del video de Apple
-  playHeartbeat() {
-    this.initContext();
-    if (!this.ctx) return;
+  /** Scheduler de Web Audio (look-ahead pattern para timing preciso) */
+  schedule() {
+    if (!this.isPlaying || !this.ctx) return;
+
+    const LOOKAHEAD = 0.15;  // segundos hacia adelante
+    const INTERVAL  = 30;    // ms entre llamadas al scheduler
+
+    while (this.nextNoteTime < this.ctx.currentTime + LOOKAHEAD) {
+      const note = this.melody[this.noteIndex % this.melody.length];
+      this.playNote(note.freq, this.nextNoteTime, note.dur);
+      this.nextNoteTime += note.dur + 0.055; // gap mínimo entre notas
+      this.noteIndex++;
+    }
+
+    this.schedulerTimer = setTimeout(() => this.schedule(), INTERVAL);
+  }
+
+  /**
+   * Alternar reproducción/pausa.
+   * SIEMPRE debe llamarse desde un evento de usuario (click, touch).
+   * @returns {Promise<boolean>} true si está reproduciendo, false si pausado
+   */
+  async toggle() {
+    const ready = await this.initContext();
+
+    if (!ready) {
+      // Último intento: crear contexto nuevo si el anterior falló
+      try {
+        this.ctx = null;
+        const Ctx = window.AudioContext || window.webkitAudioContext;
+        if (Ctx) {
+          this.ctx = new Ctx();
+          await this.ctx.resume();
+        }
+      } catch (_) { /* silent */ }
+      return false;
+    }
+
+    if (this.isPlaying) {
+      // Pausar
+      this.isPlaying = false;
+      if (this.schedulerTimer) {
+        clearTimeout(this.schedulerTimer);
+        this.schedulerTimer = null;
+      }
+      return false;
+    } else {
+      // Iniciar
+      this.isPlaying = true;
+      this.nextNoteTime = this.ctx.currentTime + 0.08;
+      this.schedule();
+      return true;
+    }
+  }
+
+  /** Tañido de chime (se usa en apertura de modal, etc.) */
+  playChime() {
+    if (!this.ctx || this.ctx.state !== 'running') return;
     const now = this.ctx.currentTime;
+    this.playNote(1046.50, now,         0.5);
+    this.playNote(783.99,  now + 0.18,  0.4);
+    this.playNote(1046.50, now + 0.38,  0.6);
+  }
 
-    [0, 0.18].forEach((offset, idx) => {
-      const osc = this.ctx.createOscillator();
-      const gain = this.ctx.createGain();
-      osc.type = 'triangle';
-      osc.frequency.setValueAtTime(idx === 0 ? 82 : 72, now + offset);
-      osc.frequency.exponentialRampToValueAtTime(38, now + offset + 0.12);
-
-      gain.gain.setValueAtTime(0, now + offset);
-      gain.gain.linearRampToValueAtTime(0.2, now + offset + 0.015);
-      gain.gain.exponentialRampToValueAtTime(0.0001, now + offset + 0.16);
-
-      osc.connect(gain);
-      gain.connect(this.ctx.destination);
-      osc.start(now + offset);
-      osc.stop(now + offset + 0.18);
-    });
+  /** Latido de corazón (2 pulsos suaves en bajo) */
+  playHeartbeat() {
+    if (!this.ctx || this.ctx.state !== 'running') return;
+    const now = this.ctx.currentTime;
+    this.playNote(110, now,        0.18);
+    this.playNote(110, now + 0.22, 0.18);
   }
 }
 
 if (typeof window !== 'undefined') {
   window.MusicBoxSynthesizer = MusicBoxSynthesizer;
-}
-
-if (typeof module !== 'undefined' && module.exports) {
-  module.exports = { MusicBoxSynthesizer };
 }

@@ -1,882 +1,832 @@
-/* ==========================================================================
-   CANVA BABY GIRL EDITION: BABY SHOWER DE EMMA VICTORIA
-   Estilo Ilustrado en Acuarela Rosa, Marfil y Animaciones de Despliegue
-   ========================================================================== */
+/* ============================================================
+   BABY SHOWER EMMA VICTORIA — DESIGN SYSTEM
+   Paleta extraída de imágenes de referencia watercolor
+   ============================================================ */
 
 :root {
-  /* Lienzo y Fondos en Acuarela Cálida (Inspirado en la paleta oficial de Canva) */
-  --canva-bg: #EDE4DD;
-  --canva-card-bg: #FFFDF9;
-  --canva-border: rgba(184, 150, 138, 0.35);
-
-  /* Tipografía y Tonalidades */
-  --canva-title-color: #8A3C34;
-  --canva-btn-terracotta: #924245;
-  --canva-btn-hover: #7B3235;
-  --canva-text-body: #545454;
-  --canva-text-muted: #8A7B78;
-
-  /* Paleta Rosa Princesa & Oro */
-  --color-rose: #C47F95;
-  --color-blush: #F4D3DC;
-  --color-soft-rose: #FDEBF2;
-  --color-gold: #D4AF37;
-  --color-champagne: #FAF3E6;
-  --color-lavender: #E7DCF2;
+  /* Colores primarios */
+  --cream:         #FFF8F5;
+  --cream-warm:    #FFF3EE;
+  --blush-pale:    #FDE8EC;
+  --blush-light:   #F9D0DB;
+  --color-blush:   #F7C5CF;
+  --pink-mid:      #F2A7B8;
+  --rose:          #E8899A;
+  --deep-rose:     #C4768A;
+  --muted-rose:    #A85870;
+  --gold-pale:     #FDE9A0;
+  --color-gold:    #E8C97A;
+  --gold-warm:     #C9A96E;
+  --gold-deep:     #B8904A;
+  --bear:          #C4986A;
+  --text-dark:     #4A3040;
+  --text-mid:      #7A5560;
+  --text-light:    #9A7580;
 
   /* Tipografías */
-  --font-serif: 'Playfair Display', Georgia, serif;
-  --font-display: 'Cinzel', 'Playfair Display', serif;
-  --font-sans: 'Plus Jakarta Sans', -apple-system, sans-serif;
-  --font-script: 'Great Vibes', cursive;
+  --font-display:  'Cinzel', serif;
+  --font-serif:    'Playfair Display', Georgia, serif;
+  --font-script:   'Great Vibes', cursive;
+  --font-sans:     'Plus Jakarta Sans', sans-serif;
 
-  /* Sombras y Profundidad */
-  --canva-shadow-sm: 0 4px 12px rgba(110, 60, 50, 0.08);
-  --canva-shadow-md: 0 10px 28px rgba(110, 60, 50, 0.12);
-  --canva-shadow-lg: 0 18px 45px rgba(110, 60, 50, 0.16);
+  /* Sombras */
+  --sh-pink: 0 8px 28px rgba(196,118,138,.22);
+  --sh-soft: 0 4px 16px rgba(100,40,60,.1);
 
-  /* Curva de Despliegue Elástico */
-  --ease-unfold: cubic-bezier(0.16, 1, 0.3, 1);
+  /* Curva spring */
+  --ease: cubic-bezier(.16,1,.3,1);
 }
 
-/* ==========================================================================
-   RESET & CONFIGURACIÓN GLOBAL
-   ========================================================================== */
-*, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+/* ── Reset ─────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 html {
   scroll-behavior: smooth;
+  scroll-snap-type: y proximity;
   -webkit-font-smoothing: antialiased;
-  background-color: var(--canva-bg);
-  color: var(--canva-text-body);
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body.baby-girl-invitation {
   font-family: var(--font-sans);
-}
-
-body.canva-baby-experience {
-  min-height: 100dvh;
-  position: relative;
+  background: var(--cream);
+  color: var(--text-dark);
   overflow-x: hidden;
-  background-color: var(--canva-bg);
-  background-image: radial-gradient(circle at 50% 10%, rgba(255, 255, 255, 0.7) 0%, transparent 60%);
 }
 
-/* Canvas de destellos y partículas */
+/* ── Canvas ─────────────────────────────────────────────────── */
 #canvas-particles {
   position: fixed;
-  top: 0;
-  left: 0;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
   width: 100vw;
   height: 100vh;
-  pointer-events: none;
-  z-index: 1;
 }
 
-/* Halos de luz de fondo en rosa algodón */
-.baby-cloud-aura {
+/* ── Sello monograma ─────────────────────────────────────────── */
+.wax-seal-badge {
   position: fixed;
-  pointer-events: none;
+  bottom: 90px;
+  right: 18px;
+  z-index: 50;
+  width: 38px; height: 38px;
+  background: linear-gradient(135deg, var(--color-gold), var(--gold-deep));
   border-radius: 50%;
-  filter: blur(70px);
-  z-index: 0;
-  opacity: 0.6;
-}
-
-.cloud-top-left {
-  top: -80px;
-  left: -80px;
-  width: 380px;
-  height: 380px;
-  background: radial-gradient(circle, #F8BBD0 0%, #FCE4EC 60%, transparent 80%);
-}
-
-.cloud-top-right {
-  top: 20%;
-  right: -90px;
-  width: 340px;
-  height: 340px;
-  background: radial-gradient(circle, #F48FB1 0%, #FFD6E0 60%, transparent 80%);
-}
-
-.cloud-mid-glow {
-  top: 60%;
-  left: -60px;
-  width: 400px;
-  height: 400px;
-  background: radial-gradient(circle, #FCE4EC 0%, transparent 70%);
-}
-
-/* ==========================================================================
-   SUB-NAVEGACIÓN FLOTANTE DESACOPLADA
-   ========================================================================== */
-.floating-baby-subnav {
-  position: fixed;
-  top: 14px;
-  left: 0;
-  right: 0;
-  z-index: 100;
-  max-width: 480px;
-  margin: 0 auto;
-  padding: 0 14px;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 3px 10px rgba(180,140,60,.35);
   pointer-events: none;
 }
-
-.subnav-container {
-  pointer-events: auto;
-  background: rgba(255, 253, 249, 0.88);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.95);
-  box-shadow: 0 8px 24px rgba(110, 60, 50, 0.1);
-  border-radius: 9999px;
-  padding: 8px 12px 8px 18px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.floating-baby-subnav.is-scrolled .subnav-container {
-  box-shadow: 0 12px 32px rgba(110, 60, 50, 0.16);
-  transform: translateY(-2px);
-}
-
-.subnav-brand {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.subnav-title {
-  font-family: var(--font-serif);
-  font-size: 1rem;
-  font-weight: 700;
-  color: var(--canva-title-color);
-}
-
-.subnav-separator {
-  color: var(--canva-border);
-  font-size: 0.75rem;
-}
-
-.subnav-category {
-  font-size: 0.76rem;
-  font-weight: 600;
-  color: var(--color-rose);
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.subnav-actions {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.subnav-audio-btn {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  border: 1px solid var(--canva-border);
-  background: #FFFDF9;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  transition: all 0.2s ease;
-}
-
-.subnav-audio-btn:hover {
-  transform: scale(1.08);
-}
-
-.audio-wave {
-  position: absolute;
-  top: 3px;
-  right: 3px;
-  display: flex;
-  align-items: flex-end;
-  gap: 2px;
-  height: 8px;
-}
-
-.audio-wave span {
-  width: 2px;
-  height: 2px;
-  background: var(--canva-btn-terracotta);
-  border-radius: 1px;
-  transition: height 0.2s ease;
-}
-
-.subnav-audio-btn.is-playing .audio-wave span {
-  animation: wavePulse 0.9s infinite ease-in-out alternate;
-}
-
-.subnav-audio-btn.is-playing .audio-wave span:nth-child(2) { animation-delay: 0.2s; }
-.subnav-audio-btn.is-playing .audio-wave span:nth-child(3) { animation-delay: 0.4s; }
-.subnav-audio-btn.is-playing .audio-wave span:nth-child(4) { animation-delay: 0.15s; }
-
-.subnav-cta-btn {
-  background: var(--canva-btn-terracotta);
-  color: #FFFFFF;
-  text-decoration: none;
-  font-size: 0.82rem;
-  font-weight: 700;
-  padding: 8px 16px;
-  border-radius: 9999px;
-  box-shadow: 0 3px 10px rgba(146, 66, 69, 0.3);
-  transition: all 0.25s ease;
-}
-
-.subnav-cta-btn:hover {
-  background: var(--canva-btn-hover);
-  transform: scale(1.04);
-}
-
-/* ==========================================================================
-   CONTENEDOR DE LA INVITACIÓN CANVA
-   ========================================================================== */
-.canva-invitation-container {
-  position: relative;
-  z-index: 2;
-  max-width: 480px;
-  margin: 0 auto;
-  padding: 60px 16px 80px;
-  perspective: 1200px;
-}
-
-/* ==========================================================================
-   INTERACTIVIDAD AL BAJAR: EFECTO DE DESPLIEGUE 3D (UNFOLD ON SCROLL)
-   "como que va abriéndose cuando vas bajando en la página"
-   ========================================================================== */
-.unfold-item {
-  opacity: 0;
-  transform-origin: top center;
-  transform: perspective(1000px) rotateX(12deg) translateY(45px) scale(0.95);
-  transition: opacity 0.85s var(--ease-unfold), transform 0.85s var(--ease-unfold), filter 0.85s ease;
-  will-change: opacity, transform;
-  filter: blur(1px);
-}
-
-.unfold-item.is-unfolded {
-  opacity: 1;
-  transform: perspective(1000px) rotateX(0deg) translateY(0) scale(1);
-  filter: blur(0px);
-}
-
-/* Cascada de apertura de tarjetas y elementos internos al desplegarse */
-.unfold-item .venue-info-parchment,
-.unfold-item .canva-rsvp-card,
-.unfold-item .baby-date-card-wrapper,
-.unfold-item .canva-parents-presentation,
-.unfold-item .swatch-info-bubble,
-.unfold-item .gifts-collapsible-box,
-.unfold-item .timeline-node {
-  opacity: 0;
-  transform: translateY(22px) scale(0.97);
-  transition: opacity 0.65s var(--ease-unfold) 0.15s,
-              transform 0.65s var(--ease-unfold) 0.15s;
-}
-
-.unfold-item.is-unfolded .venue-info-parchment,
-.unfold-item.is-unfolded .canva-rsvp-card,
-.unfold-item.is-unfolded .baby-date-card-wrapper,
-.unfold-item.is-unfolded .canva-parents-presentation,
-.unfold-item.is-unfolded .swatch-info-bubble,
-.unfold-item.is-unfolded .gifts-collapsible-box,
-.unfold-item.is-unfolded .timeline-node {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-}
-
-/* Retardos escalonados para nodos del itinerario */
-.unfold-item.is-unfolded .timeline-node:nth-child(2) { transition-delay: 0.1s; }
-.unfold-item.is-unfolded .timeline-node:nth-child(3) { transition-delay: 0.2s; }
-.unfold-item.is-unfolded .timeline-node:nth-child(4) { transition-delay: 0.3s; }
-.unfold-item.is-unfolded .timeline-node:nth-child(5) { transition-delay: 0.4s; }
-.unfold-item.is-unfolded .timeline-node:nth-child(6) { transition-delay: 0.5s; }
-
-.canva-section {
-  padding: 50px 10px;
-  text-align: center;
-  position: relative;
-  scroll-margin-top: 80px;
-}
-
-/* ==========================================================================
-   1. PORTADA: CIGÜEÑA, MARCO OVALADO & PERGAMINO "MI BABY SHOWER"
-   ========================================================================== */
-.section-cover {
-  padding-top: 25px;
-}
-
-.cover-stork-flight {
-  margin-bottom: -15px;
-  animation: storkGlide 5s infinite ease-in-out;
-}
-
-.stork-img {
-  max-width: 100%;
-  height: auto;
-  filter: drop-shadow(0 8px 16px rgba(180, 120, 130, 0.25));
-}
-
-.cover-mirror-wrapper {
-  position: relative;
-  width: 320px;
-  height: 420px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.mirror-frame-bg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  pointer-events: none;
-}
-
-.mirror-text-layer {
-  position: relative;
-  z-index: 2;
-  padding: 40px 24px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.mirror-tiny-kicker {
-  font-family: var(--font-display);
-  font-size: 0.72rem;
-  letter-spacing: 3px;
-  font-weight: 700;
-  color: var(--canva-title-color);
-  margin-bottom: 6px;
-}
-
-.mirror-baby-name {
-  font-family: var(--font-serif);
-  font-size: 2.7rem;
-  font-weight: 800;
-  color: #271E24;
-  line-height: 1.05;
-  letter-spacing: -0.5px;
-  margin-bottom: 14px;
-}
-
-.baby-seal-interactive {
-  position: relative;
-  width: 80px;
-  height: 80px;
-  cursor: pointer;
-  margin: 4px 0 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.baby-seal-interactive:hover {
-  transform: scale(1.1);
-}
-
-.baby-seal-interactive:active {
-  transform: scale(0.94);
-}
-
-.seal-halo-pulse {
-  position: absolute;
-  width: 76px;
-  height: 76px;
-  border-radius: 50%;
-  border: 2px solid var(--canva-btn-terracotta);
-  animation: pulseSealHalo 2.5s infinite ease-out;
-  pointer-events: none;
-}
-
-.mirror-baby-sub {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-size: 0.95rem;
-  color: var(--canva-text-body);
-}
-
-.cover-scroll-wrapper {
-  position: relative;
-  margin-top: 15px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.scroll-banner-img {
-  max-width: 100%;
-  height: auto;
-}
-
-.scroll-banner-text {
-  position: absolute;
-  top: 52%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-family: var(--font-display);
-  font-size: 1.3rem;
-  font-weight: 900;
-  color: var(--canva-title-color);
-  letter-spacing: 2px;
-  white-space: nowrap;
-}
-
-/* ==========================================================================
-   2. MÓVIL DE CUNA "DALE PLAY" & MENSAJE DE LOS PAPÁS
-   ========================================================================== */
-.section-music {
-  padding-top: 30px;
-}
-
-.baby-mobile-interactive {
-  position: relative;
-  display: inline-block;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-  animation: gentleSwing 4s infinite ease-in-out;
-}
-
-.baby-mobile-interactive:hover {
-  transform: scale(1.08) rotate(3deg);
-}
-
-.baby-mobile-interactive:active {
-  transform: scale(0.95);
-}
-
-.baby-mobile-interactive.is-spinning {
-  animation: mobileSpinDance 3s infinite ease-in-out;
-}
-
-@keyframes mobileSpinDance {
-  0% { transform: scale(1) rotate(0deg); }
-  25% { transform: scale(1.06) rotate(-5deg); }
-  50% { transform: scale(1.04) rotate(0deg); }
-  75% { transform: scale(1.06) rotate(5deg); }
-  100% { transform: scale(1) rotate(0deg); }
-}
-
-.music-glint-circle {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 90px;
-  height: 90px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(244, 211, 220, 0.6) 0%, transparent 70%);
-  pointer-events: none;
-  animation: pulseAura 3s infinite ease-in-out;
-}
-
-.dale-play-curved-wrapper {
-  margin-top: -8px;
-  margin-bottom: 24px;
-}
-
-.curved-text-style {
-  font-family: var(--font-serif);
-  font-size: 1.45rem;
-  font-weight: 700;
-  fill: var(--canva-btn-terracotta);
-}
-
-.canva-heart-quote {
-  font-family: var(--font-sans);
-  font-size: 1.15rem;
-  line-height: 1.6;
-  color: var(--canva-text-body);
-  max-width: 380px;
-  margin: 0 auto 18px;
-  font-weight: 500;
-}
-
-.canva-sweet-dedication {
-  font-family: var(--font-sans);
-  font-size: 0.95rem;
-  line-height: 1.7;
-  color: var(--canva-text-body);
-  max-width: 400px;
-  margin: 0 auto 12px;
-}
-
-.canva-script-highlight {
-  font-family: var(--font-serif);
-  font-size: 1.65rem;
-  font-weight: 700;
-  color: var(--canva-title-color);
-  margin-bottom: 30px;
-}
-
-.canva-parents-presentation {
-  background: rgba(255, 255, 255, 0.7);
-  border: 1px dashed var(--canva-border);
-  border-radius: 20px;
-  padding: 20px 16px;
-  max-width: 360px;
-  margin: 0 auto;
-}
-
-.parents-intro-text {
+.wax-seal-badge span {
   font-family: var(--font-serif);
   font-size: 1.1rem;
-  color: var(--canva-title-color);
-  margin-bottom: 6px;
-}
-
-.parents-signature-text {
-  font-family: var(--font-script);
-  font-size: 2.3rem;
-  color: var(--canva-btn-terracotta);
-}
-
-/* ==========================================================================
-   3. LA FECHA: TARJETA DE CUNA & CUENTA REGRESIVA
-   ========================================================================== */
-.canva-chapter-header {
-  font-family: var(--font-serif);
-  font-size: 1.65rem;
-  font-weight: 700;
-  color: var(--canva-title-color);
-  margin-bottom: 16px;
-}
-
-.baby-date-card-wrapper {
-  margin: 0 auto 20px;
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.baby-date-card-wrapper:hover {
-  transform: translateY(-4px) scale(1.02);
-}
-
-.date-ticket-img {
-  max-width: 100%;
-  height: auto;
-}
-
-.countdown-ribbon-card {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  background: #FFFDF9;
-  border: 1.5px solid var(--canva-title-color);
-  border-radius: 9999px;
-  padding: 12px 24px;
-  box-shadow: var(--canva-shadow-sm);
-  margin-bottom: 22px;
-}
-
-.time-unit {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.time-digit {
-  font-family: var(--font-sans);
-  font-size: 1.45rem;
   font-weight: 800;
-  color: var(--canva-title-color);
+  color: white;
   line-height: 1;
 }
 
-.time-name {
-  font-size: 0.65rem;
+/* ── Botón música ────────────────────────────────────────────── */
+.music-fab {
+  position: fixed;
+  bottom: 24px;
+  right: 20px;
+  z-index: 100;
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--pink-mid), var(--deep-rose));
+  border: none;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 6px 22px rgba(196,118,138,.45);
+  transition: transform .3s ease, box-shadow .3s ease;
+  overflow: visible;
+}
+.music-fab:hover { transform: scale(1.1); }
+.music-fab:active { transform: scale(.93); }
+
+.music-icon {
+  font-size: 1.45rem;
+  color: white;
+  line-height: 1;
+  position: relative;
+  z-index: 1;
+}
+
+.music-rings {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  display: none;
+}
+.music-rings span {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid rgba(242,167,184,.6);
+  animation: ringOut 1.6s ease-out infinite;
+}
+.music-rings span:nth-child(2) { animation-delay: .5s; }
+.music-rings span:nth-child(3) { animation-delay: 1s; }
+
+.music-fab.is-playing .music-rings { display: block; }
+.music-fab.is-playing .music-icon { animation: iconPulse 1.2s ease-in-out infinite; }
+
+/* ── Nav pill ────────────────────────────────────────────────── */
+.nav-pill {
+  position: fixed;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 90;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(255,248,245,.94);
+  backdrop-filter: blur(18px) saturate(1.4);
+  -webkit-backdrop-filter: blur(18px) saturate(1.4);
+  border: 1px solid rgba(242,167,184,.38);
+  border-radius: 9999px;
+  padding: 7px 14px 7px 20px;
+  box-shadow: var(--sh-pink);
+  white-space: nowrap;
+  transition: box-shadow .3s ease;
+}
+
+.nav-name {
+  font-family: var(--font-serif);
+  font-size: .88rem;
   font-weight: 700;
-  letter-spacing: 1px;
-  color: var(--canva-text-muted);
-  margin-top: 3px;
+  color: var(--text-dark);
+  letter-spacing: .3px;
 }
 
-.time-divider {
-  color: var(--canva-border);
-  font-size: 1.2rem;
+.nav-cta {
+  background: linear-gradient(135deg, var(--rose), var(--deep-rose));
+  color: white;
+  text-decoration: none;
+  font-size: .78rem;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 9999px;
+  letter-spacing: .3px;
+  transition: all .25s ease;
 }
+.nav-cta:hover { background: var(--muted-rose); transform: scale(1.04); }
 
-/* Botones Terracota tipo Canva */
-.canva-btn-terracotta {
-  display: inline-flex;
+/* ============================================================
+   SECCIONES FULL-SCREEN
+   ============================================================ */
+.full-section {
+  width: 100%;
+  min-height: 100svh;
+  scroll-snap-align: start;
+  position: relative;
+  display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  background: var(--canva-btn-terracotta);
-  color: #FFFFFF;
-  text-decoration: none;
-  font-size: 0.95rem;
+  overflow: hidden;
+  padding: 80px 20px 36px;
+}
+
+/* Efecto de despliegue al hacer scroll */
+.unfold-item {
+  opacity: 0;
+  transform: perspective(1100px) rotateX(14deg) translateY(48px) scale(.96);
+  transition: opacity .85s var(--ease), transform .85s var(--ease), filter .85s ease;
+  filter: blur(1.5px);
+}
+.unfold-item.is-unfolded {
+  opacity: 1;
+  transform: perspective(1100px) rotateX(0deg) translateY(0) scale(1);
+  filter: blur(0);
+}
+
+/* ============================================================
+   CAPÍTULO 1 · PORTADA HERO
+   ============================================================ */
+.s-hero {
+  background: var(--cream);
+  background-image:
+    radial-gradient(circle at 12% 20%, rgba(242,167,184,.28) 0%, transparent 42%),
+    radial-gradient(circle at 88% 18%, rgba(232,201,122,.22) 0%, transparent 38%),
+    radial-gradient(circle at 50% 88%, rgba(249,208,219,.32) 0%, transparent 48%);
+}
+
+/* Puntitos de confeti dorado */
+.confetti-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(circle, #E8C97A 1.5px, transparent 1.5px),
+    radial-gradient(circle, #F2A7B8 1px,   transparent 1px),
+    radial-gradient(circle, #E8C97A 1px,   transparent 1px),
+    radial-gradient(circle, #F7C5CF 1.5px, transparent 1.5px);
+  background-size: 78px 78px, 58px 58px, 94px 94px, 66px 66px;
+  background-position: 10px 10px, 28px 38px, 48px 22px, 18px 58px;
+  opacity: .48;
+}
+
+/* Lazo */
+.bow-wrap {
+  width: min(320px, 88vw);
+  margin-bottom: -8px;
+  z-index: 3;
+  filter: drop-shadow(0 6px 14px rgba(196,118,138,.22));
+}
+.bow-svg { width: 100%; height: auto; }
+
+/* Texto central */
+.hero-copy {
+  text-align: center;
+  z-index: 3;
+  padding: 0 12px;
+}
+
+.h-kicker {
+  font-family: var(--font-sans);
+  font-size: clamp(.62rem,2.2vw,.78rem);
   font-weight: 700;
-  padding: 14px 28px;
+  letter-spacing: 3px;
+  color: var(--text-mid);
+  margin-bottom: 2px;
+}
+.h-baby {
+  font-family: var(--font-display);
+  font-size: clamp(3.2rem,13vw,6rem);
+  font-weight: 900;
+  color: var(--rose);
+  line-height: .92;
+  letter-spacing: 4px;
+  text-shadow: 0 3px 10px rgba(196,118,138,.18);
+}
+.h-shower {
+  font-family: var(--font-script);
+  font-size: clamp(2.6rem,11vw,5rem);
+  color: var(--gold-warm);
+  line-height: 1;
+  margin-top: -6px;
+}
+.h-divider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 12px auto;
+  max-width: 270px;
+}
+.hdl { flex: 1; height: 1px; background: var(--pink-mid); }
+.hdm {
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--rose);
+  white-space: nowrap;
+}
+.h-name {
+  font-family: var(--font-script);
+  font-size: clamp(2.2rem,9.5vw,4rem);
+  color: var(--text-dark);
+  line-height: 1.1;
+}
+.h-tagline {
+  font-size: clamp(.78rem,2.8vw,.92rem);
+  font-weight: 600;
+  color: var(--text-mid);
+  letter-spacing: .5px;
+  margin: 6px 0 10px;
+}
+.h-date-pill {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--blush-light), var(--color-blush));
+  border: 1px solid var(--pink-mid);
+  border-radius: 9999px;
+  padding: 7px 18px;
+  font-size: .8rem;
+  font-weight: 700;
+  color: var(--deep-rose);
+  letter-spacing: .5px;
+}
+
+/* Fila inferior (oso | scroll | globos) */
+.hero-bottom {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 420px;
+  margin-top: 8px;
+  z-index: 3;
+}
+.bear-wrap { width: clamp(110px, 32vw, 156px); flex-shrink: 0; }
+.bear-svg { width: 100%; height: auto; }
+.bear-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 4px;
+  mix-blend-mode: multiply; /* elimina el fondo blanco del JPG */
+  filter: drop-shadow(0 4px 12px rgba(196,118,138,.18));
+}
+
+.scroll-hint {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding-bottom: 8px;
+  animation: gentleBounce 2.2s ease-in-out infinite;
+}
+.scroll-dot { animation: dotSlide 1.4s ease-in-out infinite; }
+.scroll-label {
+  font-size: .6rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--text-light);
+  text-transform: uppercase;
+}
+
+.balloons-wrap { width: clamp(90px, 28vw, 130px); flex-shrink: 0; }
+.balloons-svg { width: 100%; height: auto; }
+
+/* ============================================================
+   CAPÍTULO 2 · FECHA Y LUGAR
+   ============================================================ */
+.s-date {
+  background: linear-gradient(180deg,var(--cream) 0%,var(--blush-pale) 48%,var(--cream) 100%);
+}
+
+.deco-cloud {
+  position: absolute;
+  border-radius: 60px;
+  background: rgba(249,208,219,.5);
+  filter: blur(22px);
+  pointer-events: none;
+}
+.c-left  { top: 22%; left: -50px; width: 170px; height: 110px; }
+.c-right { bottom: 20%; right: -50px; width: 150px; height: 96px; }
+
+.carousel-deco {
+  position: absolute;
+  top: 58px;
+  right: -8px;
+  width: clamp(100px, 22vw, 148px);
+  opacity: .72;
+  pointer-events: none;
+}
+.carousel-svg { width: 100%; height: auto; }
+
+.date-content {
+  text-align: center;
+  z-index: 3;
+  width: 100%;
+  max-width: 430px;
+}
+
+.s-kicker {
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: var(--rose);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.s-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem,7vw,3rem);
+  font-weight: 900;
+  color: var(--text-dark);
+  letter-spacing: 3px;
+  margin-bottom: 10px;
+}
+.s-body {
+  font-size: .9rem;
+  line-height: 1.65;
+  color: var(--text-mid);
+  max-width: 340px;
+  margin: 0 auto 16px;
+}
+
+/* Tarjeta fecha grande */
+.date-card {
+  background: white;
+  border: 2px solid var(--color-blush);
+  border-radius: 24px;
+  padding: 22px 18px;
+  margin: 0 auto 16px;
+  box-shadow: var(--sh-pink);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+.dc-day {
+  font-size: .72rem;
+  font-weight: 800;
+  letter-spacing: 4px;
+  color: var(--rose);
+}
+.dc-num {
+  font-family: var(--font-display);
+  font-size: clamp(3rem,12vw,5.5rem);
+  font-weight: 900;
+  color: var(--deep-rose);
+  line-height: .95;
+}
+.dc-month-row { display: flex; gap: 8px; align-items: baseline; }
+.dc-month {
+  font-family: var(--font-serif);
+  font-size: clamp(1.4rem,5vw,2.1rem);
+  font-weight: 700;
+  color: var(--text-dark);
+}
+.dc-year { font-size: 1rem; font-weight: 600; color: var(--text-light); }
+.dc-time {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--gold-warm);
+  margin-top: 4px;
+}
+
+/* Countdown */
+.countdown-strip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  justify-content: center;
+  background: white;
+  border: 1.5px solid var(--color-blush);
+  border-radius: 9999px;
+  padding: 9px 18px;
+  box-shadow: var(--sh-soft);
+  margin-bottom: 14px;
+}
+.cu { display: flex; flex-direction: column; align-items: center; }
+.cd {
+  font-family: var(--font-sans);
+  font-size: clamp(1.15rem,4vw,1.5rem);
+  font-weight: 800;
+  color: var(--deep-rose);
+  line-height: 1;
+}
+.cl { font-size: .58rem; font-weight: 700; letter-spacing: 1px; color: var(--text-light); }
+.cs { font-size: 1rem; color: var(--color-blush); margin-bottom: 12px; }
+
+/* Venue */
+.venue-box {
+  background: rgba(253,232,236,.6);
+  border-radius: 16px;
+  padding: 13px 18px;
+  margin-bottom: 14px;
+}
+.venue-name {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--deep-rose);
+  margin-bottom: 3px;
+}
+.venue-addr { font-size: .84rem; color: var(--text-mid); }
+
+/* Botones de acción */
+.action-row {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.btn-rose {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: linear-gradient(135deg, var(--rose), var(--deep-rose));
+  color: white;
+  text-decoration: none;
+  font-size: .84rem;
+  font-weight: 700;
+  padding: 11px 20px;
   border-radius: 9999px;
   border: none;
   cursor: pointer;
-  box-shadow: 0 4px 14px rgba(146, 66, 69, 0.35);
-  transition: all 0.25s ease;
+  box-shadow: 0 4px 14px rgba(196,118,138,.38);
+  transition: all .25s ease;
+  letter-spacing: .3px;
 }
+.btn-rose:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(196,118,138,.5); }
+.btn-rose:active { transform: scale(.97); }
 
-.canva-btn-terracotta:hover {
-  background: var(--canva-btn-hover);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(146, 66, 69, 0.45);
-}
-
-.canva-btn-terracotta:active {
-  transform: scale(0.97);
-}
-
-.btn-wide {
-  width: 100%;
-  max-width: 280px;
-  margin-top: 14px;
-}
-
-.canva-btn-outline {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background: #FFFDF9;
-  border: 1.5px solid var(--canva-btn-terracotta);
-  color: var(--canva-btn-terracotta);
-  font-size: 0.9rem;
+.btn-outline-rose {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: white;
+  color: var(--deep-rose);
+  text-decoration: none;
+  font-size: .84rem;
   font-weight: 700;
-  padding: 12px 24px;
+  padding: 11px 20px;
   border-radius: 9999px;
+  border: 1.5px solid var(--rose);
   cursor: pointer;
-  box-shadow: var(--canva-shadow-sm);
-  transition: all 0.25s ease;
+  transition: all .25s ease;
+}
+.btn-outline-rose:hover { background: var(--blush-pale); transform: translateY(-2px); }
+
+/* ============================================================
+   CAPÍTULO 3 · RSVP + DRESS CODE
+   ============================================================ */
+.s-rsvp { background: var(--cream); }
+
+.gift-deco {
+  position: absolute;
+  top: 62px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: clamp(80px, 18vw, 112px);
+  opacity: .82;
+  pointer-events: none;
+  z-index: 1;
+}
+.gift-svg { width: 100%; height: auto; }
+
+.rsvp-content {
+  text-align: center;
+  z-index: 3;
+  width: 100%;
+  max-width: 430px;
+  margin-top: 52px;
 }
 
-.canva-btn-outline:hover {
-  background: var(--canva-btn-terracotta);
-  color: #FFFFFF;
-}
-
-/* ==========================================================================
-   4. RECEPCIÓN & CÓMO LLEGAR
-   ========================================================================== */
-.carriage-img {
-  max-width: 100%;
-  height: auto;
-  margin-bottom: 8px;
-}
-
-.canva-section-title {
-  font-family: var(--font-display);
-  font-size: 1.85rem;
-  font-weight: 800;
-  color: var(--canva-title-color);
-  letter-spacing: 2px;
-  margin-bottom: 14px;
-  line-height: 1.15;
-}
-
-.venue-info-parchment {
-  background: #FFFDF9;
-  border: 1px solid var(--canva-border);
-  border-radius: 24px;
-  padding: 30px 20px;
-  box-shadow: var(--canva-shadow-sm);
-  max-width: 380px;
-  margin: 0 auto;
-}
-
-.venue-place-name {
-  font-family: var(--font-serif);
-  font-size: 1.35rem;
-  font-weight: 700;
-  color: var(--canva-title-color);
-  margin-bottom: 6px;
-}
-
-.venue-street {
-  font-size: 0.95rem;
-  color: var(--canva-text-body);
-  margin-bottom: 10px;
-}
-
-.venue-schedule-tag {
-  display: inline-block;
-  background: var(--color-soft-rose);
-  color: var(--canva-btn-terracotta);
-  font-size: 0.85rem;
-  font-weight: 700;
-  padding: 4px 14px;
-  border-radius: 9999px;
-  margin-bottom: 14px;
-}
-
-.venue-description {
-  font-size: 0.88rem;
-  line-height: 1.6;
-  color: var(--canva-text-muted);
-  margin-bottom: 12px;
-}
-
-/* ==========================================================================
-   5. CONFIRMACIÓN DE ASISTENCIA (RSVP)
-   ========================================================================== */
-.canva-gentle-p {
-  font-size: 0.98rem;
-  line-height: 1.65;
-  color: var(--canva-text-body);
-  max-width: 380px;
-  margin: 0 auto 24px;
-}
-
-.canva-twin-buttons-row {
+/* Par de botones WhatsApp */
+.wa-pair {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  max-width: 340px;
-  margin: 0 auto 30px;
+  gap: 10px;
+  margin: 0 auto 14px;
+  max-width: 360px;
 }
-
-@media (min-width: 440px) {
-  .canva-twin-buttons-row {
-    flex-direction: row;
-    justify-content: center;
-  }
-  .canva-twin-buttons-row .canva-btn-terracotta {
-    flex: 1;
-    padding: 14px 12px;
-    font-size: 0.88rem;
-  }
+.btn-wa-mama, .btn-wa-papa {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  color: white;
+  text-decoration: none;
+  font-size: .88rem;
+  font-weight: 700;
+  padding: 13px 18px;
+  border-radius: 9999px;
+  transition: all .25s ease;
+  letter-spacing: .3px;
 }
+.btn-wa-mama {
+  background: linear-gradient(135deg, var(--rose), var(--deep-rose));
+  box-shadow: 0 4px 14px rgba(196,118,138,.35);
+}
+.btn-wa-papa {
+  background: linear-gradient(135deg, var(--gold-warm), var(--gold-deep));
+  box-shadow: 0 4px 14px rgba(180,140,60,.35);
+}
+.btn-wa-mama:hover, .btn-wa-papa:hover { transform: translateY(-2px) scale(1.02); }
 
-.canva-rsvp-card {
-  background: #FFFDF9;
-  border: 1px solid var(--canva-border);
-  border-radius: 24px;
-  padding: 28px 20px;
-  box-shadow: var(--canva-shadow-sm);
+/* Formulario */
+.form-card {
+  background: white;
+  border: 1px solid var(--color-blush);
+  border-radius: 20px;
+  padding: 18px 14px;
+  margin: 0 auto 14px;
+  max-width: 390px;
+  box-shadow: var(--sh-soft);
   text-align: left;
-  max-width: 400px;
+}
+.field { margin-bottom: 10px; }
+
+.canva-input, .canva-select, .canva-textarea {
+  width: 100%;
+  padding: 10px 13px;
+  font-family: var(--font-sans);
+  font-size: .88rem;
+  color: var(--text-dark);
+  background: var(--cream-warm);
+  border: 1px solid rgba(242,167,184,.5);
+  border-radius: 11px;
+  outline: none;
+  transition: all .2s ease;
+  resize: none;
+}
+.canva-input:focus, .canva-select:focus, .canva-textarea:focus {
+  background: white;
+  border-color: var(--rose);
+  box-shadow: 0 0 0 3px rgba(242,167,184,.2);
+}
+.field-err { display: block; font-size: .72rem; color: #D32F2F; margin-top: 3px; min-height: 13px; }
+
+.btn-rose-full {
+  width: 100%;
+  background: linear-gradient(135deg, var(--rose), var(--deep-rose));
+  color: white;
+  border: none;
+  border-radius: 9999px;
+  font-size: .88rem;
+  font-weight: 700;
+  padding: 12px 18px;
+  cursor: pointer;
+  transition: all .25s ease;
+  box-shadow: 0 4px 14px rgba(196,118,138,.38);
+  letter-spacing: .3px;
+}
+.btn-rose-full:hover { transform: scale(1.02); }
+.btn-rose-full:active { transform: scale(.97); }
+
+/* Dress code */
+.dresscode-row {
+  text-align: center;
+  max-width: 360px;
   margin: 0 auto;
 }
-
-.rsvp-card-kicker {
-  display: block;
-  font-size: 0.82rem;
+.dc-label {
+  font-size: .68rem;
   font-weight: 600;
-  color: var(--canva-text-muted);
-  margin-bottom: 16px;
-  text-align: center;
+  letter-spacing: 2px;
+  color: var(--text-light);
+  margin-bottom: 10px;
+  text-transform: uppercase;
 }
 
-.form-row {
-  margin-bottom: 18px;
+.canva-swatches-grid {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 10px;
 }
-
-.canva-label {
-  display: block;
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: #333333;
-  margin-bottom: 6px;
-}
-
-.canva-input,
-.canva-select,
-.canva-textarea {
-  width: 100%;
-  padding: 12px 14px;
-  font-family: var(--font-sans);
-  font-size: 0.95rem;
-  color: #222222;
-  background: #FDF9F5;
-  border: 1px solid rgba(184, 150, 138, 0.4);
-  border-radius: 12px;
-  outline: none;
-  transition: all 0.2s ease;
-}
-
-.canva-input:focus,
-.canva-select:focus,
-.canva-textarea:focus {
-  background: #FFFFFF;
-  border-color: var(--canva-btn-terracotta);
-  box-shadow: 0 0 0 3px rgba(146, 66, 69, 0.12);
-}
-
-.form-error {
-  display: block;
-  font-size: 0.78rem;
-  color: #D32F2F;
-  margin-top: 4px;
-  min-height: 16px;
-}
-
-.canva-segmented-radios {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8px;
-  background: #F5EFEB;
-  padding: 4px;
-  border-radius: 12px;
-}
-
-.radio-chip {
-  position: relative;
+.swatch-btn {
+  background: white;
+  border: 2px solid transparent;
+  border-radius: 14px;
+  padding: 9px 7px;
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.08);
+  transition: all .25s ease;
+  min-width: 66px;
+}
+.swatch-btn.is-active { border-color: var(--rose); }
+.swatch-btn:hover { transform: translateY(-2px); }
+.sw-circle {
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  background-color: var(--sw);
+  border: 1px solid rgba(0,0,0,.1);
+  transition: transform .2s ease;
+}
+.swatch-btn.is-active .sw-circle { transform: scale(1.14); }
+.sw-name { font-size: .68rem; font-weight: 600; color: var(--text-mid); }
+.sw-info-name {
+  font-family: var(--font-serif);
+  font-size: .95rem;
+  font-weight: 700;
+  color: var(--deep-rose);
+  margin-bottom: 2px;
+}
+.sw-info-desc { font-size: .76rem; color: var(--text-mid); line-height: 1.45; }
+
+/* ============================================================
+   CAPÍTULO 4 · PROGRAMA & CIERRE
+   ============================================================ */
+.s-program {
+  background: linear-gradient(180deg,var(--cream) 0%,var(--blush-pale) 55%,var(--cream) 100%);
 }
 
-.radio-chip input {
+/* Zapatillas deco */
+.shoes-deco {
+  width: clamp(160px, 48vw, 210px);
+  opacity: .82;
+  margin-bottom: 6px;
+  z-index: 2;
+}
+.shoes-svg { width: 100%; height: auto; }
+
+.program-content {
+  text-align: center;
+  z-index: 3;
+  width: 100%;
+  max-width: 430px;
+}
+
+/* Timeline 4 eventos */
+.canva-vertical-timeline { position: relative; }
+
+.tl-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  max-width: 400px;
+  margin: 14px auto 18px;
+  position: relative;
+}
+
+.timeline-vine-stem {
   position: absolute;
+  pointer-events: none;
+}
+.stem-h {
+  top: 22px;
+  left: 10%;
+  right: 10%;
+  height: 2.5px;
+  background: linear-gradient(90deg, transparent, var(--rose), var(--rose), transparent);
+  border-radius: 2px;
+}
+
+.tl-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  position: relative;
+}
+.tl-icon {
+  font-size: clamp(1.25rem, 4.5vw, 1.85rem);
+  background: white;
+  border: 2px solid var(--rose);
+  border-radius: 50%;
+  width: 44px; height: 44px;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: var(--sh-pink);
+  position: relative;
+  z-index: 2;
+  transition: transform .25s ease;
+}
+.tl-item:hover .tl-icon { transform: scale(1.12); }
+.tl-time {
+  font-size: clamp(.62rem, 2.2vw, .72rem);
+  font-weight: 700;
+  color: var(--rose);
+}
+.tl-evt {
+  font-family: var(--font-serif);
+  font-size: clamp(.62rem, 2.2vw, .76rem);
+  font-weight: 700;
+  color: var(--text-dark);
+  text-align: center;
+  line-height: 1.3;
+}
+
+/* Botón VIP */
+.vip-btn {
+  margin: 0 auto 16px;
+  display: block;
+  width: fit-content;
+}
+
+/* Bendición */
+.blessing { margin-top: 18px; padding-top: 16px; border-top: 1px dashed var(--color-blush); }
+.bl-verse {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: .86rem;
+  line-height: 1.65;
+  color: var(--text-mid);
+  max-width: 320px;
+  margin: 0 auto 10px;
+}
+.bl-sig {
+  font-family: var(--font-script);
+  font-size: 2rem;
+  color: var(--deep-rose);
+  margin-bottom: 5px;
+}
+.bl-copy { font-size: .7rem; color: var(--text-light); }
+
+/* ── Mariposas ───────────────────────────────────────────────── */
+.butterflies { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.bf {
+  position: absolute;
+  width: 28px; height: 20px;
   opacity: 0;
 }
-
-.radio-chip span {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 8px;
-  border-radius: 9px;
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: var(--canva-text-muted);
-  transition: all 0.2s ease;
-  text-align: center;
+.bf::before, .bf::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
 }
-
-.radio-chip input:checked + span {
-  background: #FFFFFF;
-  color: var(--canva-title-color);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+.bf::before {
+  width: 12px; height: 16px;
+  background: rgba(242,167,184,.7);
+  top: 0; left: 0;
+  border-radius: 60% 40% 60% 40%;
 }
-
-.btn-full-submit {
-  width: 100%;
-  margin-top: 6px;
+.bf::after {
+  width: 12px; height: 16px;
+  background: rgba(232,201,122,.55);
+  top: 0; right: 0;
+  border-radius: 40% 60% 40% 60%;
 }
+.b1 { animation: fly1 13s 1s ease-in-out infinite; }
+.b2 { animation: fly2 17s 4s ease-in-out infinite; }
+.b3 { animation: fly3 11s 7s ease-in-out infinite; }
 
-/* ==========================================================================
-   6. ACCESO RESERVADO / PASE DIGITAL
-   ========================================================================== */
-.canva-key-wrapper {
-  margin-bottom: 12px;
-}
-
-.swing-key-img {
-  animation: keyPendulum 4s infinite ease-in-out;
-  transform-origin: top center;
-}
-
-/* Modal del Pase Digital */
+/* ============================================================
+   MODAL PASE VIP
+   ============================================================ */
 .canva-modal {
   display: none;
   position: fixed;
@@ -886,488 +836,179 @@ body.canva-baby-experience {
   justify-content: center;
   padding: 20px;
 }
-
 .canva-modal.is-open {
   display: flex;
-  animation: modalFadeIn 0.3s ease;
+  animation: modalIn .3s ease;
 }
-
 .modal-backdrop {
   position: absolute;
   inset: 0;
-  background: rgba(30, 20, 25, 0.55);
-  backdrop-filter: blur(8px);
+  background: rgba(74,48,64,.52);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
-
 .modal-baby-ticket {
   position: relative;
   z-index: 2;
-  background: #FFFDF9;
-  border: 2px solid var(--canva-btn-terracotta);
+  background: white;
+  border: 2px solid var(--rose);
   border-radius: 26px;
-  padding: 30px 24px;
-  max-width: 360px;
+  padding: 28px 20px 22px;
+  max-width: 340px;
   width: 100%;
   text-align: center;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
-  animation: ticketPop 0.4s var(--ease-unfold);
+  box-shadow: 0 24px 56px rgba(0,0,0,.22);
+  animation: ticketPop .4s var(--ease);
 }
-
-.modal-close-btn {
+.modal-x {
   position: absolute;
-  top: 14px;
-  right: 16px;
+  top: 10px; right: 14px;
   background: none;
   border: none;
-  font-size: 1.8rem;
-  color: var(--canva-text-muted);
+  font-size: 1.9rem;
+  color: var(--text-light);
   cursor: pointer;
   line-height: 1;
 }
-
-.ticket-kicker {
+.mt-top { margin-bottom: 10px; }
+.mt-kicker {
   display: block;
-  font-size: 0.7rem;
+  font-size: .64rem;
   font-weight: 700;
   letter-spacing: 2px;
-  color: var(--color-rose);
+  color: var(--rose);
   margin-top: 4px;
 }
-
-.ticket-name {
+.mt-title {
   font-family: var(--font-serif);
-  font-size: 1.85rem;
+  font-size: 1.7rem;
   font-weight: 800;
-  color: var(--canva-title-color);
-  margin-bottom: 16px;
+  color: var(--text-dark);
+  margin-top: 4px;
 }
-
-.ticket-middle {
-  border-top: 1.5px dashed var(--canva-border);
-  border-bottom: 1.5px dashed var(--canva-border);
-  padding: 18px 0;
-  margin-bottom: 18px;
+.mt-mid {
+  border-top: 1.5px dashed var(--color-blush);
+  border-bottom: 1.5px dashed var(--color-blush);
+  padding: 14px 0;
+  margin: 10px 0;
 }
-
-.ticket-for-lbl {
-  font-size: 0.8rem;
-  color: var(--canva-text-muted);
-}
-
-.ticket-guest-title {
+.mt-for-lbl { font-size: .75rem; color: var(--text-light); margin-bottom: 4px; }
+.mt-guest {
   font-family: var(--font-serif);
-  font-size: 1.25rem;
+  font-size: 1.1rem;
   font-weight: 700;
-  color: #271E24;
-  margin-bottom: 12px;
+  color: var(--text-dark);
+  margin-bottom: 10px;
 }
-
-.ticket-tags-grid {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin-bottom: 12px;
-}
-
-.tag-box {
-  background: var(--color-soft-rose);
-  padding: 6px 14px;
+.mt-tags { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; }
+.tag {
+  background: var(--blush-pale);
+  padding: 5px 12px;
   border-radius: 10px;
 }
-
-.tag-lbl {
-  display: block;
-  font-size: 0.65rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  color: var(--canva-btn-terracotta);
-}
-
-.tag-val {
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: #271E24;
-}
-
-.ticket-instruction {
-  font-size: 0.78rem;
-  color: var(--canva-text-muted);
-}
-
-.ticket-gold-stamp {
-  font-size: 0.72rem;
+.tg-k { display: block; font-size: .58rem; font-weight: 700; text-transform: uppercase; color: var(--rose); }
+.tg-v { font-size: .8rem; font-weight: 700; color: var(--text-dark); }
+.mt-stamp {
+  font-size: .66rem;
   font-weight: 800;
   letter-spacing: 2px;
-  color: var(--color-gold);
-  margin-bottom: 14px;
+  color: var(--gold-warm);
+  margin-bottom: 12px;
 }
-
-.btn-save-ticket {
-  background: var(--canva-btn-terracotta);
-  color: #FFFFFF;
+.btn-save-pass {
+  background: linear-gradient(135deg, var(--rose), var(--deep-rose));
+  color: white;
   border: none;
-  font-size: 0.88rem;
+  font-size: .84rem;
   font-weight: 700;
   padding: 10px 24px;
   border-radius: 9999px;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all .2s ease;
 }
+.btn-save-pass:hover { background: var(--muted-rose); }
 
-.btn-save-ticket:hover {
-  background: var(--canva-btn-hover);
+/* ============================================================
+   KEYFRAMES
+   ============================================================ */
+@keyframes iconPulse {
+  0%,100% { transform: scale(1); }
+  50%      { transform: scale(1.18); }
 }
-
-/* ==========================================================================
-   7. LLUVIA DE SOBRES / REGALOS
-   ========================================================================== */
-.gifts-baby-icon {
-  margin-bottom: 12px;
+@keyframes ringOut {
+  0%   { transform: scale(1); opacity: .7; }
+  100% { transform: scale(2.2); opacity: 0; }
 }
-
-.envelope-img {
-  max-width: 100%;
-  height: auto;
+@keyframes gentleBounce {
+  0%,100% { transform: translateY(0); }
+  50%      { transform: translateY(7px); }
 }
-
-.gifts-collapsible-box {
-  background: #FFFDF9;
-  border: 1px solid var(--canva-border);
-  border-radius: 20px;
-  padding: 20px;
-  max-width: 360px;
-  margin: 18px auto 0;
-  text-align: center;
-  animation: fadeInDown 0.35s ease;
+@keyframes dotSlide {
+  0%,100% { transform: translateY(0); opacity: 1; }
+  50%      { transform: translateY(8px); opacity: .4; }
 }
-
-.box-info-text {
-  font-size: 0.88rem;
-  line-height: 1.5;
-  color: var(--canva-text-body);
-  margin-bottom: 12px;
-}
-
-.account-pill-card {
-  background: var(--color-soft-rose);
-  border-radius: 14px;
-  padding: 12px;
-  font-size: 0.88rem;
-  color: var(--canva-title-color);
-}
-
-/* ==========================================================================
-   8. DRESS CODE INTERACTIVO
-   ========================================================================== */
-.dresscode-wreath-box {
-  margin-bottom: 6px;
-}
-
-.dresscode-subtitle {
-  font-family: var(--font-display);
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: var(--color-rose);
-  letter-spacing: 2px;
-  margin-bottom: 14px;
-}
-
-.canva-swatches-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 8px;
-  max-width: 380px;
-  margin: 0 auto 18px;
-}
-
-.swatch-btn {
-  background: #FFFDF9;
-  border: 2px solid transparent;
-  border-radius: 16px;
-  padding: 12px 6px;
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-  box-shadow: var(--canva-shadow-sm);
-  transition: all 0.25s ease;
-}
-
-.swatch-btn:hover {
-  transform: translateY(-2px);
-}
-
-.swatch-btn.is-active {
-  border-color: var(--canva-btn-terracotta);
-  background: #FFFDF9;
-}
-
-.swatch-circle {
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  background-color: var(--swatch-hex);
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.8);
-  transition: transform 0.2s ease;
-}
-
-.swatch-btn.is-active .swatch-circle {
-  transform: scale(1.15);
-}
-
-.swatch-title {
-  font-size: 0.72rem;
-  font-weight: 600;
-  color: var(--canva-text-body);
-}
-
-.swatch-info-bubble {
-  background: #FFFDF9;
-  border: 1px solid var(--canva-border);
-  border-radius: 18px;
-  padding: 16px 20px;
-  max-width: 360px;
-  margin: 0 auto;
-  box-shadow: var(--canva-shadow-sm);
-}
-
-.swatch-name-heading {
-  font-family: var(--font-serif);
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: var(--canva-title-color);
-  margin-bottom: 4px;
-}
-
-.swatch-desc-heading {
-  font-size: 0.85rem;
-  color: var(--canva-text-body);
-  line-height: 1.5;
-}
-
-/* ==========================================================================
-   9. ITINERARIO (TIMELINE VERTICAL ILUSTRADO TIPO CANVA)
-   ========================================================================== */
-.itinerary-intro {
-  font-size: 0.95rem;
-  color: var(--canva-text-body);
-  margin-bottom: 30px;
-}
-
-.canva-vertical-timeline {
-  position: relative;
-  max-width: 380px;
-  margin: 0 auto;
-  padding: 10px 0;
-}
-
-/* Tallo central de la enredadera */
-.timeline-vine-stem {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 2.5px;
-  background: #924245;
-  border-radius: 2px;
-}
-
-.timeline-node {
-  position: relative;
-  margin-bottom: 24px;
-  display: flex;
-}
-
-.timeline-node.node-left {
-  justify-content: flex-start;
-  padding-right: 52%;
-}
-
-.timeline-node.node-right {
-  justify-content: flex-end;
-  padding-left: 52%;
-}
-
-/* Conectores hacia el centro */
-.timeline-node::after {
-  content: '';
-  position: absolute;
-  top: 20px;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: #FFFDF9;
-  border: 2.5px solid var(--canva-btn-terracotta);
-  box-shadow: 0 0 0 3px var(--canva-bg);
-  z-index: 2;
-}
-
-.timeline-node.node-left::after {
-  right: calc(50% - 5px);
-}
-
-.timeline-node.node-right::after {
-  left: calc(50% - 5px);
-}
-
-.node-content-card {
-  background: #FFFDF9;
-  border: 1px solid var(--canva-border);
-  border-radius: 18px;
-  padding: 14px 12px;
-  text-align: left;
-  box-shadow: var(--canva-shadow-sm);
-  width: 100%;
-}
-
-.node-emoji {
-  font-size: 1.4rem;
-  display: block;
-  margin-bottom: 4px;
-}
-
-.node-name {
-  display: block;
-  font-family: var(--font-serif);
-  font-size: 0.98rem;
-  font-weight: 700;
-  color: var(--canva-title-color);
-}
-
-.node-hour {
-  display: block;
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: var(--color-rose);
-  margin-bottom: 4px;
-}
-
-.node-desc {
-  font-size: 0.78rem;
-  color: var(--canva-text-muted);
-  line-height: 1.4;
-}
-
-/* ==========================================================================
-   10. FOOTER: BENDICIÓN Y AGRADECIMIENTO
-   ========================================================================== */
-.canva-footer {
-  text-align: center;
-  padding-top: 30px;
-  border-top: 1px dashed var(--canva-border);
-}
-
-.footer-card-box {
-  max-width: 400px;
-  margin: 0 auto;
-}
-
-.footer-butterfly-img {
-  margin-bottom: 8px;
-  opacity: 0.8;
-}
-
-.footer-bible-verse {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-size: 0.95rem;
-  line-height: 1.6;
-  color: var(--canva-title-color);
-  margin-bottom: 12px;
-}
-
-.footer-script-parents {
-  font-family: var(--font-script);
-  font-size: 2.3rem;
-  color: var(--canva-btn-terracotta);
-  margin-bottom: 8px;
-}
-
-.footer-copyright {
-  font-size: 0.78rem;
-  color: var(--canva-text-muted);
-}
-
-/* ==========================================================================
-   KEYFRAMES & ANIMACIONES DE DESPLIEGUE
-   ========================================================================== */
-@keyframes storkGlide {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-8px) rotate(1.5deg); }
-}
-
-@keyframes gentleSwing {
-  0%, 100% { transform: rotate(-3deg); }
-  50% { transform: rotate(3deg); }
-}
-
-@keyframes keyPendulum {
-  0%, 100% { transform: rotate(-8deg); }
-  50% { transform: rotate(8deg); }
-}
-
-@keyframes pulseSealHalo {
-  0% { transform: scale(0.9); opacity: 0.8; }
-  60% { transform: scale(1.35); opacity: 0.1; }
-  100% { transform: scale(1.5); opacity: 0; }
-}
-
-@keyframes pulseAura {
-  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
-  50% { transform: translate(-50%, -50%) scale(1.18); opacity: 0.85; }
-}
-
-@keyframes wavePulse {
-  0%, 100% { height: 2px; }
-  50% { height: 8px; }
-}
-
-@keyframes modalFadeIn {
+@keyframes modalIn {
   from { opacity: 0; }
-  to { opacity: 1; }
+  to   { opacity: 1; }
 }
-
 @keyframes ticketPop {
-  from { transform: scale(0.85); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
+  from { transform: scale(.8) translateY(20px); opacity: 0; }
+  to   { transform: scale(1) translateY(0); opacity: 1; }
+}
+@keyframes fly1 {
+  0%   { opacity: 0; transform: translate(20px,90px) rotate(0deg); }
+  10%  { opacity: .7; }
+  50%  { transform: translate(220px,35px) rotate(20deg); }
+  90%  { opacity: .7; }
+  100% { opacity: 0; transform: translate(380px,110px) rotate(-12deg); }
+}
+@keyframes fly2 {
+  0%   { opacity: 0; transform: translate(320px,160px) rotate(0deg); }
+  10%  { opacity: .6; }
+  50%  { transform: translate(100px,55px) rotate(-22deg); }
+  90%  { opacity: .6; }
+  100% { opacity: 0; transform: translate(-40px,210px) rotate(12deg); }
+}
+@keyframes fly3 {
+  0%   { opacity: 0; transform: translate(160px,260px) rotate(0deg); }
+  10%  { opacity: .65; }
+  50%  { transform: translate(290px,90px) rotate(28deg); }
+  90%  { opacity: .65; }
+  100% { opacity: 0; transform: translate(420px,190px) rotate(-16deg); }
 }
 
-@keyframes fadeInDown {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 380px) {
+  .full-section { padding: 68px 14px 28px; }
+  .hero-bottom { max-width: 100%; }
+  .bear-wrap { width: 100px; }
+  .balloons-wrap { width: 80px; }
+  .tl-icon { width: 36px; height: 36px; font-size: 1.1rem; }
+  .tl-time, .tl-evt { font-size: .6rem; }
+  .action-row { flex-direction: column; align-items: center; }
+  .tl-grid { gap: 4px; }
 }
 
-/* ==========================================================================
-   RESPONSIVE MEDIA QUERIES
-   ========================================================================== */
-@media (max-width: 480px) {
-  .canva-invitation-container {
-    padding-top: 50px;
-  }
-  .mirror-baby-name {
-    font-size: 2.3rem;
-  }
+@media (min-width: 520px) {
+  .wa-pair { flex-direction: row; justify-content: center; }
+  .hero-bottom { max-width: 480px; }
+  .bear-wrap { width: 170px; }
+  .balloons-wrap { width: 140px; }
 }
 
 @media (min-width: 768px) {
-  .canva-invitation-container {
-    max-width: 520px;
-  }
+  .full-section { padding: 90px 40px 44px; }
+  .carousel-deco { width: 160px; }
 }
 
-/* ==========================================================================
-   ACCESSIBILITY: PREFERS REDUCED MOTION
-   ========================================================================== */
+/* ── Reduced motion ──────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
     animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
   }
+  .unfold-item { opacity: 1 !important; transform: none !important; filter: none !important; }
 }
