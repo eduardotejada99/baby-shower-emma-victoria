@@ -1,46 +1,47 @@
 /* ==========================================================================
-   SISTEMA DE DISEÑO: BABY SHOWER "CUENTO DE HADAS & ENSUEÑO"
+   SISTEMA DE DISEÑO APPLE SCROLLYTELLING: BABY SHOWER "EMMA VICTORIA"
+   Estética de Alta Costura Infantil: Suave, Delicada, Etérea y 100% Pinned
    ========================================================================== */
 
 :root {
-  /* Paleta cromática HSL calibrada */
-  --color-ivory: #FAF8F6;
+  /* Paleta cromática de alta costura */
+  --color-ivory: #FFF9FA;
   --color-white: #FFFFFF;
-  --color-blush: #F4E7EB;
-  --color-blush-light: #FBF4F6;
-  --color-blush-deep: #E8BAC9;
-  --color-mauve: #C98B9E;
-  --color-mauve-dark: #8B5A6A;
+  --color-blush: #FDEBF2;
+  --color-blush-light: #FFF5F8;
+  --color-blush-deep: #F3C4D4;
+  --color-mauve: #C47F95;
+  --color-mauve-dark: #7E3E55;
+  --color-rose-gold: #D48C9E;
+  
+  /* Oro champaña y oro rosa líquido */
   --color-gold: #D4AF37;
-  --color-gold-light: #FFEAA7;
-  --color-gold-dark: #B8860B;
-  --color-gold-gradient: linear-gradient(135deg, #FFF1C5 0%, #DFB76C 45%, #B8860B 100%);
+  --color-gold-light: #FFF2C6;
+  --color-gold-dark: #A67C1E;
+  --color-gold-gradient: linear-gradient(135deg, #FFF5D6 0%, #E2BE78 40%, #B8860B 80%, #7D5603 100%);
+  --color-rose-gradient: linear-gradient(135deg, #FDEBF2 0%, #F5C6D6 50%, #C47F95 100%);
   
   /* Contraste tipográfico */
-  --color-text-main: #34272F;
-  --color-text-muted: #6E5865;
-  --color-text-light: #9C8593;
+  --color-text-main: #331C26;
+  --color-text-muted: #6B4958;
+  --color-text-light: #9C7787;
 
-  /* Tipografías */
+  /* Tipografías de prestigio */
   --font-serif: 'Playfair Display', Georgia, serif;
   --font-script: 'Great Vibes', cursive;
   --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
 
-  /* Glassmorphism y profundidad */
-  --glass-bg: rgba(255, 255, 255, 0.76);
-  --glass-border: rgba(255, 255, 255, 0.7);
-  --glass-shadow: 0 20px 45px -15px rgba(139, 90, 106, 0.14), 0 0 1px rgba(139, 90, 106, 0.18);
-  --glass-shadow-hover: 0 25px 50px -12px rgba(139, 90, 106, 0.22), 0 0 1px rgba(139, 90, 106, 0.25);
+  /* Glassmorphism de ultra-lujo (Apple Liquid Glass) */
+  --glass-bg: rgba(255, 255, 255, 0.78);
+  --glass-border: rgba(255, 255, 255, 0.9);
+  --glass-shadow: 0 30px 70px -15px rgba(180, 110, 130, 0.18), 0 0 1px rgba(180, 110, 130, 0.25), inset 0 1px 1px rgba(255, 255, 255, 0.95);
+  --glass-shadow-hover: 0 35px 80px -12px rgba(180, 110, 130, 0.26), 0 0 1px rgba(180, 110, 130, 0.35);
 
-  /* Curvaturas y radios */
-  --radius-sm: 8px;
-  --radius-md: 16px;
-  --radius-lg: 28px;
+  /* Curvaturas */
+  --radius-sm: 10px;
+  --radius-md: 18px;
+  --radius-lg: 32px;
   --radius-full: 9999px;
-
-  /* Transiciones */
-  --transition-smooth: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-  --transition-fast: all 0.25s ease-out;
 }
 
 /* Reseteo y Base */
@@ -51,7 +52,6 @@
 }
 
 html {
-  scroll-behavior: smooth;
   font-size: 16px;
   background-color: var(--color-ivory);
   color: var(--color-text-main);
@@ -64,49 +64,70 @@ body {
   min-height: 100vh;
   position: relative;
   overflow-x: hidden;
-  background: 
-    radial-gradient(circle at 10% 20%, rgba(244, 211, 220, 0.5) 0%, transparent 40%),
-    radial-gradient(circle at 90% 60%, rgba(232, 186, 201, 0.35) 0%, transparent 45%),
-    radial-gradient(circle at 50% 90%, rgba(255, 234, 167, 0.25) 0%, transparent 50%),
-    var(--color-ivory);
+  background-color: var(--color-ivory);
 }
 
-/* Lienzo de Partículas en Segundo Plano */
+/* ==========================================================================
+   ILUMINACIÓN AMBIENTAL LÍQUIDA Y PARTICULAS
+   ========================================================================== */
+.ambient-glow-mesh {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  background: radial-gradient(circle at 50% 25%, #FFF7F9 0%, #FAEDF3 50%, #F5E2EC 100%);
+}
+
+.glow-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(70px);
+  opacity: 0.6;
+  animation: orbFloat 20s ease-in-out infinite alternate;
+}
+
+.orb-1 { width: 500px; height: 500px; background: rgba(253, 219, 230, 0.7); top: -120px; left: -120px; }
+.orb-2 { width: 550px; height: 550px; background: rgba(255, 234, 167, 0.45); bottom: -140px; right: -120px; animation-duration: 26s; }
+.orb-3 { width: 420px; height: 420px; background: rgba(232, 186, 201, 0.5); top: 35%; left: 25%; animation-duration: 22s; }
+
 #canvas-particles {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
-  height: 100vh;
+  height: 100dvh;
   pointer-events: none;
-  z-index: 1;
+  z-index: 2;
 }
 
-/* Botón Flotante de Audio */
+/* ==========================================================================
+   AUDIO TOGGLE FLOTANTE
+   ========================================================================== */
 .audio-toggle-btn {
   position: fixed;
-  top: 20px;
-  right: 20px;
-  z-index: 100;
-  width: 48px;
-  height: 48px;
+  top: 24px;
+  right: 24px;
+  z-index: 120;
+  width: 50px;
+  height: 50px;
   border-radius: var(--radius-full);
   background: var(--glass-bg);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border: 1.5px solid var(--color-gold-light);
-  box-shadow: 0 8px 24px rgba(139, 90, 106, 0.15);
+  box-shadow: 0 10px 25px rgba(180, 110, 130, 0.18);
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: var(--transition-fast);
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
 }
 
 .audio-toggle-btn:hover {
-  transform: scale(1.08);
+  transform: scale(1.1);
   border-color: var(--color-gold);
-  box-shadow: 0 10px 28px rgba(212, 175, 55, 0.3);
+  box-shadow: 0 12px 30px rgba(212, 175, 55, 0.35);
 }
 
 .audio-icon {
@@ -119,9 +140,9 @@ body {
 
 .audio-wave {
   position: absolute;
-  bottom: 6px;
+  bottom: 7px;
   display: flex;
-  gap: 2px;
+  gap: 2.5px;
   opacity: 0;
   transition: opacity 0.3s ease;
 }
@@ -131,8 +152,8 @@ body {
 }
 
 .audio-wave span {
-  width: 2px;
-  height: 8px;
+  width: 2.5px;
+  height: 9px;
   background: var(--color-gold);
   border-radius: 2px;
   animation: wavePulse 1s ease-in-out infinite;
@@ -141,102 +162,244 @@ body {
 .audio-wave span:nth-child(2) { animation-delay: 0.2s; }
 .audio-wave span:nth-child(3) { animation-delay: 0.4s; }
 
-/* Contenedor Principal */
-.page-container {
+/* ==========================================================================
+   BARRA LATERAL DE PROGRESO ESTILO APPLE (SCRUB TIMELINE)
+   ========================================================================== */
+.scrub-timeline {
+  position: fixed;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 110;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 8px;
+  background: rgba(255, 255, 255, 0.68);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  border-radius: var(--radius-full);
+  box-shadow: 0 10px 30px rgba(180, 110, 130, 0.14);
+}
+
+.scrub-track-bg {
+  position: absolute;
+  top: 18px;
+  bottom: 18px;
+  width: 2px;
+  background: rgba(212, 175, 55, 0.25);
+  border-radius: 2px;
+  z-index: 1;
+}
+
+.scrub-progress-fill {
+  width: 100%;
+  height: 0%;
+  background: var(--color-gold);
+  border-radius: 2px;
+  box-shadow: 0 0 8px rgba(212, 175, 55, 0.6);
+  transition: height 0.1s linear;
+}
+
+.scrub-dot {
   position: relative;
   z-index: 2;
-  max-width: 720px;
-  margin: 0 auto;
-  padding: 0 20px 80px 20px;
+  width: 24px;
+  height: 24px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.scrub-dot-core {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-mauve);
+  opacity: 0.4;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.scrub-dot.is-active .scrub-dot-core {
+  width: 13px;
+  height: 13px;
+  background: var(--color-gold);
+  opacity: 1;
+  box-shadow: 0 0 12px rgba(212, 175, 55, 0.7);
+}
+
+.scrub-tooltip {
+  position: absolute;
+  right: 32px;
+  top: 50%;
+  transform: translateY(-50%) translateX(10px);
+  background: rgba(51, 28, 38, 0.88);
+  color: #FFFFFF;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.scrub-dot:hover .scrub-tooltip {
+  opacity: 1;
+  transform: translateY(-50%) translateX(0);
+}
+
+@media (max-width: 600px) {
+  .scrub-timeline {
+    right: 10px;
+    gap: 12px;
+    padding: 10px 6px;
+  }
+  .scrub-tooltip {
+    display: none;
+  }
 }
 
 /* ==========================================================================
-   CAPÍTULO 0: HERO & SELLO DE CERA
+   PISTA DE SCROLL Y ESCENARIO FIJO (PINNED APPLE STAGE)
    ========================================================================== */
-.hero-chapter {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+.scroll-track {
+  height: 520vh;
   position: relative;
-  padding: 40px 0;
-}
-
-.clouds-backdrop {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
   pointer-events: none;
 }
 
-.cloud {
-  position: absolute;
-  background: radial-gradient(circle, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0) 70%);
-  border-radius: 50%;
-  filter: blur(24px);
-  opacity: 0.7;
-  animation: floatCloud 25s ease-in-out infinite alternate;
-}
-
-.cloud-1 { width: 350px; height: 180px; top: 10%; left: -80px; }
-.cloud-2 { width: 400px; height: 200px; top: 40%; right: -120px; animation-duration: 32s; }
-.cloud-3 { width: 300px; height: 150px; bottom: 15%; left: 10%; animation-duration: 20s; }
-
-.hero-envelope-wrapper {
-  width: 100%;
+.apple-viewport-stage {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100dvh;
+  overflow: hidden;
+  pointer-events: none;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  position: relative;
+  justify-content: center;
+  z-index: 10;
 }
 
-.hero-envelope {
+.scene-panel {
+  position: absolute;
+  inset: 0;
   width: 100%;
-  max-width: 480px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  opacity: 0;
+  transform: translate3d(0, 30px, 0) scale(0.92);
+  will-change: opacity, transform;
+  pointer-events: none;
+}
+
+.scene-content {
+  width: 100%;
+  max-width: 560px;
+  margin: 0 auto;
+  pointer-events: auto;
+  max-height: 92vh;
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.scene-content::-webkit-scrollbar {
+  display: none;
+}
+
+/* ==========================================================================
+   TARJETAS DE CRISTAL ESMERILADO (LIQUID GLASS)
+   ========================================================================== */
+.glass-card {
   background: var(--glass-bg);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
   border: 1.5px solid var(--glass-border);
   border-radius: var(--radius-lg);
   box-shadow: var(--glass-shadow);
-  padding: 48px 28px 40px;
-  text-align: center;
+  padding: 40px 32px;
   position: relative;
-  overflow: visible;
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s ease;
+  text-align: center;
+  transition: box-shadow 0.4s ease;
 }
 
-.hero-envelope:hover {
+.glass-card:hover {
   box-shadow: var(--glass-shadow-hover);
+}
+
+.royal-card {
+  border-color: rgba(255, 234, 167, 0.6);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.88) 0%, rgba(253, 235, 242, 0.75) 100%);
+}
+
+.royal-crown-badge {
+  margin: 0 auto 12px;
+  display: flex;
+  justify-content: center;
+  animation: gentleBob 3s ease-in-out infinite;
+}
+
+.royal-crown-mini {
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: center;
+}
+
+/* ==========================================================================
+   ESCENA 0: PORTADA & SELLO
+   ========================================================================== */
+.hero-envelope {
+  background: var(--glass-bg);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1.5px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--glass-shadow);
+  padding: 44px 28px 46px;
+  text-align: center;
+  position: relative;
 }
 
 .hero-badge {
   display: inline-block;
   font-family: var(--font-sans);
   font-size: 0.75rem;
-  font-weight: 600;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 3px;
   color: var(--color-mauve-dark);
-  background: rgba(244, 231, 235, 0.85);
+  background: rgba(253, 235, 242, 0.9);
   border: 1px solid var(--color-blush-deep);
   padding: 6px 18px;
   border-radius: var(--radius-full);
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 }
 
 .hero-script-intro {
   font-family: var(--font-script);
-  font-size: 2.2rem;
+  font-size: 2.3rem;
   color: var(--color-mauve);
   line-height: 1.2;
-  margin-bottom: 4px;
+  margin-bottom: 2px;
 }
 
 .hero-title {
   font-family: var(--font-serif);
-  font-size: 2.8rem;
+  font-size: 2.9rem;
   font-weight: 700;
   color: var(--color-text-main);
   letter-spacing: -0.5px;
@@ -264,14 +427,13 @@ body {
   opacity: 0.9;
 }
 
-/* Sello de Cera Dorado */
 .wax-seal-container {
   position: absolute;
-  bottom: -45px;
+  bottom: -46px;
   left: 50%;
   transform: translateX(-50%);
-  width: 90px;
-  height: 90px;
+  width: 92px;
+  height: 92px;
   cursor: pointer;
   z-index: 10;
   transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.5s ease;
@@ -289,22 +451,21 @@ body {
 
 .seal-glow {
   position: absolute;
-  inset: -8px;
+  inset: -10px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 234, 167, 0.5) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(255, 234, 167, 0.6) 0%, transparent 70%);
   animation: pulseSeal 2.5s infinite ease-in-out;
   pointer-events: none;
 }
 
 .wax-seal-container.is-broken {
-  transform: translateX(-50%) scale(1.25);
+  transform: translateX(-50%) scale(1.3);
   opacity: 0;
   pointer-events: none;
 }
 
-/* Indicador de Desplazamiento (Scroll prompt) */
 .scroll-prompt {
-  margin-top: 60px;
+  margin-top: 64px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -317,59 +478,26 @@ body {
 }
 
 .scroll-prompt-text {
-  font-weight: 500;
+  font-weight: 600;
 }
 
 /* ==========================================================================
-   TARJETAS Y CAPÍTULOS DE HISTORIA
+   ESCENA 1: EMMA VICTORIA
    ========================================================================== */
-.chapter {
-  margin-top: 60px;
-}
-
-.glass-card {
-  background: var(--glass-bg);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1.5px solid var(--glass-border);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--glass-shadow);
-  padding: 44px 28px;
-  position: relative;
-  text-align: center;
-  transition: var(--transition-smooth);
-}
-
-.glass-card:hover {
-  box-shadow: var(--glass-shadow-hover);
-}
-
-/* Animación Scroll Reveal */
-.scroll-reveal {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.scroll-reveal.is-revealed {
-  opacity: 1;
-  transform: translateY(0);
-}
-
 .chapter-number {
   display: inline-block;
   font-family: var(--font-sans);
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   font-weight: 700;
-  letter-spacing: 3px;
+  letter-spacing: 3.5px;
   text-transform: uppercase;
   color: var(--color-gold-dark);
-  margin-bottom: 12px;
+  margin-bottom: 8px;
 }
 
 .script-headline {
   font-family: var(--font-script);
-  font-size: 2.1rem;
+  font-size: 2.2rem;
   color: var(--color-mauve);
   line-height: 1.25;
   margin-bottom: 12px;
@@ -381,7 +509,7 @@ body {
   color: var(--color-text-main);
   font-weight: 700;
   letter-spacing: -0.3px;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
 .section-intro {
@@ -389,40 +517,23 @@ body {
   color: var(--color-text-muted);
   line-height: 1.6;
   max-width: 480px;
-  margin: 0 auto 28px;
+  margin: 0 auto 24px;
 }
 
-/* Decoraciones de esquina */
-.card-corner-decorations .corner {
-  position: absolute;
-  width: 14px;
-  height: 14px;
-  border-color: var(--color-blush-deep);
-  opacity: 0.6;
-}
-
-.corner.tl { top: 12px; left: 12px; border-top: 1.5px solid; border-left: 1.5px solid; }
-.corner.tr { top: 12px; right: 12px; border-top: 1.5px solid; border-right: 1.5px solid; }
-.corner.bl { bottom: 12px; left: 12px; border-bottom: 1.5px solid; border-left: 1.5px solid; }
-.corner.br { bottom: 12px; right: 12px; border-bottom: 1.5px solid; border-right: 1.5px solid; }
-
-/* ==========================================================================
-   CAPÍTULO 1: REVELACIÓN DEL NOMBRE
-   ========================================================================== */
 .baby-name-container {
   position: relative;
   display: inline-block;
-  margin: 16px 0 24px;
+  margin: 12px 0 20px;
 }
 
 .baby-name {
   font-family: var(--font-serif);
-  font-size: 3.2rem;
+  font-size: 3.3rem;
   font-weight: 700;
   background: var(--color-gold-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 2px 4px rgba(184, 134, 11, 0.25));
+  filter: drop-shadow(0 2px 5px rgba(184, 134, 11, 0.28));
   letter-spacing: 0.5px;
   line-height: 1.1;
 }
@@ -430,9 +541,9 @@ body {
 .name-shimmer {
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.8) 50%, transparent 100%);
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.85) 50%, transparent 100%);
   background-size: 200% 100%;
-  animation: shimmer 4s infinite;
+  animation: shimmer 3.8s infinite;
   pointer-events: none;
   mix-blend-mode: overlay;
 }
@@ -440,11 +551,11 @@ body {
 .story-dedication {
   font-family: var(--font-serif);
   font-style: italic;
-  font-size: 1.1rem;
-  line-height: 1.8;
+  font-size: 1.05rem;
+  line-height: 1.75;
   color: var(--color-text-main);
-  max-width: 520px;
-  margin: 0 auto 32px;
+  max-width: 500px;
+  margin: 0 auto 24px;
 }
 
 .name-meanings {
@@ -452,11 +563,11 @@ body {
   align-items: center;
   justify-content: center;
   gap: 16px;
-  background: rgba(244, 231, 235, 0.6);
-  border: 1px solid rgba(232, 186, 201, 0.5);
+  background: rgba(253, 235, 242, 0.65);
+  border: 1px solid rgba(243, 196, 212, 0.6);
   border-radius: var(--radius-md);
-  padding: 16px 20px;
-  margin-bottom: 28px;
+  padding: 14px 18px;
+  margin-bottom: 20px;
 }
 
 .meaning-item {
@@ -468,12 +579,12 @@ body {
 .meaning-name {
   font-family: var(--font-serif);
   font-weight: 700;
-  font-size: 1rem;
+  font-size: 0.95rem;
   color: var(--color-mauve-dark);
 }
 
 .meaning-desc {
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   color: var(--color-text-muted);
 }
 
@@ -483,39 +594,52 @@ body {
 }
 
 .parents-signature {
-  margin-top: 10px;
+  margin-top: 4px;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 2px;
 }
 
 .signature-label {
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   color: var(--color-text-muted);
 }
 
 .parents-names {
   font-family: var(--font-script);
-  font-size: 2.2rem;
+  font-size: 2.1rem;
   color: var(--color-mauve-dark);
 }
 
+.card-corner-decorations .corner {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-color: var(--color-blush-deep);
+  opacity: 0.65;
+}
+
+.corner.tl { top: 12px; left: 12px; border-top: 1.5px solid; border-left: 1.5px solid; }
+.corner.tr { top: 12px; right: 12px; border-top: 1.5px solid; border-right: 1.5px solid; }
+.corner.bl { bottom: 12px; left: 12px; border-bottom: 1.5px solid; border-left: 1.5px solid; }
+.corner.br { bottom: 12px; right: 12px; border-bottom: 1.5px solid; border-right: 1.5px solid; }
+
 /* ==========================================================================
-   CAPÍTULO 2: CUENTA REGRESIVA
+   ESCENA 2: CUENTA REGRESIVA
    ========================================================================== */
 .event-date-badge {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  background: rgba(255, 234, 167, 0.45);
-  border: 1px solid rgba(212, 175, 55, 0.4);
+  background: rgba(255, 242, 198, 0.55);
+  border: 1px solid rgba(212, 175, 55, 0.45);
   padding: 10px 22px;
   border-radius: var(--radius-full);
   font-family: var(--font-serif);
   font-size: 1rem;
   font-weight: 600;
   color: var(--color-text-main);
-  margin-bottom: 32px;
+  margin-bottom: 28px;
 }
 
 .countdown-grid {
@@ -523,7 +647,7 @@ body {
   justify-content: center;
   align-items: center;
   gap: 12px;
-  margin-bottom: 32px;
+  margin-bottom: 28px;
 }
 
 .countdown-unit {
@@ -539,7 +663,7 @@ body {
   background: var(--color-white);
   border: 1.5px solid var(--color-blush-deep);
   border-radius: var(--radius-md);
-  box-shadow: 0 8px 20px rgba(139, 90, 106, 0.08);
+  box-shadow: 0 8px 20px rgba(180, 110, 130, 0.1);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -559,7 +683,7 @@ body {
 }
 
 .countdown-label {
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   text-transform: uppercase;
   letter-spacing: 1.5px;
   font-weight: 600;
@@ -579,114 +703,69 @@ body {
   justify-content: center;
 }
 
-/* Botones Universales */
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  padding: 14px 28px;
-  border-radius: var(--radius-full);
-  font-family: var(--font-sans);
-  font-size: 0.95rem;
-  font-weight: 600;
-  text-decoration: none;
-  cursor: pointer;
-  border: none;
-  transition: var(--transition-fast);
-}
-
-.btn-primary {
-  background: var(--color-gold-gradient);
-  color: #382400;
-  box-shadow: 0 10px 25px rgba(212, 175, 55, 0.35);
-}
-
-.btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 14px 30px rgba(212, 175, 55, 0.45);
-}
-
-.btn-secondary {
-  background: var(--color-white);
-  color: var(--color-mauve-dark);
-  border: 1.5px solid var(--color-blush-deep);
-  box-shadow: 0 6px 18px rgba(139, 90, 106, 0.08);
-}
-
-.btn-secondary:hover {
-  background: var(--color-blush-light);
-  border-color: var(--color-mauve);
-  transform: translateY(-2px);
-}
-
-.btn-block {
-  width: 100%;
-}
-
 /* ==========================================================================
-   CAPÍTULO 3: UBICACIÓN
+   ESCENA 3: LUGAR
    ========================================================================== */
 .venue-info {
-  margin-bottom: 24px;
+  margin-bottom: 20px;
 }
 
 .venue-icon-wrap {
-  width: 60px;
-  height: 60px;
+  width: 58px;
+  height: 58px;
   border-radius: var(--radius-full);
-  background: rgba(244, 231, 235, 0.7);
+  background: rgba(253, 235, 242, 0.8);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto 16px;
-  border: 1px solid var(--color-blush-deep);
+  margin: 0 auto 12px;
+  border: 1.5px solid var(--color-blush-deep);
 }
 
 .venue-name {
   font-family: var(--font-serif);
-  font-size: 1.4rem;
+  font-size: 1.35rem;
   font-weight: 700;
   color: var(--color-text-main);
-  margin-bottom: 6px;
+  margin-bottom: 4px;
 }
 
 .venue-address {
-  font-size: 1rem;
+  font-size: 0.95rem;
   color: var(--color-text-muted);
-  margin-bottom: 6px;
+  margin-bottom: 4px;
 }
 
 .venue-notes {
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   color: var(--color-mauve-dark);
   font-style: italic;
 }
 
 .map-preview-wrap {
-  margin-bottom: 28px;
+  margin-bottom: 24px;
 }
 
 .map-placeholder {
   width: 100%;
-  height: 140px;
+  height: 120px;
   border-radius: var(--radius-md);
   background: 
-    linear-gradient(rgba(244, 231, 235, 0.4), rgba(244, 231, 235, 0.4)),
-    repeating-linear-gradient(45deg, #FAF8F6, #FAF8F6 10px, #F5EFF2 10px, #F5EFF2 20px);
+    linear-gradient(rgba(253, 235, 242, 0.5), rgba(253, 235, 242, 0.5)),
+    repeating-linear-gradient(45deg, #FFF9FA, #FFF9FA 12px, #FCE8F0 12px, #FCE8F0 24px);
   border: 1.5px solid var(--color-blush-deep);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 8px;
   position: relative;
   overflow: hidden;
 }
 
 .map-pin-pulse {
-  width: 18px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
   background: var(--color-gold);
   border-radius: 50%;
   box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7);
@@ -695,7 +774,7 @@ body {
 
 .map-label {
   font-family: var(--font-serif);
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   font-weight: 600;
   color: var(--color-text-main);
 }
@@ -706,7 +785,7 @@ body {
   gap: 12px;
 }
 
-@media (min-width: 540px) {
+@media (min-width: 520px) {
   .location-actions {
     flex-direction: row;
     justify-content: center;
@@ -714,14 +793,14 @@ body {
 }
 
 /* ==========================================================================
-   CAPÍTULO 4: DRESS CODE INTERACTIVO
+   ESCENA 4: DRESS CODE INTERACTIVO
    ========================================================================== */
 .color-palette-picker {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 16px;
-  margin: 24px 0 28px;
+  margin: 20px 0 24px;
 }
 
 .color-swatch {
@@ -730,7 +809,7 @@ body {
   border-radius: 50%;
   background-color: var(--swatch-color);
   border: 3px solid var(--color-white);
-  box-shadow: 0 6px 16px rgba(139, 90, 106, 0.15);
+  box-shadow: 0 6px 18px rgba(180, 110, 130, 0.18);
   cursor: pointer;
   position: relative;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
@@ -741,13 +820,13 @@ body {
 
 .color-swatch:hover {
   transform: scale(1.12);
-  box-shadow: 0 8px 22px rgba(139, 90, 106, 0.25);
+  box-shadow: 0 8px 24px rgba(180, 110, 130, 0.28);
 }
 
 .color-swatch.active {
   transform: scale(1.18);
   border-color: var(--color-gold);
-  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.35), 0 10px 24px rgba(139, 90, 106, 0.25);
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.4), 0 10px 25px rgba(180, 110, 130, 0.25);
 }
 
 .swatch-check {
@@ -763,59 +842,62 @@ body {
 }
 
 .color-display-panel {
-  background: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.75);
   border: 1px solid var(--color-blush-deep);
   border-radius: var(--radius-md);
-  padding: 16px 20px;
-  max-width: 400px;
+  padding: 14px 18px;
+  max-width: 380px;
   margin: 0 auto;
-  transition: var(--transition-fast);
 }
 
 .color-name {
   display: block;
   font-family: var(--font-serif);
-  font-size: 1.15rem;
+  font-size: 1.1rem;
   font-weight: 700;
   color: var(--color-mauve-dark);
-  margin-bottom: 4px;
+  margin-bottom: 2px;
 }
 
 .color-desc {
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   color: var(--color-text-muted);
 }
 
 /* ==========================================================================
-   CAPÍTULO 5: FORMULARIO RSVP
+   ESCENA 5: RSVP FORM & CIERRE
    ========================================================================== */
+.rsvp-card {
+  padding: 34px 28px;
+}
+
 .rsvp-form {
   text-align: left;
-  max-width: 480px;
+  max-width: 460px;
   margin: 0 auto;
 }
 
 .form-group {
-  margin-bottom: 22px;
+  margin-bottom: 16px;
 }
 
 .form-label {
   display: block;
-  font-size: 0.88rem;
+  font-size: 0.85rem;
   font-weight: 600;
   color: var(--color-text-main);
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .form-input,
 .form-select,
 .form-textarea {
   width: 100%;
-  padding: 12px 16px;
+  padding: 10px 14px;
   font-family: var(--font-sans);
-  font-size: 0.95rem;
+  font-size: 0.92rem;
   color: var(--color-text-main);
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.9);
   border: 1.5px solid var(--color-blush-deep);
   border-radius: var(--radius-md);
   outline: none;
@@ -826,24 +908,24 @@ body {
 .form-select:focus,
 .form-textarea:focus {
   border-color: var(--color-gold);
-  box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.15);
+  box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.18);
 }
 
 .form-error {
   display: block;
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   color: #C0392B;
-  margin-top: 5px;
-  min-height: 18px;
+  margin-top: 4px;
+  min-height: 16px;
 }
 
 .attendance-options {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 12px;
+  gap: 10px;
 }
 
-@media (min-width: 480px) {
+@media (min-width: 460px) {
   .attendance-options {
     grid-template-columns: 1fr 1fr;
   }
@@ -862,43 +944,42 @@ body {
 .radio-card-content {
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  padding: 14px 16px;
-  background: rgba(255, 255, 255, 0.8);
+  gap: 3px;
+  padding: 12px 14px;
+  background: rgba(255, 255, 255, 0.85);
   border: 1.5px solid var(--color-blush-deep);
   border-radius: var(--radius-md);
-  transition: var(--transition-fast);
+  transition: all 0.2s ease;
 }
 
 .radio-card input:checked + .radio-card-content {
   border-color: var(--color-gold);
-  background: rgba(255, 234, 167, 0.25);
-  box-shadow: 0 4px 14px rgba(212, 175, 55, 0.2);
+  background: rgba(255, 242, 198, 0.35);
+  box-shadow: 0 4px 14px rgba(212, 175, 55, 0.25);
 }
 
 .radio-card-title {
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   font-weight: 600;
   color: var(--color-text-main);
 }
 
 .radio-card-sub {
-  font-size: 0.78rem;
+  font-size: 0.75rem;
   color: var(--color-text-muted);
 }
 
 .rsvp-note {
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   color: var(--color-text-muted);
   text-align: center;
-  margin-top: 14px;
+  margin-top: 10px;
 }
 
-/* ==========================================================================
-   PIE DE PÁGINA
-   ========================================================================== */
-.page-footer {
-  margin-top: 80px;
+.scene-footer {
+  margin-top: 20px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(243, 196, 212, 0.5);
   text-align: center;
   color: var(--color-text-muted);
 }
@@ -906,22 +987,78 @@ body {
 .footer-blessing {
   font-family: var(--font-serif);
   font-style: italic;
-  font-size: 0.95rem;
-  margin: 16px auto 8px;
-  max-width: 440px;
+  font-size: 0.88rem;
+  margin-bottom: 4px;
 }
 
 .footer-family {
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   letter-spacing: 1px;
+}
+
+/* ==========================================================================
+   BOTONES UNIVERSALES
+   ========================================================================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 13px 26px;
+  border-radius: var(--radius-full);
+  font-family: var(--font-sans);
+  font-size: 0.92rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+
+.btn-primary {
+  background: var(--color-gold-gradient);
+  color: #382400;
+  box-shadow: 0 10px 25px rgba(212, 175, 55, 0.35);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 32px rgba(212, 175, 55, 0.45);
+}
+
+.btn-secondary {
+  background: var(--color-white);
+  color: var(--color-mauve-dark);
+  border: 1.5px solid var(--color-blush-deep);
+  box-shadow: 0 6px 18px rgba(180, 110, 130, 0.1);
+}
+
+.btn-secondary:hover {
+  background: var(--color-blush-light);
+  border-color: var(--color-mauve);
+  transform: translateY(-2px);
+}
+
+.btn-block {
+  width: 100%;
 }
 
 /* ==========================================================================
    KEYFRAMES Y ANIMACIONES
    ========================================================================== */
+@keyframes orbFloat {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(40px, 30px) scale(1.08); }
+}
+
+@keyframes gentleBob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
 @keyframes pulseSeal {
-  0%, 100% { transform: scale(1); opacity: 0.5; }
-  50% { transform: scale(1.15); opacity: 0.85; }
+  0%, 100% { transform: scale(1); opacity: 0.55; }
+  50% { transform: scale(1.15); opacity: 0.9; }
 }
 
 @keyframes bounceSlow {
@@ -950,21 +1087,16 @@ body {
   50% { height: 12px; }
 }
 
-@keyframes floatCloud {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(35px); }
-}
-
 /* ==========================================================================
-   ACCESIBILIDAD Y RESPONSIVE
+   RESPONSIVE Y ACCESIBILIDAD
    ========================================================================== */
 @media (max-width: 480px) {
   .hero-title { font-size: 2.3rem; }
-  .baby-name { font-size: 2.6rem; }
+  .baby-name { font-size: 2.7rem; }
   .countdown-card { width: 62px; height: 62px; }
   .countdown-value { font-size: 1.7rem; }
   .countdown-separator { font-size: 1.4rem; margin-bottom: 18px; }
-  .glass-card { padding: 36px 20px; }
+  .glass-card { padding: 30px 18px; }
   .name-meanings { flex-direction: column; gap: 8px; }
   .meaning-divider { display: none; }
 }
@@ -975,9 +1107,5 @@ body {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
-  }
-  .scroll-reveal {
-    opacity: 1 !important;
-    transform: none !important;
   }
 }
