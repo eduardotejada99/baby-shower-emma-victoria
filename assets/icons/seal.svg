@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none">
+  <defs>
+    <radialGradient id="gold-seal" cx="45%" cy="40%" r="55%">
+      <stop offset="0%" stop-color="#FFEAA7"/>
+      <stop offset="35%" stop-color="#DFB76C"/>
+      <stop offset="70%" stop-color="#B8860B"/>
+      <stop offset="100%" stop-color="#7A5600"/>
+    </radialGradient>
+    <filter id="seal-shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="5" flood-color="#553311" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+  <path d="M60 5C68 5 72 10 79 12C86 14 92 12 98 17C104 22 105 29 110 36C114 42 118 46 118 53C119 61 114 66 112 73C110 80 113 87 109 93C104 99 98 100 92 104C86 109 81 114 74 115C67 116 62 111 54 112C46 112 41 117 34 115C27 113 23 107 17 103C12 99 5 97 3 90C1 83 6 78 5 71C4 64 -1 59 0 52C2 45 7 42 10 35C14 28 13 22 19 17C24 12 31 14 38 12C45 9 52 5 60 5Z" fill="url(#gold-seal)" filter="url(#seal-shadow)"/>
+  <circle cx="60" cy="60" r="40" stroke="#FFEAA7" stroke-width="2.5" stroke-dasharray="4 3" opacity="0.8"/>
+  <text x="60" y="71" font-family="'Playfair Display', serif" font-size="34" font-weight="bold" fill="#5A3A00" text-anchor="middle" filter="drop-shadow(0 1px 1px #FFEAA7)">E</text>
+</svg>
