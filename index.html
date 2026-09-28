@@ -15,6 +15,7 @@
   <!-- Controles flotantes -->
   <button id="btn-audio-toggle" class="music-fab" aria-label="Reproducir musica de cuna" title="Musica">
     <span class="music-icon">&#9834;</span>
+    <span class="music-tip">Toca para música</span>
     <div class="music-rings" aria-hidden="true"><span></span><span></span><span></span></div>
   </button>
   <header id="apple-subnav" class="nav-pill" role="banner">
@@ -28,84 +29,27 @@
   <section id="section-hero" class="full-section s-hero unfold-item is-unfolded" aria-label="Portada">
     <div class="confetti-layer" aria-hidden="true"></div>
     <div class="bow-wrap" aria-hidden="true">
-      <svg viewBox="0 0 360 200" class="bow-svg" fill="none">
-        <defs>
-          <radialGradient id="wL" cx="42%" cy="38%" r="62%">
-            <stop offset="0%" stop-color="#FDE8EC"/>
-            <stop offset="48%" stop-color="#F2A7B8"/>
-            <stop offset="100%" stop-color="#C4768A"/>
-          </radialGradient>
-          <radialGradient id="wR" cx="58%" cy="38%" r="62%">
-            <stop offset="0%" stop-color="#FDE8EC"/>
-            <stop offset="48%" stop-color="#F2A7B8"/>
-            <stop offset="100%" stop-color="#C4768A"/>
-          </radialGradient>
-          <radialGradient id="wK" cx="50%" cy="38%" r="62%">
-            <stop offset="0%" stop-color="#FBD8E0"/>
-            <stop offset="100%" stop-color="#B8607A"/>
-          </radialGradient>
-        </defs>
-        <path d="M180 100 C160 72,108 28,48 42 C16 52,22 90,58 97 C96 106,158 90,180 100Z" fill="url(#wL)"/>
-        <path d="M180 100 C158 76,110 42,66 48" stroke="rgba(255,255,255,0.55)" stroke-width="5.5" stroke-linecap="round" fill="none"/>
-        <path d="M180 100 C200 72,252 28,312 42 C344 52,338 90,302 97 C264 106,202 90,180 100Z" fill="url(#wR)"/>
-        <path d="M180 100 C202 76,250 42,294 48" stroke="rgba(255,255,255,0.55)" stroke-width="5.5" stroke-linecap="round" fill="none"/>
-        <ellipse cx="180" cy="100" rx="26" ry="22" fill="url(#wK)"/>
-        <ellipse cx="180" cy="95" rx="13" ry="9" fill="rgba(255,255,255,0.28)"/>
-        <path d="M165 120 C148 146,116 172,88 198" stroke="#F2A7B8" stroke-width="10" stroke-linecap="round" fill="none"/>
-        <path d="M170 122 C155 148,126 174,100 198" stroke="#FDE8EC" stroke-width="5.5" stroke-linecap="round" fill="none" opacity="0.7"/>
-        <path d="M195 120 C212 146,244 172,272 198" stroke="#F2A7B8" stroke-width="10" stroke-linecap="round" fill="none"/>
-        <path d="M190 122 C205 148,234 174,260 198" stroke="#FDE8EC" stroke-width="5.5" stroke-linecap="round" fill="none" opacity="0.7"/>
-      </svg>
+      <img src="assets/images/hero-bow-balloons.png" alt="Lazo satinado rosa y globos elegantes" class="hero-bow-img" width="220" height="295" loading="eager">
     </div>
 
     <div class="hero-copy">
-      <p class="h-kicker">PLEASE JOIN US FOR A</p>
+      <p class="h-kicker">CELEBRANDO LA LLEGADA DE NUESTRA PRINCESA</p>
       <h1 class="h-baby">BABY</h1>
       <p class="h-shower">Shower</p>
       <div class="h-divider">
         <span class="hdl"></span>
-        <span class="hdm">&#9825; HONORING &#9825;</span>
+        <span class="hdm">&#9825; BIENVENIDA &#9825;</span>
         <span class="hdl"></span>
       </div>
       <h2 class="h-name">Emma Victoria</h2>
-      <p class="h-tagline">Una dulce bebe esta en camino!</p>
-      <div class="h-date-pill"><span>Sabado 24 &middot; Octubre 2026 &middot; 4:00 PM</span></div>
+      <p class="h-tagline">¡Una dulce bebé está en camino!</p>
+      <div class="h-date-pill"><span>Sábado 24 &middot; Octubre 2026 &middot; 4:00 PM</span></div>
     </div>
 
-    <div class="hero-bottom">
-      <!-- Oso watercolor con bloques BABY -->
-      <div class="bear-wrap" aria-hidden="true">
-        <img src="assets/images/bear-watercolor.jpg" alt="Osito baby shower watercolor" class="bear-img" width="188" height="252" loading="eager">
-        <!-- fallback SVG hidden -->
-        <svg viewBox="0 0 188 252" class="bear-svg" style="display:none" fill="none">
-          <rect x="4" y="168" width="52" height="52" rx="6" fill="#F0D5B0" stroke="#D4A86A" stroke-width="1.5"/>
-          <text x="30" y="203" text-anchor="middle" font-family="Palatino,serif" font-size="27" font-weight="800" fill="#A86845">B</text>
-          <rect x="60" y="174" width="50" height="50" rx="6" fill="#FBD8E2" stroke="#E8A0B0" stroke-width="1.5"/>
-          <text x="85" y="208" text-anchor="middle" font-family="Palatino,serif" font-size="26" font-weight="800" fill="#C4768A">A</text>
-          <rect x="114" y="170" width="52" height="52" rx="6" fill="#F0D5B0" stroke="#D4A86A" stroke-width="1.5"/>
-          <text x="140" y="205" text-anchor="middle" font-family="Palatino,serif" font-size="27" font-weight="800" fill="#A86845">B</text>
-          <rect x="34" y="118" width="50" height="50" rx="6" fill="#FBD8E2" stroke="#E8A0B0" stroke-width="1.5"/>
-          <text x="59" y="152" text-anchor="middle" font-family="Palatino,serif" font-size="26" font-weight="800" fill="#C4768A">Y</text>
-          <ellipse cx="100" cy="82" rx="33" ry="35" fill="#C4986A"/>
-          <ellipse cx="100" cy="86" rx="29" ry="31" fill="#D4A87A"/>
-          <ellipse cx="100" cy="94" rx="18" ry="16" fill="#E2BA90"/>
-          <ellipse cx="100" cy="48" rx="29" ry="27" fill="#C4986A"/>
-          <circle cx="75" cy="27" r="13" fill="#B8864A"/>
-          <circle cx="75" cy="27" r="9" fill="#F2A7B8"/>
-          <circle cx="125" cy="27" r="13" fill="#B8864A"/>
-          <circle cx="125" cy="27" r="9" fill="#F2A7B8"/>
-          <ellipse cx="100" cy="52" rx="21" ry="19" fill="#D4A87A"/>
-          <circle cx="91" cy="44" r="4.5" fill="#2C1A0E"/>
-          <circle cx="93" cy="42" r="1.8" fill="white"/>
-          <circle cx="109" cy="44" r="4.5" fill="#2C1A0E"/>
-          <circle cx="111" cy="42" r="1.8" fill="white"/>
-          <ellipse cx="100" cy="54" rx="5.5" ry="3.8" fill="#3A2010"/>
-          <path d="M93 59 Q100 66 107 59" stroke="#3A2010" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-          <ellipse cx="68" cy="92" rx="13" ry="11" fill="#C4986A"/>
-          <ellipse cx="132" cy="92" rx="13" ry="11" fill="#C4986A"/>
-          <path d="M100 80 C95 74,85 76,90 83 C95 88,100 81,100 81 C100 81,105 88,110 83 C115 76,105 74,100 80Z" fill="#F2A7B8"/>
-          <circle cx="100" cy="80" r="4.5" fill="#E8899A"/>
-        </svg>
+    <div class="hero-bottom hero-stork-layout">
+      <!-- Cigueña watercolor con bebe Emma Victoria -->
+      <div class="stork-wrap" aria-label="Cigueña con bebe Emma Victoria">
+        <img src="assets/images/stork-baby-clouds.png" alt="Cigueña en nubes watercolor con bebe Emma Victoria" class="stork-img" width="240" height="240" loading="eager">
       </div>
       <!-- Indicador scroll -->
       <div class="scroll-hint">
@@ -116,43 +60,6 @@
         </svg>
         <span class="scroll-label">desliza</span>
       </div>
-      <!-- Globos -->
-      <div class="balloons-wrap" aria-hidden="true">
-        <svg viewBox="0 0 138 262" class="balloons-svg" fill="none">
-          <defs>
-            <radialGradient id="bg1" cx="34%" cy="28%" r="68%">
-              <stop offset="0%" stop-color="#FEF0F4"/>
-              <stop offset="42%" stop-color="#F2A7B8"/>
-              <stop offset="100%" stop-color="#C4768A"/>
-            </radialGradient>
-            <radialGradient id="bg2" cx="34%" cy="28%" r="68%">
-              <stop offset="0%" stop-color="#FEFAE8"/>
-              <stop offset="42%" stop-color="#E8C97A"/>
-              <stop offset="100%" stop-color="#B89040"/>
-            </radialGradient>
-            <radialGradient id="bg3" cx="34%" cy="28%" r="68%">
-              <stop offset="0%" stop-color="#FEF0F4"/>
-              <stop offset="42%" stop-color="#F7C5CF"/>
-              <stop offset="100%" stop-color="#C4768A"/>
-            </radialGradient>
-          </defs>
-          <ellipse cx="36" cy="74" rx="30" ry="36" fill="url(#bg1)" opacity="0.92"/>
-          <ellipse cx="27" cy="57" rx="10" ry="7" fill="rgba(255,255,255,0.5)"/>
-          <path d="M36 110 Q33 116 36 122" stroke="#C4768A" stroke-width="1.8" fill="none"/>
-          <path d="M33 122 C28 117,21 120,26 126 C30 131,33 124,33 124 C33 124,36 131,40 126 C45 120,38 117,33 122Z" fill="#F2A7B8"/>
-          <path d="M33 128 Q42 160 52 195 Q56 214 53 234" stroke="#D4A0B4" stroke-width="1.8" fill="none"/>
-          <ellipse cx="70" cy="48" rx="28" ry="34" fill="url(#bg2)" opacity="0.92"/>
-          <ellipse cx="61" cy="32" rx="9" ry="6.5" fill="rgba(255,255,255,0.5)"/>
-          <path d="M70 82 Q67 88 70 94" stroke="#B89040" stroke-width="1.8" fill="none"/>
-          <path d="M67 94 C62 89,55 92,60 98 C64 103,67 96,67 96 C67 96,70 103,74 98 C79 92,72 89,67 94Z" fill="#E8C97A"/>
-          <path d="M67 100 Q76 132 86 167 Q90 186 87 206" stroke="#C4A050" stroke-width="1.8" fill="none"/>
-          <ellipse cx="106" cy="64" rx="26" ry="31" fill="url(#bg3)" opacity="0.92"/>
-          <ellipse cx="97" cy="49" rx="8.5" ry="6" fill="rgba(255,255,255,0.5)"/>
-          <path d="M106 95 Q103 101 106 107" stroke="#C4768A" stroke-width="1.8" fill="none"/>
-          <path d="M103 107 C98 102,91 105,96 111 C100 116,103 109,103 109 C103 109,106 116,110 111 C115 105,108 102,103 107Z" fill="#F7C5CF"/>
-          <path d="M103 113 Q112 145 122 180 Q126 199 123 219" stroke="#D4A0B4" stroke-width="1.8" fill="none"/>
-        </svg>
-      </div>
     </div>
   </section>
 
@@ -160,24 +67,8 @@
   <section id="section-date" class="full-section s-date unfold-item" aria-label="Fecha y lugar">
     <div class="deco-cloud c-left" aria-hidden="true"></div>
     <div class="deco-cloud c-right" aria-hidden="true"></div>
-    <div class="carousel-deco" aria-hidden="true">
-      <svg viewBox="0 0 190 175" class="carousel-svg" fill="none">
-        <ellipse cx="95" cy="155" rx="62" ry="12" fill="#E8C9D0" opacity="0.65"/>
-        <rect x="93" y="28" width="4" height="130" rx="2" fill="#D4A87A"/>
-        <path d="M40 82 Q95 12 150 82Z" fill="#F9D0DB"/>
-        <path d="M40 82 Q95 20 150 82Z" fill="#FDE8EC" opacity="0.65"/>
-        <path d="M40 82 Q52 94 64 82 Q76 94 88 82 Q100 94 112 82 Q124 94 136 82 Q143 94 150 82" stroke="#E8A0B0" stroke-width="3.5" fill="none"/>
-        <path d="M95 12 C89 5,79 7,85 15 C91 20,95 13,95 13 C95 13,99 20,105 15 C111 7,101 5,95 12Z" fill="#F2A7B8"/>
-        <circle cx="95" cy="12" r="4" fill="#E8899A"/>
-        <ellipse cx="66" cy="118" rx="13" ry="9" fill="#F5EAE0"/>
-        <circle cx="68" cy="110" r="7" fill="#F5EAE0"/>
-        <path d="M58 112 L53 128" stroke="#E0C8B0" stroke-width="3" stroke-linecap="round"/>
-        <path d="M69 112 L64 128" stroke="#E0C8B0" stroke-width="3" stroke-linecap="round"/>
-        <ellipse cx="126" cy="122" rx="13" ry="9" fill="#F5EAE0"/>
-        <circle cx="128" cy="114" r="7" fill="#F5EAE0"/>
-        <path d="M118 116 L113 132" stroke="#E0C8B0" stroke-width="3" stroke-linecap="round"/>
-        <path d="M129 116 L124 132" stroke="#E0C8B0" stroke-width="3" stroke-linecap="round"/>
-      </svg>
+    <div class="bear-date-deco" aria-hidden="true">
+      <img src="assets/images/bear-watercolor.png" alt="Osito tierno con cubos BABY" class="bear-date-img" width="140" height="140" loading="lazy">
     </div>
     <div class="date-content">
       <p class="s-kicker">Te esperamos el dia</p>
@@ -213,25 +104,7 @@
   <!-- CAPITULO 3: RSVP + DRESS CODE -->
   <section id="section-rsvp" class="full-section s-rsvp unfold-item" aria-label="Confirmacion de asistencia">
     <div class="gift-deco" aria-hidden="true">
-      <svg viewBox="0 0 160 168" class="gift-svg" fill="none">
-        <defs>
-          <radialGradient id="gbox" cx="36%" cy="30%" r="72%">
-            <stop offset="0%" stop-color="#FDE8EC"/>
-            <stop offset="100%" stop-color="#E8899A"/>
-          </radialGradient>
-        </defs>
-        <rect x="18" y="88" width="124" height="72" rx="9" fill="url(#gbox)"/>
-        <rect x="13" y="72" width="134" height="22" rx="7" fill="#F2A7B8"/>
-        <rect x="70" y="72" width="20" height="88" fill="#D4738A" opacity="0.45" rx="5"/>
-        <rect x="13" y="79" width="134" height="8" fill="#D4738A" opacity="0.45" rx="3"/>
-        <path d="M80 72 C74 60,56 63,63 74 C70 82,80 72,80 72 C80 72,90 82,97 74 C104 63,86 60,80 72Z" fill="#F9D0DB"/>
-        <path d="M80 72 C74 60,56 63,63 74" stroke="rgba(255,255,255,0.45)" stroke-width="3.5" fill="none"/>
-        <path d="M80 72 C86 60,104 63,97 74" stroke="rgba(255,255,255,0.45)" stroke-width="3.5" fill="none"/>
-        <circle cx="80" cy="72" r="7.5" fill="#E8899A"/>
-        <path d="M72 72 L52 44" stroke="#F2A7B8" stroke-width="6" stroke-linecap="round"/>
-        <path d="M88 72 L108 44" stroke="#F2A7B8" stroke-width="6" stroke-linecap="round"/>
-        <rect x="24" y="94" width="38" height="22" rx="5" fill="rgba(255,255,255,0.18)"/>
-      </svg>
+      <img src="assets/images/gift-box-flowers.png" alt="Caja de regalos y peonias watercolor" class="gift-box-img" width="140" height="187" loading="lazy">
     </div>
     <div class="rsvp-content">
       <p class="s-kicker">Confirma tu presencia</p>
@@ -288,30 +161,7 @@
       <span class="bf b3"></span>
     </div>
     <div class="shoes-deco" aria-hidden="true">
-      <svg viewBox="0 0 210 108" class="shoes-svg" fill="none">
-        <defs>
-          <radialGradient id="sg" cx="38%" cy="32%" r="68%">
-            <stop offset="0%" stop-color="#FDE8EC"/>
-            <stop offset="100%" stop-color="#D4738A"/>
-          </radialGradient>
-        </defs>
-        <path d="M8 78 Q14 46 42 40 Q63 36 72 52 L78 78 Q50 86 8 78Z" fill="url(#sg)"/>
-        <path d="M8 78 Q50 88 78 78" stroke="#C4768A" stroke-width="2" fill="none"/>
-        <rect x="23" y="40" width="32" height="11" rx="5.5" fill="#E8899A"/>
-        <path d="M35 38 C29 30,20 33,27 40 C33 46,35 38,35 38 C35 38,37 46,43 40 C50 33,41 30,35 38Z" fill="#F9D0DB"/>
-        <circle cx="35" cy="38" r="3.8" fill="#E8899A"/>
-        <circle cx="29" cy="62" r="2" fill="#F9D0DB"/>
-        <circle cx="40" cy="65" r="2" fill="#F9D0DB"/>
-        <circle cx="51" cy="62" r="2" fill="#F9D0DB"/>
-        <path d="M202 78 Q196 46 168 40 Q147 36 138 52 L132 78 Q160 86 202 78Z" fill="url(#sg)" opacity="0.92"/>
-        <path d="M202 78 Q160 88 132 78" stroke="#C4768A" stroke-width="2" fill="none"/>
-        <rect x="155" y="40" width="32" height="11" rx="5.5" fill="#E8899A"/>
-        <path d="M175 38 C169 30,160 33,167 40 C173 46,175 38,175 38 C175 38,177 46,183 40 C190 33,181 30,175 38Z" fill="#F9D0DB"/>
-        <circle cx="175" cy="38" r="3.8" fill="#E8899A"/>
-        <circle cx="169" cy="62" r="2" fill="#F9D0DB"/>
-        <circle cx="158" cy="65" r="2" fill="#F9D0DB"/>
-        <circle cx="147" cy="62" r="2" fill="#F9D0DB"/>
-      </svg>
+      <img src="assets/images/baby-shoes-butterflies.png" alt="Zapatitos de bebe y mariposas doradas watercolor" class="shoes-img" width="220" height="148" loading="lazy">
     </div>
     <div class="program-content">
       <p class="s-kicker">El gran dia</p>

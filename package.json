@@ -4,8 +4,8 @@
   "description": "Invitacion interactiva Baby Shower Emma Victoria",
   "main": "local-server.js",
   "scripts": {
-    "test": "jest --no-coverage",
-    "test:watch": "jest --watch",
+    "test": "node --test",
+    "test:watch": "node --test --watch",
     "start": "node local-server.js",
     "dev": "node local-server.js"
   },

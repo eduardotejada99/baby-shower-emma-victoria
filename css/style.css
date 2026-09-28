@@ -131,6 +131,29 @@ body.baby-girl-invitation {
 .music-fab.is-playing .music-rings { display: block; }
 .music-fab.is-playing .music-icon { animation: iconPulse 1.2s ease-in-out infinite; }
 
+.music-tip {
+  position: absolute;
+  right: 62px;
+  white-space: nowrap;
+  background: rgba(255,255,255,.96);
+  backdrop-filter: blur(10px);
+  color: var(--deep-rose);
+  font-size: .74rem;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 9999px;
+  box-shadow: 0 4px 16px rgba(196,118,138,.28);
+  border: 1px solid var(--pink-mid);
+  pointer-events: none;
+  letter-spacing: .3px;
+  animation: tipPulse 2.5s ease-in-out infinite;
+}
+.music-fab.is-playing .music-tip { display: none; }
+@keyframes tipPulse {
+  0%, 100% { opacity: .92; transform: translateX(0); }
+  50% { opacity: 1; transform: translateX(-4px); }
+}
+
 /* ── Nav pill ────────────────────────────────────────────────── */
 .nav-pill {
   position: fixed;
@@ -228,14 +251,23 @@ body.baby-girl-invitation {
   opacity: .48;
 }
 
-/* Lazo */
+/* Lazo satinado y globos PNG */
 .bow-wrap {
-  width: min(320px, 88vw);
-  margin-bottom: -8px;
+  width: min(230px, 62vw);
+  margin-bottom: -10px;
   z-index: 3;
-  filter: drop-shadow(0 6px 14px rgba(196,118,138,.22));
+  filter: drop-shadow(0 8px 22px rgba(196,118,138,.25));
+  animation: gentleSway 5s ease-in-out infinite;
 }
-.bow-svg { width: 100%; height: auto; }
+.hero-bow-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+@keyframes gentleSway {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-5px) rotate(1deg); }
+}
 
 /* Texto central */
 .hero-copy {
@@ -308,25 +340,40 @@ body.baby-girl-invitation {
   letter-spacing: .5px;
 }
 
-/* Fila inferior (oso | scroll | globos) */
-.hero-bottom {
+/* Fila inferior (Cigueña Stork + scroll hint) */
+.hero-stork-layout {
   display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
   width: 100%;
   max-width: 420px;
   margin-top: 8px;
   z-index: 3;
 }
-.bear-wrap { width: clamp(110px, 32vw, 156px); flex-shrink: 0; }
-.bear-svg { width: 100%; height: auto; }
-.bear-img {
+
+.stork-wrap {
+  width: clamp(170px, 46vw, 240px);
+  display: flex;
+  justify-content: center;
+  filter: drop-shadow(0 8px 24px rgba(196,118,138,.28));
+  animation: floatStork 4.5s ease-in-out infinite;
+}
+
+.stork-img {
   width: 100%;
   height: auto;
   display: block;
-  border-radius: 4px;
-  mix-blend-mode: multiply; /* elimina el fondo blanco del JPG */
-  filter: drop-shadow(0 4px 12px rgba(196,118,138,.18));
+  transition: transform .4s var(--ease);
+}
+.stork-wrap:hover .stork-img {
+  transform: scale(1.05) rotate(-2deg);
+}
+
+@keyframes floatStork {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(-1.5deg); }
 }
 
 .scroll-hint {
@@ -334,7 +381,7 @@ body.baby-girl-invitation {
   flex-direction: column;
   align-items: center;
   gap: 4px;
-  padding-bottom: 8px;
+  padding-bottom: 6px;
   animation: gentleBounce 2.2s ease-in-out infinite;
 }
 .scroll-dot { animation: dotSlide 1.4s ease-in-out infinite; }
@@ -345,9 +392,6 @@ body.baby-girl-invitation {
   color: var(--text-light);
   text-transform: uppercase;
 }
-
-.balloons-wrap { width: clamp(90px, 28vw, 130px); flex-shrink: 0; }
-.balloons-svg { width: 100%; height: auto; }
 
 /* ============================================================
    CAPÍTULO 2 · FECHA Y LUGAR
@@ -366,15 +410,25 @@ body.baby-girl-invitation {
 .c-left  { top: 22%; left: -50px; width: 170px; height: 110px; }
 .c-right { bottom: 20%; right: -50px; width: 150px; height: 96px; }
 
-.carousel-deco {
+.bear-date-deco {
   position: absolute;
-  top: 58px;
-  right: -8px;
-  width: clamp(100px, 22vw, 148px);
-  opacity: .72;
+  top: 48px;
+  right: clamp(10px, 4vw, 36px);
+  width: clamp(85px, 20vw, 130px);
+  z-index: 2;
   pointer-events: none;
+  filter: drop-shadow(0 6px 18px rgba(196,118,138,.2));
+  animation: gentleFloat 4s ease-in-out infinite;
 }
-.carousel-svg { width: 100%; height: auto; }
+.bear-date-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+@keyframes gentleFloat {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
 
 .date-content {
   text-align: center;
@@ -536,15 +590,20 @@ body.baby-girl-invitation {
 
 .gift-deco {
   position: absolute;
-  top: 62px;
+  top: 36px;
   left: 50%;
   transform: translateX(-50%);
-  width: clamp(80px, 18vw, 112px);
-  opacity: .82;
+  width: clamp(90px, 22vw, 135px);
+  z-index: 2;
   pointer-events: none;
-  z-index: 1;
+  filter: drop-shadow(0 8px 24px rgba(196,118,138,.28));
+  animation: gentleFloat 4.2s ease-in-out infinite .6s;
 }
-.gift-svg { width: 100%; height: auto; }
+.gift-box-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
 
 .rsvp-content {
   text-align: center;
@@ -695,14 +754,20 @@ body.baby-girl-invitation {
   background: linear-gradient(180deg,var(--cream) 0%,var(--blush-pale) 55%,var(--cream) 100%);
 }
 
-/* Zapatillas deco */
+/* Zapatillas y mariposas deco */
 .shoes-deco {
-  width: clamp(160px, 48vw, 210px);
-  opacity: .82;
+  width: clamp(160px, 46vw, 220px);
   margin-bottom: 6px;
   z-index: 2;
+  filter: drop-shadow(0 8px 22px rgba(196,118,138,.22));
+  animation: gentleFloat 4s ease-in-out infinite;
 }
-.shoes-svg { width: 100%; height: auto; }
+.shoes-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
 
 .program-content {
   text-align: center;
