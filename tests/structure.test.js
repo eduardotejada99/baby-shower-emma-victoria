@@ -25,7 +25,7 @@ test('Estructura de archivos y assets SVG requeridos existen', () => {
 test('index.html contiene todas las secciones, IDs interactivos y metadatos clave', () => {
   const html = fs.readFileSync(path.join(rootDir, 'index.html'), 'utf8');
 
-  assert.ok(html.includes('Emma Victoria'), 'Debe contener el nombre de la bebé');
+  assert.ok(html.includes('Sofía') || html.includes('Sofia'), 'Debe contener el nombre de la bebé');
   assert.ok(html.includes('id="canvas-particles"'), 'Debe contener el canvas de partículas');
   assert.ok(html.includes('id="wax-seal"'), 'Debe contener el sello de cera');
   assert.ok(html.includes('id="countdown-timer"'), 'Debe contener el contenedor de la cuenta regresiva');

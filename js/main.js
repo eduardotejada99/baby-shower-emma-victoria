@@ -184,7 +184,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       // Construir mensaje WhatsApp
-      let msg = `¡Hola Sofía! Confirmo mi asistencia al Baby Shower de Emma Victoria 🎀\n\n👤 *${name}*\n👥 Pases: ${passes}`;
+      let msg = `¡Hola Maricielo y Arturo! Confirmo mi asistencia al Baby Shower de Sofía 🎀\n\n👤 *${name}*\n👥 Pases: ${passes}`;
       if (wishes) msg += `\n💕 Deseo: ${wishes}`;
       const url = `https://api.whatsapp.com/send?phone=51999999999&text=${encodeURIComponent(msg)}`;
 
@@ -294,12 +294,12 @@ document.addEventListener('DOMContentLoaded', () => {
       const ics = [
         'BEGIN:VCALENDAR',
         'VERSION:2.0',
-        'PRODID:-//Emma Victoria Baby Shower//ES',
+        'PRODID:-//Sofia Baby Shower//ES',
         'BEGIN:VEVENT',
         'DTSTART:20261024T160000',
         'DTEND:20261024T210000',
-        'SUMMARY:Baby Shower de Emma Victoria 🎀',
-        'DESCRIPTION:Una dulce bebe esta en camino! Te esperamos.',
+        'SUMMARY:Baby Shower de Sofía 🎀',
+        'DESCRIPTION:¡Una dulce bebé está en camino! Te invitamos a celebrar junto a la Familia Tejada Dávila.',
         'LOCATION:Jardin de Ensueno Las Rosas\\, Av. Los Jazmines 450\\, Valle Hermoso',
         'END:VEVENT',
         'END:VCALENDAR'
@@ -309,7 +309,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const url  = URL.createObjectURL(blob);
       const a    = document.createElement('a');
       a.href     = url;
-      a.download = 'baby-shower-emma-victoria.ics';
+      a.download = 'baby-shower-sofia.ics';
       a.click();
       URL.revokeObjectURL(url);
     });

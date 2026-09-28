@@ -52,6 +52,6 @@ test('formatWhatsAppRsvpMessage genera el mensaje formateado para enviar a Whats
   const decoded = decodeURIComponent(link);
   assert.ok(decoded.includes('Familia Perez'));
   assert.ok(decoded.includes('Confirmación de Asistencia'));
-  assert.ok(decoded.includes('Emma Victoria'));
+  assert.ok(decoded.includes('Sofía') || decoded.includes('Sofia'));
   assert.ok(decoded.includes('Muchas felicidades y bendiciones'));
 });

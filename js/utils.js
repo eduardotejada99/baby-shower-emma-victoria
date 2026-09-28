@@ -56,13 +56,14 @@ function formatWhatsAppRsvpMessage({ phone = '51999999999', guestName, attending
   const attendingText = isAttending ? '¡Sí, con mucho gusto asistiré! 💖' : 'Con mucho pesar no podré asistir esta vez 💌';
   
   let message = `🌸 *Confirmación de Asistencia* 🌸\n` +
-    `*Baby Shower de Emma Victoria* ✨\n\n` +
+    `*Baby Shower de Sofía* ✨\n` +
+    `*Familia Tejada Dávila*\n\n` +
     `👤 *Invitado / Familia:* ${guestName}\n` +
     `💌 *Asistencia:* ${attendingText}\n` +
     (isAttending ? `🎟️ *Pases / Personas:* ${passes}\n` : '');
 
   if (wishes && wishes.trim().length > 0) {
-    message += `\n💖 *Mensaje para la bebé y sus papás:*\n"${wishes.trim()}"\n`;
+    message += `\n💖 *Mensaje para Sofía y sus papás (Maricielo & Arturo):*\n"${wishes.trim()}"\n`;
   }
 
   message += `\n¡Muchas gracias por la hermosa invitación! 🎀`;
