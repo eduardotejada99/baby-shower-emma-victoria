@@ -1,0 +1,983 @@
+/* ==========================================================================
+   SISTEMA DE DISEÑO: BABY SHOWER "CUENTO DE HADAS & ENSUEÑO"
+   ========================================================================== */
+
+:root {
+  /* Paleta cromática HSL calibrada */
+  --color-ivory: #FAF8F6;
+  --color-white: #FFFFFF;
+  --color-blush: #F4E7EB;
+  --color-blush-light: #FBF4F6;
+  --color-blush-deep: #E8BAC9;
+  --color-mauve: #C98B9E;
+  --color-mauve-dark: #8B5A6A;
+  --color-gold: #D4AF37;
+  --color-gold-light: #FFEAA7;
+  --color-gold-dark: #B8860B;
+  --color-gold-gradient: linear-gradient(135deg, #FFF1C5 0%, #DFB76C 45%, #B8860B 100%);
+  
+  /* Contraste tipográfico */
+  --color-text-main: #34272F;
+  --color-text-muted: #6E5865;
+  --color-text-light: #9C8593;
+
+  /* Tipografías */
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-script: 'Great Vibes', cursive;
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+
+  /* Glassmorphism y profundidad */
+  --glass-bg: rgba(255, 255, 255, 0.76);
+  --glass-border: rgba(255, 255, 255, 0.7);
+  --glass-shadow: 0 20px 45px -15px rgba(139, 90, 106, 0.14), 0 0 1px rgba(139, 90, 106, 0.18);
+  --glass-shadow-hover: 0 25px 50px -12px rgba(139, 90, 106, 0.22), 0 0 1px rgba(139, 90, 106, 0.25);
+
+  /* Curvaturas y radios */
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 28px;
+  --radius-full: 9999px;
+
+  /* Transiciones */
+  --transition-smooth: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-fast: all 0.25s ease-out;
+}
+
+/* Reseteo y Base */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  background-color: var(--color-ivory);
+  color: var(--color-text-main);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+  background: 
+    radial-gradient(circle at 10% 20%, rgba(244, 211, 220, 0.5) 0%, transparent 40%),
+    radial-gradient(circle at 90% 60%, rgba(232, 186, 201, 0.35) 0%, transparent 45%),
+    radial-gradient(circle at 50% 90%, rgba(255, 234, 167, 0.25) 0%, transparent 50%),
+    var(--color-ivory);
+}
+
+/* Lienzo de Partículas en Segundo Plano */
+#canvas-particles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Botón Flotante de Audio */
+.audio-toggle-btn {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 100;
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-full);
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1.5px solid var(--color-gold-light);
+  box-shadow: 0 8px 24px rgba(139, 90, 106, 0.15);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition-fast);
+}
+
+.audio-toggle-btn:hover {
+  transform: scale(1.08);
+  border-color: var(--color-gold);
+  box-shadow: 0 10px 28px rgba(212, 175, 55, 0.3);
+}
+
+.audio-icon {
+  transition: transform 0.3s ease;
+}
+
+.audio-toggle-btn.is-playing .audio-icon {
+  animation: rotateMusic 4s linear infinite;
+}
+
+.audio-wave {
+  position: absolute;
+  bottom: 6px;
+  display: flex;
+  gap: 2px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.audio-toggle-btn.is-playing .audio-wave {
+  opacity: 1;
+}
+
+.audio-wave span {
+  width: 2px;
+  height: 8px;
+  background: var(--color-gold);
+  border-radius: 2px;
+  animation: wavePulse 1s ease-in-out infinite;
+}
+
+.audio-wave span:nth-child(2) { animation-delay: 0.2s; }
+.audio-wave span:nth-child(3) { animation-delay: 0.4s; }
+
+/* Contenedor Principal */
+.page-container {
+  position: relative;
+  z-index: 2;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 20px 80px 20px;
+}
+
+/* ==========================================================================
+   CAPÍTULO 0: HERO & SELLO DE CERA
+   ========================================================================== */
+.hero-chapter {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 40px 0;
+}
+
+.clouds-backdrop {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.cloud {
+  position: absolute;
+  background: radial-gradient(circle, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0) 70%);
+  border-radius: 50%;
+  filter: blur(24px);
+  opacity: 0.7;
+  animation: floatCloud 25s ease-in-out infinite alternate;
+}
+
+.cloud-1 { width: 350px; height: 180px; top: 10%; left: -80px; }
+.cloud-2 { width: 400px; height: 200px; top: 40%; right: -120px; animation-duration: 32s; }
+.cloud-3 { width: 300px; height: 150px; bottom: 15%; left: 10%; animation-duration: 20s; }
+
+.hero-envelope-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.hero-envelope {
+  width: 100%;
+  max-width: 480px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1.5px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--glass-shadow);
+  padding: 48px 28px 40px;
+  text-align: center;
+  position: relative;
+  overflow: visible;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s ease;
+}
+
+.hero-envelope:hover {
+  box-shadow: var(--glass-shadow-hover);
+}
+
+.hero-badge {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--color-mauve-dark);
+  background: rgba(244, 231, 235, 0.85);
+  border: 1px solid var(--color-blush-deep);
+  padding: 6px 18px;
+  border-radius: var(--radius-full);
+  margin-bottom: 20px;
+}
+
+.hero-script-intro {
+  font-family: var(--font-script);
+  font-size: 2.2rem;
+  color: var(--color-mauve);
+  line-height: 1.2;
+  margin-bottom: 4px;
+}
+
+.hero-title {
+  font-family: var(--font-serif);
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: var(--color-text-main);
+  letter-spacing: -0.5px;
+  line-height: 1.15;
+  margin-bottom: 6px;
+}
+
+.hero-subtitle {
+  font-family: var(--font-sans);
+  font-size: 1.05rem;
+  font-weight: 300;
+  color: var(--color-text-muted);
+  letter-spacing: 1px;
+}
+
+.decorative-wreath-wrap {
+  margin: 18px auto 0;
+  display: flex;
+  justify-content: center;
+}
+
+.decorative-wreath {
+  max-width: 160px;
+  height: auto;
+  opacity: 0.9;
+}
+
+/* Sello de Cera Dorado */
+.wax-seal-container {
+  position: absolute;
+  bottom: -45px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90px;
+  height: 90px;
+  cursor: pointer;
+  z-index: 10;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.5s ease;
+}
+
+.wax-seal-container:hover {
+  transform: translateX(-50%) scale(1.08);
+}
+
+.seal-image {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.seal-glow {
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 234, 167, 0.5) 0%, transparent 70%);
+  animation: pulseSeal 2.5s infinite ease-in-out;
+  pointer-events: none;
+}
+
+.wax-seal-container.is-broken {
+  transform: translateX(-50%) scale(1.25);
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Indicador de Desplazamiento (Scroll prompt) */
+.scroll-prompt {
+  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: var(--color-mauve-dark);
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+  animation: bounceSlow 2.2s infinite ease-in-out;
+}
+
+.scroll-prompt-text {
+  font-weight: 500;
+}
+
+/* ==========================================================================
+   TARJETAS Y CAPÍTULOS DE HISTORIA
+   ========================================================================== */
+.chapter {
+  margin-top: 60px;
+}
+
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1.5px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--glass-shadow);
+  padding: 44px 28px;
+  position: relative;
+  text-align: center;
+  transition: var(--transition-smooth);
+}
+
+.glass-card:hover {
+  box-shadow: var(--glass-shadow-hover);
+}
+
+/* Animación Scroll Reveal */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.scroll-reveal.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.chapter-number {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--color-gold-dark);
+  margin-bottom: 12px;
+}
+
+.script-headline {
+  font-family: var(--font-script);
+  font-size: 2.1rem;
+  color: var(--color-mauve);
+  line-height: 1.25;
+  margin-bottom: 12px;
+}
+
+.section-title {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  color: var(--color-text-main);
+  font-weight: 700;
+  letter-spacing: -0.3px;
+  margin-bottom: 10px;
+}
+
+.section-intro {
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+  max-width: 480px;
+  margin: 0 auto 28px;
+}
+
+/* Decoraciones de esquina */
+.card-corner-decorations .corner {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-color: var(--color-blush-deep);
+  opacity: 0.6;
+}
+
+.corner.tl { top: 12px; left: 12px; border-top: 1.5px solid; border-left: 1.5px solid; }
+.corner.tr { top: 12px; right: 12px; border-top: 1.5px solid; border-right: 1.5px solid; }
+.corner.bl { bottom: 12px; left: 12px; border-bottom: 1.5px solid; border-left: 1.5px solid; }
+.corner.br { bottom: 12px; right: 12px; border-bottom: 1.5px solid; border-right: 1.5px solid; }
+
+/* ==========================================================================
+   CAPÍTULO 1: REVELACIÓN DEL NOMBRE
+   ========================================================================== */
+.baby-name-container {
+  position: relative;
+  display: inline-block;
+  margin: 16px 0 24px;
+}
+
+.baby-name {
+  font-family: var(--font-serif);
+  font-size: 3.2rem;
+  font-weight: 700;
+  background: var(--color-gold-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 2px 4px rgba(184, 134, 11, 0.25));
+  letter-spacing: 0.5px;
+  line-height: 1.1;
+}
+
+.name-shimmer {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.8) 50%, transparent 100%);
+  background-size: 200% 100%;
+  animation: shimmer 4s infinite;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+}
+
+.story-dedication {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--color-text-main);
+  max-width: 520px;
+  margin: 0 auto 32px;
+}
+
+.name-meanings {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  background: rgba(244, 231, 235, 0.6);
+  border: 1px solid rgba(232, 186, 201, 0.5);
+  border-radius: var(--radius-md);
+  padding: 16px 20px;
+  margin-bottom: 28px;
+}
+
+.meaning-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.meaning-name {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--color-mauve-dark);
+}
+
+.meaning-desc {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+}
+
+.meaning-divider {
+  color: var(--color-gold);
+  font-size: 0.9rem;
+}
+
+.parents-signature {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.signature-label {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
+.parents-names {
+  font-family: var(--font-script);
+  font-size: 2.2rem;
+  color: var(--color-mauve-dark);
+}
+
+/* ==========================================================================
+   CAPÍTULO 2: CUENTA REGRESIVA
+   ========================================================================== */
+.event-date-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 234, 167, 0.45);
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  padding: 10px 22px;
+  border-radius: var(--radius-full);
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text-main);
+  margin-bottom: 32px;
+}
+
+.countdown-grid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.countdown-unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.countdown-card {
+  width: 72px;
+  height: 72px;
+  background: var(--color-white);
+  border: 1.5px solid var(--color-blush-deep);
+  border-radius: var(--radius-md);
+  box-shadow: 0 8px 20px rgba(139, 90, 106, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.countdown-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--color-gold);
+}
+
+.countdown-value {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-mauve-dark);
+}
+
+.countdown-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-weight: 600;
+  color: var(--color-text-muted);
+}
+
+.countdown-separator {
+  font-family: var(--font-serif);
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--color-blush-deep);
+  margin-bottom: 22px;
+}
+
+.calendar-action {
+  display: flex;
+  justify-content: center;
+}
+
+/* Botones Universales */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 28px;
+  border-radius: var(--radius-full);
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  transition: var(--transition-fast);
+}
+
+.btn-primary {
+  background: var(--color-gold-gradient);
+  color: #382400;
+  box-shadow: 0 10px 25px rgba(212, 175, 55, 0.35);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px rgba(212, 175, 55, 0.45);
+}
+
+.btn-secondary {
+  background: var(--color-white);
+  color: var(--color-mauve-dark);
+  border: 1.5px solid var(--color-blush-deep);
+  box-shadow: 0 6px 18px rgba(139, 90, 106, 0.08);
+}
+
+.btn-secondary:hover {
+  background: var(--color-blush-light);
+  border-color: var(--color-mauve);
+  transform: translateY(-2px);
+}
+
+.btn-block {
+  width: 100%;
+}
+
+/* ==========================================================================
+   CAPÍTULO 3: UBICACIÓN
+   ========================================================================== */
+.venue-info {
+  margin-bottom: 24px;
+}
+
+.venue-icon-wrap {
+  width: 60px;
+  height: 60px;
+  border-radius: var(--radius-full);
+  background: rgba(244, 231, 235, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px;
+  border: 1px solid var(--color-blush-deep);
+}
+
+.venue-name {
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--color-text-main);
+  margin-bottom: 6px;
+}
+
+.venue-address {
+  font-size: 1rem;
+  color: var(--color-text-muted);
+  margin-bottom: 6px;
+}
+
+.venue-notes {
+  font-size: 0.85rem;
+  color: var(--color-mauve-dark);
+  font-style: italic;
+}
+
+.map-preview-wrap {
+  margin-bottom: 28px;
+}
+
+.map-placeholder {
+  width: 100%;
+  height: 140px;
+  border-radius: var(--radius-md);
+  background: 
+    linear-gradient(rgba(244, 231, 235, 0.4), rgba(244, 231, 235, 0.4)),
+    repeating-linear-gradient(45deg, #FAF8F6, #FAF8F6 10px, #F5EFF2 10px, #F5EFF2 20px);
+  border: 1.5px solid var(--color-blush-deep);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  position: relative;
+  overflow: hidden;
+}
+
+.map-pin-pulse {
+  width: 18px;
+  height: 18px;
+  background: var(--color-gold);
+  border-radius: 50%;
+  box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7);
+  animation: pulsePin 2s infinite;
+}
+
+.map-label {
+  font-family: var(--font-serif);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-text-main);
+}
+
+.location-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+@media (min-width: 540px) {
+  .location-actions {
+    flex-direction: row;
+    justify-content: center;
+  }
+}
+
+/* ==========================================================================
+   CAPÍTULO 4: DRESS CODE INTERACTIVO
+   ========================================================================== */
+.color-palette-picker {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  margin: 24px 0 28px;
+}
+
+.color-swatch {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background-color: var(--swatch-color);
+  border: 3px solid var(--color-white);
+  box-shadow: 0 6px 16px rgba(139, 90, 106, 0.15);
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.color-swatch:hover {
+  transform: scale(1.12);
+  box-shadow: 0 8px 22px rgba(139, 90, 106, 0.25);
+}
+
+.color-swatch.active {
+  transform: scale(1.18);
+  border-color: var(--color-gold);
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.35), 0 10px 24px rgba(139, 90, 106, 0.25);
+}
+
+.swatch-check {
+  font-size: 1.1rem;
+  color: var(--color-text-main);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  font-weight: bold;
+}
+
+.color-swatch.active .swatch-check {
+  opacity: 1;
+}
+
+.color-display-panel {
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid var(--color-blush-deep);
+  border-radius: var(--radius-md);
+  padding: 16px 20px;
+  max-width: 400px;
+  margin: 0 auto;
+  transition: var(--transition-fast);
+}
+
+.color-name {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--color-mauve-dark);
+  margin-bottom: 4px;
+}
+
+.color-desc {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+}
+
+/* ==========================================================================
+   CAPÍTULO 5: FORMULARIO RSVP
+   ========================================================================== */
+.rsvp-form {
+  text-align: left;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.form-group {
+  margin-bottom: 22px;
+}
+
+.form-label {
+  display: block;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--color-text-main);
+  margin-bottom: 8px;
+}
+
+.form-input,
+.form-select,
+.form-textarea {
+  width: 100%;
+  padding: 12px 16px;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  color: var(--color-text-main);
+  background: rgba(255, 255, 255, 0.85);
+  border: 1.5px solid var(--color-blush-deep);
+  border-radius: var(--radius-md);
+  outline: none;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+  border-color: var(--color-gold);
+  box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.15);
+}
+
+.form-error {
+  display: block;
+  font-size: 0.8rem;
+  color: #C0392B;
+  margin-top: 5px;
+  min-height: 18px;
+}
+
+.attendance-options {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+@media (min-width: 480px) {
+  .attendance-options {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.radio-card {
+  position: relative;
+  cursor: pointer;
+}
+
+.radio-card input {
+  position: absolute;
+  opacity: 0;
+}
+
+.radio-card-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 14px 16px;
+  background: rgba(255, 255, 255, 0.8);
+  border: 1.5px solid var(--color-blush-deep);
+  border-radius: var(--radius-md);
+  transition: var(--transition-fast);
+}
+
+.radio-card input:checked + .radio-card-content {
+  border-color: var(--color-gold);
+  background: rgba(255, 234, 167, 0.25);
+  box-shadow: 0 4px 14px rgba(212, 175, 55, 0.2);
+}
+
+.radio-card-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-text-main);
+}
+
+.radio-card-sub {
+  font-size: 0.78rem;
+  color: var(--color-text-muted);
+}
+
+.rsvp-note {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  text-align: center;
+  margin-top: 14px;
+}
+
+/* ==========================================================================
+   PIE DE PÁGINA
+   ========================================================================== */
+.page-footer {
+  margin-top: 80px;
+  text-align: center;
+  color: var(--color-text-muted);
+}
+
+.footer-blessing {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 0.95rem;
+  margin: 16px auto 8px;
+  max-width: 440px;
+}
+
+.footer-family {
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+}
+
+/* ==========================================================================
+   KEYFRAMES Y ANIMACIONES
+   ========================================================================== */
+@keyframes pulseSeal {
+  0%, 100% { transform: scale(1); opacity: 0.5; }
+  50% { transform: scale(1.15); opacity: 0.85; }
+}
+
+@keyframes bounceSlow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(8px); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes pulsePin {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7); }
+  70% { transform: scale(1); box-shadow: 0 0 0 14px rgba(212, 175, 55, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
+}
+
+@keyframes rotateMusic {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes wavePulse {
+  0%, 100% { height: 4px; }
+  50% { height: 12px; }
+}
+
+@keyframes floatCloud {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(35px); }
+}
+
+/* ==========================================================================
+   ACCESIBILIDAD Y RESPONSIVE
+   ========================================================================== */
+@media (max-width: 480px) {
+  .hero-title { font-size: 2.3rem; }
+  .baby-name { font-size: 2.6rem; }
+  .countdown-card { width: 62px; height: 62px; }
+  .countdown-value { font-size: 1.7rem; }
+  .countdown-separator { font-size: 1.4rem; margin-bottom: 18px; }
+  .glass-card { padding: 36px 20px; }
+  .name-meanings { flex-direction: column; gap: 8px; }
+  .meaning-divider { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .scroll-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
