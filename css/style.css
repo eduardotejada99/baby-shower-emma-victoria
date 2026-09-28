@@ -251,23 +251,169 @@ body.baby-girl-invitation {
   opacity: .48;
 }
 
-/* Lazo satinado y globos PNG */
-.bow-wrap {
-  width: min(230px, 62vw);
-  margin-bottom: -10px;
-  z-index: 3;
-  filter: drop-shadow(0 8px 22px rgba(196,118,138,.25));
-  animation: gentleSway 5s ease-in-out infinite;
+/* Guirnaldas laterales de acuarela floral */
+.side-garland {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: clamp(65px, 14vw, 120px);
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+  opacity: 0.85;
 }
-.hero-bow-img {
+.side-garland-left {
+  left: 0;
+}
+.side-garland-right {
+  right: 0;
+}
+.garland-img {
   width: 100%;
   height: auto;
   display: block;
+  filter: drop-shadow(0 4px 14px rgba(196,118,138,0.15));
+  animation: gentleGarlandSway 6s ease-in-out infinite;
 }
-@keyframes gentleSway {
+.side-garland-right .garland-img {
+  animation-delay: -3s;
+}
+@keyframes gentleGarlandSway {
   0%, 100% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-5px) rotate(1deg); }
+  50% { transform: translateY(-6px) rotate(0.8deg); }
 }
+
+/* Mariposas acuarela realistas con aleteo 3D */
+.butterflies-container, .side-butterflies {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 4;
+}
+.real-butterfly {
+  position: absolute;
+  display: block;
+  pointer-events: none;
+  filter: drop-shadow(0 4px 10px rgba(196,118,138,0.32));
+  transform-origin: center center;
+  animation: butterflyFlutter 0.65s ease-in-out infinite alternate;
+  will-change: transform;
+}
+@keyframes butterflyFlutter {
+  0% { transform: scaleX(1) rotate(var(--rot, 0deg)); }
+  50% { transform: scaleX(0.35) rotate(calc(var(--rot, 0deg) + 6deg)); }
+  100% { transform: scaleX(0.92) rotate(calc(var(--rot, 0deg) - 4deg)); }
+}
+
+/* Posicionamiento y deriva de mariposas realistas */
+.bf-hero-1 {
+  top: 14%;
+  right: clamp(16px, 8vw, 44px);
+  --rot: 15deg;
+  animation: butterflyFlutter 0.6s ease-in-out infinite alternate, heroBfDrift1 5s ease-in-out infinite;
+}
+.bf-hero-2 {
+  top: 50%;
+  left: clamp(14px, 6vw, 36px);
+  --rot: -20deg;
+  animation: butterflyFlutter 0.7s ease-in-out infinite alternate, heroBfDrift2 6s ease-in-out infinite;
+}
+.bf-side-1 {
+  top: 16%;
+  right: clamp(16px, 8vw, 42px);
+  --rot: 24deg;
+  animation: butterflyFlutter 0.65s ease-in-out infinite alternate, dateBfDrift1 5.5s ease-in-out infinite;
+}
+.bf-side-2 {
+  top: 62%;
+  left: clamp(12px, 6vw, 34px);
+  --rot: -16deg;
+  animation: butterflyFlutter 0.75s ease-in-out infinite alternate, dateBfDrift2 6.5s ease-in-out infinite;
+}
+.bf-side-3 {
+  top: 24%;
+  right: clamp(14px, 7vw, 34px);
+  --rot: 12deg;
+  animation: butterflyFlutter 0.7s ease-in-out infinite alternate, rsvpBfDrift 5s ease-in-out infinite;
+}
+.bf-flight-1 {
+  top: 15%;
+  left: clamp(16px, 7vw, 42px);
+  --rot: -22deg;
+  animation: butterflyFlutter 0.62s ease-in-out infinite alternate, progBfDrift1 5.8s ease-in-out infinite;
+}
+.bf-flight-2 {
+  top: 30%;
+  right: clamp(14px, 6vw, 40px);
+  --rot: 18deg;
+  animation: butterflyFlutter 0.68s ease-in-out infinite alternate, progBfDrift2 6.2s ease-in-out infinite;
+}
+.bf-flight-3 {
+  bottom: 12%;
+  left: clamp(20px, 9vw, 52px);
+  --rot: -8deg;
+  animation: butterflyFlutter 0.72s ease-in-out infinite alternate, progBfDrift3 5.2s ease-in-out infinite;
+}
+
+@keyframes heroBfDrift1 {
+  0%, 100% { transform: translateY(0) translateX(0) scaleX(1) rotate(15deg); }
+  50% { transform: translateY(-8px) translateX(6px) scaleX(0.7) rotate(22deg); }
+}
+@keyframes heroBfDrift2 {
+  0%, 100% { transform: translateY(0) translateX(0) scaleX(1) rotate(-20deg); }
+  50% { transform: translateY(-10px) translateX(-5px) scaleX(0.7) rotate(-12deg); }
+}
+@keyframes dateBfDrift1 {
+  0%, 100% { transform: translateY(0) translateX(0) scaleX(1) rotate(24deg); }
+  50% { transform: translateY(-7px) translateX(5px) scaleX(0.65) rotate(18deg); }
+}
+@keyframes dateBfDrift2 {
+  0%, 100% { transform: translateY(0) translateX(0) scaleX(1) rotate(-16deg); }
+  50% { transform: translateY(-9px) translateX(-4px) scaleX(0.75) rotate(-22deg); }
+}
+@keyframes rsvpBfDrift {
+  0%, 100% { transform: translateY(0) translateX(0) scaleX(1) rotate(12deg); }
+  50% { transform: translateY(-8px) translateX(6px) scaleX(0.7) rotate(18deg); }
+}
+@keyframes progBfDrift1 {
+  0%, 100% { transform: translateY(0) translateX(0) scaleX(1) rotate(-22deg); }
+  50% { transform: translateY(-8px) translateX(6px) scaleX(0.7) rotate(-14deg); }
+}
+@keyframes progBfDrift2 {
+  0%, 100% { transform: translateY(0) translateX(0) scaleX(1) rotate(18deg); }
+  50% { transform: translateY(-10px) translateX(-5px) scaleX(0.65) rotate(26deg); }
+}
+@keyframes progBfDrift3 {
+  0%, 100% { transform: translateY(0) translateX(0) scaleX(1) rotate(-8deg); }
+  50% { transform: translateY(-7px) translateX(7px) scaleX(0.75) rotate(2deg); }
+}
+
+/* Cigüeña en la parte superior del Hero */
+.hero-stork-top {
+  width: clamp(190px, 52vw, 240px);
+  margin: 6px auto 0;
+  z-index: 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  filter: drop-shadow(0 10px 26px rgba(196,118,138,.3));
+  animation: floatStorkHero 4.5s ease-in-out infinite;
+}
+.hero-stork-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform .4s var(--ease);
+}
+.hero-stork-top:hover .hero-stork-img {
+  transform: scale(1.05) rotate(-1.5deg);
+}
+@keyframes floatStorkHero {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(-1.5deg); }
+}
+
 
 /* Texto central */
 .hero-copy {
@@ -340,40 +486,17 @@ body.baby-girl-invitation {
   letter-spacing: .5px;
 }
 
-/* Fila inferior (Cigueña Stork + scroll hint) */
-.hero-stork-layout {
+/* Fila inferior (indicador scroll) */
+.hero-bottom {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 6px;
   width: 100%;
   max-width: 420px;
-  margin-top: 8px;
+  margin-top: 14px;
   z-index: 3;
-}
-
-.stork-wrap {
-  width: clamp(170px, 46vw, 240px);
-  display: flex;
-  justify-content: center;
-  filter: drop-shadow(0 8px 24px rgba(196,118,138,.28));
-  animation: floatStork 4.5s ease-in-out infinite;
-}
-
-.stork-img {
-  width: 100%;
-  height: auto;
-  display: block;
-  transition: transform .4s var(--ease);
-}
-.stork-wrap:hover .stork-img {
-  transform: scale(1.05) rotate(-2deg);
-}
-
-@keyframes floatStork {
-  0%, 100% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-10px) rotate(-1.5deg); }
 }
 
 .scroll-hint {
@@ -411,13 +534,13 @@ body.baby-girl-invitation {
 .c-right { bottom: 20%; right: -50px; width: 150px; height: 96px; }
 
 .bear-date-deco {
-  position: absolute;
-  top: 48px;
-  right: clamp(10px, 4vw, 36px);
-  width: clamp(85px, 20vw, 130px);
+  position: static;
+  margin: 0 auto 6px;
+  width: clamp(90px, 24vw, 125px);
+  display: flex;
+  justify-content: center;
   z-index: 2;
-  pointer-events: none;
-  filter: drop-shadow(0 6px 18px rgba(196,118,138,.2));
+  filter: drop-shadow(0 6px 18px rgba(196,118,138,.22));
   animation: gentleFloat 4s ease-in-out infinite;
 }
 .bear-date-img {
@@ -589,19 +712,22 @@ body.baby-girl-invitation {
 .s-rsvp { background: var(--cream); }
 
 .gift-deco {
-  position: absolute;
-  top: 36px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: clamp(90px, 22vw, 135px);
+  position: static;
+  transform: none;
+  margin: 0 auto 10px;
+  width: clamp(90px, 22vw, 120px);
+  aspect-ratio: 1 / 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   z-index: 2;
-  pointer-events: none;
   filter: drop-shadow(0 8px 24px rgba(196,118,138,.28));
   animation: gentleFloat 4.2s ease-in-out infinite .6s;
 }
 .gift-box-img {
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: contain;
   display: block;
 }
 
@@ -610,7 +736,7 @@ body.baby-girl-invitation {
   z-index: 3;
   width: 100%;
   max-width: 430px;
-  margin-top: 52px;
+  margin-top: 14px;
 }
 
 /* Par de botones WhatsApp */
@@ -754,12 +880,12 @@ body.baby-girl-invitation {
   background: linear-gradient(180deg,var(--cream) 0%,var(--blush-pale) 55%,var(--cream) 100%);
 }
 
-/* Zapatillas y mariposas deco */
+/* Zapatillas y mariposas deco - tamaño equilibrado */
 .shoes-deco {
-  width: clamp(160px, 46vw, 220px);
-  margin-bottom: 6px;
+  width: clamp(120px, 28vw, 150px);
+  margin: 0 auto 6px;
   z-index: 2;
-  filter: drop-shadow(0 8px 22px rgba(196,118,138,.22));
+  filter: drop-shadow(0 6px 18px rgba(196,118,138,.2));
   animation: gentleFloat 4s ease-in-out infinite;
 }
 .shoes-img {
@@ -774,6 +900,7 @@ body.baby-girl-invitation {
   z-index: 3;
   width: 100%;
   max-width: 430px;
+  padding: 0 10px;
 }
 
 /* Timeline 4 eventos */
