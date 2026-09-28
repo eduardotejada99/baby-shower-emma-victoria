@@ -1,5 +1,5 @@
 /**
- * ORQUESTADOR PRINCIPAL DE EXPERIENCIA APPLE MOBILE
+ * ORQUESTADOR PRINCIPAL: EXPERIENCIA APPLE LUXURY CREAM
  * Baby Shower de Emma Victoria
  */
 
@@ -12,12 +12,15 @@ document.addEventListener('DOMContentLoaded', () => {
     window.particleEngine = particleEngine;
   }
 
-  // 2. Iniciar Sintetizador de Audio Ambiental (Caja de Música)
+  // 2. Iniciar Sintetizador de Audio Ambiental y Efectos Hápticos
   let musicSynth = null;
   const audioBtn = document.getElementById('btn-audio-toggle');
-  if (audioBtn && window.MusicBoxSynthesizer) {
+  if (window.MusicBoxSynthesizer) {
     musicSynth = new window.MusicBoxSynthesizer();
+    window.musicSynth = musicSynth;
+  }
 
+  if (audioBtn && musicSynth) {
     audioBtn.addEventListener('click', () => {
       const isPlaying = musicSynth.toggle();
       if (isPlaying) {
@@ -36,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 3. Sub-Navegación Sticky Estilo Apple (Sombra y blur dinámico al hacer scroll)
+  // 3. Floating Island Subnav: Sombra y elevación dinámica al hacer scroll
   const appleSubnav = document.getElementById('apple-subnav');
   window.addEventListener('scroll', () => {
     if (appleSubnav) {
@@ -48,69 +51,119 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }, { passive: true });
 
-  // 4. Interacción del Sello Real de Cera
+  // 4. Emblema Central Interactivo: Latido Fetal y Campanilla
   const waxSeal = document.getElementById('wax-seal');
+  const heartbeatHint = document.getElementById('heartbeat-hint');
   const highlightsSection = document.querySelector('.highlights-section');
 
-  function openSeal() {
-    if (!waxSeal || waxSeal.classList.contains('is-broken')) return;
-    waxSeal.classList.add('is-broken');
+  function triggerHeartbeatInteraction() {
+    if (!waxSeal) return;
 
+    // Reproducir latido fetal y campanilla etérea
+    if (musicSynth) {
+      musicSynth.playHeartbeat();
+      setTimeout(() => musicSynth.playChime(), 250);
+    }
+
+    // Efecto visual de ondas y partículas
     if (particleEngine) {
       const rect = waxSeal.getBoundingClientRect();
       particleEngine.createSparkleBurst(rect.left + rect.width / 2, rect.top + rect.height / 2, 40);
     }
 
-    if (highlightsSection) {
-      highlightsSection.scrollIntoView({ behavior: 'smooth' });
+    if (heartbeatHint) {
+      heartbeatHint.innerHTML = '<span class="hint-dot" style="background:#4CD964;"></span><span>¡Latido recibido con amor!</span>';
     }
+
+    // Desplazamiento suave hacia lo más destacado después de la interacción
+    setTimeout(() => {
+      if (highlightsSection) {
+        highlightsSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 600);
   }
 
   if (waxSeal) {
-    waxSeal.addEventListener('click', openSeal);
+    waxSeal.addEventListener('click', triggerHeartbeatInteraction);
     waxSeal.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
-        openSeal();
+        triggerHeartbeatInteraction();
       }
     });
   }
 
-  // Desbloqueo suave al primer desplazamiento
-  let sealAutoBroken = false;
-  window.addEventListener('scroll', () => {
-    if (!sealAutoBroken && window.scrollY > 60) {
-      sealAutoBroken = true;
-      if (waxSeal && !waxSeal.classList.contains('is-broken')) {
-        waxSeal.classList.add('is-broken');
-        if (particleEngine) {
-          const rect = waxSeal.getBoundingClientRect();
-          particleEngine.createSparkleBurst(rect.left + rect.width / 2, rect.top + rect.height / 2, 25);
-        }
-      }
-    }
-  }, { passive: true });
-
-  // 5. Carrusel Horizontal de Momentos Destacados ("Lo más destacado")
+  // 5. Carrusel Horizontal de Momentos Destacados con Autoplay y Control Play/Pause
   const carousel = document.getElementById('highlights-carousel');
   const dots = document.querySelectorAll('.carousel-dot');
   const cards = document.querySelectorAll('.highlight-card');
+  const playPauseBtn = document.getElementById('btn-carousel-autoplay');
+  const playPauseIcon = document.getElementById('play-pause-icon');
+
+  let autoplayTimer = null;
+  let isAutoplayActive = true;
+  let currentCardIndex = 0;
+
+  function scrollToCard(index) {
+    if (cards[index] && carousel) {
+      cards[index].scrollIntoView({
+        behavior: 'smooth',
+        block: 'nearest',
+        inline: 'center'
+      });
+      currentCardIndex = index;
+    }
+  }
+
+  function startAutoplay() {
+    stopAutoplay();
+    autoplayTimer = setInterval(() => {
+      if (!isAutoplayActive || !carousel) return;
+      currentCardIndex = (currentCardIndex + 1) % cards.length;
+      scrollToCard(currentCardIndex);
+    }, 4500);
+  }
+
+  function stopAutoplay() {
+    if (autoplayTimer) {
+      clearInterval(autoplayTimer);
+      autoplayTimer = null;
+    }
+  }
 
   if (carousel && dots.length > 0) {
-    // Clic en los puntos de paginación para navegar con scroll suave
+    // Iniciar autoplay sutil
+    startAutoplay();
+
+    // Pausar al interactuar táctilmente
+    carousel.addEventListener('touchstart', () => stopAutoplay(), { passive: true });
+
+    // Alternar con botón Play/Pause (exacto al video de Apple en 00:03)
+    if (playPauseBtn && playPauseIcon) {
+      playPauseBtn.addEventListener('click', () => {
+        isAutoplayActive = !isAutoplayActive;
+        if (isAutoplayActive) {
+          playPauseIcon.textContent = '⏸';
+          playPauseBtn.setAttribute('aria-label', 'Pausar carrusel');
+          startAutoplay();
+        } else {
+          playPauseIcon.textContent = '▶';
+          playPauseBtn.setAttribute('aria-label', 'Reanudar carrusel');
+          stopAutoplay();
+        }
+      });
+    }
+
+    // Clic en los puntos de paginación
     dots.forEach((dot, index) => {
       dot.addEventListener('click', () => {
-        if (cards[index]) {
-          cards[index].scrollIntoView({
-            behavior: 'smooth',
-            block: 'nearest',
-            inline: 'center'
-          });
-        }
+        stopAutoplay();
+        scrollToCard(index);
+        if (musicSynth) musicSynth.playChime();
       });
     });
 
-    // Detectar tarjeta centrada al deslizar en táctil / rueda
+    // Sincronización del punto activo durante el scroll
     let scrollTimeout = null;
     carousel.addEventListener('scroll', () => {
       if (scrollTimeout) cancelAnimationFrame(scrollTimeout);
@@ -128,6 +181,7 @@ document.addEventListener('DOMContentLoaded', () => {
           }
         });
 
+        currentCardIndex = closestIndex;
         dots.forEach((dot, i) => {
           if (i === closestIndex) {
             dot.classList.add('is-active');
@@ -150,7 +204,10 @@ document.addEventListener('DOMContentLoaded', () => {
       const targetTab = chip.getAttribute('data-tab');
       if (!targetTab) return;
 
-      // Actualizar estado de los chips
+      // Sonido táctil etéreo
+      if (musicSynth) musicSynth.playChime();
+
+      // Actualizar chips
       tabChips.forEach(c => {
         c.classList.remove('is-active');
         c.setAttribute('aria-selected', 'false');
@@ -158,7 +215,7 @@ document.addEventListener('DOMContentLoaded', () => {
       chip.classList.add('is-active');
       chip.setAttribute('aria-selected', 'true');
 
-      // Actualizar visibilidad de los paneles con animación de entrada
+      // Actualizar paneles
       tabPanels.forEach(panel => {
         panel.classList.remove('is-active');
       });
@@ -168,7 +225,7 @@ document.addEventListener('DOMContentLoaded', () => {
         activePanel.classList.add('is-active');
       }
 
-      // Destello sutil en el chip seleccionado
+      // Destello en el chip
       if (particleEngine) {
         const rect = chip.getBoundingClientRect();
         particleEngine.createSparkleBurst(rect.left + rect.width / 2, rect.top + rect.height / 2, 14);
@@ -180,21 +237,30 @@ document.addEventListener('DOMContentLoaded', () => {
   const swatchButtons = document.querySelectorAll('.swatch-btn');
   const swatchNameEl = document.getElementById('active-swatch-name');
   const swatchDescEl = document.getElementById('active-swatch-desc');
+  const swatchBox = document.getElementById('swatch-interactive-box');
 
   swatchButtons.forEach(btn => {
     btn.addEventListener('click', () => {
+      if (musicSynth) musicSynth.playChime();
+
       swatchButtons.forEach(b => b.classList.remove('is-active'));
       btn.classList.add('is-active');
 
       const colorName = btn.getAttribute('data-color') || '';
       const colorDesc = btn.getAttribute('data-desc') || '';
+      const glowColor = btn.getAttribute('data-glow') || 'rgba(244, 211, 220, 0.4)';
 
       if (swatchNameEl) swatchNameEl.textContent = colorName;
       if (swatchDescEl) swatchDescEl.textContent = colorDesc;
 
+      // Transformar aura de la caja
+      if (swatchBox) {
+        swatchBox.style.boxShadow = `0 8px 24px ${glowColor}`;
+      }
+
       if (particleEngine) {
         const rect = btn.getBoundingClientRect();
-        particleEngine.createSparkleBurst(rect.left + rect.width / 2, rect.top + rect.height / 2, 12);
+        particleEngine.createSparkleBurst(rect.left + rect.width / 2, rect.top + rect.height / 2, 15);
       }
     });
   });
@@ -211,7 +277,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
     }, {
-      threshold: 0.12,
+      threshold: 0.1,
       rootMargin: '0px 0px -40px 0px'
     });
 
@@ -253,6 +319,9 @@ document.addEventListener('DOMContentLoaded', () => {
       const passes = document.getElementById('guest-passes')?.value || '1';
       const wishes = document.getElementById('guest-wishes')?.value || '';
 
+      // Tocar campanilla festiva
+      if (musicSynth) musicSynth.playChime();
+
       // Celebración de destellos en el botón y centro de pantalla
       if (particleEngine) {
         const submitBtn = document.getElementById('btn-submit-rsvp');
@@ -273,7 +342,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         setTimeout(() => {
           window.open(waUrl, '_blank', 'noopener,noreferrer');
-        }, 400);
+        }, 350);
       }
     });
   }

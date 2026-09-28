@@ -1,38 +1,48 @@
 /* ==========================================================================
-   SISTEMA DE DISEÑO APPLE MOBILE EXPERIENCE: BABY SHOWER "EMMA VICTORIA"
-   Inspirado en la versatilidad, fluidez y elegancia de apple.com
+   APPLE LUXURY CREAM EDITION: BABY SHOWER DE EMMA VICTORIA
+   Diseño de Alta Costura, Profundidad Háptica y Arquitectura Double-Bezel
    ========================================================================== */
 
 :root {
-  /* Paleta cromática Apple Luxury Baby Girl */
-  --apple-bg: #FAF8F9;
-  --apple-card-bg: #FFFFFF;
+  /* Lienzo y Fondos */
+  --apple-bg: #FAF8F5;
+  --apple-surface: #FFFFFF;
+  --apple-surface-translucent: rgba(255, 255, 255, 0.78);
+  --apple-border: rgba(220, 205, 195, 0.55);
+  --apple-border-subtle: rgba(220, 205, 195, 0.3);
+
+  /* Tipografía de Alto Contraste */
   --apple-text-main: #1D1D1F;
+  --apple-text-sub: #49494D;
   --apple-text-muted: #86868B;
-  --apple-text-sub: #515154;
-  --apple-border: rgba(0, 0, 0, 0.08);
 
-  /* Acentos delicados para niña */
+  /* Paleta Delicada Princesa & Oro */
   --color-rose: #C47F95;
-  --color-rose-deep: #8E4D63;
-  --color-rose-light: #FDEBF2;
-  --color-blush-soft: #FFF2F6;
+  --color-rose-glow: rgba(196, 127, 149, 0.25);
+  --color-blush: #F4D3DC;
+  --color-soft-rose: #FDEBF2;
   --color-gold: #D4AF37;
-  --color-gold-light: #FFF2C6;
-  --color-gold-dark: #A67C1E;
+  --color-champagne: #FAF3E6;
+  --color-lavender: #E7DCF2;
 
-  /* Tipografías */
-  --font-serif: 'Playfair Display', Georgia, serif;
+  /* Sombras Apple & Profundidad */
+  --apple-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+  --apple-shadow-md: 0 12px 32px -8px rgba(160, 120, 110, 0.12), 0 2px 6px rgba(0, 0, 0, 0.04);
+  --apple-shadow-lg: 0 20px 48px -12px rgba(160, 120, 110, 0.18), 0 4px 12px rgba(0, 0, 0, 0.05);
+
+  /* Familias Tipográficas */
+  --font-serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
   --font-script: 'Great Vibes', cursive;
-  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 
-  /* Sombras y bordes Apple */
-  --apple-shadow-sm: 0 4px 16px rgba(180, 110, 130, 0.06);
-  --apple-shadow-md: 0 12px 35px rgba(180, 110, 130, 0.1);
-  --apple-shadow-lg: 0 20px 50px rgba(180, 110, 130, 0.14);
+  /* Curvas de Aceleración Apple (Spring Physics) */
+  --ease-apple: cubic-bezier(0.32, 0.72, 0, 1);
+  --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-/* Reseteo y Base */
+/* ==========================================================================
+   RESET & CONFIGURACIÓN GLOBAL
+   ========================================================================== */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -40,23 +50,22 @@
 }
 
 html {
-  font-size: 16px;
   scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   background-color: var(--apple-bg);
   color: var(--apple-text-main);
   font-family: var(--font-sans);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
-body {
-  min-height: 100vh;
+body.apple-experience {
+  min-height: 100dvh;
   position: relative;
-  background-color: var(--apple-bg);
   overflow-x: hidden;
+  background: radial-gradient(circle at 50% 0%, #FFFFFF 0%, #FAF8F5 60%, #F5EFEB 100%);
 }
 
-/* Lienzo de partículas en segundo plano */
+/* Canvas de destellos y partículas de fondo */
 #canvas-particles {
   position: fixed;
   top: 0;
@@ -67,245 +76,399 @@ body {
   z-index: 1;
 }
 
-/* ==========================================================================
-   SUB-NAVEGACIÓN STICKY ESTILO APPLE (como en Apple Watch Ultra)
-   ========================================================================== */
-.apple-subnav {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  width: 100%;
-  height: 52px;
-  background: rgba(250, 248, 249, 0.82);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--apple-border);
-  display: flex;
-  align-items: center;
-}
-
-.subnav-container {
-  width: 100%;
-  max-width: 980px;
-  margin: 0 auto;
-  padding: 0 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.subnav-brand {
-  display: flex;
-  align-items: baseline;
-  gap: 8px;
-}
-
-.subnav-title {
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: var(--apple-text-main);
-  letter-spacing: -0.3px;
-}
-
-.subnav-category {
-  font-size: 0.75rem;
-  color: var(--apple-text-muted);
-  font-weight: 500;
-}
-
-.subnav-actions {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.subnav-audio-btn {
-  width: 32px;
-  height: 32px;
+/* Halos de luz ambiental etérea */
+.ambient-spotlight {
+  position: fixed;
+  pointer-events: none;
   border-radius: 50%;
-  background: rgba(0, 0, 0, 0.05);
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  transition: transform 0.2s ease, background-color 0.2s ease;
+  filter: blur(80px);
+  z-index: 0;
+  opacity: 0.55;
 }
 
-.subnav-audio-btn:hover {
-  transform: scale(1.08);
-  background: rgba(0, 0, 0, 0.08);
+.spotlight-top {
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 500px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(244, 211, 220, 0.6) 0%, rgba(250, 243, 230, 0.4) 50%, transparent 80%);
 }
 
-.subnav-audio-btn.is-playing {
-  background: var(--color-rose-light);
-  border-color: var(--color-rose);
+.spotlight-mid {
+  top: 45%;
+  right: -100px;
+  width: 450px;
+  height: 450px;
+  background: radial-gradient(circle, rgba(231, 220, 242, 0.45) 0%, transparent 70%);
 }
 
-.subnav-audio-btn.is-playing img {
-  animation: rotateMusic 4s linear infinite;
-}
-
-.audio-wave {
-  position: absolute;
-  bottom: 2px;
-  display: flex;
-  gap: 2px;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.subnav-audio-btn.is-playing .audio-wave {
-  opacity: 1;
-}
-
-.audio-wave span {
-  width: 2px;
-  height: 6px;
-  background: var(--color-rose);
-  border-radius: 1px;
-  animation: wavePulse 1s ease-in-out infinite;
-}
-
-.subnav-cta-btn {
-  background: var(--apple-text-main);
-  color: #FFFFFF;
-  font-size: 0.8rem;
-  font-weight: 600;
-  padding: 6px 16px;
-  border-radius: 9999px;
-  text-decoration: none;
-  transition: transform 0.2s ease, opacity 0.2s ease;
-}
-
-.subnav-cta-btn:hover {
-  opacity: 0.9;
-  transform: scale(1.03);
-}
-
-/* ==========================================================================
-   FLUJO DE PÁGINA Y SECCIONES APPLE
-   ========================================================================== */
 .page-flow {
   position: relative;
   z-index: 2;
   width: 100%;
 }
 
-.apple-section {
-  padding: 70px 20px;
+/* ==========================================================================
+   ARQUITECTURA DOUBLE-BEZEL (DOPPELRAND)
+   Carcasa exterior mecanizada + Núcleo interior elevado
+   ========================================================================== */
+.double-bezel-shell {
+  background: rgba(255, 255, 255, 0.65);
+  border: 1px solid var(--apple-border);
+  border-radius: 28px;
+  padding: 6px;
+  box-shadow: var(--apple-shadow-md);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transition: transform 0.4s var(--ease-apple), box-shadow 0.4s var(--ease-apple);
 }
 
-.section-header-block {
-  max-width: 680px;
-  margin: 0 auto 32px;
-  text-align: center;
+.double-bezel-shell:hover {
+  box-shadow: var(--apple-shadow-lg);
 }
 
-.apple-section-title {
-  font-size: clamp(2rem, 5.5vw, 3rem);
-  font-weight: 700;
-  color: var(--apple-text-main);
-  letter-spacing: -0.5px;
-  line-height: 1.1;
-}
-
-.apple-section-subtitle {
-  font-size: 1.05rem;
-  color: var(--apple-text-muted);
-  margin-top: 8px;
-}
-
-.apple-kicker {
-  display: inline-block;
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 2.5px;
-  text-transform: uppercase;
-  color: var(--color-rose);
-  margin-bottom: 12px;
+.double-bezel-core {
+  background: #FFFFFF;
+  border-radius: calc(28px - 6px);
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.9), 0 2px 8px rgba(0, 0, 0, 0.02);
+  height: 100%;
+  position: relative;
+  overflow: hidden;
 }
 
 /* ==========================================================================
-   1. HERO SECTION ESTILO APPLE
+   1. FLOATING ISLAND SUBNAV (CABECERA DESACOPLADA DE CRISTAL)
    ========================================================================== */
-.apple-hero-section {
-  padding: 60px 20px 50px;
-  text-align: center;
-  background: radial-gradient(circle at 50% 30%, #FFF5F8 0%, var(--apple-bg) 70%);
+.floating-island-subnav {
+  position: fixed;
+  top: 14px;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 0 14px;
+  pointer-events: none;
 }
 
-.hero-inner {
+.subnav-container {
+  pointer-events: auto;
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.03);
+  border-radius: 9999px;
+  padding: 8px 10px 8px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: transform 0.3s var(--ease-apple), box-shadow 0.3s var(--ease-apple);
+}
+
+.floating-island-subnav.is-scrolled .subnav-container {
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.12), 0 2px 6px rgba(0, 0, 0, 0.04);
+  transform: translateY(-2px);
+}
+
+.subnav-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.subnav-title {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--apple-text-main);
+  letter-spacing: -0.3px;
+}
+
+.subnav-separator {
+  color: var(--apple-border);
+  font-size: 0.8rem;
+}
+
+.subnav-category {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--color-rose);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.subnav-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.subnav-audio-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--apple-border);
+  background: rgba(255, 255, 255, 0.9);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: all 0.25s var(--ease-apple);
+}
+
+.subnav-audio-btn:hover {
+  transform: scale(1.06);
+  background: #FFFFFF;
+}
+
+.audio-wave {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 8px;
+}
+
+.audio-wave span {
+  width: 2px;
+  height: 2px;
+  background: var(--color-rose);
+  border-radius: 1px;
+  transition: height 0.2s ease;
+}
+
+.subnav-audio-btn.is-playing .audio-wave span {
+  animation: wavePulse 0.9s infinite ease-in-out alternate;
+}
+
+.subnav-audio-btn.is-playing .audio-wave span:nth-child(2) { animation-delay: 0.2s; }
+.subnav-audio-btn.is-playing .audio-wave span:nth-child(3) { animation-delay: 0.4s; }
+.subnav-audio-btn.is-playing .audio-wave span:nth-child(4) { animation-delay: 0.15s; }
+
+.subnav-cta-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--apple-text-main);
+  color: #FFFFFF;
+  text-decoration: none;
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 6px 6px 6px 14px;
+  border-radius: 9999px;
+  transition: all 0.25s var(--ease-apple);
+}
+
+.subnav-cta-pill:hover {
+  background: #000000;
+  transform: scale(1.03);
+}
+
+.subnav-cta-pill:active {
+  transform: scale(0.97);
+}
+
+.btn-bubble-icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ==========================================================================
+   2. HERO: LA LLEGADA & LATIDO DE VIDA
+   ========================================================================== */
+.apple-hero-section {
+  padding: 95px 20px 50px;
+  text-align: center;
   max-width: 640px;
   margin: 0 auto;
 }
 
+.hero-eyebrow-wrapper {
+  margin-bottom: 12px;
+}
+
+.apple-kicker-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(244, 211, 220, 0.45);
+  border: 1px solid rgba(196, 127, 149, 0.25);
+  color: var(--color-rose);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 5px 14px;
+  border-radius: 9999px;
+}
+
+.kicker-sparkle {
+  font-size: 0.8rem;
+  color: var(--color-gold);
+}
+
 .apple-hero-headline {
   font-family: var(--font-serif);
-  font-size: clamp(3rem, 9vw, 4.8rem);
-  font-weight: 700;
+  font-size: clamp(2.8rem, 11vw, 4.4rem);
+  font-weight: 800;
   color: var(--apple-text-main);
-  letter-spacing: -0.5px;
   line-height: 1.05;
+  letter-spacing: -1px;
+  margin-bottom: 12px;
 }
 
 .apple-hero-subhead {
-  font-size: clamp(1.15rem, 3.6vw, 1.4rem);
-  color: var(--apple-text-muted);
+  font-size: clamp(1rem, 3.8vw, 1.25rem);
   font-weight: 400;
-  margin-top: 12px;
+  color: var(--apple-text-sub);
+  line-height: 1.5;
+  max-width: 440px;
+  margin: 0 auto 30px;
 }
 
-.hero-centerpiece {
-  margin: 36px auto;
+/* Emblema Central con Ondas de Latido */
+.hero-centerpiece-container {
   position: relative;
+  width: 240px;
+  height: 240px;
+  margin: 0 auto 32px;
   display: flex;
-  flex-direction: column;
   align-items: center;
+  justify-content: center;
+}
+
+.centerpiece-halo {
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(244, 211, 220, 0.7) 0%, rgba(229, 199, 120, 0.3) 50%, transparent 75%);
+  filter: blur(28px);
+  pointer-events: none;
+  animation: pulseAura 4s infinite ease-in-out;
 }
 
 .centerpiece-crown {
-  margin-bottom: -16px;
-  z-index: 3;
-  animation: gentleBob 3s ease-in-out infinite;
+  position: absolute;
+  top: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 4;
+  animation: floatCrown 3.5s infinite ease-in-out;
 }
 
-.hero-seal-badge {
+.hero-heartbeat-monogram {
   position: relative;
-  z-index: 2;
+  width: 140px;
+  height: 140px;
   cursor: pointer;
-  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  outline: none;
+  border-radius: 50%;
 }
 
-.hero-seal-badge:hover {
-  transform: scale(1.08);
+.seal-surface {
+  position: relative;
+  width: 124px;
+  height: 124px;
+  border-radius: 50%;
+  transition: transform 0.35s var(--ease-spring);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-heartbeat-monogram:hover .seal-surface {
+  transform: scale(1.06);
+}
+
+.hero-heartbeat-monogram:active .seal-surface {
+  transform: scale(0.95);
 }
 
 .seal-img {
-  display: block;
+  width: 124px;
+  height: 124px;
+  filter: drop-shadow(0 8px 18px rgba(180, 130, 80, 0.3));
 }
 
-.seal-glow-pulse {
+/* Anillos Concéntricos de Latido Fetal (Sensorial como el Apple Watch) */
+.pulse-ring {
   position: absolute;
-  inset: -10px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(212, 175, 55, 0.4) 0%, transparent 70%);
-  animation: pulseSeal 2.6s infinite ease-in-out;
+  border: 1.5px solid rgba(196, 127, 149, 0.4);
+  pointer-events: none;
+  opacity: 0;
+}
+
+.ring-1 { width: 140px; height: 140px; animation: heartbeatRing 2.4s infinite ease-out; }
+.ring-2 { width: 170px; height: 170px; animation: heartbeatRing 2.4s infinite ease-out 0.4s; }
+.ring-3 { width: 205px; height: 205px; animation: heartbeatRing 2.4s infinite ease-out 0.8s; }
+
+.centerpiece-wreath {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  opacity: 0.85;
   pointer-events: none;
 }
 
-.centerpiece-wreath {
-  margin-top: -12px;
-  z-index: 1;
+.heartbeat-hint-badge {
+  position: absolute;
+  bottom: -22px;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid var(--apple-border);
+  padding: 4px 12px;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--apple-text-sub);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: var(--apple-shadow-sm);
+  pointer-events: none;
+  animation: gentleBob 3s infinite ease-in-out;
 }
 
+.hint-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-rose);
+  animation: blinkDot 1.4s infinite ease-in-out;
+}
+
+/* Botones Apple con Button-in-Button Architecture */
 .hero-cta-group {
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap: 12px;
-  margin-top: 24px;
+  max-width: 380px;
+  margin: 0 auto 24px;
 }
 
 @media (min-width: 480px) {
@@ -318,25 +481,43 @@ body {
 .apple-btn-primary {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  gap: 8px;
+  justify-content: space-between;
+  gap: 12px;
   background: var(--apple-text-main);
   color: #FFFFFF;
   font-size: 0.95rem;
   font-weight: 600;
-  padding: 13px 28px;
+  padding: 10px 10px 10px 24px;
   border-radius: 9999px;
   text-decoration: none;
-  border: none;
-  cursor: pointer;
-  transition: transform 0.2s ease, opacity 0.2s ease, box-shadow 0.2s ease;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.16);
+  transition: all 0.25s var(--ease-apple);
 }
 
 .apple-btn-primary:hover {
-  transform: scale(1.02);
-  opacity: 0.92;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
+  background: #000000;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.24);
+  transform: translateY(-1px);
+}
+
+.apple-btn-primary:active {
+  transform: scale(0.97);
+}
+
+.btn-inner-circle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.25s ease, background 0.25s ease;
+}
+
+.apple-btn-primary:hover .btn-inner-circle {
+  transform: scale(1.08);
+  background: rgba(255, 255, 255, 0.3);
 }
 
 .apple-btn-secondary {
@@ -344,49 +525,118 @@ body {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid var(--apple-border);
   color: var(--apple-text-main);
   font-size: 0.95rem;
   font-weight: 600;
-  padding: 13px 24px;
+  padding: 14px 24px;
   border-radius: 9999px;
   text-decoration: none;
-  border: 1px solid var(--apple-border);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   box-shadow: var(--apple-shadow-sm);
-  transition: transform 0.2s ease, background-color 0.2s ease;
+  transition: all 0.25s var(--ease-apple);
 }
 
 .apple-btn-secondary:hover {
-  transform: scale(1.02);
   background: #FFFFFF;
+  border-color: rgba(200, 180, 170, 0.8);
+  box-shadow: var(--apple-shadow-md);
+  transform: translateY(-1px);
 }
 
-.hero-event-teaser {
-  margin-top: 24px;
-  font-size: 0.88rem;
+.apple-btn-secondary:active {
+  transform: scale(0.97);
+}
+
+.hero-event-metadata-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
   font-weight: 500;
-  color: var(--apple-text-muted);
+  color: var(--apple-text-sub);
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid var(--apple-border-subtle);
+  padding: 8px 16px;
+  border-radius: 9999px;
+}
+
+.meta-dot {
+  color: var(--apple-border);
 }
 
 /* ==========================================================================
-   2. "LO MÁS DESTACADO" (CARRUSEL HORIZONTAL: 00:01 - 00:03)
+   3. "LO MÁS DESTACADO" (CARRUSEL HORIZONTAL APPLE CON DOUBLE-BEZEL)
    ========================================================================== */
-.highlights-section {
-  padding-top: 40px;
+.apple-section {
+  padding: 60px 16px;
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.section-header-block {
+  margin-bottom: 24px;
+  padding: 0 8px;
+}
+
+.section-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.apple-section-title {
+  font-family: var(--font-sans);
+  font-size: clamp(1.8rem, 6vw, 2.6rem);
+  font-weight: 800;
+  color: var(--apple-text-main);
+  letter-spacing: -0.5px;
+}
+
+.apple-section-subtitle {
+  font-size: 0.98rem;
+  color: var(--apple-text-sub);
+}
+
+.carousel-playback-controls {
+  display: flex;
+  align-items: center;
+}
+
+.carousel-play-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  border: 1px solid var(--apple-border);
+  box-shadow: var(--apple-shadow-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 0.85rem;
+  color: var(--apple-text-main);
+  transition: all 0.2s var(--ease-apple);
+}
+
+.carousel-play-btn:hover {
+  transform: scale(1.08);
+  box-shadow: var(--apple-shadow-md);
 }
 
 .highlights-carousel-wrapper {
-  max-width: 1080px;
-  margin: 0 auto;
   position: relative;
 }
 
 .highlights-carousel {
   display: flex;
-  gap: 18px;
+  gap: 16px;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
-  padding: 10px 20px 24px;
+  padding: 10px 8px 24px;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
 }
@@ -396,26 +646,18 @@ body {
 }
 
 .highlight-card {
-  flex: 0 0 82%;
+  flex: 0 0 85vw;
   max-width: 320px;
-  scroll-snap-align: center;
-  border-radius: 28px;
-  padding: 32px 26px;
   min-height: 380px;
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
+}
+
+.highlight-card .double-bezel-core {
+  padding: 28px 24px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  position: relative;
-  overflow: hidden;
-  background: var(--apple-card-bg);
-  border: 1px solid var(--apple-border);
-  box-shadow: var(--apple-shadow-md);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.highlight-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--apple-shadow-lg);
 }
 
 .card-bg-gradient {
@@ -423,8 +665,8 @@ body {
   top: 0;
   left: 0;
   right: 0;
-  height: 120px;
-  opacity: 0.6;
+  height: 140px;
+  opacity: 0.65;
   pointer-events: none;
 }
 
@@ -450,7 +692,7 @@ body {
 
 .card-title {
   font-family: var(--font-serif);
-  font-size: 1.6rem;
+  font-size: 1.55rem;
   font-weight: 700;
   color: var(--apple-text-main);
   line-height: 1.2;
@@ -458,7 +700,7 @@ body {
 }
 
 .card-desc {
-  font-size: 0.95rem;
+  font-size: 0.92rem;
   color: var(--apple-text-sub);
   line-height: 1.6;
 }
@@ -469,7 +711,8 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: rgba(0, 0, 0, 0.04);
+  background: #F5F5F7;
+  border: 1px solid var(--apple-border-subtle);
   padding: 8px 14px;
   border-radius: 9999px;
   font-size: 0.8rem;
@@ -480,14 +723,14 @@ body {
 
 .mini-swatch-cluster {
   display: flex;
-  gap: 3px;
+  gap: 4px;
 }
 
 .mini-swatch-cluster span {
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  display: inline-block;
+  border: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 .carousel-pagination {
@@ -500,71 +743,73 @@ body {
 .carousel-dot {
   width: 8px;
   height: 8px;
-  border-radius: 50%;
-  background: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.15);
   border: none;
   cursor: pointer;
-  transition: all 0.25s ease;
-  padding: 0;
+  transition: all 0.35s var(--ease-apple);
 }
 
 .carousel-dot.is-active {
   width: 24px;
-  border-radius: 4px;
   background: var(--apple-text-main);
 }
 
 /* ==========================================================================
-   3. "CONOCE CADA DETALLE" (TABBED CLOSER LOOK: 00:04 - 00:05)
+   4. "CONOCE CADA DETALLE" (INTERACTIVE TABBED SWITCHER)
    ========================================================================== */
 .closer-look-section {
-  background: #FFFFFF;
+  padding-top: 40px;
 }
 
 .closer-look-tabs {
   display: flex;
-  justify-content: center;
   gap: 8px;
+  justify-content: center;
   flex-wrap: wrap;
-  margin-bottom: 28px;
+  margin-bottom: 24px;
 }
 
 .tab-chip {
-  background: rgba(0, 0, 0, 0.05);
-  border: 1px solid transparent;
-  border-radius: 9999px;
-  padding: 10px 20px;
-  font-size: 0.9rem;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid var(--apple-border);
+  color: var(--apple-text-sub);
+  font-family: var(--font-sans);
+  font-size: 0.86rem;
   font-weight: 600;
-  color: var(--apple-text-main);
+  padding: 10px 18px;
+  border-radius: 9999px;
   cursor: pointer;
-  transition: all 0.2s ease;
+  box-shadow: var(--apple-shadow-sm);
+  transition: all 0.25s var(--ease-apple);
 }
 
 .tab-chip:hover {
-  background: rgba(0, 0, 0, 0.08);
+  background: #FFFFFF;
+  color: var(--apple-text-main);
+  transform: translateY(-1px);
 }
 
 .tab-chip.is-active {
   background: var(--apple-text-main);
   color: #FFFFFF;
+  border-color: var(--apple-text-main);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
 }
 
 .closer-look-display {
-  max-width: 620px;
+  max-width: 600px;
   margin: 0 auto;
-  background: var(--apple-bg);
-  border-radius: 32px;
-  border: 1px solid var(--apple-border);
-  box-shadow: var(--apple-shadow-md);
-  overflow: hidden;
+}
+
+.closer-look-display .double-bezel-core {
+  padding: 36px 28px;
+  text-align: center;
 }
 
 .tab-panel {
   display: none;
-  padding: 40px 28px;
-  text-align: center;
-  animation: fadeInPanel 0.4s ease forwards;
+  animation: fadeInPanel 0.45s var(--ease-apple);
 }
 
 .tab-panel.is-active {
@@ -578,167 +823,101 @@ body {
   letter-spacing: 2px;
   text-transform: uppercase;
   color: var(--color-rose);
-  margin-bottom: 6px;
+  margin-bottom: 8px;
 }
 
 .panel-headline {
   font-family: var(--font-serif);
-  font-size: 1.8rem;
+  font-size: clamp(1.6rem, 5vw, 2.2rem);
   font-weight: 700;
   color: var(--apple-text-main);
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 
 .panel-desc {
-  font-size: 0.95rem;
+  font-size: 0.92rem;
   color: var(--apple-text-sub);
+  line-height: 1.6;
   max-width: 440px;
   margin: 0 auto 28px;
 }
 
-/* Cuenta Regresiva Pills */
-.apple-countdown-grid {
-  display: flex;
-  justify-content: center;
+/* Selector de Muestras de Acabados (Dress Code Swatches) */
+.apple-swatch-selector {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   gap: 10px;
-  margin-bottom: 28px;
+  max-width: 420px;
+  margin: 0 auto 24px;
 }
 
-.time-pill {
-  flex: 1;
-  max-width: 85px;
-  background: #FFFFFF;
-  border: 1px solid var(--apple-border);
-  border-radius: 20px;
-  padding: 16px 8px;
-  box-shadow: var(--apple-shadow-sm);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
-}
-
-.time-num {
-  font-size: 1.8rem;
-  font-weight: 800;
-  color: var(--apple-text-main);
-  font-variant-numeric: tabular-nums;
-  line-height: 1;
-}
-
-.time-lbl {
-  font-size: 0.72rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  font-weight: 600;
-  color: var(--apple-text-muted);
-}
-
-/* Mapa Preview */
-.apple-map-preview {
-  width: 100%;
-  height: 140px;
-  border-radius: 20px;
-  background: 
-    linear-gradient(rgba(253, 235, 242, 0.6), rgba(253, 235, 242, 0.6)),
-    repeating-linear-gradient(45deg, #FFFFFF, #FFFFFF 12px, #FCEBF2 12px, #FCEBF2 24px);
-  border: 1px solid var(--apple-border);
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  margin-bottom: 24px;
-  overflow: hidden;
-}
-
-.radar-ping {
-  position: absolute;
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  background: var(--color-rose);
-  opacity: 0.6;
-  animation: pulsePin 2s infinite;
-}
-
-.map-venue-tag {
-  font-weight: 700;
-  font-size: 0.95rem;
-  color: var(--apple-text-main);
-}
-
-.panel-actions {
-  display: flex;
-  justify-content: center;
-}
-
-.dual-actions {
-  flex-direction: column;
-  gap: 10px;
-}
-
-@media (min-width: 480px) {
-  .dual-actions {
-    flex-direction: row;
+@media (min-width: 500px) {
+  .apple-swatch-selector {
+    grid-template-columns: repeat(4, 1fr);
   }
 }
 
-/* Dress Code Selector */
-.apple-swatch-selector {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  margin-bottom: 24px;
+.swatch-btn {
+  background: #F5F5F7;
+  border: 2px solid transparent;
+  border-radius: 18px;
+  padding: 14px 10px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.25s var(--ease-apple);
 }
 
-.swatch-btn {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 12px 14px;
+.swatch-btn:hover {
   background: #FFFFFF;
-  border: 1.5px solid var(--apple-border);
-  border-radius: 16px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  text-align: left;
+  box-shadow: var(--apple-shadow-sm);
+  transform: translateY(-2px);
 }
 
 .swatch-btn.is-active {
+  background: #FFFFFF;
   border-color: var(--apple-text-main);
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
-  background: #FFFFFF;
 }
 
 .swatch-circle {
-  width: 24px;
-  height: 24px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   background-color: var(--swatch-hex);
-  border: 1.5px solid rgba(0, 0, 0, 0.1);
-  flex-shrink: 0;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: inset 0 1px 3px rgba(255, 255, 255, 0.6);
+  transition: transform 0.25s var(--ease-spring);
+}
+
+.swatch-btn.is-active .swatch-circle {
+  transform: scale(1.18);
 }
 
 .swatch-title {
-  font-size: 0.85rem;
+  font-size: 0.78rem;
   font-weight: 600;
   color: var(--apple-text-main);
 }
 
 .swatch-info-box {
-  background: #FFFFFF;
-  border-radius: 16px;
-  padding: 16px 20px;
-  border: 1px solid var(--apple-border);
+  background: #FAF8F5;
+  border: 1px solid var(--apple-border-subtle);
+  border-radius: 20px;
+  padding: 20px;
+  text-align: center;
+  position: relative;
+  transition: all 0.3s ease;
 }
 
 .swatch-info-title {
-  font-size: 1rem;
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
   font-weight: 700;
-  color: var(--color-rose-deep);
-  margin-bottom: 4px;
+  color: var(--apple-text-main);
+  margin-bottom: 6px;
 }
 
 .swatch-info-text {
@@ -747,34 +926,130 @@ body {
   line-height: 1.5;
 }
 
+/* Cuenta Regresiva Estilo Apple */
+.apple-countdown-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  max-width: 440px;
+  margin: 0 auto 28px;
+}
+
+.time-pill {
+  background: #F5F5F7;
+  border-radius: 18px;
+  padding: 14px 6px;
+  border: 1px solid var(--apple-border-subtle);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.time-num {
+  font-family: var(--font-sans);
+  font-size: clamp(1.4rem, 4.5vw, 1.85rem);
+  font-weight: 800;
+  color: var(--apple-text-main);
+  line-height: 1.1;
+}
+
+.time-lbl {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--color-rose);
+  margin-top: 4px;
+}
+
+/* Mapa Estilo Radar Apple */
+.apple-map-preview {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  height: 160px;
+  margin: 0 auto 24px;
+  background: linear-gradient(135deg, #F9F5F0 0%, #EFE7DE 100%);
+  border-radius: 20px;
+  border: 1px solid var(--apple-border);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.radar-ping {
+  position: absolute;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: rgba(196, 127, 149, 0.25);
+  animation: pulsePin 2.2s infinite ease-out;
+}
+
+.map-center-pin {
+  position: relative;
+  z-index: 2;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
+}
+
+.map-venue-tag {
+  position: relative;
+  z-index: 2;
+  margin-top: 8px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--apple-text-main);
+  background: rgba(255, 255, 255, 0.95);
+  padding: 4px 12px;
+  border-radius: 9999px;
+  box-shadow: var(--apple-shadow-sm);
+}
+
+.dual-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 360px;
+  margin: 0 auto;
+}
+
+@media (min-width: 440px) {
+  .dual-actions {
+    flex-direction: row;
+    justify-content: center;
+  }
+}
+
 /* ==========================================================================
-   4. EDITORIAL DEEP-DIVE (00:06 - 00:10)
+   5. EDITORIAL DEEP-DIVE: EL LATIDO DE NUESTRO CORAZÓN
    ========================================================================== */
 .editorial-section {
   text-align: center;
-  background: radial-gradient(circle at 50% 50%, #FFF5F8 0%, var(--apple-bg) 80%);
+  padding: 70px 20px;
 }
 
 .editorial-container {
-  max-width: 640px;
+  max-width: 620px;
   margin: 0 auto;
 }
 
 .editorial-headline {
   font-family: var(--font-serif);
-  font-size: clamp(2.2rem, 6.5vw, 3.2rem);
-  font-weight: 700;
+  font-size: clamp(2rem, 7vw, 2.9rem);
+  font-weight: 800;
   color: var(--apple-text-main);
   line-height: 1.15;
-  letter-spacing: -0.3px;
-  margin-top: 8px;
+  letter-spacing: -0.5px;
+  margin: 16px 0 20px;
 }
 
 .editorial-body {
-  font-size: clamp(1.05rem, 3.2vw, 1.25rem);
-  line-height: 1.8;
+  font-size: clamp(1rem, 3.8vw, 1.15rem);
   color: var(--apple-text-sub);
-  margin: 24px 0 36px;
+  line-height: 1.8;
+  margin-bottom: 36px;
 }
 
 .editorial-body strong {
@@ -785,8 +1060,8 @@ body {
 .names-meaning-cards {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 14px;
-  margin-bottom: 32px;
+  gap: 12px;
+  margin-bottom: 36px;
 }
 
 @media (min-width: 480px) {
@@ -795,27 +1070,23 @@ body {
   }
 }
 
-.meaning-card {
+.meaning-card .double-bezel-core {
+  padding: 20px;
   display: flex;
   align-items: center;
   gap: 14px;
-  background: #FFFFFF;
-  border: 1px solid var(--apple-border);
-  border-radius: 20px;
-  padding: 16px 20px;
-  box-shadow: var(--apple-shadow-sm);
   text-align: left;
 }
 
 .meaning-letter {
-  width: 42px;
-  height: 42px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
-  background: var(--color-rose-light);
-  color: var(--color-rose-deep);
+  background: var(--color-soft-rose);
+  color: var(--color-rose);
   font-family: var(--font-serif);
+  font-size: 1.3rem;
   font-weight: 700;
-  font-size: 1.4rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -824,87 +1095,91 @@ body {
 
 .meaning-text strong {
   display: block;
-  font-size: 0.95rem;
+  font-size: 1rem;
+  font-weight: 700;
   color: var(--apple-text-main);
 }
 
 .meaning-text span {
   font-size: 0.8rem;
-  color: var(--apple-text-muted);
+  color: var(--apple-text-sub);
+  line-height: 1.4;
 }
 
 .parents-signature-block {
-  margin-top: 20px;
+  border-top: 1px solid var(--apple-border-subtle);
+  padding-top: 24px;
 }
 
 .parents-label {
   display: block;
   font-size: 0.85rem;
   color: var(--apple-text-muted);
+  margin-bottom: 4px;
 }
 
 .parents-cursive {
   font-family: var(--font-script);
-  font-size: 2.3rem;
-  color: var(--color-rose-deep);
+  font-size: 2.2rem;
+  color: var(--color-rose);
 }
 
 /* ==========================================================================
-   5. ESTADÍSTICAS APPLE CON TIPOGRAFÍA GIGANTE (00:14 - 00:15)
+   6. ESTADÍSTICAS APPLE CON TIPOGRAFÍA MONUMENTAL
    ========================================================================== */
 .stats-section {
-  background: #FFFFFF;
-  border-top: 1px solid var(--apple-border);
-  border-bottom: 1px solid var(--apple-border);
+  padding: 40px 16px 60px;
 }
 
 .apple-stats-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 36px;
+  gap: 14px;
   max-width: 760px;
   margin: 0 auto;
-  text-align: center;
 }
 
 @media (min-width: 600px) {
   .apple-stats-grid {
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: repeat(3, 1fr);
   }
+}
+
+.stat-cell .double-bezel-core {
+  padding: 32px 18px;
+  text-align: center;
 }
 
 .stat-number {
   display: block;
-  font-size: clamp(3.2rem, 8vw, 4.5rem);
+  font-size: clamp(3.2rem, 10vw, 4.4rem);
   font-weight: 800;
+  letter-spacing: -2px;
   color: var(--apple-text-main);
-  letter-spacing: -1.5px;
   line-height: 1;
+  margin-bottom: 10px;
 }
 
 .stat-desc {
-  display: block;
-  font-size: 0.92rem;
-  color: var(--apple-text-muted);
+  font-size: 0.86rem;
+  color: var(--apple-text-sub);
   line-height: 1.5;
-  margin-top: 8px;
 }
 
 /* ==========================================================================
-   6. FORMULARIO RSVP ESTILO APPLE
+   7. FORMULARIO RSVP DE ALTA GAMA
    ========================================================================== */
 .rsvp-section {
-  background: var(--apple-bg);
+  padding-bottom: 70px;
 }
 
 .rsvp-card-container {
   max-width: 540px;
   margin: 0 auto;
-  background: #FFFFFF;
-  border-radius: 32px;
-  border: 1px solid var(--apple-border);
-  padding: 40px 28px;
-  box-shadow: var(--apple-shadow-md);
+}
+
+.rsvp-card-container .double-bezel-core {
+  padding: 40px 24px;
   text-align: center;
 }
 
@@ -996,8 +1271,8 @@ body {
 
 .btn-submit-full {
   width: 100%;
-  padding: 15px;
-  font-size: 1rem;
+  padding: 14px 16px 14px 24px;
+  margin-top: 8px;
 }
 
 .rsvp-footer-note {
@@ -1013,7 +1288,7 @@ body {
 .apple-footer {
   padding: 40px 20px 60px;
   text-align: center;
-  border-top: 1px solid var(--apple-border);
+  border-top: 1px solid var(--apple-border-subtle);
   color: var(--apple-text-muted);
 }
 
@@ -1027,6 +1302,7 @@ body {
   font-style: italic;
   font-size: 0.95rem;
   margin-bottom: 8px;
+  color: var(--apple-text-sub);
 }
 
 .footer-copy {
@@ -1034,21 +1310,37 @@ body {
 }
 
 /* ==========================================================================
-   KEYFRAMES
+   KEYFRAMES & ANIMACIONES
    ========================================================================== */
 @keyframes fadeInPanel {
-  from { opacity: 0; transform: translateY(12px); }
+  from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes gentleBob {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-4px); }
+@keyframes pulseAura {
+  0%, 100% { transform: scale(1); opacity: 0.6; }
+  50% { transform: scale(1.15); opacity: 0.85; }
 }
 
-@keyframes pulseSeal {
-  0%, 100% { transform: scale(1); opacity: 0.4; }
-  50% { transform: scale(1.15); opacity: 0.8; }
+@keyframes floatCrown {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(-5px); }
+}
+
+@keyframes heartbeatRing {
+  0% { transform: translate(-50%, -50%) scale(0.9); opacity: 0.7; }
+  60% { transform: translate(-50%, -50%) scale(1.35); opacity: 0.15; }
+  100% { transform: translate(-50%, -50%) scale(1.6); opacity: 0; }
+}
+
+@keyframes gentleBob {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(-3px); }
+}
+
+@keyframes blinkDot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.25; }
 }
 
 @keyframes pulsePin {
@@ -1057,56 +1349,33 @@ body {
   100% { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(196, 127, 149, 0); }
 }
 
-@keyframes rotateMusic {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
 @keyframes wavePulse {
-  0%, 100% { height: 3px; }
-  50% { height: 9px; }
+  0%, 100% { height: 2px; }
+  50% { height: 8px; }
 }
 
 /* ==========================================================================
    RESPONSIVE MEDIA QUERIES
    ========================================================================== */
 @media (max-width: 480px) {
-  .apple-subnav {
-    padding: 10px 14px;
-  }
-  .subnav-title {
-    font-size: 0.95rem;
-  }
   .apple-hero-section {
-    padding: 30px 14px 40px;
+    padding: 85px 14px 40px;
   }
   .highlights-carousel {
-    padding: 10px 14px 20px;
-    gap: 14px;
+    padding: 10px 10px 20px;
+    gap: 12px;
   }
   .highlight-card {
-    flex: 0 0 84vw;
+    flex: 0 0 86vw;
+  }
+  .highlight-card .double-bezel-core {
     padding: 24px 18px;
-    min-height: 350px;
   }
-  .card-title {
-    font-size: 1.4rem;
+  .closer-look-display .double-bezel-core {
+    padding: 28px 18px;
   }
-  .apple-countdown-grid {
-    gap: 6px;
-  }
-  .time-pill {
-    padding: 10px 6px;
-  }
-  .time-num {
-    font-size: 1.4rem;
-  }
-  .apple-swatch-selector {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .rsvp-card-container {
-    padding: 32px 18px;
-    border-radius: 24px;
+  .rsvp-card-container .double-bezel-core {
+    padding: 30px 18px;
   }
 }
 
@@ -1122,9 +1391,6 @@ body {
   }
   .closer-look-display {
     max-width: 680px;
-  }
-  .apple-hero-headline {
-    font-size: 4.8rem;
   }
 }
 
