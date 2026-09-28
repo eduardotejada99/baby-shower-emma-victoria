@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 200" width="240" height="200" fill="none">
+  <defs>
+    <filter id="giftShadow" x="-15%" y="-15%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#4A2A1A" flood-opacity="0.2"/>
+    </filter>
+    <linearGradient id="envelopeGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFFDF8"/>
+      <stop offset="100%" stop-color="#F2E4D4"/>
+    </linearGradient>
+  </defs>
+
+  <g filter="url(#giftShadow)">
+    <!-- Cartas de fondo inclinadas -->
+    <g transform="translate(40, 25) rotate(-16)">
+      <rect width="65" height="95" rx="6" fill="#FFFBF5" stroke="#C4A88E" stroke-width="1.2"/>
+      <text x="8" y="16" font-family="'Playfair Display', serif" font-size="10" font-weight="700" fill="#924245">A</text>
+      <text x="32" y="55" font-family="'Playfair Display', serif" font-size="24" fill="#924245" text-anchor="middle">♥</text>
+    </g>
+    <g transform="translate(135, 20) rotate(16)">
+      <rect width="65" height="95" rx="6" fill="#FFFBF5" stroke="#C4A88E" stroke-width="1.2"/>
+      <text x="8" y="16" font-family="'Playfair Display', serif" font-size="10" font-weight="700" fill="#241E24">J</text>
+      <text x="32" y="55" font-family="'Playfair Display', serif" font-size="24" fill="#241E24" text-anchor="middle">♣</text>
+    </g>
+
+    <!-- Sobre de regalo apergaminado central -->
+    <g transform="translate(45, 65)">
+      <!-- Cuerpo del sobre -->
+      <rect width="150" height="100" rx="8" fill="url(#envelopeGrad)" stroke="#A98765" stroke-width="1.5"/>
+      <!-- Solapa inferior doblada -->
+      <path d="M0 100 L75 45 L150 100 Z" fill="#E8D7C3" stroke="#A98765" stroke-width="1"/>
+      <path d="M0 0 L75 55 L150 0 Z" fill="#FFF5EB" stroke="#A98765" stroke-width="1.2"/>
+      <!-- Sello de cera en forma de corazón -->
+      <circle cx="75" cy="55" r="15" fill="#924245" filter="drop-shadow(0 2px 4px rgba(0,0,0,0.2))"/>
+      <text x="75" y="60" font-size="14" fill="#FAF3E6" text-anchor="middle" font-weight="bold">♥</text>
+    </g>
+
+    <!-- Corazoncitos flotantes -->
+    <path d="M40 70 C36 65, 30 67, 32 72 C34 76, 40 80, 40 80 C40 80, 46 76, 48 72 C50 67, 44 65, 40 70 Z" fill="#924245"/>
+    <path d="M200 65 C197 61, 192 63, 194 67 C195 70, 200 74, 200 74 C200 74, 205 70, 206 67 C208 63, 203 61, 200 65 Z" fill="#C47F95"/>
+  </g>
+</svg>

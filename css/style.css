@@ -1,43 +1,42 @@
 /* ==========================================================================
-   APPLE LUXURY CREAM EDITION: BABY SHOWER DE EMMA VICTORIA
-   Diseño de Alta Costura, Profundidad Háptica y Arquitectura Double-Bezel
+   CANVA BABY GIRL EDITION: BABY SHOWER DE EMMA VICTORIA
+   Estilo Ilustrado en Acuarela Rosa, Marfil y Animaciones de Despliegue
    ========================================================================== */
 
 :root {
-  /* Lienzo y Fondos */
-  --apple-bg: #FAF8F5;
-  --apple-surface: #FFFFFF;
-  --apple-surface-translucent: rgba(255, 255, 255, 0.78);
-  --apple-border: rgba(220, 205, 195, 0.55);
-  --apple-border-subtle: rgba(220, 205, 195, 0.3);
+  /* Lienzo y Fondos en Acuarela Cálida (Inspirado en la paleta oficial de Canva) */
+  --canva-bg: #EDE4DD;
+  --canva-card-bg: #FFFDF9;
+  --canva-border: rgba(184, 150, 138, 0.35);
 
-  /* Tipografía de Alto Contraste */
-  --apple-text-main: #1D1D1F;
-  --apple-text-sub: #49494D;
-  --apple-text-muted: #86868B;
+  /* Tipografía y Tonalidades */
+  --canva-title-color: #8A3C34;
+  --canva-btn-terracotta: #924245;
+  --canva-btn-hover: #7B3235;
+  --canva-text-body: #545454;
+  --canva-text-muted: #8A7B78;
 
-  /* Paleta Delicada Princesa & Oro */
+  /* Paleta Rosa Princesa & Oro */
   --color-rose: #C47F95;
-  --color-rose-glow: rgba(196, 127, 149, 0.25);
   --color-blush: #F4D3DC;
   --color-soft-rose: #FDEBF2;
   --color-gold: #D4AF37;
   --color-champagne: #FAF3E6;
   --color-lavender: #E7DCF2;
 
-  /* Sombras Apple & Profundidad */
-  --apple-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
-  --apple-shadow-md: 0 12px 32px -8px rgba(160, 120, 110, 0.12), 0 2px 6px rgba(0, 0, 0, 0.04);
-  --apple-shadow-lg: 0 20px 48px -12px rgba(160, 120, 110, 0.18), 0 4px 12px rgba(0, 0, 0, 0.05);
-
-  /* Familias Tipográficas */
-  --font-serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
-  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+  /* Tipografías */
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-display: 'Cinzel', 'Playfair Display', serif;
+  --font-sans: 'Plus Jakarta Sans', -apple-system, sans-serif;
   --font-script: 'Great Vibes', cursive;
 
-  /* Curvas de Aceleración Apple (Spring Physics) */
-  --ease-apple: cubic-bezier(0.32, 0.72, 0, 1);
-  --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  /* Sombras y Profundidad */
+  --canva-shadow-sm: 0 4px 12px rgba(110, 60, 50, 0.08);
+  --canva-shadow-md: 0 10px 28px rgba(110, 60, 50, 0.12);
+  --canva-shadow-lg: 0 18px 45px rgba(110, 60, 50, 0.16);
+
+  /* Curva de Despliegue Elástico */
+  --ease-unfold: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* ==========================================================================
@@ -52,20 +51,20 @@
 html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background-color: var(--apple-bg);
-  color: var(--apple-text-main);
+  background-color: var(--canva-bg);
+  color: var(--canva-text-body);
   font-family: var(--font-sans);
 }
 
-body.apple-experience {
+body.canva-baby-experience {
   min-height: 100dvh;
   position: relative;
   overflow-x: hidden;
-  background: radial-gradient(circle at 50% 0%, #FFFFFF 0%, #FAF8F5 60%, #F5EFEB 100%);
+  background-color: var(--canva-bg);
+  background-image: radial-gradient(circle at 50% 10%, rgba(255, 255, 255, 0.7) 0%, transparent 60%);
 }
 
-/* Canvas de destellos y partículas de fondo */
+/* Canvas de destellos y partículas */
 #canvas-particles {
   position: fixed;
   top: 0;
@@ -76,78 +75,50 @@ body.apple-experience {
   z-index: 1;
 }
 
-/* Halos de luz ambiental etérea */
-.ambient-spotlight {
+/* Halos de luz de fondo en rosa algodón */
+.baby-cloud-aura {
   position: fixed;
   pointer-events: none;
   border-radius: 50%;
-  filter: blur(80px);
+  filter: blur(70px);
   z-index: 0;
-  opacity: 0.55;
+  opacity: 0.6;
 }
 
-.spotlight-top {
-  top: -100px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 500px;
+.cloud-top-left {
+  top: -80px;
+  left: -80px;
+  width: 380px;
+  height: 380px;
+  background: radial-gradient(circle, #F8BBD0 0%, #FCE4EC 60%, transparent 80%);
+}
+
+.cloud-top-right {
+  top: 20%;
+  right: -90px;
+  width: 340px;
+  height: 340px;
+  background: radial-gradient(circle, #F48FB1 0%, #FFD6E0 60%, transparent 80%);
+}
+
+.cloud-mid-glow {
+  top: 60%;
+  left: -60px;
+  width: 400px;
   height: 400px;
-  background: radial-gradient(circle, rgba(244, 211, 220, 0.6) 0%, rgba(250, 243, 230, 0.4) 50%, transparent 80%);
-}
-
-.spotlight-mid {
-  top: 45%;
-  right: -100px;
-  width: 450px;
-  height: 450px;
-  background: radial-gradient(circle, rgba(231, 220, 242, 0.45) 0%, transparent 70%);
-}
-
-.page-flow {
-  position: relative;
-  z-index: 2;
-  width: 100%;
+  background: radial-gradient(circle, #FCE4EC 0%, transparent 70%);
 }
 
 /* ==========================================================================
-   ARQUITECTURA DOUBLE-BEZEL (DOPPELRAND)
-   Carcasa exterior mecanizada + Núcleo interior elevado
+   SUB-NAVEGACIÓN FLOTANTE DESACOPLADA
    ========================================================================== */
-.double-bezel-shell {
-  background: rgba(255, 255, 255, 0.65);
-  border: 1px solid var(--apple-border);
-  border-radius: 28px;
-  padding: 6px;
-  box-shadow: var(--apple-shadow-md);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  transition: transform 0.4s var(--ease-apple), box-shadow 0.4s var(--ease-apple);
-}
-
-.double-bezel-shell:hover {
-  box-shadow: var(--apple-shadow-lg);
-}
-
-.double-bezel-core {
-  background: #FFFFFF;
-  border-radius: calc(28px - 6px);
-  border: 1px solid rgba(255, 255, 255, 0.95);
-  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.9), 0 2px 8px rgba(0, 0, 0, 0.02);
-  height: 100%;
-  position: relative;
-  overflow: hidden;
-}
-
-/* ==========================================================================
-   1. FLOATING ISLAND SUBNAV (CABECERA DESACOPLADA DE CRISTAL)
-   ========================================================================== */
-.floating-island-subnav {
+.floating-baby-subnav {
   position: fixed;
   top: 14px;
   left: 0;
   right: 0;
   z-index: 100;
-  max-width: 520px;
+  max-width: 480px;
   margin: 0 auto;
   padding: 0 14px;
   pointer-events: none;
@@ -155,45 +126,44 @@ body.apple-experience {
 
 .subnav-container {
   pointer-events: auto;
-  background: rgba(255, 255, 255, 0.82);
-  backdrop-filter: blur(24px) saturate(180%);
-  -webkit-backdrop-filter: blur(24px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.9);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.03);
+  background: rgba(255, 253, 249, 0.88);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  box-shadow: 0 8px 24px rgba(110, 60, 50, 0.1);
   border-radius: 9999px;
-  padding: 8px 10px 8px 18px;
+  padding: 8px 12px 8px 18px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  transition: transform 0.3s var(--ease-apple), box-shadow 0.3s var(--ease-apple);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.floating-island-subnav.is-scrolled .subnav-container {
-  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.12), 0 2px 6px rgba(0, 0, 0, 0.04);
+.floating-baby-subnav.is-scrolled .subnav-container {
+  box-shadow: 0 12px 32px rgba(110, 60, 50, 0.16);
   transform: translateY(-2px);
 }
 
 .subnav-brand {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
 }
 
 .subnav-title {
   font-family: var(--font-serif);
-  font-size: 1.05rem;
+  font-size: 1rem;
   font-weight: 700;
-  color: var(--apple-text-main);
-  letter-spacing: -0.3px;
+  color: var(--canva-title-color);
 }
 
 .subnav-separator {
-  color: var(--apple-border);
-  font-size: 0.8rem;
+  color: var(--canva-border);
+  font-size: 0.75rem;
 }
 
 .subnav-category {
-  font-size: 0.78rem;
+  font-size: 0.76rem;
   font-weight: 600;
   color: var(--color-rose);
   text-transform: uppercase;
@@ -210,25 +180,24 @@ body.apple-experience {
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  border: 1px solid var(--apple-border);
-  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid var(--canva-border);
+  background: #FFFDF9;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
-  transition: all 0.25s var(--ease-apple);
+  transition: all 0.2s ease;
 }
 
 .subnav-audio-btn:hover {
-  transform: scale(1.06);
-  background: #FFFFFF;
+  transform: scale(1.08);
 }
 
 .audio-wave {
   position: absolute;
-  top: 4px;
-  right: 4px;
+  top: 3px;
+  right: 3px;
   display: flex;
   align-items: flex-end;
   gap: 2px;
@@ -238,7 +207,7 @@ body.apple-experience {
 .audio-wave span {
   width: 2px;
   height: 2px;
-  background: var(--color-rose);
+  background: var(--canva-btn-terracotta);
   border-radius: 1px;
   transition: height 0.2s ease;
 }
@@ -251,1102 +220,1104 @@ body.apple-experience {
 .subnav-audio-btn.is-playing .audio-wave span:nth-child(3) { animation-delay: 0.4s; }
 .subnav-audio-btn.is-playing .audio-wave span:nth-child(4) { animation-delay: 0.15s; }
 
-.subnav-cta-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: var(--apple-text-main);
+.subnav-cta-btn {
+  background: var(--canva-btn-terracotta);
   color: #FFFFFF;
   text-decoration: none;
   font-size: 0.82rem;
-  font-weight: 600;
-  padding: 6px 6px 6px 14px;
+  font-weight: 700;
+  padding: 8px 16px;
   border-radius: 9999px;
-  transition: all 0.25s var(--ease-apple);
+  box-shadow: 0 3px 10px rgba(146, 66, 69, 0.3);
+  transition: all 0.25s ease;
 }
 
-.subnav-cta-pill:hover {
-  background: #000000;
-  transform: scale(1.03);
-}
-
-.subnav-cta-pill:active {
-  transform: scale(0.97);
-}
-
-.btn-bubble-icon {
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.2);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.subnav-cta-btn:hover {
+  background: var(--canva-btn-hover);
+  transform: scale(1.04);
 }
 
 /* ==========================================================================
-   2. HERO: LA LLEGADA & LATIDO DE VIDA
+   CONTENEDOR DE LA INVITACIÓN CANVA
    ========================================================================== */
-.apple-hero-section {
-  padding: 95px 20px 50px;
-  text-align: center;
-  max-width: 640px;
+.canva-invitation-container {
+  position: relative;
+  z-index: 2;
+  max-width: 480px;
   margin: 0 auto;
+  padding: 60px 16px 80px;
+  perspective: 1200px;
 }
 
-.hero-eyebrow-wrapper {
-  margin-bottom: 12px;
+/* ==========================================================================
+   INTERACTIVIDAD AL BAJAR: EFECTO DE DESPLIEGUE 3D (UNFOLD ON SCROLL)
+   "como que va abriéndose cuando vas bajando en la página"
+   ========================================================================== */
+.unfold-item {
+  opacity: 0;
+  transform-origin: top center;
+  transform: perspective(1000px) rotateX(12deg) translateY(45px) scale(0.95);
+  transition: opacity 0.85s var(--ease-unfold), transform 0.85s var(--ease-unfold), filter 0.85s ease;
+  will-change: opacity, transform;
+  filter: blur(1px);
 }
 
-.apple-kicker-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: rgba(244, 211, 220, 0.45);
-  border: 1px solid rgba(196, 127, 149, 0.25);
-  color: var(--color-rose);
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  padding: 5px 14px;
-  border-radius: 9999px;
+.unfold-item.is-unfolded {
+  opacity: 1;
+  transform: perspective(1000px) rotateX(0deg) translateY(0) scale(1);
+  filter: blur(0px);
 }
 
-.kicker-sparkle {
-  font-size: 0.8rem;
-  color: var(--color-gold);
+/* Cascada de apertura de tarjetas y elementos internos al desplegarse */
+.unfold-item .venue-info-parchment,
+.unfold-item .canva-rsvp-card,
+.unfold-item .baby-date-card-wrapper,
+.unfold-item .canva-parents-presentation,
+.unfold-item .swatch-info-bubble,
+.unfold-item .gifts-collapsible-box,
+.unfold-item .timeline-node {
+  opacity: 0;
+  transform: translateY(22px) scale(0.97);
+  transition: opacity 0.65s var(--ease-unfold) 0.15s,
+              transform 0.65s var(--ease-unfold) 0.15s;
 }
 
-.apple-hero-headline {
-  font-family: var(--font-serif);
-  font-size: clamp(2.8rem, 11vw, 4.4rem);
-  font-weight: 800;
-  color: var(--apple-text-main);
-  line-height: 1.05;
-  letter-spacing: -1px;
-  margin-bottom: 12px;
+.unfold-item.is-unfolded .venue-info-parchment,
+.unfold-item.is-unfolded .canva-rsvp-card,
+.unfold-item.is-unfolded .baby-date-card-wrapper,
+.unfold-item.is-unfolded .canva-parents-presentation,
+.unfold-item.is-unfolded .swatch-info-bubble,
+.unfold-item.is-unfolded .gifts-collapsible-box,
+.unfold-item.is-unfolded .timeline-node {
+  opacity: 1;
+  transform: translateY(0) scale(1);
 }
 
-.apple-hero-subhead {
-  font-size: clamp(1rem, 3.8vw, 1.25rem);
-  font-weight: 400;
-  color: var(--apple-text-sub);
-  line-height: 1.5;
-  max-width: 440px;
-  margin: 0 auto 30px;
-}
+/* Retardos escalonados para nodos del itinerario */
+.unfold-item.is-unfolded .timeline-node:nth-child(2) { transition-delay: 0.1s; }
+.unfold-item.is-unfolded .timeline-node:nth-child(3) { transition-delay: 0.2s; }
+.unfold-item.is-unfolded .timeline-node:nth-child(4) { transition-delay: 0.3s; }
+.unfold-item.is-unfolded .timeline-node:nth-child(5) { transition-delay: 0.4s; }
+.unfold-item.is-unfolded .timeline-node:nth-child(6) { transition-delay: 0.5s; }
 
-/* Emblema Central con Ondas de Latido */
-.hero-centerpiece-container {
+.canva-section {
+  padding: 50px 10px;
+  text-align: center;
   position: relative;
-  width: 240px;
-  height: 240px;
-  margin: 0 auto 32px;
+  scroll-margin-top: 80px;
+}
+
+/* ==========================================================================
+   1. PORTADA: CIGÜEÑA, MARCO OVALADO & PERGAMINO "MI BABY SHOWER"
+   ========================================================================== */
+.section-cover {
+  padding-top: 25px;
+}
+
+.cover-stork-flight {
+  margin-bottom: -15px;
+  animation: storkGlide 5s infinite ease-in-out;
+}
+
+.stork-img {
+  max-width: 100%;
+  height: auto;
+  filter: drop-shadow(0 8px 16px rgba(180, 120, 130, 0.25));
+}
+
+.cover-mirror-wrapper {
+  position: relative;
+  width: 320px;
+  height: 420px;
+  margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.centerpiece-halo {
+.mirror-frame-bg {
   position: absolute;
-  width: 220px;
-  height: 220px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(244, 211, 220, 0.7) 0%, rgba(229, 199, 120, 0.3) 50%, transparent 75%);
-  filter: blur(28px);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
   pointer-events: none;
-  animation: pulseAura 4s infinite ease-in-out;
 }
 
-.centerpiece-crown {
-  position: absolute;
-  top: 2px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 4;
-  animation: floatCrown 3.5s infinite ease-in-out;
-}
-
-.hero-heartbeat-monogram {
+.mirror-text-layer {
   position: relative;
-  width: 140px;
-  height: 140px;
+  z-index: 2;
+  padding: 40px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.mirror-tiny-kicker {
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  letter-spacing: 3px;
+  font-weight: 700;
+  color: var(--canva-title-color);
+  margin-bottom: 6px;
+}
+
+.mirror-baby-name {
+  font-family: var(--font-serif);
+  font-size: 2.7rem;
+  font-weight: 800;
+  color: #271E24;
+  line-height: 1.05;
+  letter-spacing: -0.5px;
+  margin-bottom: 14px;
+}
+
+.baby-seal-interactive {
+  position: relative;
+  width: 80px;
+  height: 80px;
   cursor: pointer;
-  z-index: 3;
+  margin: 4px 0 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  user-select: none;
-  outline: none;
-  border-radius: 50%;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.seal-surface {
+.baby-seal-interactive:hover {
+  transform: scale(1.1);
+}
+
+.baby-seal-interactive:active {
+  transform: scale(0.94);
+}
+
+.seal-halo-pulse {
+  position: absolute;
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  border: 2px solid var(--canva-btn-terracotta);
+  animation: pulseSealHalo 2.5s infinite ease-out;
+  pointer-events: none;
+}
+
+.mirror-baby-sub {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--canva-text-body);
+}
+
+.cover-scroll-wrapper {
   position: relative;
-  width: 124px;
-  height: 124px;
-  border-radius: 50%;
-  transition: transform 0.35s var(--ease-spring);
+  margin-top: 15px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.hero-heartbeat-monogram:hover .seal-surface {
-  transform: scale(1.06);
+.scroll-banner-img {
+  max-width: 100%;
+  height: auto;
 }
 
-.hero-heartbeat-monogram:active .seal-surface {
+.scroll-banner-text {
+  position: absolute;
+  top: 52%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 900;
+  color: var(--canva-title-color);
+  letter-spacing: 2px;
+  white-space: nowrap;
+}
+
+/* ==========================================================================
+   2. MÓVIL DE CUNA "DALE PLAY" & MENSAJE DE LOS PAPÁS
+   ========================================================================== */
+.section-music {
+  padding-top: 30px;
+}
+
+.baby-mobile-interactive {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  animation: gentleSwing 4s infinite ease-in-out;
+}
+
+.baby-mobile-interactive:hover {
+  transform: scale(1.08) rotate(3deg);
+}
+
+.baby-mobile-interactive:active {
   transform: scale(0.95);
 }
 
-.seal-img {
-  width: 124px;
-  height: 124px;
-  filter: drop-shadow(0 8px 18px rgba(180, 130, 80, 0.3));
+.baby-mobile-interactive.is-spinning {
+  animation: mobileSpinDance 3s infinite ease-in-out;
 }
 
-/* Anillos Concéntricos de Latido Fetal (Sensorial como el Apple Watch) */
-.pulse-ring {
+@keyframes mobileSpinDance {
+  0% { transform: scale(1) rotate(0deg); }
+  25% { transform: scale(1.06) rotate(-5deg); }
+  50% { transform: scale(1.04) rotate(0deg); }
+  75% { transform: scale(1.06) rotate(5deg); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+
+.music-glint-circle {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  width: 90px;
+  height: 90px;
   border-radius: 50%;
-  border: 1.5px solid rgba(196, 127, 149, 0.4);
+  background: radial-gradient(circle, rgba(244, 211, 220, 0.6) 0%, transparent 70%);
   pointer-events: none;
-  opacity: 0;
+  animation: pulseAura 3s infinite ease-in-out;
 }
 
-.ring-1 { width: 140px; height: 140px; animation: heartbeatRing 2.4s infinite ease-out; }
-.ring-2 { width: 170px; height: 170px; animation: heartbeatRing 2.4s infinite ease-out 0.4s; }
-.ring-3 { width: 205px; height: 205px; animation: heartbeatRing 2.4s infinite ease-out 0.8s; }
-
-.centerpiece-wreath {
-  position: absolute;
-  bottom: 8px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 2;
-  opacity: 0.85;
-  pointer-events: none;
-}
-
-.heartbeat-hint-badge {
-  position: absolute;
-  bottom: -22px;
-  left: 50%;
-  transform: translateX(-50%);
-  white-space: nowrap;
-  background: rgba(255, 255, 255, 0.9);
-  border: 1px solid var(--apple-border);
-  padding: 4px 12px;
-  border-radius: 9999px;
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: var(--apple-text-sub);
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  box-shadow: var(--apple-shadow-sm);
-  pointer-events: none;
-  animation: gentleBob 3s infinite ease-in-out;
-}
-
-.hint-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--color-rose);
-  animation: blinkDot 1.4s infinite ease-in-out;
-}
-
-/* Botones Apple con Button-in-Button Architecture */
-.hero-cta-group {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  max-width: 380px;
-  margin: 0 auto 24px;
-}
-
-@media (min-width: 480px) {
-  .hero-cta-group {
-    flex-direction: row;
-    justify-content: center;
-  }
-}
-
-.apple-btn-primary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  background: var(--apple-text-main);
-  color: #FFFFFF;
-  font-size: 0.95rem;
-  font-weight: 600;
-  padding: 10px 10px 10px 24px;
-  border-radius: 9999px;
-  text-decoration: none;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.16);
-  transition: all 0.25s var(--ease-apple);
-}
-
-.apple-btn-primary:hover {
-  background: #000000;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.24);
-  transform: translateY(-1px);
-}
-
-.apple-btn-primary:active {
-  transform: scale(0.97);
-}
-
-.btn-inner-circle {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.18);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.25s ease, background 0.25s ease;
-}
-
-.apple-btn-primary:hover .btn-inner-circle {
-  transform: scale(1.08);
-  background: rgba(255, 255, 255, 0.3);
-}
-
-.apple-btn-secondary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  background: rgba(255, 255, 255, 0.85);
-  border: 1px solid var(--apple-border);
-  color: var(--apple-text-main);
-  font-size: 0.95rem;
-  font-weight: 600;
-  padding: 14px 24px;
-  border-radius: 9999px;
-  text-decoration: none;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  box-shadow: var(--apple-shadow-sm);
-  transition: all 0.25s var(--ease-apple);
-}
-
-.apple-btn-secondary:hover {
-  background: #FFFFFF;
-  border-color: rgba(200, 180, 170, 0.8);
-  box-shadow: var(--apple-shadow-md);
-  transform: translateY(-1px);
-}
-
-.apple-btn-secondary:active {
-  transform: scale(0.97);
-}
-
-.hero-event-metadata-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 0.85rem;
-  font-weight: 500;
-  color: var(--apple-text-sub);
-  background: rgba(255, 255, 255, 0.7);
-  border: 1px solid var(--apple-border-subtle);
-  padding: 8px 16px;
-  border-radius: 9999px;
-}
-
-.meta-dot {
-  color: var(--apple-border);
-}
-
-/* ==========================================================================
-   3. "LO MÁS DESTACADO" (CARRUSEL HORIZONTAL APPLE CON DOUBLE-BEZEL)
-   ========================================================================== */
-.apple-section {
-  padding: 60px 16px;
-  max-width: 980px;
-  margin: 0 auto;
-}
-
-.section-header-block {
-  margin-bottom: 24px;
-  padding: 0 8px;
-}
-
-.section-title-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 6px;
-}
-
-.apple-section-title {
-  font-family: var(--font-sans);
-  font-size: clamp(1.8rem, 6vw, 2.6rem);
-  font-weight: 800;
-  color: var(--apple-text-main);
-  letter-spacing: -0.5px;
-}
-
-.apple-section-subtitle {
-  font-size: 0.98rem;
-  color: var(--apple-text-sub);
-}
-
-.carousel-playback-controls {
-  display: flex;
-  align-items: center;
-}
-
-.carousel-play-btn {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background: #FFFFFF;
-  border: 1px solid var(--apple-border);
-  box-shadow: var(--apple-shadow-sm);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  font-size: 0.85rem;
-  color: var(--apple-text-main);
-  transition: all 0.2s var(--ease-apple);
-}
-
-.carousel-play-btn:hover {
-  transform: scale(1.08);
-  box-shadow: var(--apple-shadow-md);
-}
-
-.highlights-carousel-wrapper {
-  position: relative;
-}
-
-.highlights-carousel {
-  display: flex;
-  gap: 16px;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  padding: 10px 8px 24px;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-}
-
-.highlights-carousel::-webkit-scrollbar {
-  display: none;
-}
-
-.highlight-card {
-  flex: 0 0 85vw;
-  max-width: 320px;
-  min-height: 380px;
-  scroll-snap-align: center;
-  scroll-snap-stop: always;
-}
-
-.highlight-card .double-bezel-core {
-  padding: 28px 24px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.card-bg-gradient {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 140px;
-  opacity: 0.65;
-  pointer-events: none;
-}
-
-.card-date .card-bg-gradient { background: linear-gradient(180deg, #FDEBF2 0%, transparent 100%); }
-.card-venue .card-bg-gradient { background: linear-gradient(180deg, #FFF2C6 0%, transparent 100%); }
-.card-dress .card-bg-gradient { background: linear-gradient(180deg, #E7DCF2 0%, transparent 100%); }
-.card-blessing .card-bg-gradient { background: linear-gradient(180deg, #FCE3EC 0%, transparent 100%); }
-
-.card-content {
-  position: relative;
-  z-index: 2;
-}
-
-.card-eyebrow {
-  display: block;
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--color-rose);
-  margin-bottom: 8px;
-}
-
-.card-title {
-  font-family: var(--font-serif);
-  font-size: 1.55rem;
-  font-weight: 700;
-  color: var(--apple-text-main);
-  line-height: 1.2;
-  margin-bottom: 12px;
-}
-
-.card-desc {
-  font-size: 0.92rem;
-  color: var(--apple-text-sub);
-  line-height: 1.6;
-}
-
-.card-icon-pill {
-  position: relative;
-  z-index: 2;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: #F5F5F7;
-  border: 1px solid var(--apple-border-subtle);
-  padding: 8px 14px;
-  border-radius: 9999px;
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: var(--apple-text-main);
-  width: fit-content;
-}
-
-.mini-swatch-cluster {
-  display: flex;
-  gap: 4px;
-}
-
-.mini-swatch-cluster span {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  border: 1px solid rgba(0, 0, 0, 0.08);
-}
-
-.carousel-pagination {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  margin-top: 10px;
-}
-
-.carousel-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 4px;
-  background: rgba(0, 0, 0, 0.15);
-  border: none;
-  cursor: pointer;
-  transition: all 0.35s var(--ease-apple);
-}
-
-.carousel-dot.is-active {
-  width: 24px;
-  background: var(--apple-text-main);
-}
-
-/* ==========================================================================
-   4. "CONOCE CADA DETALLE" (INTERACTIVE TABBED SWITCHER)
-   ========================================================================== */
-.closer-look-section {
-  padding-top: 40px;
-}
-
-.closer-look-tabs {
-  display: flex;
-  gap: 8px;
-  justify-content: center;
-  flex-wrap: wrap;
+.dale-play-curved-wrapper {
+  margin-top: -8px;
   margin-bottom: 24px;
 }
 
-.tab-chip {
-  background: rgba(255, 255, 255, 0.85);
-  border: 1px solid var(--apple-border);
-  color: var(--apple-text-sub);
+.curved-text-style {
+  font-family: var(--font-serif);
+  font-size: 1.45rem;
+  font-weight: 700;
+  fill: var(--canva-btn-terracotta);
+}
+
+.canva-heart-quote {
   font-family: var(--font-sans);
-  font-size: 0.86rem;
-  font-weight: 600;
-  padding: 10px 18px;
-  border-radius: 9999px;
-  cursor: pointer;
-  box-shadow: var(--apple-shadow-sm);
-  transition: all 0.25s var(--ease-apple);
-}
-
-.tab-chip:hover {
-  background: #FFFFFF;
-  color: var(--apple-text-main);
-  transform: translateY(-1px);
-}
-
-.tab-chip.is-active {
-  background: var(--apple-text-main);
-  color: #FFFFFF;
-  border-color: var(--apple-text-main);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
-}
-
-.closer-look-display {
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-.closer-look-display .double-bezel-core {
-  padding: 36px 28px;
-  text-align: center;
-}
-
-.tab-panel {
-  display: none;
-  animation: fadeInPanel 0.45s var(--ease-apple);
-}
-
-.tab-panel.is-active {
-  display: block;
-}
-
-.panel-kicker {
-  display: block;
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--color-rose);
-  margin-bottom: 8px;
-}
-
-.panel-headline {
-  font-family: var(--font-serif);
-  font-size: clamp(1.6rem, 5vw, 2.2rem);
-  font-weight: 700;
-  color: var(--apple-text-main);
-  margin-bottom: 10px;
-}
-
-.panel-desc {
-  font-size: 0.92rem;
-  color: var(--apple-text-sub);
-  line-height: 1.6;
-  max-width: 440px;
-  margin: 0 auto 28px;
-}
-
-/* Selector de Muestras de Acabados (Dress Code Swatches) */
-.apple-swatch-selector {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
-  max-width: 420px;
-  margin: 0 auto 24px;
-}
-
-@media (min-width: 500px) {
-  .apple-swatch-selector {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-.swatch-btn {
-  background: #F5F5F7;
-  border: 2px solid transparent;
-  border-radius: 18px;
-  padding: 14px 10px;
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  transition: all 0.25s var(--ease-apple);
-}
-
-.swatch-btn:hover {
-  background: #FFFFFF;
-  box-shadow: var(--apple-shadow-sm);
-  transform: translateY(-2px);
-}
-
-.swatch-btn.is-active {
-  background: #FFFFFF;
-  border-color: var(--apple-text-main);
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
-}
-
-.swatch-circle {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background-color: var(--swatch-hex);
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  box-shadow: inset 0 1px 3px rgba(255, 255, 255, 0.6);
-  transition: transform 0.25s var(--ease-spring);
-}
-
-.swatch-btn.is-active .swatch-circle {
-  transform: scale(1.18);
-}
-
-.swatch-title {
-  font-size: 0.78rem;
-  font-weight: 600;
-  color: var(--apple-text-main);
-}
-
-.swatch-info-box {
-  background: #FAF8F5;
-  border: 1px solid var(--apple-border-subtle);
-  border-radius: 20px;
-  padding: 20px;
-  text-align: center;
-  position: relative;
-  transition: all 0.3s ease;
-}
-
-.swatch-info-title {
-  font-family: var(--font-serif);
   font-size: 1.15rem;
-  font-weight: 700;
-  color: var(--apple-text-main);
-  margin-bottom: 6px;
+  line-height: 1.6;
+  color: var(--canva-text-body);
+  max-width: 380px;
+  margin: 0 auto 18px;
+  font-weight: 500;
 }
 
-.swatch-info-text {
-  font-size: 0.88rem;
-  color: var(--apple-text-sub);
-  line-height: 1.5;
-}
-
-/* Cuenta Regresiva Estilo Apple */
-.apple-countdown-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 8px;
-  max-width: 440px;
-  margin: 0 auto 28px;
-}
-
-.time-pill {
-  background: #F5F5F7;
-  border-radius: 18px;
-  padding: 14px 6px;
-  border: 1px solid var(--apple-border-subtle);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.time-num {
+.canva-sweet-dedication {
   font-family: var(--font-sans);
-  font-size: clamp(1.4rem, 4.5vw, 1.85rem);
-  font-weight: 800;
-  color: var(--apple-text-main);
-  line-height: 1.1;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--canva-text-body);
+  max-width: 400px;
+  margin: 0 auto 12px;
 }
 
-.time-lbl {
-  font-size: 0.7rem;
+.canva-script-highlight {
+  font-family: var(--font-serif);
+  font-size: 1.65rem;
   font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color: var(--color-rose);
-  margin-top: 4px;
+  color: var(--canva-title-color);
+  margin-bottom: 30px;
 }
 
-/* Mapa Estilo Radar Apple */
-.apple-map-preview {
-  position: relative;
-  width: 100%;
-  max-width: 420px;
-  height: 160px;
-  margin: 0 auto 24px;
-  background: linear-gradient(135deg, #F9F5F0 0%, #EFE7DE 100%);
+.canva-parents-presentation {
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px dashed var(--canva-border);
   border-radius: 20px;
-  border: 1px solid var(--apple-border);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-
-.radar-ping {
-  position: absolute;
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
-  background: rgba(196, 127, 149, 0.25);
-  animation: pulsePin 2.2s infinite ease-out;
-}
-
-.map-center-pin {
-  position: relative;
-  z-index: 2;
-  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
-}
-
-.map-venue-tag {
-  position: relative;
-  z-index: 2;
-  margin-top: 8px;
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: var(--apple-text-main);
-  background: rgba(255, 255, 255, 0.95);
-  padding: 4px 12px;
-  border-radius: 9999px;
-  box-shadow: var(--apple-shadow-sm);
-}
-
-.dual-actions {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+  padding: 20px 16px;
   max-width: 360px;
   margin: 0 auto;
 }
 
-@media (min-width: 440px) {
-  .dual-actions {
-    flex-direction: row;
-    justify-content: center;
-  }
+.parents-intro-text {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  color: var(--canva-title-color);
+  margin-bottom: 6px;
+}
+
+.parents-signature-text {
+  font-family: var(--font-script);
+  font-size: 2.3rem;
+  color: var(--canva-btn-terracotta);
 }
 
 /* ==========================================================================
-   5. EDITORIAL DEEP-DIVE: EL LATIDO DE NUESTRO CORAZÓN
+   3. LA FECHA: TARJETA DE CUNA & CUENTA REGRESIVA
    ========================================================================== */
-.editorial-section {
-  text-align: center;
-  padding: 70px 20px;
-}
-
-.editorial-container {
-  max-width: 620px;
-  margin: 0 auto;
-}
-
-.editorial-headline {
+.canva-chapter-header {
   font-family: var(--font-serif);
-  font-size: clamp(2rem, 7vw, 2.9rem);
-  font-weight: 800;
-  color: var(--apple-text-main);
-  line-height: 1.15;
-  letter-spacing: -0.5px;
-  margin: 16px 0 20px;
-}
-
-.editorial-body {
-  font-size: clamp(1rem, 3.8vw, 1.15rem);
-  color: var(--apple-text-sub);
-  line-height: 1.8;
-  margin-bottom: 36px;
-}
-
-.editorial-body strong {
-  color: var(--apple-text-main);
+  font-size: 1.65rem;
   font-weight: 700;
+  color: var(--canva-title-color);
+  margin-bottom: 16px;
 }
 
-.names-meaning-cards {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 12px;
-  margin-bottom: 36px;
+.baby-date-card-wrapper {
+  margin: 0 auto 20px;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-@media (min-width: 480px) {
-  .names-meaning-cards {
-    grid-template-columns: 1fr 1fr;
-  }
+.baby-date-card-wrapper:hover {
+  transform: translateY(-4px) scale(1.02);
 }
 
-.meaning-card .double-bezel-core {
-  padding: 20px;
-  display: flex;
+.date-ticket-img {
+  max-width: 100%;
+  height: auto;
+}
+
+.countdown-ribbon-card {
+  display: inline-flex;
   align-items: center;
-  gap: 14px;
-  text-align: left;
+  gap: 10px;
+  background: #FFFDF9;
+  border: 1.5px solid var(--canva-title-color);
+  border-radius: 9999px;
+  padding: 12px 24px;
+  box-shadow: var(--canva-shadow-sm);
+  margin-bottom: 22px;
 }
 
-.meaning-letter {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: var(--color-soft-rose);
-  color: var(--color-rose);
-  font-family: var(--font-serif);
-  font-size: 1.3rem;
-  font-weight: 700;
+.time-unit {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.time-digit {
+  font-family: var(--font-sans);
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: var(--canva-title-color);
+  line-height: 1;
+}
+
+.time-name {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--canva-text-muted);
+  margin-top: 3px;
+}
+
+.time-divider {
+  color: var(--canva-border);
+  font-size: 1.2rem;
+}
+
+/* Botones Terracota tipo Canva */
+.canva-btn-terracotta {
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
-}
-
-.meaning-text strong {
-  display: block;
-  font-size: 1rem;
+  gap: 8px;
+  background: var(--canva-btn-terracotta);
+  color: #FFFFFF;
+  text-decoration: none;
+  font-size: 0.95rem;
   font-weight: 700;
-  color: var(--apple-text-main);
+  padding: 14px 28px;
+  border-radius: 9999px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(146, 66, 69, 0.35);
+  transition: all 0.25s ease;
 }
 
-.meaning-text span {
-  font-size: 0.8rem;
-  color: var(--apple-text-sub);
-  line-height: 1.4;
+.canva-btn-terracotta:hover {
+  background: var(--canva-btn-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(146, 66, 69, 0.45);
 }
 
-.parents-signature-block {
-  border-top: 1px solid var(--apple-border-subtle);
-  padding-top: 24px;
+.canva-btn-terracotta:active {
+  transform: scale(0.97);
 }
 
-.parents-label {
-  display: block;
-  font-size: 0.85rem;
-  color: var(--apple-text-muted);
-  margin-bottom: 4px;
+.btn-wide {
+  width: 100%;
+  max-width: 280px;
+  margin-top: 14px;
 }
 
-.parents-cursive {
-  font-family: var(--font-script);
-  font-size: 2.2rem;
-  color: var(--color-rose);
+.canva-btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #FFFDF9;
+  border: 1.5px solid var(--canva-btn-terracotta);
+  color: var(--canva-btn-terracotta);
+  font-size: 0.9rem;
+  font-weight: 700;
+  padding: 12px 24px;
+  border-radius: 9999px;
+  cursor: pointer;
+  box-shadow: var(--canva-shadow-sm);
+  transition: all 0.25s ease;
 }
 
-/* ==========================================================================
-   6. ESTADÍSTICAS APPLE CON TIPOGRAFÍA MONUMENTAL
-   ========================================================================== */
-.stats-section {
-  padding: 40px 16px 60px;
-}
-
-.apple-stats-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 14px;
-  max-width: 760px;
-  margin: 0 auto;
-}
-
-@media (min-width: 600px) {
-  .apple-stats-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-.stat-cell .double-bezel-core {
-  padding: 32px 18px;
-  text-align: center;
-}
-
-.stat-number {
-  display: block;
-  font-size: clamp(3.2rem, 10vw, 4.4rem);
-  font-weight: 800;
-  letter-spacing: -2px;
-  color: var(--apple-text-main);
-  line-height: 1;
-  margin-bottom: 10px;
-}
-
-.stat-desc {
-  font-size: 0.86rem;
-  color: var(--apple-text-sub);
-  line-height: 1.5;
+.canva-btn-outline:hover {
+  background: var(--canva-btn-terracotta);
+  color: #FFFFFF;
 }
 
 /* ==========================================================================
-   7. FORMULARIO RSVP DE ALTA GAMA
+   4. RECEPCIÓN & CÓMO LLEGAR
    ========================================================================== */
-.rsvp-section {
-  padding-bottom: 70px;
-}
-
-.rsvp-card-container {
-  max-width: 540px;
-  margin: 0 auto;
-}
-
-.rsvp-card-container .double-bezel-core {
-  padding: 40px 24px;
-  text-align: center;
-}
-
-.apple-form {
-  text-align: left;
-  margin-top: 28px;
-}
-
-.form-row {
-  margin-bottom: 20px;
-}
-
-.apple-label {
-  display: block;
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--apple-text-main);
+.carriage-img {
+  max-width: 100%;
+  height: auto;
   margin-bottom: 8px;
 }
 
-.apple-input,
-.apple-select,
-.apple-textarea {
+.canva-section-title {
+  font-family: var(--font-display);
+  font-size: 1.85rem;
+  font-weight: 800;
+  color: var(--canva-title-color);
+  letter-spacing: 2px;
+  margin-bottom: 14px;
+  line-height: 1.15;
+}
+
+.venue-info-parchment {
+  background: #FFFDF9;
+  border: 1px solid var(--canva-border);
+  border-radius: 24px;
+  padding: 30px 20px;
+  box-shadow: var(--canva-shadow-sm);
+  max-width: 380px;
+  margin: 0 auto;
+}
+
+.venue-place-name {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--canva-title-color);
+  margin-bottom: 6px;
+}
+
+.venue-street {
+  font-size: 0.95rem;
+  color: var(--canva-text-body);
+  margin-bottom: 10px;
+}
+
+.venue-schedule-tag {
+  display: inline-block;
+  background: var(--color-soft-rose);
+  color: var(--canva-btn-terracotta);
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 4px 14px;
+  border-radius: 9999px;
+  margin-bottom: 14px;
+}
+
+.venue-description {
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: var(--canva-text-muted);
+  margin-bottom: 12px;
+}
+
+/* ==========================================================================
+   5. CONFIRMACIÓN DE ASISTENCIA (RSVP)
+   ========================================================================== */
+.canva-gentle-p {
+  font-size: 0.98rem;
+  line-height: 1.65;
+  color: var(--canva-text-body);
+  max-width: 380px;
+  margin: 0 auto 24px;
+}
+
+.canva-twin-buttons-row {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 340px;
+  margin: 0 auto 30px;
+}
+
+@media (min-width: 440px) {
+  .canva-twin-buttons-row {
+    flex-direction: row;
+    justify-content: center;
+  }
+  .canva-twin-buttons-row .canva-btn-terracotta {
+    flex: 1;
+    padding: 14px 12px;
+    font-size: 0.88rem;
+  }
+}
+
+.canva-rsvp-card {
+  background: #FFFDF9;
+  border: 1px solid var(--canva-border);
+  border-radius: 24px;
+  padding: 28px 20px;
+  box-shadow: var(--canva-shadow-sm);
+  text-align: left;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.rsvp-card-kicker {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--canva-text-muted);
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.form-row {
+  margin-bottom: 18px;
+}
+
+.canva-label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #333333;
+  margin-bottom: 6px;
+}
+
+.canva-input,
+.canva-select,
+.canva-textarea {
   width: 100%;
-  padding: 13px 16px;
+  padding: 12px 14px;
   font-family: var(--font-sans);
   font-size: 0.95rem;
-  color: var(--apple-text-main);
-  background: #F5F5F7;
-  border: 1px solid transparent;
-  border-radius: 14px;
+  color: #222222;
+  background: #FDF9F5;
+  border: 1px solid rgba(184, 150, 138, 0.4);
+  border-radius: 12px;
   outline: none;
   transition: all 0.2s ease;
 }
 
-.apple-input:focus,
-.apple-select:focus,
-.apple-textarea:focus {
+.canva-input:focus,
+.canva-select:focus,
+.canva-textarea:focus {
   background: #FFFFFF;
-  border-color: var(--apple-text-main);
-  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.08);
+  border-color: var(--canva-btn-terracotta);
+  box-shadow: 0 0 0 3px rgba(146, 66, 69, 0.12);
 }
 
 .form-error {
   display: block;
   font-size: 0.78rem;
-  color: #E74C3C;
+  color: #D32F2F;
   margin-top: 4px;
   min-height: 16px;
 }
 
-.apple-segmented-control {
+.canva-segmented-radios {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 8px;
-  background: #F5F5F7;
+  background: #F5EFEB;
   padding: 4px;
-  border-radius: 14px;
+  border-radius: 12px;
 }
 
-.segment-btn {
+.radio-chip {
   position: relative;
   cursor: pointer;
 }
 
-.segment-btn input {
+.radio-chip input {
   position: absolute;
   opacity: 0;
 }
 
-.segment-pill {
+.radio-chip span {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 10px 12px;
-  border-radius: 10px;
-  font-size: 0.85rem;
+  padding: 8px;
+  border-radius: 9px;
+  font-size: 0.8rem;
   font-weight: 600;
-  color: var(--apple-text-muted);
+  color: var(--canva-text-muted);
   transition: all 0.2s ease;
   text-align: center;
 }
 
-.segment-btn input:checked + .segment-pill {
+.radio-chip input:checked + span {
   background: #FFFFFF;
-  color: var(--apple-text-main);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  color: var(--canva-title-color);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
 }
 
-.btn-submit-full {
+.btn-full-submit {
   width: 100%;
-  padding: 14px 16px 14px 24px;
-  margin-top: 8px;
-}
-
-.rsvp-footer-note {
-  font-size: 0.8rem;
-  color: var(--apple-text-muted);
-  text-align: center;
-  margin-top: 14px;
+  margin-top: 6px;
 }
 
 /* ==========================================================================
-   FOOTER MINIMALISTA
+   6. ACCESO RESERVADO / PASE DIGITAL
    ========================================================================== */
-.apple-footer {
-  padding: 40px 20px 60px;
-  text-align: center;
-  border-top: 1px solid var(--apple-border-subtle);
-  color: var(--apple-text-muted);
+.canva-key-wrapper {
+  margin-bottom: 12px;
 }
 
-.footer-inner {
-  max-width: 600px;
+.swing-key-img {
+  animation: keyPendulum 4s infinite ease-in-out;
+  transform-origin: top center;
+}
+
+/* Modal del Pase Digital */
+.canva-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.canva-modal.is-open {
+  display: flex;
+  animation: modalFadeIn 0.3s ease;
+}
+
+.modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(30, 20, 25, 0.55);
+  backdrop-filter: blur(8px);
+}
+
+.modal-baby-ticket {
+  position: relative;
+  z-index: 2;
+  background: #FFFDF9;
+  border: 2px solid var(--canva-btn-terracotta);
+  border-radius: 26px;
+  padding: 30px 24px;
+  max-width: 360px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+  animation: ticketPop 0.4s var(--ease-unfold);
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  color: var(--canva-text-muted);
+  cursor: pointer;
+  line-height: 1;
+}
+
+.ticket-kicker {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--color-rose);
+  margin-top: 4px;
+}
+
+.ticket-name {
+  font-family: var(--font-serif);
+  font-size: 1.85rem;
+  font-weight: 800;
+  color: var(--canva-title-color);
+  margin-bottom: 16px;
+}
+
+.ticket-middle {
+  border-top: 1.5px dashed var(--canva-border);
+  border-bottom: 1.5px dashed var(--canva-border);
+  padding: 18px 0;
+  margin-bottom: 18px;
+}
+
+.ticket-for-lbl {
+  font-size: 0.8rem;
+  color: var(--canva-text-muted);
+}
+
+.ticket-guest-title {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #271E24;
+  margin-bottom: 12px;
+}
+
+.ticket-tags-grid {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.tag-box {
+  background: var(--color-soft-rose);
+  padding: 6px 14px;
+  border-radius: 10px;
+}
+
+.tag-lbl {
+  display: block;
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--canva-btn-terracotta);
+}
+
+.tag-val {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #271E24;
+}
+
+.ticket-instruction {
+  font-size: 0.78rem;
+  color: var(--canva-text-muted);
+}
+
+.ticket-gold-stamp {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: var(--color-gold);
+  margin-bottom: 14px;
+}
+
+.btn-save-ticket {
+  background: var(--canva-btn-terracotta);
+  color: #FFFFFF;
+  border: none;
+  font-size: 0.88rem;
+  font-weight: 700;
+  padding: 10px 24px;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-save-ticket:hover {
+  background: var(--canva-btn-hover);
+}
+
+/* ==========================================================================
+   7. LLUVIA DE SOBRES / REGALOS
+   ========================================================================== */
+.gifts-baby-icon {
+  margin-bottom: 12px;
+}
+
+.envelope-img {
+  max-width: 100%;
+  height: auto;
+}
+
+.gifts-collapsible-box {
+  background: #FFFDF9;
+  border: 1px solid var(--canva-border);
+  border-radius: 20px;
+  padding: 20px;
+  max-width: 360px;
+  margin: 18px auto 0;
+  text-align: center;
+  animation: fadeInDown 0.35s ease;
+}
+
+.box-info-text {
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: var(--canva-text-body);
+  margin-bottom: 12px;
+}
+
+.account-pill-card {
+  background: var(--color-soft-rose);
+  border-radius: 14px;
+  padding: 12px;
+  font-size: 0.88rem;
+  color: var(--canva-title-color);
+}
+
+/* ==========================================================================
+   8. DRESS CODE INTERACTIVO
+   ========================================================================== */
+.dresscode-wreath-box {
+  margin-bottom: 6px;
+}
+
+.dresscode-subtitle {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-rose);
+  letter-spacing: 2px;
+  margin-bottom: 14px;
+}
+
+.canva-swatches-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  max-width: 380px;
+  margin: 0 auto 18px;
+}
+
+.swatch-btn {
+  background: #FFFDF9;
+  border: 2px solid transparent;
+  border-radius: 16px;
+  padding: 12px 6px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  box-shadow: var(--canva-shadow-sm);
+  transition: all 0.25s ease;
+}
+
+.swatch-btn:hover {
+  transform: translateY(-2px);
+}
+
+.swatch-btn.is-active {
+  border-color: var(--canva-btn-terracotta);
+  background: #FFFDF9;
+}
+
+.swatch-circle {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: var(--swatch-hex);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.8);
+  transition: transform 0.2s ease;
+}
+
+.swatch-btn.is-active .swatch-circle {
+  transform: scale(1.15);
+}
+
+.swatch-title {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--canva-text-body);
+}
+
+.swatch-info-bubble {
+  background: #FFFDF9;
+  border: 1px solid var(--canva-border);
+  border-radius: 18px;
+  padding: 16px 20px;
+  max-width: 360px;
+  margin: 0 auto;
+  box-shadow: var(--canva-shadow-sm);
+}
+
+.swatch-name-heading {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--canva-title-color);
+  margin-bottom: 4px;
+}
+
+.swatch-desc-heading {
+  font-size: 0.85rem;
+  color: var(--canva-text-body);
+  line-height: 1.5;
+}
+
+/* ==========================================================================
+   9. ITINERARIO (TIMELINE VERTICAL ILUSTRADO TIPO CANVA)
+   ========================================================================== */
+.itinerary-intro {
+  font-size: 0.95rem;
+  color: var(--canva-text-body);
+  margin-bottom: 30px;
+}
+
+.canva-vertical-timeline {
+  position: relative;
+  max-width: 380px;
+  margin: 0 auto;
+  padding: 10px 0;
+}
+
+/* Tallo central de la enredadera */
+.timeline-vine-stem {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2.5px;
+  background: #924245;
+  border-radius: 2px;
+}
+
+.timeline-node {
+  position: relative;
+  margin-bottom: 24px;
+  display: flex;
+}
+
+.timeline-node.node-left {
+  justify-content: flex-start;
+  padding-right: 52%;
+}
+
+.timeline-node.node-right {
+  justify-content: flex-end;
+  padding-left: 52%;
+}
+
+/* Conectores hacia el centro */
+.timeline-node::after {
+  content: '';
+  position: absolute;
+  top: 20px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #FFFDF9;
+  border: 2.5px solid var(--canva-btn-terracotta);
+  box-shadow: 0 0 0 3px var(--canva-bg);
+  z-index: 2;
+}
+
+.timeline-node.node-left::after {
+  right: calc(50% - 5px);
+}
+
+.timeline-node.node-right::after {
+  left: calc(50% - 5px);
+}
+
+.node-content-card {
+  background: #FFFDF9;
+  border: 1px solid var(--canva-border);
+  border-radius: 18px;
+  padding: 14px 12px;
+  text-align: left;
+  box-shadow: var(--canva-shadow-sm);
+  width: 100%;
+}
+
+.node-emoji {
+  font-size: 1.4rem;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.node-name {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: var(--canva-title-color);
+}
+
+.node-hour {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-rose);
+  margin-bottom: 4px;
+}
+
+.node-desc {
+  font-size: 0.78rem;
+  color: var(--canva-text-muted);
+  line-height: 1.4;
+}
+
+/* ==========================================================================
+   10. FOOTER: BENDICIÓN Y AGRADECIMIENTO
+   ========================================================================== */
+.canva-footer {
+  text-align: center;
+  padding-top: 30px;
+  border-top: 1px dashed var(--canva-border);
+}
+
+.footer-card-box {
+  max-width: 400px;
   margin: 0 auto;
 }
 
-.footer-verse {
+.footer-butterfly-img {
+  margin-bottom: 8px;
+  opacity: 0.8;
+}
+
+.footer-bible-verse {
   font-family: var(--font-serif);
   font-style: italic;
   font-size: 0.95rem;
-  margin-bottom: 8px;
-  color: var(--apple-text-sub);
+  line-height: 1.6;
+  color: var(--canva-title-color);
+  margin-bottom: 12px;
 }
 
-.footer-copy {
-  font-size: 0.8rem;
+.footer-script-parents {
+  font-family: var(--font-script);
+  font-size: 2.3rem;
+  color: var(--canva-btn-terracotta);
+  margin-bottom: 8px;
+}
+
+.footer-copyright {
+  font-size: 0.78rem;
+  color: var(--canva-text-muted);
 }
 
 /* ==========================================================================
-   KEYFRAMES & ANIMACIONES
+   KEYFRAMES & ANIMACIONES DE DESPLIEGUE
    ========================================================================== */
-@keyframes fadeInPanel {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+@keyframes storkGlide {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(1.5deg); }
+}
+
+@keyframes gentleSwing {
+  0%, 100% { transform: rotate(-3deg); }
+  50% { transform: rotate(3deg); }
+}
+
+@keyframes keyPendulum {
+  0%, 100% { transform: rotate(-8deg); }
+  50% { transform: rotate(8deg); }
+}
+
+@keyframes pulseSealHalo {
+  0% { transform: scale(0.9); opacity: 0.8; }
+  60% { transform: scale(1.35); opacity: 0.1; }
+  100% { transform: scale(1.5); opacity: 0; }
 }
 
 @keyframes pulseAura {
-  0%, 100% { transform: scale(1); opacity: 0.6; }
-  50% { transform: scale(1.15); opacity: 0.85; }
-}
-
-@keyframes floatCrown {
-  0%, 100% { transform: translateX(-50%) translateY(0); }
-  50% { transform: translateX(-50%) translateY(-5px); }
-}
-
-@keyframes heartbeatRing {
-  0% { transform: translate(-50%, -50%) scale(0.9); opacity: 0.7; }
-  60% { transform: translate(-50%, -50%) scale(1.35); opacity: 0.15; }
-  100% { transform: translate(-50%, -50%) scale(1.6); opacity: 0; }
-}
-
-@keyframes gentleBob {
-  0%, 100% { transform: translateX(-50%) translateY(0); }
-  50% { transform: translateX(-50%) translateY(-3px); }
-}
-
-@keyframes blinkDot {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.25; }
-}
-
-@keyframes pulsePin {
-  0% { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(196, 127, 149, 0.6); }
-  70% { transform: scale(1); box-shadow: 0 0 0 16px rgba(196, 127, 149, 0); }
-  100% { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(196, 127, 149, 0); }
+  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+  50% { transform: translate(-50%, -50%) scale(1.18); opacity: 0.85; }
 }
 
 @keyframes wavePulse {
@@ -1354,43 +1325,36 @@ body.apple-experience {
   50% { height: 8px; }
 }
 
+@keyframes modalFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes ticketPop {
+  from { transform: scale(0.85); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 /* ==========================================================================
    RESPONSIVE MEDIA QUERIES
    ========================================================================== */
 @media (max-width: 480px) {
-  .apple-hero-section {
-    padding: 85px 14px 40px;
+  .canva-invitation-container {
+    padding-top: 50px;
   }
-  .highlights-carousel {
-    padding: 10px 10px 20px;
-    gap: 12px;
-  }
-  .highlight-card {
-    flex: 0 0 86vw;
-  }
-  .highlight-card .double-bezel-core {
-    padding: 24px 18px;
-  }
-  .closer-look-display .double-bezel-core {
-    padding: 28px 18px;
-  }
-  .rsvp-card-container .double-bezel-core {
-    padding: 30px 18px;
+  .mirror-baby-name {
+    font-size: 2.3rem;
   }
 }
 
 @media (min-width: 768px) {
-  .highlight-card {
-    flex: 0 0 340px;
-  }
-  .highlights-carousel {
-    justify-content: center;
-  }
-  .apple-stats-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-  .closer-look-display {
-    max-width: 680px;
+  .canva-invitation-container {
+    max-width: 520px;
   }
 }
 

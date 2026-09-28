@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 260" width="240" height="260" fill="none">
+  <defs>
+    <linearGradient id="goldMobile" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FCEAB8"/>
+      <stop offset="35%" stop-color="#D4AF37"/>
+      <stop offset="70%" stop-color="#A68026"/>
+      <stop offset="100%" stop-color="#CFA732"/>
+    </linearGradient>
+    <linearGradient id="cloudPink" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="60%" stop-color="#FDE8EE"/>
+      <stop offset="100%" stop-color="#F8C9D6"/>
+    </linearGradient>
+    <filter id="mobileShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#8C475A" flood-opacity="0.2"/>
+    </filter>
+  </defs>
+
+  <g filter="url(#mobileShadow)">
+    <!-- Cuerda superior colgante con lazo rosa -->
+    <line x1="120" y1="5" x2="120" y2="45" stroke="#D4AF37" stroke-width="2.5" stroke-dasharray="2 2"/>
+    <!-- Lazo rosa de seda -->
+    <path d="M120 42 C110 32, 95 36, 105 48 C115 52, 120 44, 120 44 C120 44, 125 52, 135 48 C145 36, 130 32, 120 42 Z" fill="#E896AC"/>
+    <circle cx="120" cy="44" r="3.5" fill="#D4AF37"/>
+
+    <!-- Brazo curvo cruzado del móvil (carrusel de cuna) -->
+    <path d="M35 85 Q120 65 205 85" stroke="url(#goldMobile)" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="120" cy="73" r="6" fill="url(#goldMobile)"/>
+
+    <!-- Campanilla musical central / Caja de música (Botón táctil) -->
+    <g id="center-music-core" transform="translate(120, 73)">
+      <line x1="0" y1="0" x2="0" y2="35" stroke="#D4AF37" stroke-width="2"/>
+      
+      <!-- Esfera musical dorada con botón de nota musical -->
+      <circle cx="0" cy="55" r="28" fill="url(#goldMobile)"/>
+      <circle cx="0" cy="55" r="23" fill="#FFF8FA" stroke="#E896AC" stroke-width="1.5"/>
+      <circle cx="0" cy="55" r="18" fill="#FCE4EC"/>
+      
+      <!-- Icono de Play / Nota musical -->
+      <path d="M-5 46 L7 55 L-5 64 Z" fill="#9E4D60"/>
+    </g>
+
+    <!-- Péndulo Izquierdo: Nube rosa suave -->
+    <g transform="translate(45, 85)">
+      <line x1="0" y1="0" x2="0" y2="55" stroke="#D4AF37" stroke-width="1.5" stroke-dasharray="2 3"/>
+      <!-- Nube algodonosa -->
+      <path d="M-22 80 C-30 75, -25 58, -12 60 C-8 48, 12 48, 16 60 C28 58, 32 75, 22 80 Z" fill="url(#cloudPink)" stroke="#EAB4C2" stroke-width="1.2"/>
+      <!-- Estrellita dorada debajo de la nube -->
+      <path d="M0 90 L2 95 L7 96 L3 100 L4 105 L0 102 L-4 105 L-3 100 L-7 96 L-2 95 Z" fill="#D4AF37"/>
+    </g>
+
+    <!-- Péndulo Derecho: Luna sonriente o corazón -->
+    <g transform="translate(195, 85)">
+      <line x1="0" y1="0" x2="0" y2="55" stroke="#D4AF37" stroke-width="1.5" stroke-dasharray="2 3"/>
+      <!-- Corazón acunado -->
+      <path d="M0 65 C-8 55, -22 62, -18 74 C-14 82, 0 92, 0 92 C0 92, 14 82, 18 74 C22 62, 8 55, 0 65 Z" fill="#F48FB1" stroke="#C2185B" stroke-width="1" opacity="0.9"/>
+      <!-- Estrellita dorada debajo del corazón -->
+      <path d="M0 100 L2 104 L6 105 L3 108 L4 112 L0 110 L-4 112 L-3 108 L-6 105 L-2 104 Z" fill="#D4AF37"/>
+    </g>
+  </g>
+</svg>

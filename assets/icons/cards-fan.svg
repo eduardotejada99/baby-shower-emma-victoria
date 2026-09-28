@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 260" width="340" height="260" fill="none">
+  <defs>
+    <filter id="cardShadow" x="-15%" y="-15%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#402010" flood-opacity="0.2"/>
+    </filter>
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFFDF9"/>
+      <stop offset="100%" stop-color="#F2E6D5"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Carta Izquierda (Trébol / Pica) -->
+  <g transform="translate(45, 30) rotate(-14)" filter="url(#cardShadow)">
+    <rect width="110" height="175" rx="10" fill="url(#cardGrad)" stroke="#BFA88F" stroke-width="1.5"/>
+    <text x="14" y="24" font-family="'Playfair Display', serif" font-size="14" font-weight="700" fill="#222">A</text>
+    <path d="M14 30 C12 28, 8 30, 9 34 C10 37, 14 40, 14 40 C14 40, 18 37, 19 34 C20 30, 16 28, 14 30 Z" fill="#222"/>
+    <!-- Ilustración de carta vintage de Alicia (Conejo blanco estilizado) -->
+    <circle cx="55" cy="85" r="28" fill="#E8DEC8" stroke="#A8947C" stroke-width="1" stroke-dasharray="2 2"/>
+    <text x="55" y="90" font-family="'Playfair Display', serif" font-size="20" font-weight="700" fill="#755E47" text-anchor="middle">♠</text>
+    <text x="96" y="162" font-family="'Playfair Display', serif" font-size="14" font-weight="700" fill="#222" transform="rotate(180 96 162)">A</text>
+  </g>
+
+  <!-- Carta Derecha (Diamante / Pica) -->
+  <g transform="translate(185, 30) rotate(14)" filter="url(#cardShadow)">
+    <rect width="110" height="175" rx="10" fill="url(#cardGrad)" stroke="#BFA88F" stroke-width="1.5"/>
+    <text x="14" y="24" font-family="'Playfair Display', serif" font-size="14" font-weight="700" fill="#8A3C34">A</text>
+    <path d="M14 30 L10 36 L14 42 L18 36 Z" fill="#8A3C34"/>
+    <circle cx="55" cy="85" r="28" fill="#E8DEC8" stroke="#A8947C" stroke-width="1" stroke-dasharray="2 2"/>
+    <text x="55" y="90" font-family="'Playfair Display', serif" font-size="20" font-weight="700" fill="#8A3C34" text-anchor="middle">♦</text>
+    <text x="96" y="162" font-family="'Playfair Display', serif" font-size="14" font-weight="700" fill="#8A3C34" transform="rotate(180 96 162)">A</text>
+  </g>
+
+  <!-- Carta Central Principal: As de Corazones (La Fecha) -->
+  <g transform="translate(105, 15)" filter="url(#cardShadow)" id="center-ace-card">
+    <rect width="130" height="205" rx="12" fill="url(#cardGrad)" stroke="#8A3C34" stroke-width="2"/>
+    
+    <!-- Esquina superior izquierda -->
+    <text x="16" y="26" font-family="'Playfair Display', serif" font-size="17" font-weight="800" fill="#8A3C34">A</text>
+    <path d="M16 34 C13 30, 7 32, 9 37 C10 42, 16 46, 16 46 C16 46, 22 42, 23 37 C25 32, 19 30, 16 34 Z" fill="#924245"/>
+
+    <!-- Contenido Central: 24 Octubre 2026 -->
+    <g text-anchor="middle" font-family="'Playfair Display', Georgia, serif">
+      <text x="65" y="72" font-size="38" font-weight="800" fill="#8A3C34">24</text>
+      <text x="65" y="105" font-size="20" font-weight="700" fill="#4A342B" letter-spacing="1">Octubre</text>
+      <text x="65" y="138" font-size="22" font-weight="700" fill="#8A3C34">2026</text>
+      
+      <!-- Corazón de acuarela central -->
+      <path d="M65 158 C58 150, 48 153, 51 161 C53 167, 65 174, 65 174 C65 174, 77 167, 79 161 C82 153, 72 150, 65 158 Z" fill="#924245"/>
+    </g>
+
+    <!-- Esquina inferior derecha (invertida) -->
+    <g transform="rotate(180 114 186)">
+      <text x="16" y="26" font-family="'Playfair Display', serif" font-size="17" font-weight="800" fill="#8A3C34">A</text>
+      <path d="M16 34 C13 30, 7 32, 9 37 C10 42, 16 46, 16 46 C16 46, 22 42, 23 37 C25 32, 19 30, 16 34 Z" fill="#924245"/>
+    </g>
+  </g>
+</svg>

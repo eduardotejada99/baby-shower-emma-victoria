@@ -1,6 +1,19 @@
 /**
- * ORQUESTADOR PRINCIPAL: EXPERIENCIA APPLE LUXURY CREAM
+ * ORQUESTADOR PRINCIPAL: EXPERIENCIA CANVA BABY GIRL INTERACTIVA
  * Baby Shower de Emma Victoria
+ * 
+ * Orquesta:
+ * 1. Motor de partículas y destellos dorados/rosados
+ * 2. Sintetizador de caja de música de cuna (Web Audio API)
+ * 3. Despliegue elástico 3D al hacer scroll (Unfold on scroll)
+ * 4. Móvil musical interactivo con animación y sonidos ("Dale play")
+ * 5. Sello de cera interactivo con latido fetal y transición suave
+ * 6. Tarjeta de fecha de cuna y sincronización de calendario Google
+ * 7. Modal de Pase Digital VIP (Acceso Reservado) con llave oscilante
+ * 8. Panel desplegable de sugerencia de regalos / sobres
+ * 9. Selector interactivo de Dress Code (muestras de color pastel)
+ * 10. Formulario RSVP inteligente conectado con WhatsApp (Mamá / Papá)
+ * 11. Compatibilidad total con la suite de pruebas unitarias
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -12,34 +25,61 @@ document.addEventListener('DOMContentLoaded', () => {
     window.particleEngine = particleEngine;
   }
 
-  // 2. Iniciar Sintetizador de Audio Ambiental y Efectos Hápticos
+  // 2. Iniciar Sintetizador de Audio Ambiental y Melodía de Cuna
   let musicSynth = null;
   const audioBtn = document.getElementById('btn-audio-toggle');
+  const babyMobile = document.getElementById('interactive-pocket-watch');
+
   if (window.MusicBoxSynthesizer) {
     musicSynth = new window.MusicBoxSynthesizer();
     window.musicSynth = musicSynth;
   }
 
-  if (audioBtn && musicSynth) {
-    audioBtn.addEventListener('click', () => {
-      const isPlaying = musicSynth.toggle();
+  function toggleMusic(sourceElement) {
+    if (!musicSynth) return;
+    const isPlaying = musicSynth.toggle();
+
+    if (audioBtn) {
       if (isPlaying) {
         audioBtn.classList.add('is-playing');
         audioBtn.setAttribute('aria-label', 'Silenciar música');
         audioBtn.title = 'Silenciar música';
-        if (particleEngine) {
-          const rect = audioBtn.getBoundingClientRect();
-          particleEngine.createSparkleBurst(rect.left + rect.width / 2, rect.top + rect.height / 2, 16);
-        }
       } else {
         audioBtn.classList.remove('is-playing');
         audioBtn.setAttribute('aria-label', 'Reproducir melodía de ensueño');
         audioBtn.title = 'Reproducir música';
       }
+    }
+
+    if (babyMobile) {
+      if (isPlaying) {
+        babyMobile.classList.add('is-spinning');
+      } else {
+        babyMobile.classList.remove('is-spinning');
+      }
+    }
+
+    if (particleEngine && sourceElement) {
+      const rect = sourceElement.getBoundingClientRect();
+      particleEngine.createSparkleBurst(rect.left + rect.width / 2, rect.top + rect.height / 2, 28);
+    }
+  }
+
+  if (audioBtn) {
+    audioBtn.addEventListener('click', () => toggleMusic(audioBtn));
+  }
+
+  if (babyMobile) {
+    babyMobile.addEventListener('click', () => toggleMusic(babyMobile));
+    babyMobile.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggleMusic(babyMobile);
+      }
     });
   }
 
-  // 3. Floating Island Subnav: Sombra y elevación dinámica al hacer scroll
+  // 3. Sub-Navegación Flotante: Sombra y elevación dinámica al hacer scroll
   const appleSubnav = document.getElementById('apple-subnav');
   window.addEventListener('scroll', () => {
     if (appleSubnav) {
@@ -51,189 +91,154 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }, { passive: true });
 
-  // 4. Emblema Central Interactivo: Latido Fetal y Campanilla
+  // 4. Emblema / Sello Central Interactivo: Latido Fetal y Campanilla
   const waxSeal = document.getElementById('wax-seal');
-  const heartbeatHint = document.getElementById('heartbeat-hint');
-  const highlightsSection = document.querySelector('.highlights-section');
+  const sectionMusic = document.querySelector('.section-music');
 
-  function triggerHeartbeatInteraction() {
+  function triggerSealInteraction() {
     if (!waxSeal) return;
 
-    // Reproducir latido fetal y campanilla etérea
     if (musicSynth) {
       musicSynth.playHeartbeat();
-      setTimeout(() => musicSynth.playChime(), 250);
+      setTimeout(() => musicSynth.playChime(), 260);
     }
 
-    // Efecto visual de ondas y partículas
     if (particleEngine) {
       const rect = waxSeal.getBoundingClientRect();
-      particleEngine.createSparkleBurst(rect.left + rect.width / 2, rect.top + rect.height / 2, 40);
+      particleEngine.createSparkleBurst(rect.left + rect.width / 2, rect.top + rect.height / 2, 38);
     }
 
-    if (heartbeatHint) {
-      heartbeatHint.innerHTML = '<span class="hint-dot" style="background:#4CD964;"></span><span>¡Latido recibido con amor!</span>';
-    }
-
-    // Desplazamiento suave hacia lo más destacado después de la interacción
+    // Desplazamiento suave hacia la siguiente sección
     setTimeout(() => {
-      if (highlightsSection) {
-        highlightsSection.scrollIntoView({ behavior: 'smooth' });
+      if (sectionMusic) {
+        sectionMusic.scrollIntoView({ behavior: 'smooth' });
       }
-    }, 600);
+    }, 550);
   }
 
   if (waxSeal) {
-    waxSeal.addEventListener('click', triggerHeartbeatInteraction);
+    waxSeal.addEventListener('click', triggerSealInteraction);
     waxSeal.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
-        triggerHeartbeatInteraction();
+        triggerSealInteraction();
       }
     });
   }
 
-  // 5. Carrusel Horizontal de Momentos Destacados con Autoplay y Control Play/Pause
-  const carousel = document.getElementById('highlights-carousel');
-  const dots = document.querySelectorAll('.carousel-dot');
-  const cards = document.querySelectorAll('.highlight-card');
-  const playPauseBtn = document.getElementById('btn-carousel-autoplay');
-  const playPauseIcon = document.getElementById('play-pause-icon');
+  // 5. Interacción en Tarjeta de Fecha de Cuna
+  const babyDateCard = document.getElementById('baby-date-card');
+  if (babyDateCard) {
+    babyDateCard.addEventListener('click', () => {
+      if (musicSynth) musicSynth.playChime();
+      if (particleEngine) {
+        const rect = babyDateCard.getBoundingClientRect();
+        particleEngine.createSparkleBurst(rect.left + rect.width / 2, rect.top + rect.height / 2, 22);
+      }
+    });
+  }
 
-  let autoplayTimer = null;
-  let isAutoplayActive = true;
-  let currentCardIndex = 0;
+  // 6. Modal de Pase Digital VIP (Acceso Reservado)
+  const btnOpenVipPass = document.getElementById('btn-open-vip-pass');
+  const vipPassModal = document.getElementById('vip-pass-modal');
+  const btnCloseModal = document.getElementById('btn-close-modal');
+  const modalPassBackdrop = document.getElementById('modal-pass-backdrop');
+  const ticketGuestDisplay = document.getElementById('ticket-guest-display');
+  const ticketPassesDisplay = document.getElementById('ticket-passes-display');
+  const btnDownloadPass = document.getElementById('btn-download-pass');
+  const guestNameInput = document.getElementById('guest-name');
+  const guestPassesSelect = document.getElementById('guest-passes');
 
-  function scrollToCard(index) {
-    if (cards[index] && carousel) {
-      cards[index].scrollIntoView({
-        behavior: 'smooth',
-        block: 'nearest',
-        inline: 'center'
-      });
-      currentCardIndex = index;
+  function openVipPass() {
+    if (!vipPassModal) return;
+
+    // Actualizar nombre y pases en el ticket con los valores del formulario si existen
+    const nameVal = guestNameInput ? guestNameInput.value.trim() : '';
+    const passesVal = guestPassesSelect ? guestPassesSelect.value : '2';
+
+    if (ticketGuestDisplay) {
+      ticketGuestDisplay.textContent = nameVal ? nameVal : 'Estimado(a) Invitado(a)';
+    }
+
+    if (ticketPassesDisplay) {
+      ticketPassesDisplay.textContent = `${passesVal} ${parseInt(passesVal, 10) === 1 ? 'Pase' : 'Pases'}`;
+    }
+
+    vipPassModal.classList.add('is-open');
+    vipPassModal.setAttribute('aria-hidden', 'false');
+
+    if (musicSynth) musicSynth.playChime();
+
+    if (particleEngine) {
+      particleEngine.createSparkleBurst(window.innerWidth / 2, window.innerHeight / 2, 35);
     }
   }
 
-  function startAutoplay() {
-    stopAutoplay();
-    autoplayTimer = setInterval(() => {
-      if (!isAutoplayActive || !carousel) return;
-      currentCardIndex = (currentCardIndex + 1) % cards.length;
-      scrollToCard(currentCardIndex);
-    }, 4500);
+  function closeVipPass() {
+    if (!vipPassModal) return;
+    vipPassModal.classList.remove('is-open');
+    vipPassModal.setAttribute('aria-hidden', 'true');
   }
 
-  function stopAutoplay() {
-    if (autoplayTimer) {
-      clearInterval(autoplayTimer);
-      autoplayTimer = null;
+  if (btnOpenVipPass) btnOpenVipPass.addEventListener('click', openVipPass);
+  if (btnCloseModal) btnCloseModal.addEventListener('click', closeVipPass);
+  if (modalPassBackdrop) modalPassBackdrop.addEventListener('click', closeVipPass);
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && vipPassModal && vipPassModal.classList.contains('is-open')) {
+      closeVipPass();
     }
+  });
+
+  if (btnDownloadPass) {
+    btnDownloadPass.addEventListener('click', () => {
+      if (musicSynth) musicSynth.playChime();
+      if (particleEngine) {
+        particleEngine.createSparkleBurst(window.innerWidth / 2, window.innerHeight / 2, 45);
+      }
+      btnDownloadPass.textContent = '✓ Pase Guardado';
+      setTimeout(() => {
+        closeVipPass();
+        btnDownloadPass.innerHTML = '<span>Guardar Pase</span>';
+      }, 1200);
+    });
   }
 
-  if (carousel && dots.length > 0) {
-    // Iniciar autoplay sutil
-    startAutoplay();
+  // 7. Panel Colapsable de Sugerencia de Regalos / Lluvia de Sobres
+  const btnToggleBankInfo = document.getElementById('btn-toggle-bank-info');
+  const bankInfoPanel = document.getElementById('bank-info-panel');
 
-    // Pausar al interactuar táctilmente
-    carousel.addEventListener('touchstart', () => stopAutoplay(), { passive: true });
+  if (btnToggleBankInfo && bankInfoPanel) {
+    btnToggleBankInfo.addEventListener('click', () => {
+      const isHidden = bankInfoPanel.style.display === 'none' || !bankInfoPanel.style.display;
+      if (isHidden) {
+        bankInfoPanel.style.display = 'block';
+        btnToggleBankInfo.querySelector('span').textContent = 'Ocultar sugerencia';
+      } else {
+        bankInfoPanel.style.display = 'none';
+        btnToggleBankInfo.querySelector('span').textContent = 'Ver sugerencia de regalo';
+      }
+      if (musicSynth) musicSynth.playChime();
+    });
+  }
 
-    // Alternar con botón Play/Pause (exacto al video de Apple en 00:03)
-    if (playPauseBtn && playPauseIcon) {
-      playPauseBtn.addEventListener('click', () => {
-        isAutoplayActive = !isAutoplayActive;
-        if (isAutoplayActive) {
-          playPauseIcon.textContent = '⏸';
-          playPauseBtn.setAttribute('aria-label', 'Pausar carrusel');
-          startAutoplay();
-        } else {
-          playPauseIcon.textContent = '▶';
-          playPauseBtn.setAttribute('aria-label', 'Reanudar carrusel');
-          stopAutoplay();
+  // 8. Botones Gemelos de WhatsApp (Mamá y Papá) con feedback de audio y partículas
+  const btnWaSofia = document.getElementById('btn-wa-sofia');
+  const btnWaAlejandro = document.getElementById('btn-wa-alejandro');
+
+  [btnWaSofia, btnWaAlejandro].forEach(btn => {
+    if (btn) {
+      btn.addEventListener('click', () => {
+        if (musicSynth) musicSynth.playChime();
+        if (particleEngine) {
+          const rect = btn.getBoundingClientRect();
+          particleEngine.createSparkleBurst(rect.left + rect.width / 2, rect.top + rect.height / 2, 25);
         }
       });
     }
-
-    // Clic en los puntos de paginación
-    dots.forEach((dot, index) => {
-      dot.addEventListener('click', () => {
-        stopAutoplay();
-        scrollToCard(index);
-        if (musicSynth) musicSynth.playChime();
-      });
-    });
-
-    // Sincronización del punto activo durante el scroll
-    let scrollTimeout = null;
-    carousel.addEventListener('scroll', () => {
-      if (scrollTimeout) cancelAnimationFrame(scrollTimeout);
-      scrollTimeout = requestAnimationFrame(() => {
-        const carouselCenter = carousel.scrollLeft + carousel.clientWidth / 2;
-        let closestIndex = 0;
-        let minDiff = Infinity;
-
-        cards.forEach((card, i) => {
-          const cardCenter = card.offsetLeft + card.clientWidth / 2;
-          const diff = Math.abs(carouselCenter - cardCenter);
-          if (diff < minDiff) {
-            minDiff = diff;
-            closestIndex = i;
-          }
-        });
-
-        currentCardIndex = closestIndex;
-        dots.forEach((dot, i) => {
-          if (i === closestIndex) {
-            dot.classList.add('is-active');
-            dot.setAttribute('aria-current', 'true');
-          } else {
-            dot.classList.remove('is-active');
-            dot.removeAttribute('aria-current');
-          }
-        });
-      });
-    }, { passive: true });
-  }
-
-  // 6. Selector de Pestañas Interactivas ("Conoce cada detalle")
-  const tabChips = document.querySelectorAll('.tab-chip');
-  const tabPanels = document.querySelectorAll('.tab-panel');
-
-  tabChips.forEach(chip => {
-    chip.addEventListener('click', () => {
-      const targetTab = chip.getAttribute('data-tab');
-      if (!targetTab) return;
-
-      // Sonido táctil etéreo
-      if (musicSynth) musicSynth.playChime();
-
-      // Actualizar chips
-      tabChips.forEach(c => {
-        c.classList.remove('is-active');
-        c.setAttribute('aria-selected', 'false');
-      });
-      chip.classList.add('is-active');
-      chip.setAttribute('aria-selected', 'true');
-
-      // Actualizar paneles
-      tabPanels.forEach(panel => {
-        panel.classList.remove('is-active');
-      });
-
-      const activePanel = document.getElementById(`tab-panel-${targetTab}`);
-      if (activePanel) {
-        activePanel.classList.add('is-active');
-      }
-
-      // Destello en el chip
-      if (particleEngine) {
-        const rect = chip.getBoundingClientRect();
-        particleEngine.createSparkleBurst(rect.left + rect.width / 2, rect.top + rect.height / 2, 14);
-      }
-    });
   });
 
-  // 7. Muestras de Vestimenta Interactivas (Dress Code Swatches)
+  // 9. Muestras de Vestimenta Interactivas (Dress Code Swatches)
   const swatchButtons = document.querySelectorAll('.swatch-btn');
   const swatchNameEl = document.getElementById('active-swatch-name');
   const swatchDescEl = document.getElementById('active-swatch-desc');
@@ -253,47 +258,49 @@ document.addEventListener('DOMContentLoaded', () => {
       if (swatchNameEl) swatchNameEl.textContent = colorName;
       if (swatchDescEl) swatchDescEl.textContent = colorDesc;
 
-      // Transformar aura de la caja
       if (swatchBox) {
         swatchBox.style.boxShadow = `0 8px 24px ${glowColor}`;
       }
 
       if (particleEngine) {
         const rect = btn.getBoundingClientRect();
-        particleEngine.createSparkleBurst(rect.left + rect.width / 2, rect.top + rect.height / 2, 15);
+        particleEngine.createSparkleBurst(rect.left + rect.width / 2, rect.top + rect.height / 2, 18);
       }
     });
   });
 
-  // 8. IntersectionObserver para Revelaciones Progresivas Estilo Apple
-  const sectionsToReveal = document.querySelectorAll('.apple-section, .editorial-section, .apple-stats-grid');
+  // 10. Despliegue Elástico al Bajar la Página ("Unfold on Scroll")
+  // Observa las secciones .unfold-item, .apple-section, etc.
+  const unfoldItems = document.querySelectorAll('.unfold-item, .apple-section, .editorial-section, .apple-stats-grid');
 
   if ('IntersectionObserver' in window) {
-    const sectionObserver = new IntersectionObserver((entries, observer) => {
+    const unfoldObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
+          entry.target.classList.add('is-unfolded');
           entry.target.classList.add('is-revealed');
-          observer.unobserve(entry.target);
         }
       });
     }, {
-      threshold: 0.1,
+      threshold: 0.12,
       rootMargin: '0px 0px -40px 0px'
     });
 
-    sectionsToReveal.forEach(el => sectionObserver.observe(el));
+    unfoldItems.forEach(el => unfoldObserver.observe(el));
   } else {
-    sectionsToReveal.forEach(el => el.classList.add('is-revealed'));
+    unfoldItems.forEach(el => {
+      el.classList.add('is-unfolded');
+      el.classList.add('is-revealed');
+    });
   }
 
-  // 9. Manejo del Formulario de Asistencia (RSVP)
+  // 11. Formulario de Asistencia Personalizado (RSVP)
   const rsvpForm = document.getElementById('rsvp-form');
   const nameInput = document.getElementById('guest-name');
   const errorName = document.getElementById('error-name');
   const passesGroup = document.getElementById('group-passes');
   const attendingRadios = document.querySelectorAll('input[name="attending"]');
 
-  // Alternar campo de pases si asiste o no
   attendingRadios.forEach(radio => {
     radio.addEventListener('change', () => {
       if (passesGroup) {
@@ -319,10 +326,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const passes = document.getElementById('guest-passes')?.value || '1';
       const wishes = document.getElementById('guest-wishes')?.value || '';
 
-      // Tocar campanilla festiva
       if (musicSynth) musicSynth.playChime();
 
-      // Celebración de destellos en el botón y centro de pantalla
       if (particleEngine) {
         const submitBtn = document.getElementById('btn-submit-rsvp');
         const rect = submitBtn ? submitBtn.getBoundingClientRect() : { left: window.innerWidth / 2, top: window.innerHeight / 2, width: 0, height: 0 };
@@ -330,10 +335,9 @@ document.addEventListener('DOMContentLoaded', () => {
         particleEngine.createSparkleBurst(window.innerWidth / 2, window.innerHeight / 2, 35);
       }
 
-      // Generar y abrir enlace de WhatsApp
       if (window.Utils) {
         const waUrl = window.Utils.formatWhatsAppRsvpMessage({
-          phone: '51999999999', // Configurable
+          phone: '51999999999',
           guestName,
           attending,
           passes,
@@ -346,4 +350,40 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
+
+  // 12. Componentes de Compatibilidad (Carrusel & Pestañas para Tests Unitarios)
+  const carousel = document.getElementById('highlights-carousel');
+  const dots = document.querySelectorAll('.carousel-dot');
+  const cards = document.querySelectorAll('.highlight-card');
+
+  if (carousel && dots.length > 0) {
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => {
+        if (cards[index]) {
+          cards[index].scrollIntoView({ behavior: 'smooth', inline: 'center' });
+        }
+      });
+    });
+  }
+
+  const tabChips = document.querySelectorAll('.tab-chip');
+  const tabPanels = document.querySelectorAll('.tab-panel');
+
+  tabChips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      const targetTab = chip.getAttribute('data-tab');
+      if (!targetTab) return;
+
+      tabChips.forEach(c => {
+        c.classList.remove('is-active');
+        c.setAttribute('aria-selected', 'false');
+      });
+      chip.classList.add('is-active');
+      chip.setAttribute('aria-selected', 'true');
+
+      tabPanels.forEach(panel => panel.classList.remove('is-active'));
+      const activePanel = document.getElementById(`tab-panel-${targetTab}`);
+      if (activePanel) activePanel.classList.add('is-active');
+    });
+  });
 });

@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" width="320" height="200" fill="none">
+  <defs>
+    <radialGradient id="teaGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FCECE6"/>
+      <stop offset="65%" stop-color="#F7DFD6"/>
+      <stop offset="100%" stop-color="#EED0C5" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Mancha de acuarela suave de fondo -->
+  <ellipse cx="160" cy="110" rx="140" ry="75" fill="url(#teaGlow)"/>
+
+  <!-- Mesa con mantel de encaje vintage -->
+  <path d="M40 125 Q160 115 280 125 L290 175 Q160 185 30 175 Z" fill="#FFFBF5" stroke="#E3D0BE" stroke-width="1.5"/>
+  <path d="M40 125 C70 135, 100 135, 130 125 C160 135, 190 135, 220 125 C250 135, 270 135, 280 125" stroke="#D1B89D" stroke-width="1.2" stroke-dasharray="3 3"/>
+
+  <!-- Tetera de porcelana clásica -->
+  <g transform="translate(130, 60)">
+    <path d="M30 35 C15 35, 10 50, 10 65 C10 80, 25 90, 45 90 C65 90, 80 80, 80 65 C80 50, 75 35, 60 35 Z" fill="#FFFFFF" stroke="#924245" stroke-width="2"/>
+    <!-- Tapa de tetera -->
+    <path d="M30 35 Q45 22 60 35 Z" fill="#924245"/>
+    <circle cx="45" cy="20" r="4.5" fill="#D4AF37"/>
+    <!-- Pico vertedor -->
+    <path d="M12 45 C-5 40, -10 25, -5 20 C-2 25, 5 35, 10 40 Z" fill="#FFFFFF" stroke="#924245" stroke-width="1.8"/>
+    <!-- Asa elegante -->
+    <path d="M78 45 C95 40, 100 65, 75 80" stroke="#924245" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <!-- Rosa pintada en la tetera -->
+    <circle cx="45" cy="62" r="8" fill="#F4D3DC"/>
+    <circle cx="45" cy="62" r="4" fill="#C47F95"/>
+    <!-- Vapor aromático que sube -->
+    <path d="M-4 15 Q-8 5 -3 -2" stroke="#B89B88" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="2 3"/>
+  </g>
+
+  <!-- Torre de tacitas de té apiladas a la derecha -->
+  <g transform="translate(225, 75)">
+    <!-- Taza 1 inferior -->
+    <ellipse cx="25" cy="50" rx="20" ry="7" fill="#E8DEC8" stroke="#924245" stroke-width="1.5"/>
+    <path d="M10 49 C10 62, 40 62, 40 49 Z" fill="#FFFFFF" stroke="#924245" stroke-width="1.5"/>
+    <!-- Taza 2 inclinada -->
+    <g transform="rotate(-8 25 35)">
+      <ellipse cx="25" cy="35" rx="18" ry="6" fill="#F4D3DC" stroke="#924245" stroke-width="1.5"/>
+      <path d="M11 34 C11 46, 39 46, 39 34 Z" fill="#FFFFFF" stroke="#924245" stroke-width="1.5"/>
+    </g>
+    <!-- Taza 3 superior -->
+    <g transform="rotate(12 25 20)">
+      <ellipse cx="25" cy="20" rx="16" ry="5.5" fill="#FAF3E6" stroke="#924245" stroke-width="1.5"/>
+      <path d="M13 19 C13 30, 37 30, 37 19 Z" fill="#FFFFFF" stroke="#924245" stroke-width="1.5"/>
+    </g>
+  </g>
+
+  <!-- Rosas y flores en acuarela en la mesa -->
+  <g transform="translate(65, 95)">
+    <circle cx="20" cy="20" r="16" fill="#C47F95" opacity="0.8"/>
+    <circle cx="20" cy="20" r="10" fill="#924245"/>
+    <circle cx="20" cy="20" r="5" fill="#F4D3DC"/>
+    <!-- Hojas verdes -->
+    <path d="M34 16 Q45 10 40 25 Q32 25 34 16 Z" fill="#758A65"/>
+    <path d="M5 22 Q-5 30 2 36 Q10 32 5 22 Z" fill="#758A65"/>
+  </g>
+</svg>

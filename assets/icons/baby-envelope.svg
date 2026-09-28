@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 200" width="240" height="200" fill="none">
+  <defs>
+    <linearGradient id="envPink" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFF5F8"/>
+      <stop offset="100%" stop-color="#FCE4EC"/>
+    </linearGradient>
+    <filter id="envShadow" x="-15%" y="-15%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#8C475A" flood-opacity="0.2"/>
+    </filter>
+  </defs>
+
+  <g filter="url(#envShadow)">
+    <!-- Cuerpo del sobre con encaje rosa -->
+    <rect x="25" y="45" width="190" height="120" rx="12" fill="url(#envPink)" stroke="#E8A7B8" stroke-width="1.8"/>
+    
+    <!-- Solapa doblada abierta/sellada con pliegues -->
+    <path d="M25 165 L120 100 L215 165 Z" fill="#F8BBD0" stroke="#E8A7B8" stroke-width="1.2" opacity="0.6"/>
+    <path d="M25 45 L120 115 L215 45 Z" fill="#FFF0F5" stroke="#E8A7B8" stroke-width="1.5"/>
+
+    <!-- Sello central de corazón rosa con corona dorada -->
+    <circle cx="120" cy="115" r="20" fill="#9E4D60" filter="drop-shadow(0 3px 6px rgba(0,0,0,0.18))"/>
+    <circle cx="120" cy="115" r="16" fill="#C2185B"/>
+    <path d="M120 108 C116 103, 108 106, 111 112 C113 116, 120 122, 120 122 C120 122, 127 116, 129 112 C132 106, 124 103, 120 108 Z" fill="#FFFFFF"/>
+
+    <!-- Rosas decorativas en la esquina -->
+    <g transform="translate(185, 30)">
+      <circle cx="10" cy="10" r="10" fill="#F48FB1"/>
+      <circle cx="10" cy="10" r="5" fill="#C2185B"/>
+      <path d="M18 5 Q24 0 20 8 Z" fill="#81C784"/>
+    </g>
+
+    <!-- Corazoncitos flotantes alrededor -->
+    <path d="M30 35 C27 30, 20 32, 22 36 C24 40, 30 44, 30 44 C30 44, 36 40, 38 36 C40 32, 33 30, 30 35 Z" fill="#E896AC"/>
+    <path d="M205 155 C202 150, 195 152, 197 156 C199 160, 205 164, 205 164 C205 164, 211 160, 213 156 C215 152, 208 150, 205 155 Z" fill="#F48FB1"/>
+  </g>
+</svg>

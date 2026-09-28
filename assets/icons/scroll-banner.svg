@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 120" width="500" height="120" fill="none">
+  <defs>
+    <linearGradient id="parchmentGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFF8ED"/>
+      <stop offset="45%" stop-color="#F3E5CE"/>
+      <stop offset="85%" stop-color="#E5CCA7"/>
+      <stop offset="100%" stop-color="#D7BA91"/>
+    </linearGradient>
+    <linearGradient id="curlDark" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#9C7748"/>
+      <stop offset="100%" stop-color="#6F4F28"/>
+    </linearGradient>
+    <filter id="scrollShadow" x="-5%" y="-10%" width="110%" height="130%">
+      <feDropShadow dx="0" dy="5" stdDeviation="6" flood-color="#4E3316" flood-opacity="0.2"/>
+    </filter>
+  </defs>
+
+  <g filter="url(#scrollShadow)">
+    <!-- Enrollado izquierdo (atrás) -->
+    <path d="M40 35 C35 15, 15 20, 20 50 C25 80, 55 85, 60 70 Z" fill="url(#curlDark)"/>
+    
+    <!-- Enrollado derecho (atrás) -->
+    <path d="M460 35 C465 15, 485 20, 480 50 C475 80, 445 85, 440 70 Z" fill="url(#curlDark)"/>
+
+    <!-- Cuerpo principal del pergamino ondulado -->
+    <path d="M45 40 
+             C120 25, 200 35, 250 30 
+             C300 25, 380 35, 455 40 
+             C440 65, 450 85, 445 95 
+             C375 90, 295 100, 250 95 
+             C205 90, 125 100, 55 95 
+             C50 85, 60 65, 45 40 Z" 
+          fill="url(#parchmentGrad)" 
+          stroke="#A88352" 
+          stroke-width="1.8"/>
+
+    <!-- Bordes envejecidos y detalles de arrugas -->
+    <path d="M50 45 C130 32, 210 40, 250 36 C290 32, 370 40, 450 45" stroke="#FFFFFF" stroke-width="1.2" opacity="0.6"/>
+    <path d="M60 90 C140 95, 210 88, 250 91 C290 94, 360 88, 440 90" stroke="#B89467" stroke-width="1" opacity="0.6"/>
+
+    <!-- Enrollado frontal izquierdo -->
+    <path d="M45 40 C30 40, 20 55, 30 75 C40 95, 65 95, 55 95 C45 95, 35 75, 45 60 C55 45, 60 40, 45 40 Z" fill="url(#parchmentGrad)" stroke="#A88352" stroke-width="1.5"/>
+    <path d="M28 58 C32 65, 38 70, 48 70" stroke="#7E5629" stroke-width="2"/>
+
+    <!-- Enrollado frontal derecho -->
+    <path d="M455 40 C470 40, 480 55, 470 75 C460 95, 435 95, 445 95 C455 95, 465 75, 455 60 C445 45, 440 40, 455 40 Z" fill="url(#parchmentGrad)" stroke="#A88352" stroke-width="1.5"/>
+    <path d="M472 58 C468 65, 462 70, 452 70" stroke="#7E5629" stroke-width="2"/>
+  </g>
+</svg>

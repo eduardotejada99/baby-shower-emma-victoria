@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 240" width="280" height="240" fill="none">
+  <defs>
+    <linearGradient id="carriagePink" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFF0F5"/>
+      <stop offset="50%" stop-color="#FCE4EC"/>
+      <stop offset="100%" stop-color="#F8BBD0"/>
+    </linearGradient>
+    <linearGradient id="goldCarriage" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FCEAB8"/>
+      <stop offset="40%" stop-color="#D4AF37"/>
+      <stop offset="80%" stop-color="#9E7824"/>
+    </linearGradient>
+    <filter id="carrShadow" x="-15%" y="-15%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#8C475A" flood-opacity="0.2"/>
+    </filter>
+  </defs>
+
+  <g filter="url(#carrShadow)">
+    <!-- Mango / Manillar curvado dorado -->
+    <path d="M45 105 C35 75, 45 45, 75 42" stroke="url(#goldCarriage)" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+    <circle cx="75" cy="42" r="5" fill="#E896AC"/>
+
+    <!-- Carrocería del cochecito (Cuna acolchada) -->
+    <!-- Capota desplegada con ondas de encaje -->
+    <path d="M95 125 C90 60, 155 45, 195 55 L195 125 Z" fill="url(#carriagePink)" stroke="#E092A8" stroke-width="1.8"/>
+    <!-- Costillas de la capota -->
+    <path d="M195 125 Q145 70 120 55" stroke="url(#goldCarriage)" stroke-width="2" fill="none"/>
+    <path d="M195 125 Q165 65 155 50" stroke="url(#goldCarriage)" stroke-width="2" fill="none"/>
+    
+    <!-- Base inferior de la cuna -->
+    <path d="M75 125 C75 155, 120 165, 175 165 C215 165, 230 145, 225 125 Z" fill="url(#carriagePink)" stroke="#E092A8" stroke-width="2"/>
+    
+    <!-- Volante / Cenefa de encaje blanco -->
+    <path d="M72 125 Q85 133 98 125 Q111 133 124 125 Q137 133 150 125 Q163 133 176 125 Q189 133 202 125 Q215 133 228 125" stroke="#FFFFFF" stroke-width="3" fill="none"/>
+
+    <!-- Lazo grande rosa en la base -->
+    <g transform="translate(195, 120)">
+      <circle cx="0" cy="0" r="5" fill="#C2185B"/>
+      <path d="M-2 -2 C-14 -12, -18 6, -4 2 Z" fill="#F48FB1"/>
+      <path d="M2 -2 C14 -12, 18 6, 4 2 Z" fill="#F48FB1"/>
+      <path d="M-2 4 L-8 16" stroke="#F48FB1" stroke-width="2" stroke-linecap="round"/>
+      <path d="M2 4 L8 16" stroke="#F48FB1" stroke-width="2" stroke-linecap="round"/>
+    </g>
+
+    <!-- Chasis dorado y ruedas ornamentales de radios con corazones -->
+    <!-- Rueda trasera grande -->
+    <g transform="translate(105, 180)">
+      <circle cx="0" cy="0" r="28" stroke="url(#goldCarriage)" stroke-width="3.5" fill="#FFFDF9"/>
+      <circle cx="0" cy="0" r="7" fill="url(#goldCarriage)"/>
+      <line x1="-28" y1="0" x2="28" y2="0" stroke="url(#goldCarriage)" stroke-width="2"/>
+      <line x1="0" y1="-28" x2="0" y2="28" stroke="url(#goldCarriage)" stroke-width="2"/>
+      <line x1="-20" y1="-20" x2="20" y2="20" stroke="url(#goldCarriage)" stroke-width="1.8"/>
+      <line x1="-20" y1="20" x2="20" y2="-20" stroke="url(#goldCarriage)" stroke-width="1.8"/>
+    </g>
+
+    <!-- Rueda delantera mediana -->
+    <g transform="translate(190, 185)">
+      <circle cx="0" cy="0" r="23" stroke="url(#goldCarriage)" stroke-width="3.5" fill="#FFFDF9"/>
+      <circle cx="0" cy="0" r="6" fill="url(#goldCarriage)"/>
+      <line x1="-23" y1="0" x2="23" y2="0" stroke="url(#goldCarriage)" stroke-width="1.8"/>
+      <line x1="0" y1="-23" x2="0" y2="23" stroke="url(#goldCarriage)" stroke-width="1.8"/>
+      <line x1="-16" y1="-16" x2="16" y2="16" stroke="url(#goldCarriage)" stroke-width="1.5"/>
+      <line x1="-16" y1="16" x2="16" y2="-16" stroke="url(#goldCarriage)" stroke-width="1.5"/>
+    </g>
+
+    <!-- Barra de chasis conectando ruedas -->
+    <path d="M105 180 L190 185" stroke="url(#goldCarriage)" stroke-width="3"/>
+  </g>
+</svg>

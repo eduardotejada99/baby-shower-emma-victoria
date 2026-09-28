@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 240" width="200" height="240" fill="none">
+  <defs>
+    <!-- Degradados oro envejecido -->
+    <linearGradient id="watchGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#EED599"/>
+      <stop offset="35%" stop-color="#D4AF37"/>
+      <stop offset="70%" stop-color="#9E7824"/>
+      <stop offset="100%" stop-color="#C59B27"/>
+    </linearGradient>
+    <radialGradient id="dialParchment" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFFDF9"/>
+      <stop offset="75%" stop-color="#F7EEDF"/>
+      <stop offset="100%" stop-color="#E6D3BA"/>
+    </radialGradient>
+    <filter id="watchShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#5A3A1B" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+
+  <!-- Anilla superior y corona -->
+  <g filter="url(#watchShadow)">
+    <circle cx="100" cy="24" r="16" stroke="url(#watchGold)" stroke-width="5" fill="none"/>
+    <rect x="94" y="36" width="12" height="14" rx="3" fill="url(#watchGold)"/>
+    
+    <!-- Caja exterior del reloj -->
+    <circle cx="100" cy="130" r="82" fill="url(#watchGold)"/>
+    <circle cx="100" cy="130" r="74" fill="#75521A"/>
+    <circle cx="100" cy="130" r="70" fill="url(#dialParchment)"/>
+    
+    <!-- Marcas del bisel y dial -->
+    <circle cx="100" cy="130" r="63" stroke="#B89355" stroke-width="1" stroke-dasharray="2 4" fill="none"/>
+    
+    <!-- Números Romanos -->
+    <g fill="#4A2E12" font-family="'Playfair Display', Georgia, serif" font-size="11" font-weight="700" text-anchor="middle">
+      <text x="100" y="80">XII</text>
+      <text x="127" y="87">I</text>
+      <text x="145" y="107">II</text>
+      <text x="151" y="134">III</text>
+      <text x="145" y="159">IV</text>
+      <text x="127" y="178">V</text>
+      <text x="100" y="186">VI</text>
+      <text x="73" y="178">VII</text>
+      <text x="55" y="159">VIII</text>
+      <text x="49" y="134">IX</text>
+      <text x="55" y="107">X</text>
+      <text x="73" y="87">XI</text>
+    </g>
+
+    <!-- Corazón decorativo en el dial -->
+    <path d="M100 152 C95 147, 89 152, 92 158 C94 162, 100 166, 100 166 C100 166, 106 162, 108 158 C111 152, 105 147, 100 152 Z" fill="#924245" opacity="0.85"/>
+
+    <!-- Manecillas vintage -->
+    <g id="watch-hands">
+      <!-- Manecilla de horas (apuntando a las 4) -->
+      <line x1="100" y1="130" x2="124" y2="148" stroke="#3D200E" stroke-width="3.5" stroke-linecap="round"/>
+      <circle cx="118" cy="143" r="3.5" fill="#3D200E"/>
+      
+      <!-- Manecilla de minutos (apuntando a las 12) -->
+      <line x1="100" y1="130" x2="100" y2="92" stroke="#3D200E" stroke-width="2.5" stroke-linecap="round"/>
+      <circle cx="100" cy="102" r="4.5" fill="#3D200E"/>
+
+      <!-- Eje central -->
+      <circle cx="100" cy="130" r="5" fill="url(#watchGold)"/>
+      <circle cx="100" cy="130" r="2.5" fill="#241407"/>
+    </g>
+  </g>
+</svg>
