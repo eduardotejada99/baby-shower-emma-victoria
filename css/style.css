@@ -1068,6 +1068,67 @@ body {
 }
 
 /* ==========================================================================
+   RESPONSIVE MEDIA QUERIES
+   ========================================================================== */
+@media (max-width: 480px) {
+  .apple-subnav {
+    padding: 10px 14px;
+  }
+  .subnav-title {
+    font-size: 0.95rem;
+  }
+  .apple-hero-section {
+    padding: 30px 14px 40px;
+  }
+  .highlights-carousel {
+    padding: 10px 14px 20px;
+    gap: 14px;
+  }
+  .highlight-card {
+    flex: 0 0 84vw;
+    padding: 24px 18px;
+    min-height: 350px;
+  }
+  .card-title {
+    font-size: 1.4rem;
+  }
+  .apple-countdown-grid {
+    gap: 6px;
+  }
+  .time-pill {
+    padding: 10px 6px;
+  }
+  .time-num {
+    font-size: 1.4rem;
+  }
+  .apple-swatch-selector {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .rsvp-card-container {
+    padding: 32px 18px;
+    border-radius: 24px;
+  }
+}
+
+@media (min-width: 768px) {
+  .highlight-card {
+    flex: 0 0 340px;
+  }
+  .highlights-carousel {
+    justify-content: center;
+  }
+  .apple-stats-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .closer-look-display {
+    max-width: 680px;
+  }
+  .apple-hero-headline {
+    font-size: 4.8rem;
+  }
+}
+
+/* ==========================================================================
    ACCESSIBILITY: PREFERS REDUCED MOTION
    ========================================================================== */
 @media (prefers-reduced-motion: reduce) {
