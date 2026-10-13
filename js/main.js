@@ -54,6 +54,15 @@ document.addEventListener('DOMContentLoaded', () => {
   if (audioBtn) audioBtn.addEventListener('click', handleMusicToggle);
 
   /* ──────────────────────────────────────────────────────────────
+     2.1 DESTELLOS MÁGICOS AL TOCAR / CLICKEAR LA PANTALLA
+  ────────────────────────────────────────────────────────────── */
+  document.addEventListener('click', (e) => {
+    if (particleEngine && !e.target.closest('#btn-audio-toggle')) {
+      particleEngine.createSparkleBurst(e.clientX, e.clientY, 12);
+    }
+  }, { passive: true });
+
+  /* ──────────────────────────────────────────────────────────────
      3. SCROLL UNFOLD (IntersectionObserver)
   ────────────────────────────────────────────────────────────── */
   const unfoldTargets = document.querySelectorAll(
@@ -234,11 +243,16 @@ document.addEventListener('DOMContentLoaded', () => {
       const d = Math.floor(diff / 86400000);
       const h = Math.floor((diff % 86400000) / 3600000);
       const m = Math.floor((diff % 3600000)  / 60000);
-      const s = Math.floor((diff % 60000)    / 1000);
+      const prevSecs = secsEl.textContent;
+      const newSecs = String(s).padStart(2,'0');
+      if (prevSecs !== newSecs && prevSecs !== '00') {
+        secsEl.style.transform = 'scale(1.15)';
+        setTimeout(() => { if (secsEl) secsEl.style.transform = 'scale(1)'; }, 160);
+      }
       daysEl.textContent  = String(d).padStart(2,'0');
       hoursEl.textContent = String(h).padStart(2,'0');
       minsEl.textContent  = String(m).padStart(2,'0');
-      secsEl.textContent  = String(s).padStart(2,'0');
+      secsEl.textContent  = newSecs;
     }
 
     tick();
