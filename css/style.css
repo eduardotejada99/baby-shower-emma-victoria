@@ -207,6 +207,33 @@ body.baby-girl-invitation {
   100% { transform: translate(-8px, -80px) scale(1.18) rotate(12deg); opacity: 0; }
 }
 
+.audio-hint-toast {
+  position: fixed;
+  bottom: 84px;
+  right: 20px;
+  background: rgba(68, 44, 58, 0.94);
+  color: #FFFDF9;
+  font-size: 0.72rem;
+  padding: 8px 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(232, 201, 122, 0.5);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  max-width: 250px;
+  z-index: 1000;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.35s ease, transform 0.35s var(--spring-bounce);
+  line-height: 1.35;
+  text-align: left;
+}
+.audio-hint-toast.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* ── Nav pill ────────────────────────────────────────────────── */
 .nav-pill {
   position: fixed;

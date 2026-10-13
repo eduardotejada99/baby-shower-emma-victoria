@@ -28,6 +28,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const audioBtn = document.getElementById('btn-audio-toggle');
   const audioIcon = audioBtn?.querySelector('.music-icon');
+  const audioToast = document.getElementById('audio-silent-toast');
+  let audioToastTimer = null;
 
   async function handleMusicToggle() {
     if (!musicSynth || !audioBtn) return;
@@ -37,10 +39,22 @@ document.addEventListener('DOMContentLoaded', () => {
         audioBtn.classList.add('is-playing');
         audioBtn.setAttribute('aria-label', 'Silenciar música de cuna');
         if (audioIcon) audioIcon.textContent = '♬';
+
+        if (audioToast) {
+          audioToast.classList.add('is-visible');
+          clearTimeout(audioToastTimer);
+          audioToastTimer = setTimeout(() => {
+            audioToast.classList.remove('is-visible');
+          }, 4500);
+        }
       } else {
         audioBtn.classList.remove('is-playing');
         audioBtn.setAttribute('aria-label', 'Reproducir música de cuna');
         if (audioIcon) audioIcon.textContent = '♪';
+
+        if (audioToast) {
+          audioToast.classList.remove('is-visible');
+        }
       }
       if (particleEngine) {
         const r = audioBtn.getBoundingClientRect();
