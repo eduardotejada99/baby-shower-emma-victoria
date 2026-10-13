@@ -18,7 +18,7 @@
     if (calendarBtn && window.Utils) {
       calendarBtn.href = window.Utils.generateGoogleCalendarUrl({
         title: 'Baby Shower de Sofía ✨',
-        details: 'Acompáñanos a celebrar la pronta llegada de nuestra princesa Sofía junto a sus papás Maricielo Dávila & Arturo Tejada (Familia Tejada Dávila). ¡Habrá sorpresas, música y bendiciones!',
+        details: 'Acompáñanos a celebrar la pronta llegada de nuestra princesa Sofía junto a sus papás Maricielo Davila & Arturo Tejada (Familia Tejada Davila). ¡Habrá sorpresas, música y bendiciones!',
         location: 'Jardín de Ensueño Las Rosas, Av. Los Jazmines 450, Valle Hermoso',
         startIso: EVENT_START_ISO,
         endIso: EVENT_END_ISO

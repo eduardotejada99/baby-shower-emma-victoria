@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-  <title>Baby Shower · Sofía 🎀 | Familia Tejada Dávila</title>
-  <meta name="description" content="Estás cordialmente invitada al Baby Shower de nuestra pequeña princesa Sofía. Familia Tejada Dávila — 24 de Octubre 2026.">
+  <title>Baby Shower · Sofía 🎀 | Familia Tejada Davila</title>
+  <meta name="description" content="Estás cordialmente invitada al Baby Shower de nuestra pequeña princesa Sofía. Familia Tejada Davila — 24 de Octubre 2026.">
   <meta name="theme-color" content="#F2A7B8">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -55,6 +55,17 @@
       <h2 class="h-name">Sofía</h2>
       <p class="h-tagline">¡Una dulce bebé está en camino!</p>
       <div class="h-date-pill"><span>Sábado 24 &middot; Octubre 2026 &middot; 4:00 PM</span></div>
+      <!-- Badge de Invitación Personalizada (se activa si la URL trae ?to=...&pases=...) -->
+      <div id="personalized-guest-badge" class="hero-guest-badge" style="display:none;" aria-live="polite">
+        <span class="hgb-icon">&#128140;</span>
+        <div class="hgb-info">
+          <span class="hgb-label">Invitación especial para:</span>
+          <div class="hgb-details">
+            <strong id="hero-guest-name" class="hgb-name">Estimada Invitada</strong>
+            <span id="hero-guest-passes" class="hgb-passes">&middot; 2 Pases</span>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="hero-bottom">
@@ -146,7 +157,7 @@
             <div class="card-caption">
               <span class="card-badge">&#10022; AMOR FAMILIAR &#10022;</span>
               <h3 class="card-title">Bienvenida Sofía</h3>
-              <p class="card-text">Esperada con profunda fe, alegría e infinita ternura por la Familia Tejada Dávila.</p>
+              <p class="card-text">Esperada con profunda fe, alegría e infinita ternura por la Familia Tejada Davila.</p>
             </div>
           </div>
 
@@ -215,10 +226,13 @@
               <option value="2" selected>2 personas</option>
               <option value="3">3 personas</option>
               <option value="4">4 personas</option>
+              <option value="5">5 personas</option>
+              <option value="6">6 personas</option>
             </select>
+            <div id="guest-assigned-hint" class="assigned-hint" style="display:none;"></div>
           </div>
           <div class="field">
-            <textarea id="guest-wishes" class="canva-textarea" rows="2" placeholder="Un deseo para la bebé Sofía y la Familia Tejada Dávila (opcional)"></textarea>
+            <textarea id="guest-wishes" class="canva-textarea" rows="2" placeholder="Un deseo para la bebé Sofía y la Familia Tejada Davila (opcional)"></textarea>
           </div>
           <button type="submit" id="btn-submit-rsvp" class="btn-rose-full">Confirmar por WhatsApp &#128140;</button>
         </form>
@@ -283,9 +297,12 @@
       <button id="btn-open-vip-pass" class="btn-rose vip-btn">&#127903; Ver mi Pase de Invitada</button>
       <div class="blessing">
         <p class="bl-verse">"Los hijos son un regalo del Señor, el fruto del vientre es una recompensa."</p>
-        <p class="bl-sig">Maricielo Dávila &amp; Arturo Tejada</p>
-        <p class="bl-fam" style="font-family:var(--font-serif);font-size:.92rem;color:var(--gold-warm);font-weight:700;margin-top:2px;">Familia Tejada Dávila</p>
-        <p class="bl-copy">&#169; 2026 Baby Shower de Sofía &middot; Familia Tejada Dávila &middot; Diseñado con amor &#127800;</p>
+        <p class="bl-sig">Maricielo Davila &amp; Arturo Tejada</p>
+        <p class="bl-fam" style="font-family:var(--font-serif);font-size:.92rem;color:var(--gold-warm);font-weight:700;margin-top:2px;">Familia Tejada Davila</p>
+        <p class="bl-copy">&#169; 2026 Baby Shower de Sofía &middot; Familia Tejada Davila &middot; Diseñado con amor &#127800;</p>
+        <div class="host-tools-wrap">
+          <button id="btn-open-generator" class="btn-ghost-admin" aria-label="Abrir panel para generar invitaciones">&#9881; Generar pases de invitados (Anfitriones)</button>
+        </div>
       </div>
     </div>
   </section>
@@ -312,8 +329,68 @@
         </div>
       </div>
       <div class="mt-bot">
-        <p class="mt-stamp">&#10022; BABY SHOWER OFICIAL &middot; SOFÍA &middot; FAMILIA TEJADA DÁVILA &#10022;</p>
+        <p class="mt-stamp">&#10022; BABY SHOWER OFICIAL &middot; SOFÍA &middot; FAMILIA TEJADA DAVILA &#10022;</p>
         <button id="btn-download-pass" class="btn-save-pass">Guardar Pase &#128140;</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL GENERADOR DE ENLACES (Para los anfitriones / papás) -->
+  <div id="generator-modal" class="canva-modal" aria-hidden="true" role="dialog" aria-labelledby="modal-gen-title" aria-modal="true">
+    <div class="modal-backdrop" id="modal-gen-backdrop"></div>
+    <div class="modal-card-generator">
+      <button id="btn-close-gen-modal" class="modal-x" aria-label="Cerrar">&#215;</button>
+      <div class="gen-header">
+        <span class="gen-kicker">&#10022; PANEL DE ANFITRIONES &#10022;</span>
+        <h3 id="modal-gen-title" class="gen-title">Generar Invitación</h3>
+        <p class="gen-subtitle">Crea el enlace personalizado para cada invitado con sus pases listos para enviar por WhatsApp.</p>
+      </div>
+
+      <div class="gen-body">
+        <div class="gen-field">
+          <label for="gen-input-name" class="gen-label">Nombre del Invitado o Familia:</label>
+          <input type="text" id="gen-input-name" class="canva-input" placeholder="Ej: Andrés Tejada / Familia Pérez" value="Andrés Tejada">
+        </div>
+        <div class="gen-field-row">
+          <div class="gen-field">
+            <label for="gen-input-passes" class="gen-label">Pases asignados:</label>
+            <select id="gen-input-passes" class="canva-select">
+              <option value="1">1 Pase (Personal)</option>
+              <option value="2" selected>2 Pases (Pareja)</option>
+              <option value="3">3 Pases (Familiar)</option>
+              <option value="4">4 Pases (Familiar)</option>
+              <option value="5">5 Pases (Familiar)</option>
+              <option value="6">6 Pases (Familiar)</option>
+            </select>
+          </div>
+          <div class="gen-field">
+            <label for="gen-input-phone" class="gen-label">WhatsApp (opcional):</label>
+            <input type="tel" id="gen-input-phone" class="canva-input" placeholder="Ej: 999888777">
+          </div>
+        </div>
+
+        <div class="gen-preview-box">
+          <label class="gen-label">Enlace personalizado listo:</label>
+          <div class="gen-link-row">
+            <input type="text" id="gen-output-url" class="canva-input gen-url-input" readonly value="">
+            <button id="btn-copy-gen-url" class="btn-rose-sm">&#128203; Copiar</button>
+          </div>
+        </div>
+
+        <div class="gen-actions">
+          <a id="btn-send-whatsapp-invite" href="#" target="_blank" rel="noopener noreferrer" class="btn-wa-invite">&#128172; Enviar Invitación por WhatsApp</a>
+        </div>
+
+        <!-- Generador masivo / en lote -->
+        <details class="gen-bulk-details">
+          <summary class="gen-bulk-summary">&#128221; Generador en lote (Pegar lista de nombres)</summary>
+          <div class="gen-bulk-body">
+            <p class="gen-hint">Escribe o pega tus invitados (uno por línea, formato: <code>Nombre, pases</code>):</p>
+            <textarea id="gen-bulk-input" class="canva-textarea" rows="4" placeholder="Andrés Tejada, 2&#10;Tía Carmen Davila, 1&#10;Familia Rojas, 3"></textarea>
+            <button id="btn-process-bulk" class="btn-rose-sm mt-2">&#9881; Generar Lista de Enlaces</button>
+            <div id="gen-bulk-results" class="gen-bulk-results-list"></div>
+          </div>
+        </details>
       </div>
     </div>
   </div>

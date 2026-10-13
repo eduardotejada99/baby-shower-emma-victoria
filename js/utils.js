@@ -57,7 +57,7 @@ function formatWhatsAppRsvpMessage({ phone = '51999999999', guestName, attending
   
   let message = `🌸 *Confirmación de Asistencia* 🌸\n` +
     `*Baby Shower de Sofía* ✨\n` +
-    `*Familia Tejada Dávila*\n\n` +
+    `*Familia Tejada Davila*\n\n` +
     `👤 *Invitado / Familia:* ${guestName}\n` +
     `💌 *Asistencia:* ${attendingText}\n` +
     (isAttending ? `🎟️ *Pases / Personas:* ${passes}\n` : '');
